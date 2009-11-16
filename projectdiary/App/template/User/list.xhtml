@@ -1,0 +1,35 @@
+<?xml version="1.0" encoding="utf-8" ?>
+<hawk:surround with="../Layouts/admin.xhtml" at="content" xmlns:hawk="http://fh-wedel.de/hawk" xmlns="http://www.w3.org/1999/xhtml">
+
+  <hawk:embed what="../Templates/adminheader.xhtml"/>
+
+  <h2>Users</h2>
+
+  <table class="admin" cellpadding="1" border="2" width="99%" align="center">
+    <tr>
+      <th>Name</th>
+      <th>Status</th>
+      <th>Projects</th>
+      <th colspan="2">Actions</th>
+    </tr>
+    
+    <hawk:bind name="user">
+      <tr>
+        <td><hawk:bind name="name"/></td>
+        <td><hawk:bind name="admin"/></td>
+        <td>
+          <ul>
+            <hawk:bind name="projects">
+              <li><hawk:bind name="projectname"/></li>
+            </hawk:bind>
+          </ul>
+        </td>
+        <td><hawk:bind name="editAction"/></td>
+        <td><hawk:bind name="deleteAction"/></td>
+      </tr>
+    </hawk:bind>
+  </table>
+
+  <br/>
+  <a href="/user/edit">New user</a>
+</hawk:surround>

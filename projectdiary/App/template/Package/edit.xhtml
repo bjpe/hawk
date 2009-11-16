@@ -1,0 +1,37 @@
+<?xml version="1.0" encoding="utf-8" ?>
+<hawk:surround with="../Layouts/tagebuch.xhtml" at="content" xmlns:hawk="http://fh-wedel.de/hawk" xmlns="http://www.w3.org/1999/xhtml">
+  <head>
+    <title>Edit package</title>
+  </head>
+
+  <hawk:embed what="_header.xhtml"/>
+  <hawk:error for="package"/>
+
+  <div class="ProjektNeu">
+    <form action="edit" method="post">
+      <div class="row">
+        <span class="label"><label for="package.description">Package description:</label></span>
+        <span class="formw"><hawk:bind name="description"/></span>
+      </div>
+      <div class="row">
+        <span class="label"><label for="package.workMin">Estimated work min (hours):</label></span>
+        <span class="formw"><hawk:bind name="workMin"/></span>
+      </div>
+      <div class="row">
+        <span class="label"><label for="package.workMax">Estimated work max (hours):</label></span>
+        <span class="formw"><hawk:bind name="workMax"/></span>
+      </div>
+      <div class="row">
+        <span class="label"><label for="package.comment">Comment:</label></span>
+        <span class="formw"><hawk:bind name="comment"/></span>
+      </div>
+      <div class="spacer">&nbsp;</div>
+      <hawk:bind name="id"/>
+      <hawk:bind name="area_id"/>
+      <div class="mittig">
+        <input type="Submit" value="Save"/>
+        <input type="Reset" value="Reset"/>
+      </div>
+    </form>
+  </div>
+</hawk:surround>

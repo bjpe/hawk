@@ -1,0 +1,38 @@
+<?xml version="1.0" encoding="utf-8" ?>
+<hawk:surround with="../Layouts/tagebuch.xhtml" at="content" xmlns:hawk="http://fh-wedel.de/hawk" xmlns="http://www.w3.org/1999/xhtml">
+  <head>
+    <title>Change step</title>
+  </head>
+
+  <hawk:embed what="_header.xhtml"/>
+  <hawk:error for="package"/>
+
+  <div class="ProjektNeu">
+    <form action="edit" method="post">
+      <div class="row">
+        <span class="label"><label for="step.description">Step description:</label></span>
+        <span class="formw"><hawk:bind name="description"/></span>
+      </div>
+      <div class="row">
+        <span class="label"><label for="step.duration">Duration (hours):</label></span>
+        <span class="formw"><hawk:bind name="duration"/></span>
+      </div>
+      <div class="row">
+        <span class="label"><label for="step_completiondegree">Degree of completion (%):</label></span>
+        <span class="formw"><hawk:bind name="completion"/>%</span>
+      </div>
+      <div class="row">
+        <span class="label"><label for="step_comment">Comment:</label></span>
+        <span class="formw"><hawk:bind name="comment"/></span>
+      </div>
+      <div class="spacer">&nbsp;</div>
+      <hawk:bind name="id"/>
+      <hawk:bind name="package_id"/>
+      <div class="mittig">
+        <input type="Submit" value="Save"/>
+        <input type="Reset" value="Reset"/>
+      </div>
+    </form>
+  </div>
+</hawk:surround>
+

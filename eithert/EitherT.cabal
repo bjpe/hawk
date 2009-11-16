@@ -1,0 +1,20 @@
+Name:		EitherT
+Version:	0.0.1
+Description:	Monad transformer for Either, inspired by Control.Monad.ErrorT but without the Error restriction of the Left value
+Synopsis:   Monad transformer for Either
+License:	BSD3
+License-file: LICENCE
+Author:		Björn Peemöller, Stefan Roggensack
+Build-Type:	Simple
+Category:   Monads
+Cabal-Version:	>=1.6
+
+library
+  ghc-options:      -Wall
+  Build-Depends:
+    base == 4.*,
+    mtl >= 1.1.0.2 && < 2,
+    MonadCatchIO-mtl >= 0.2.0.0 && < 0.3
+  hs-source-dirs:   src
+  Exposed-Modules:
+    Control.Monad.Either

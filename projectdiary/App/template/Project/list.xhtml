@@ -1,0 +1,49 @@
+<?xml version="1.0" encoding="utf-8" ?>
+<hawk:surround with="../Layouts/admin.xhtml" at="content" xmlns:hawk="http://fh-wedel.de/hawk" xmlns="http://www.w3.org/1999/xhtml">
+
+  <hawk:embed what="../Templates/adminheader.xhtml"/>
+
+  <h2>Projects</h2>
+
+  <table class="admin" cellpadding="1" border="2" width="99%" align="center">
+    <tr>
+      <th>Project</th>
+      <th>Start</th>
+      <th>End</th>
+      <th>Estimated work min</th>
+      <th>Estimated work max</th>
+      <th>Degree of completion</th>
+      <th>Workers</th>
+      <th colspan="4">Actions</th>
+    </tr>
+    
+    <hawk:bind name="project" type="[Project_list]">
+      <tr>
+        <td><hawk:bind name="name" type="string"/></td>
+        <td><hawk:bind name="startAt"/></td>
+        <td><hawk:bind name="endAt"/></td>
+        <td><hawk:bind name="workMin"/></td>
+        <td><hawk:bind name="workMax"/></td>
+        <td>
+	        <div class="progresswrapper">
+            <hawk:bind name="completeness"/>
+          </div>
+        </td>
+        <td>
+          <ul>
+            <hawk:bind name="workers">
+              <li><hawk:bind name="user_name"/></li>
+            </hawk:bind>
+           </ul>
+        </td>
+        <td><hawk:bind name="showAction"/></td>
+        <td><hawk:bind name="editAction"/></td>
+        <td><hawk:bind name="deleteAction"/></td>
+        <td><hawk:bind name="clearAction"/></td>
+      </tr>
+    </hawk:bind>
+  </table>
+
+  <br/>
+  <a href="/project/edit">New project</a>
+</hawk:surround>

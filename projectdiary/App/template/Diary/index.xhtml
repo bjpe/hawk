@@ -1,0 +1,32 @@
+<?xml version="1.0" encoding="utf-8" ?>
+<hawk:surround with="../Layouts/tagebuch.xhtml" at="content" xmlns:hawk="http://fh-wedel.de/hawk" xmlns="http://www.w3.org/1999/xhtml">
+  <head>
+    <title>Welcome to the project diary!</title>
+  </head>
+
+  <hawk:embed what="_header.xhtml"/>
+  <hawk:surround with="../Templates/table.xhtml" at="tablebody">
+    <tr class="projekt">
+      <td colspan="4" class="left"><hawk:bind name="indexlink"/></td>
+      <td><hawk:bind name="workMin"/></td>
+      <td><hawk:bind name="workMax"/></td>
+      <td><hawk:bind name="workNow"/></td>
+      <td class="statusTd">
+        <div class="progresswrapper">
+          <hawk:bind name="diaryCompleteness"/>
+        </div>
+      </td>
+      <td>
+        <center>
+          <a href="/area/edit"><img alt="New Area" border="0" src="/images/new.png" title="New Area" /></a>
+        </center>
+      </td>
+      <td>
+        <center>
+         <a href="/diary/edit"><img alt="Edit Project" border="0" src="/images/edit.png" title="Edit Project" /></a>
+        </center>
+      </td>
+    </tr>
+    <hawk:embed what="../Area/_area.xhtml"/>
+  </hawk:surround>
+</hawk:surround>

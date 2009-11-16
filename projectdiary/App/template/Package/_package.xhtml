@@ -1,0 +1,17 @@
+<tr class="paket">
+  <td colspan="2">&nbsp;</td>
+  <td colspan="2" class="left">
+    <hawk:bind name="package"/>
+  </td>
+  <td><hawk:bind name="packageWorkMin"/></td>
+  <td><hawk:bind name="packageWorkMax"/></td>
+  <td><hawk:bind name="packageWorkNow"/></td>
+   <td class="statusTd">
+    <div class="progresswrapper">
+      <hawk:bind name="packageCompleteness"/>
+    </div>
+  </td>
+  <td><center><hawk:bind name="packageNewlink"/></center></td>
+  <td><center><hawk:bind name="packageEditlink"/></center></td>
+</tr>
+<hawk:embed what="../Step/_step.xhtml"/>

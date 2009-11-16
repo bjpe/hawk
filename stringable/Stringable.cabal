@@ -1,0 +1,18 @@
+Name:		Stringable
+Version:	0.0.1
+Description:	This class allow to convert all values to String. Other than the Show class this function is for String the id function.
+Synopsis:   Convert values to String
+License:	BSD3
+License-file: LICENCE
+Author:		Björn Peemöller, Stefan Roggensack
+Build-Type:	Simple
+Category:   Data
+Cabal-Version:	>=1.6
+
+library
+  ghc-options:      -Wall
+  Build-Depends:
+    base == 4.*
+  hs-source-dirs:   src
+  Exposed-Modules:
+    Data.Stringable

@@ -1,0 +1,54 @@
+<?xml version="1.0" encoding="utf-8" ?>
+<hawk:surround with="../Layouts/tagebuch.xhtml" at="content" xmlns:hawk="http://fh-wedel.de/hawk" xmlns="http://www.w3.org/1999/xhtml">
+  <head>
+    <title>Project details</title>
+  </head>
+
+  <hawk:embed what="../Templates/adminheader.xhtml"/>
+
+  <h2><b>Project: </b><hawk:bind name="name"/></h2>
+ -> <hawk:bind name="loginAction"/><br/><br/>
+<table class="admin" cellpadding="3" border="0" width="50%">
+  <tr>
+    <td><b>Start:</b></td>
+    <td><hawk:bind name="startAt"/></td>
+  </tr>
+  <tr>
+    <td><b>End:</b></td>
+    <td><hawk:bind name="endAt"/></td>
+  </tr>
+  <tr>
+    <td><b>Estimated total work:</b></td>
+    <td><b><hawk:bind name="workMin"/></b> - <b><hawk:bind name="workMax"/></b> hours</td>
+  </tr>
+  <tr>
+    <td><b>Actual work until now:</b></td>
+    <td><b><hawk:bind name="workNow"/></b> hours</td>
+  </tr>  <tr>
+    <td><b>Degree of completion:</b></td>
+    <td>
+	    <div class="progresswrapper">
+        <hawk:bind name="completeness"/>
+	    </div>
+    </td>
+  </tr>
+</table>
+
+<p>Users assigned to the project (workers):</p>
+<table>
+  <hawk:bind name="workers">
+    <tr>
+      <td><hawk:bind name="user_name"/></td>
+      <td><hawk:bind name="removeAction"/></td>
+    </tr>
+  </hawk:bind>
+</table>
+<br/>
+<p>Available users:</p>
+<form action="/project/addworker" method="post">
+  <hawk:bind name="userselect"/>
+  <hawk:bind name="id"/>
+  <input type="Submit" value="Assign user"/>
+</p>
+<div class="spacerbig">&nbsp;</div>
+<hawk:bind name="editAction"/> | <hawk:bind name="listAction"/>

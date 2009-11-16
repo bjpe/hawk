@@ -1,0 +1,12 @@
+<hawk:ignore>
+  <hawk:surround with="../Templates/header.xhtml" at="header">
+    <div class="infoDescr">Angelegt am:
+      <span><hawk:bind name="createdAt"/></span>
+    </div>
+    <div class="infoDescr">Kommentar:
+      <span><hawk:bind name="comment"/></span>
+    </div>
+  </hawk:surround>
+  <hawk:embed what="../Templates/message.xhtml"/>
+  <hawk:embed what="../Templates/path.xhtml"/>
+</hawk:ignore>

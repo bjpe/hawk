@@ -1,0 +1,21 @@
+<?xml version="1.0" encoding="utf-8" ?>
+<hawk:surround with="../Layouts/admin.xhtml" at="content" xmlns:hawk="http://fh-wedel.de/hawk" xmlns="http://www.w3.org/1999/xhtml">
+
+  <hawk:embed what="../Templates/adminheader.xhtml"/>
+  <h2>Project diary: summary</h2>
+
+  <table class="admin" cellpadding="3">
+    <tr>
+      <td>Number of projects:</td>
+      <td><hawk:bind name="projectcount"/></td>
+    </tr>
+    <tr>
+      <td>Number of administrators:</td>
+      <td><hawk:bind name="admincount"/></td>
+    </tr>
+    <tr>
+      <td>Number of users:</td>
+      <td><hawk:bind name="usercount"/></td>
+    </tr>
+  </table>
+</hawk:surround>

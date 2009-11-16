@@ -1,0 +1,22 @@
+<?xml version="1.0" encoding="utf-8" ?>
+<hawk:surround with="../Layouts/admin.xhtml" at="content" xmlns:hawk="http://fh-wedel.de/hawk" xmlns="http://www.w3.org/1999/xhtml">
+
+  <hawk:embed what="../Templates/adminheader.xhtml"/>
+
+  <form action="/admin/login" method="post">
+    <div class="row">
+      <span class="label">User name:</span>
+      <span class="formw"><hawk:bind name="username"/></span>
+    </div>
+    <div class="row">
+      <span class="label">Password:</span>
+      <span class="formw"><hawk:bind name="password"/></span>
+    </div>
+    <div class="spacerbig">&nbsp;</div>
+    <div class="mittig">
+      <input type="Submit" value="Login"/>
+    </div>
+  </form>
+</hawk:surround>
+  
+  

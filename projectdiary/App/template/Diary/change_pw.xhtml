@@ -1,0 +1,21 @@
+<% @path = (link_to "#{h @project.name}", :controller => "tagebuch", :action => "index") %>
+<% @projectname = "#{h @project.name}" %>
+
+<% content_for('errors') do %>
+<%= error_messages_for 'user' %>
+<% end %>
+
+
+<div class="ProjektNeu">
+<%= start_form_tag :action => 'change_pw', :id => @user %>
+<div class="row"><span class="label"><label for="user_old_password">altes Passwort</label></span>
+<span class="formw"><%= password_field 'user', 'old_password'  %></span></div>
+
+<div class="row"><span class="label"><label for="user_password">neues Passwort</label></span>
+<span class="formw"><%= password_field 'user', 'password'  %></span></div>
+
+<div class="row"><span class="label"><label for="user_password2">neues Passwort (Kontrolle)</label></span>
+<span class="formw"><%= password_field 'user', 'password_confirmation'  %></span></div>
+<div class="mittig"><%= submit_tag 'Aktualisieren' %></div>
+<%= end_form_tag %>
+</div>

@@ -1,0 +1,21 @@
+<?xml version="1.0" encoding="utf-8"?>
+<!-- Header -->
+<hawk:bind name="admin.header">
+  <div class="headerwrapper">
+	  <div class="header">
+      <div class="superheader">Project diary</div>
+      <hawk:bind name="withSession">
+	      <div class="tagebuchcontrols">
+          <hawk:bind name="logout"/>
+        </div>
+	      <div class="welcomeheader">Welcome, <hawk:bind name="name"/>!</div>
+      </hawk:bind>
+      <div class="spacer"><br/></div>
+      <div class="projectinfo">Administration</div>
+    </div>
+  </div>
+
+  <hawk:embed what="../Templates/path.xhtml"/>
+  <hawk:embed what="../Templates/message.xhtml"/>
+</hawk:bind>
+<!-- end: Header -->

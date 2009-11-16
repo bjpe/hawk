@@ -1,0 +1,85 @@
+<?xml version="1.0" encoding="utf-8" ?>
+<hawk:surround with="../Layouts/tagebuch.xhtml" at="content" xmlns:hawk="http://fh-wedel.de/hawk" xmlns="http://www.w3.org/1999/xhtml">
+  <head>
+    <title>Welcome to the project diary!</title>
+  </head>
+
+  <hawk:embed what="../Templates/header.xhtml"/>
+  <hawk:embed what="../Templates/path.xhtml"/>
+  <hawk:embed what="../Templates/message.xhtml"/>
+
+
+  <h1>Hilfe</h1>
+  <div class="spacerbig"> &nbsp;</div>
+  <h2>Login</h2>
+  <div class="helpcontent">
+    Ein Login ist nur dann erfolgreich m&ouml;glich, wenn neben korrektem Benutzernamen und Passwort auch ein Projekt ausgew&auml;hlt ist, dem der Benutzer zugeordnet ist.
+  </div>
+  <h2>Passwort &auml;ndern</h2>
+  <div class="helpcontent">
+    &Uuml;ber den Schl&uuml;ssel-Button oben rechts k&ouml;nnen eingeloggte User ihr eigenes Passwort &auml;ndern.
+  </div>
+  <h2>Ausloggen</h2>
+  <div class="helpcontent">
+    &Uuml;ber den Logout-Button kann das Projekt wieder verlassen werden.
+  </div>
+  <h2>Informationen im eingeloggten Projekt</h2>
+  <div class="helpcontent">
+    Im obereren Bereich werden Informationen zum Projekt, zum Gebiet, zum Paket oder zum Arbeitsschritt angezeigt. Dabei handelt es sich um den zeitlichen Rahmen und die Mitarbeiter des Projekts oder um Termine, Verantwortliche und Kommentare.
+    <br/>
+    Im rechten Bereich ist der Gesamtfortschritt des Projekts zu sehen.
+  </div>
+
+  <h2>Pfad-Informationen</h2>
+  <div class="helpcontent">
+    Der orangene Bereich stellt den Ast des Projekts, in dem sich der User gerade befindet, als Hyperlinks dar.
+  </div>
+
+  <h2>Aufbau und Darstellung eines Projekts</h2>
+  <div class="helpcontent">
+   <b>Konzeptionelle Vorarbeit</b><br/>
+    Ein Projekt enth&auml;lt Gebiete. Dies sind gro&szlig;e Teilbereiche, die sich semantisch von einander klar unterscheiden lassen. Obligatorisch ist eine Beschreibung, optional ein Kommentar.
+    <br/><br/>
+    Gebiete lassen sich genauer gliedern in einzelne Arbeitspakete. F&uuml;r jedes Arbeitspaket ist neben der Beschreibung ein Bereich zwischen minimalem und maximalen Aufwand in Stunden zu sch&auml;tzen. Der maximale Aufwand darf dabei h&ouml;chstens das doppelte des minimalen Aufwands betragen. Optional kann auch ein Kommentar hinzugef&uuml;gt werden.
+    <br/><br/>
+    Gebiete und Pakete werden vom Benutzer in der Projektplanungsphase angelegt und stellen eine konzeptionelle Prognose der zu erwartenden Aufgaben und ihrer Aufw&auml;nde dar.
+    <br/><br/>
+    <b>Konrekte Arbeit am Projekt</b><br/> 
+    In der konkreten Arbeit am Projekt werden Schritte angelegt im jeweiligen bearbeiteten Paket.
+    Dabei wird angegeben, wie lange gearbeitet wurde (in Stunden) und zu welchem Anteil das jeweilige Paket mit Abschluss des Schritts insgesamt vollendet wurde.
+  <br/>Der jeweils letzte Schritt kann auch bez&uuml;glich des damit verbundenen Paket-Fortschritts und der Arbeitsdauer noch editiert werden. Bei Schritten davor ist es nur noch m&ouml;glich, die Beschreibung und den Kommentar zu editieren.
+  <br/>Zu Schritten wird jeweils der Benutzer abgespeichert, der den Schritt durchgef&uuml;hrt hat.
+    <br/><br/>
+    <b>Darstellung</b><br/> 
+    Der Projektbaum wird dabei in einer Tabelle dargestellt. Die einzelnen Ebenen sind durch Farbhinterlegung und Einr&uuml;ckung gekennzeichnet.
+    <br/>
+    Detailiertere Informationen sind jeweils als Hyperlink hinter den einzelnen Gebieten, Paketen und Schritten hinterlegt. So k&ouml;nnen n&auml;here Informationen geladen werden, die im oberen Bereich angezeigt werden.
+    <br/>
+    Unterbereiche (Gebiet zu Projekt, Paket zu Gebiet oder Schritt zu Paket) zu erstellen sowie das Projekte / Gebiete / Pakete / Schritte zu editieren, ist &uuml;ber die Buttons auf der rechten Seite m&ouml;glich.
+  </div>
+
+  <h2>&Auml;nderungsprotokoll</h2>
+  <div class="helpcontent">
+    Unterhalb der Anzeige (Projekt gesamt, Gebiet, Paket oder Schritt) wird jeweils ein Protokoll der &Auml;nderungen angezeigt f&uuml;r den entsprechenden Bereich.
+    <br/><br/>
+    In der Protokoll-Ansicht werden die &Auml;nderungsprotokolle aller Gebiete, Pakete und Arbeitsschritte als Projektbaum angezeigt.
+  </div>
+
+  <h2>Fortschrittsberechnung</h2>
+  <div class="helpcontent">
+    Bei Arbeitsschritten wird der Fortschritt, der durch seine Vollendung im Paket gesamt erreicht wird, manuell eingetragen. Der Fortschritt des Pakets entspricht also dem Eintrag des neuesten Arbeitsschritts (es ist auch m&ouml;glich, Paket-Fortschritte mit einem neuen Schritt nach unten zu korrigieren).
+    An Hand des Fortschritts eines Pakets und der daf&uuml;r bereits insgesamt in Anspruch genommenen Arbeitszeit wird eine zu erwartenden Arbeitszeit errechnet.
+    <br/>
+    Die Fortschrittsberechnung eines Gebiets funktioniert nun folgenderma&szlig;en:<br/>
+    Die Summe aller tats&auml;chlich angefallenen Arbeitsstunden aller Pakete des Gebiets wird in Relation zur Summe aller zu erwartenden Arbeitszeiten aller Pakete des Gebiets gesetzt.
+    <br/>
+    Analog funktioniert dies insgesamt f&uuml;r das Projekt.<br/>
+    Die zu erwartende Arbeitszeit eines Projekts entspricht der Summe der zu erwartenden Zeiten &uuml;ber alle Gebiete des Projekts.<br/>
+    Die Summe aller tats&auml;chlich angefallenen Arbeitsstunden aller Gebiete des Projekts wird in Relation zur erwarteten Arbeitszeit des Projekts gesetzt.
+  </div>
+  <br/>
+  <div class="helpcontent">
+    <!--<%=link_to 'Zur&uuml;ck',:controller => 'tagebuch',:action => 'index' %>-->
+    <a href="/diary/index">Zur&uuml;ck</a>
+  </div>
+</hawk:surround>

@@ -1,0 +1,461 @@
+/*
+   $Id: style.css,v 1.26 2007/01/15 01:01:06 winf2370 Exp $
+   $Author: winf2370 $
+*/
+body {
+    font-family: Verdana, Arial, sans-serif;
+    background-color: white;
+}
+
+.helpcontent {
+	font-size:95%;
+	margin-left:30px;
+	margin-right:100px;
+	line-height:150%;
+}
+
+.ProjektNeu{
+    line-height: 200%;
+    margin-top: 5%;
+    margin-left: 2%;
+    margin-right: 2%;
+    padding: 1%;
+    background-color: #d0dbe0;
+    border: 1px solid black;
+}
+
+
+h1{
+    text-align: left;
+    margin-top: 2%;
+    font-size: 160%;
+    font-weight:500;
+    color: #050D2A;
+}
+
+h2{
+    text-align: left;
+    margin-top: 2%;
+    font-size: 140%;
+    font-weight:400;
+    color: #050D2A;
+}
+
+img{
+    border: 0px;
+    padding: 0px;
+    margin: 0px;
+}
+
+li{
+    white-space: nowrap;
+}
+
+li.inline{
+    display: inline;
+    float: right;
+    margin-left: 2%;
+}
+
+a{
+    color: #050D2A;
+    text-decoration: underline;
+}
+
+table{
+    border-spacing: 0px;
+    empty-cells:hide;
+}
+
+table.admin {
+ font-size:90%;
+ border:1px solid #000000;
+}
+
+#Projektwahl{
+    margin-top: 12%;
+    margin-bottom: 1%;
+    text-align: center;
+}
+
+.header{
+    line-height: 100%;
+    margin-top: 2px;
+    margin-bottom: 2px;
+    border: 1px solid #5c5c5c;
+    background-color: #BACEF5;
+    color:#050D2A; 
+    margin-left:0.5%;
+    margin-right:0.5%;
+    min-height:100px;
+}
+
+.superheader {
+    color:#050D2A;
+    line-height: 120%;
+    margin-left: 0px;
+    margin-top: 7px;
+    margin-bottom: 2px;
+    padding-left:30px;
+    border: 0px solid #5c5c5c;
+    font-weight:600;
+    font-size:230%;
+    float:left;	
+}
+
+.welcomeheader {
+    color:#050D2A;
+    line-height: 100%;
+    margin-top: 3px;
+    margin-bottom: 1%;
+    margin-left:2px;
+    margin-right:2px;
+    padding:3px;
+    border: 2px dashed #5c5c5c;
+    float:right;
+    text-align:right;
+}
+
+.tagebuchcontrols {
+    line-height: 100%;
+    margin-top: 3px;
+    margin-bottom: 1%;
+    margin-left:2px;
+    margin-right:2px;
+    border: 0px solid #5c5c5c;
+    float:right;
+    text-align:right;
+}
+
+.projectinfo {
+    line-height: 120%;
+    margin-right: 0px;
+    margin-left: 0px;
+    margin-top: 5px;
+    margin-bottom: 0%;
+    padding-left:38px;
+    border: 0px solid #5c5c5c;
+    text-align:left;
+    float:left;
+}
+
+.projectprogress {
+    line-height: 120%;
+    margin-right: 2px;
+    margin-left: 2px;
+    margin-top: 5px;
+    margin-bottom: 0%;
+    border: 0px solid #5c5c5c;
+    text-align:right;
+    float:right;
+}
+
+.path{
+    line-height: 170%;
+    margin-top: 6px;
+    margin-right:0.5%;
+    margin-left:0.5%;
+    margin-bottom: 4px;
+    padding-left:1%;
+    padding-right:1%;
+    padding-top:3px;
+    padding-bottom:3px;
+    border: solid 1px black;
+    color: #050D2A;
+    font-size: 75%;
+    background-color: #F7C19D;
+    overflow:visible;
+}
+
+.contentwrapper{
+    line-height: 100%;
+    margin-bottom: 2px;
+    margin-top: 0px;
+    margin-left: 0.4%;
+    margin-right: 0.4%;
+    padding-top:2px;
+    padding-bottom:2px;
+    padding-left:0px;
+    padding-right:0px;
+    border: 0px solid #5c5c5c;
+}	
+
+.spacer{
+    clear: both;
+    line-height: 1px;
+}
+
+.spacerbig{
+    clear: both;
+    line-height: 10px;
+}
+
+.protokoll{
+    line-height: 100%;
+    margin-top: 1%;
+    margin-bottom: 1%;
+    margin-left: 0.5%;
+    margin-right: 0.5%;
+    padding-left:6px;
+    padding-top:3px;
+    padding-top:3px;
+    border: solid 1px black;
+    background-color: #d0dbe0;
+    overflow:auto;
+    font-size:70%;
+}
+
+.protokoll_gebiet{
+    line-height: 100%;
+    margin-top: 1px;
+    margin-bottom: 2px;
+    margin-left: 4%;
+    margin-right: 0.5%;
+    padding-left:6px;
+    padding-top:2px;
+    padding-top:2px;
+    border: solid 1px black;
+    background-color: #d0dbff;
+    overflow:auto;
+    font-size:70%;
+}
+
+
+.protokoll_paket {
+    line-height: 100%;
+    margin-top: 1px;
+    margin-bottom: 1px;
+    margin-left: 7%;
+    margin-right: 0.5%;
+    padding-left:6px;
+    padding-top:2px;
+    padding-top:2px;
+    border: solid 1px black;
+    background-color: #d0dfff;
+    overflow:auto;
+    font-size:70%;
+}
+
+.protokoll_schritt {
+    line-height: 100%;
+    margin-top: 1px;
+    margin-bottom: 1px;
+    margin-left: 10%;
+    margin-right: 0.5%;
+    padding-left:6px;
+    padding-top:2px;
+    padding-top:2px;
+    border: solid 1px black;
+    background-color: #ffffff;
+    overflow:auto;
+    font-size:70%;
+}
+
+span.grey {
+	color:#bbbbbb
+}
+span.darkgrey {
+	color:#555555
+}
+
+ul {
+	list-style-type:disc;
+	line-height: 90%;
+	margin: 5px;
+}
+
+.infoDescr{
+    float:left;
+    overflow:visible;
+    font-weight: bold;
+    margin: 0.8%;
+    padding-top: 1px;
+    padding-left: 3px;
+    padding-right: 3px;
+    border: 1px solid black;
+}
+
+.picwrapper{
+    float:left;
+    margin-left: 38px;
+    padding-left: 1px;
+    padding-right: 4px;
+    padding-top: 5px;
+    border: 0px solid black;
+}
+
+.infoDescr span{
+    font-style: italic;
+    font-weight: normal;
+    font-size: 90%;
+    text-decoration: underline;
+    margin-left: 2%;
+    padding-left: 0.5%;
+    padding-right: 0.5%;
+}
+
+div.row {
+    clear: both;
+    margin-bottom: 1%;
+}
+
+div.span{
+    line-height: 100%;
+}
+
+div.row span.label {
+    float: left;
+    width: 49%;
+    text-align: right;
+}
+
+div.row span.formw {
+    float: right;
+    width: 49%;
+    text-align: left;
+}
+
+.Data{
+    margin-top: 0%;
+    border: solid 1px black;
+    background-color: #f0f0f0;
+}
+
+thead{
+    color: #FFFFEE;
+    background-color:#1A1464;
+    line-height: 150%;
+
+}
+
+td {
+    text-align: left;
+}
+
+tr.projekt{
+    background-color: #BACEF5;
+}
+/* b0b0b0 */
+
+tr.gebiet{
+    background-color: #E0E9FF;
+}
+
+tr.paket{
+    background-color: #ECECF6;
+}
+
+tr.schritt{
+    background-color: #FFFFFF;
+}
+
+.left{
+    text-align: left;
+}
+
+.progresswrapper {
+    border:1px solid #030303;
+    width:99%;
+    height:80%;
+    background-color: #ffffff;
+    text-align: left;
+    color: #000000;
+    font-size:90%;
+}
+
+.red {
+    background-color: red;
+    overflow:hidden;
+    white-space:nowrap;
+}
+    
+.yellow{
+    background-color: yellow;
+    overflow:hidden;
+    white-space:nowrap;
+}
+
+.green{
+    background-color: lightgreen;
+    overflow:hidden;
+    white-space:nowrap;
+}
+
+.blue{
+    background-color: lightblue;
+    overflow:hidden;
+    white-space:nowrap;
+}
+
+.status{
+    display: none;
+}
+
+.statusTd{
+    text-align: left;
+}
+
+.DataIndent{
+    width: 1%;
+}
+
+.notice {
+  border: 2px solid green;
+  margin-bottom: 2px;
+  padding: 5px;
+  margin-left:0.5%;
+  margin-right:0.5%;
+  background-color: #f0f0f0;
+  font-weight: bold;
+}
+
+.error {
+  border: 2px solid red;
+  margin-bottom: 2px;
+  padding: 5px;
+  margin-left:0.5%;
+  margin-right:0.5%;
+  background-color: #f0f0f0;
+  font-weight: bold;
+}
+
+.mittig{
+    text-align: center;
+    margin: auto;
+}
+
+#errorExplanation {
+  margin-left:0.5%;
+  margin-right:0.5%;  border: 2px solid red;
+  padding: 7px;
+  padding-bottom: 12px;
+  margin-bottom: 20px;
+  background-color: #f0f0f0;
+}
+
+#errorExplanation h2 {
+  text-align: left;
+  font-weight: bold;
+  padding: 5px 5px 5px 15px;
+  font-size: 12px;
+  margin: -7px;
+  background-color: #c00;
+  color: #fff;
+}
+
+#errorExplanation p {
+  color: #333;
+  margin-bottom: 0;
+  padding: 5px;
+}
+
+#errorExplanation ul li {
+  font-size: 12px;
+  list-style: square;
+}
+
+.fieldWithErrors {
+  padding: 2px;
+  background-color: red;
+  display: table;
+}

@@ -1,0 +1,11 @@
+<?xml version="1.0" encoding="utf-8" ?>
+<hawk:surround with="../Layouts/tagebuch.xhtml" at="content" xmlns:hawk="http://fh-wedel.de/hawk" xmlns="http://www.w3.org/1999/xhtml">
+  <head>
+    <title>Welcome to the project diary!</title>
+  </head>
+
+  <hawk:embed what="_header.xhtml"/>
+  <hawk:surround with="../Templates/table.xhtml" at="tablebody">  
+    <hawk:embed what="_step.xhtml"/>
+  </hawk:surround>
+</hawk:surround>

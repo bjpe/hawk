@@ -1,0 +1,13 @@
+<hawk:ignore>
+  <div class="superheader">Project diary</div>
+  <div class="tagebuchcontrols">
+      <a href="/diary/help"><img alt="Hilfe" src="/images/help.png" title="Hilfe" /></a>
+      <hawk:bind name="logout"/>
+  </div>
+  <div class="welcomeheader">Welcome, <hawk:bind name="name"/>!</div>
+  <div class="spacer"><br/></div>
+  <div class="projectinfo">Project: <span class="Projekt"><hawk:bind name="project" type="String"/></span></div>
+  <div class="projectprogress">Project status:
+    <span class="yellow"><hawk:bind name="completeness"/>&#037;</span><br/>
+  </div>
+</hawk:ignore>

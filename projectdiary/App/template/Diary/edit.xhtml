@@ -1,0 +1,38 @@
+<?xml version="1.0" encoding="utf-8" ?>
+<hawk:surround with="../Layouts/tagebuch.xhtml" at="content" xmlns:hawk="http://fh-wedel.de/hawk" xmlns="http://www.w3.org/1999/xhtml">
+  <head>
+    <title>Welcome to the project diary!</title>
+  </head>
+
+  <hawk:embed what="_header.xhtml"/>
+
+  <hawk:error for="project">
+    <div class="errorExplanation" id="errorExplanation">
+      <h2>The following errors prohibited the project from being saved</h2>
+      <p>There were problems with the following attributes:</p>    
+      <hawk:content/>
+    </div>
+  </hawk:error>
+
+  <div class="ProjektNeu">
+    <form action="edit" method="post">
+      <div class="row">
+        <span class="label"><label for="project_description">Projektbeschreibung:</label></span>
+        <span class="formw"><hawk:bind name="description"/></span>
+      </div>
+      <div class="row">
+        <span class="label"><label for="project_start_at">Startzeitpunkt:</label></span>
+        <span class="formw"><hawk:bind name="startAt"/></span>
+      </div>
+      <div class="row">
+        <span class="label"><label for="project_end_at">Endzeitpunkt:</label></span>
+        <span class="formw"><hawk:bind name="endAt"/></span>
+      </div>
+      <div class="spacer">&nbsp;</div>
+      <div class="mittig">
+        <input type="Submit" value="Save"/>
+        <input type="reset" value="Reset" />
+      </div>
+    </form>
+  </div>
+</hawk:surround>

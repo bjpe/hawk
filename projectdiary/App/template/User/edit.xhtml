@@ -1,0 +1,42 @@
+<?xml version="1.0" encoding="utf-8" ?>
+<hawk:surround with="../Layouts/tagebuch.xhtml" at="content" xmlns:hawk="http://fh-wedel.de/hawk" xmlns="http://www.w3.org/1999/xhtml">
+  <head>
+    <title>Edit User</title>
+  </head>
+
+  <hawk:embed what="../Templates/adminheader.xhtml"/>
+  <hawk:error for="user"/>
+
+  <div class="ProjektNeu">
+    <form action="/user/edit" method="post">
+      <div class="row">
+        <span class="label"><label for="user.name">Name:</label></span>
+        <span class="formw"><hawk:bind name="name"/></span>
+      </div>
+
+      <div class="row">
+        <span class="label"><label for="user.admin">Admin:</label></span>
+        <span class="formw"><hawk:bind name="admin"/></span>
+      </div>
+
+      <hawk:bind name="ifNew">
+      <div class="row">
+        <span class="label"><label for="user.password">Password:</label></span>
+        <span class="formw"><hawk:bind name="password"/></span>
+      </div>
+
+      <div class="row">
+        <span class="label"><label for="user.confirmation">Password (confirmation):</label></span>
+        <span class="formw"><hawk:bind name="confirmation"/></span>
+      </div>
+      </hawk:bind>
+
+      <div class="spacer">&nbsp;</div>
+      <hawk:bind name="id"/>
+      <div class="mittig">
+        <input type="Submit" value="Save"/>
+        <input type="reset" value="Reset"/>
+      </div>
+    </form>
+  </div>
+</hawk:surround>

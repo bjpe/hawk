@@ -1,0 +1,29 @@
+<hawk:ignore>
+  <hawk:surround with="../Templates/header.xhtml" at="header">
+    <div class="infoDescr">start time:
+      <span>
+        <!--<%= fmt_date(@project.start_at) %>-->
+        <hawk:bind name="startAt"/>
+      </span>
+    </div>
+    <div class="infoDescr">end time:
+      <span>
+        <!--<%= fmt_date(@project.end_at) %>-->
+        <hawk:bind name="endAt"/>
+      </span>
+    </div>
+    <div class="infoDescr">members:
+      <span>
+        <!--
+        <% for worker in @project.workers -%>
+        <%=h worker.user.name %>
+        <% end -%>
+        -->
+        <hawk:bind name="workers"/>
+      </span>
+    </div>
+  </hawk:surround>
+
+  <hawk:embed what="../Templates/path.xhtml"/>
+  <hawk:embed what="../Templates/message.xhtml"/>
+</hawk:ignore>
