@@ -12,7 +12,8 @@
    The main dispatcher.
 -}
 -- --------------------------------------------------------------------------
-{-# LANGUAGE TemplateHaskell #-}
+{-# LANGUAGE TemplateHaskell, Rank2Types, FlexibleContexts, FlexibleInstances,
+    GeneralizedNewtypeDeriving, TypeFamilies #-}
 module Hawk.Controller.Server ( requestHandler ) where
 
 import Control.Exception ( SomeException )
@@ -52,8 +53,8 @@ $(deriveLoggers "Logger" [Logger.DEBUG])
 -- --------------------------------------------------------------------------
 -- The request handler
 -- --------------------------------------------------------------------------
-requestHandler :: ConnWrapper -> AppConfiguration -> Options -> Application
-requestHandler conn conf opts env = runReaderT (runController dispatch) (RequestEnv conn conf env opts)
+requestHandler :: (forall a. AppConfiguration a => a) -> ConnWrapper -> BasicConfiguration -> Options -> Application
+requestHandler app conn conf opts env = runReaderT (runController dispatch) (RequestEnv conn conf env opts app)
 
 -- | Dispatch a 'Request' and return the 'Response'
 dispatch :: EnvController Response

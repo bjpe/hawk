@@ -40,6 +40,11 @@ library
     EitherT >= 0.0.1 && < 0.1
   Exposed-Modules:
     Hawk.Controller
+    Hawk.Controller.Authenticate
+    Hawk.Controller.Auth.ResultType
+    Hawk.Controller.Auth.EmptyAuth
+    Hawk.Controller.Auth.DbAuth
+--    Hawk.Controller.Auth.AuthHttp
     Hawk.Controller.Cookies
     Hawk.Controller.CustomResponses
     Hawk.Controller.Initializer
@@ -60,6 +65,7 @@ library
     Hawk.Controller.Util.Text
     Hawk.Controller.Util.Uri
     Hawk.Controller.Util.List
+    Hawk.View
     Hawk.View.EmptyView
     Hawk.View.TextView
     Hawk.View.Template.HtmlHelper

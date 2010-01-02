@@ -7,6 +7,7 @@ module Hawk.Controller.Util.Text
     , toAllLower
     , splitAll
     , splitWhere
+    , reduce
     ) where
 
 import Data.Char (toLower, toUpper, isUpper)
@@ -47,3 +48,9 @@ splitAll p xs = f : splitAll p s
 splitWhere :: (a -> Bool) -> [a] -> ([a], [a])
 splitWhere p xs = (f, drop 1 s)
   where (f, s) = break p xs
+
+reduce :: [[a]] -> [[a]]
+reduce ([])    = []
+reduce ([]:xs) = reduce xs
+reduce (x:xs)  = x : reduce xs
+

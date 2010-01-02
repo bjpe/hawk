@@ -30,18 +30,24 @@ import Hawk.Controller.Util.Uri
 defaultAction :: String
 defaultAction = "index"
 
+defaultController = defaultAction
+
 dispatch :: String -> Route
 dispatch = withDefault . splitPath
 
 withDefault :: Route -> Route
-withDefault (Route c a) = Route c defaultA
+withDefault (Route c a) = Route defaultC defaultA
   where defaultA = if null a then defaultAction else a
+        defaultC = if null c then defaultController else c
 
 splitPath :: String -> Route
 splitPath path = Route _controller _action
   where
-    (_controller, _action) = splitWhere (== '/') $ drop 1 path
---    (_action, _)  = splitWhere (== '.') rem1
+      (_controller, _action) = getFirstTuple $ reduce $ splitAll (== '/') $ drop 1 path
+      getFirstTuple []       = ([], [])
+      getFirstTuple (x:[])   = (x, [])
+      getFirstTuple (x:xs:_) = (x, xs) --TODO handle rest of path parameters
+--    (_controller, _action) = splitWhere (== '/') $ drop 1 path
 
 simpleRouting :: M.Map String (M.Map String Controller) -> Env -> Maybe Controller
 simpleRouting m e = M.lookup c m >>= M.lookup a

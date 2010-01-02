@@ -16,17 +16,20 @@
     GeneralizedNewtypeDeriving, TypeFamilies #-}
 module Hawk.Controller.Types
   ( Options
-  , AppConfiguration (..)
+  , BasicConfiguration (..)
   , RequestEnv (..)
   , ResponseState (..)
   , HasState
   , module Hack
+
+  , AppConfiguration (..)
 
   , EnvController (..)
   , StateController
 
   , View (..)
 
+  , AuthType (..)
   , SessionStore (..)
   , Route (..)
   , Routing
@@ -39,7 +42,9 @@ import Hawk.Controller.Session
   , SessionOpts
   )
 
-import Hawk.Model ( MonadDB (..) )
+import Hawk.Controller.Auth.ResultType
+
+import Hawk.Model.MonadDB ( MonadDB (..) )
 
 import Control.Monad.CatchIO ( MonadCatchIO (..) )
 import Control.Monad.Either
@@ -53,13 +58,16 @@ import Hack
 import Network.CGI.Cookie ( Cookie )
 
 -- --------------------------------------------------------------------------
--- Options, AppConfiguration, ResponseEnv, ResponseState
+-- Options, BasicConfiguration, ResponseEnv, ResponseState
 -- --------------------------------------------------------------------------
 type Options = [(String, String)]
 
-data AppConfiguration = AppConfiguration
+data BasicConfiguration = BasicConfiguration
   { sessionStore :: SessionStore
   , sessionOpts  :: SessionOpts
+--  , authConfig   :: AuthConfig
+  , authType     :: AuthType
+  , authOpts     :: [String]
   , routing      :: Hack.Env -> Maybe Controller
   , templatePath :: String
   , publicDir    :: String
@@ -70,9 +78,10 @@ data AppConfiguration = AppConfiguration
 
 data RequestEnv = RequestEnv
   { databaseConnection :: ConnWrapper
-  , configuration      :: AppConfiguration
+  , configuration      :: BasicConfiguration
   , request            :: Hack.Env
   , environmentOptions :: Options
+  , appConfiguration   :: (AppConfiguration a) => a -- type defined by application
   }
 
 data ResponseState = ResponseState
@@ -124,6 +133,15 @@ data SessionStore = SessionStore
   }
 
 -- --------------------------------------------------------------------------
+-- Authentication
+-- --------------------------------------------------------------------------
+data AuthType = AuthType
+  { authenticate :: (MonadDB m, MonadIO m, HasState m) => String -> String -> m AuthResult }
+
+--class Auth a where
+--  auth :: a -> EnvController AuthResult
+
+-- --------------------------------------------------------------------------
 -- Routing
 -- --------------------------------------------------------------------------
 data Route = Route
@@ -133,3 +151,10 @@ data Route = Route
 
 type Routing = (String, Controller)
 type Controller = StateController ByteString
+
+-- --------------------------------------------------------------------------
+-- AppConfig
+-- --------------------------------------------------------------------------
+class AppConfiguration a where
+  getInstance :: a
+
