@@ -13,6 +13,8 @@
    and such stuff.
 -}
 -- --------------------------------------------------------------------------
+{-# LANGUAGE Rank2Types, FlexibleContexts, FlexibleInstances,
+    GeneralizedNewtypeDeriving, TypeFamilies #-}
 module Hawk.Controller.Initializer
   ( AppEnvironment (..)
   , loadEnvironment
@@ -21,8 +23,9 @@ module Hawk.Controller.Initializer
   ) where
 
 import Hawk.Controller.Types
-  ( AppConfiguration
+  ( BasicConfiguration
   , Options
+  , AppConfiguration
   )
 
 import System.Log.Logger
@@ -52,7 +55,7 @@ loadEnvironment appEnv = do
 updateLogger :: [(String, Priority)] -> IO ()
 updateLogger = mapM_ (\(name, level) -> updateGlobalLogger name (setLevel level))
 
-getApplication :: AppEnvironment -> AppConfiguration -> Application
-getApplication env conf x = do
+getApplication :: (forall a. AppConfiguration a => a) -> AppEnvironment -> BasicConfiguration -> Application
+getApplication app env conf x = do
   (conn, envOpts) <- loadEnvironment env
-  requestHandler conn conf envOpts x
+  requestHandler app conn conf envOpts x

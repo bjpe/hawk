@@ -37,9 +37,15 @@ library
     convertible >= 1.0.7 && < 1.1,
     regex-posix >= 0.94 && < 0.100,
     Stringable >= 0.0.1 && < 0.1,
-    EitherT >= 0.0.1 && < 0.1
+    EitherT >= 0.0.1 && < 0.1,
+    HAppS-Util >= 0.9 && < 1
   Exposed-Modules:
     Hawk.Controller
+    Hawk.Controller.Authenticate
+    Hawk.Controller.Auth.ResultType
+    Hawk.Controller.Auth.EmptyAuth
+    Hawk.Controller.Auth.DbAuth
+    Hawk.Controller.Auth.HttpAuth
     Hawk.Controller.Cookies
     Hawk.Controller.CustomResponses
     Hawk.Controller.Initializer
@@ -52,6 +58,7 @@ library
     Hawk.Controller.Session.NoSession
     Hawk.Controller.Session.CookieSession
 --    Hawk.Controller.Session.DatabaseSession
+--    Hawk.Controller.Session.UrlSession
     Hawk.Controller.StateAccess
     Hawk.Controller.Static
     Hawk.Controller.Types
@@ -60,6 +67,7 @@ library
     Hawk.Controller.Util.Text
     Hawk.Controller.Util.Uri
     Hawk.Controller.Util.List
+    Hawk.View
     Hawk.View.EmptyView
     Hawk.View.TextView
     Hawk.View.Template.HtmlHelper

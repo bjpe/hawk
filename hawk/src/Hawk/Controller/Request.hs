@@ -16,6 +16,7 @@ module Hawk.Controller.Request
   , getParam
   , readParam
   , getParams
+  , getParamsAsList
   ) where
 
 import Control.Monad (liftM)
@@ -79,6 +80,9 @@ readParam = liftM (>>= maybeRead) . lookupParam
 
 getParams :: HasState m => m (M.Map String String)
 getParams = extractParams `liftM` asks request
+
+getParamsAsList :: HasState m => m [(String, String)]
+getParamsAsList = M.toList `liftM` getParams
 
 extractParams :: Env -> M.Map String String
 extractParams e = M.fromList getReq `M.union` M.fromList postReq

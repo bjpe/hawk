@@ -2,6 +2,8 @@
 module Hawk.Controller.Static
     ( error404
     , error404Response
+    , error401
+    , error401Response
     , error500
     , error500Response
     , staticRequest
@@ -34,6 +36,14 @@ error404 = asks ((++) "/" . error404file . configuration)
 
 error404Response :: StateController a
 error404Response = lift (lift error404) >>= returnLeft
+
+error401 :: EnvController Response
+error401 = asks ((++) "/" . error401file . configuration)
+    >>= tryStatic
+    >>= maybe (warningM "could not find error 401 file" >> error500) (return . (setStatus 401) . addCustomHeaders [("WWW-Authenticate", "Basic")])
+
+error401Response :: StateController a
+error401Response = lift (lift error401) >>= returnLeft
 
 -- | return a 500 internal server error
 error500 :: EnvController Response
