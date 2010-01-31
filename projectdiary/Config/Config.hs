@@ -13,6 +13,7 @@ import Database.HDBC.Sqlite3
 import qualified Database.HDBC as HDBC (ConnWrapper(..))
 import Control.Monad (liftM)
 import Data.ByteString.Lazy.UTF8 (fromString)
+import Hawk.Controller.Auth.EmptyAuth (emptyAuth)
 
 development :: AppEnvironment
 development = AppEnvironment
@@ -21,8 +22,8 @@ development = AppEnvironment
   , envOptions  = [] -- [("hide_hol", "True")] -- TODO need to document
   }
 
-configuration :: AppConfiguration
-configuration = AppConfiguration
+configuration :: BasicConfiguration
+configuration = BasicConfiguration
   { -- Session
     sessionStore    = cookieStore
   , sessionOpts     = [("secret" , "12345678901234567890123456789012")]
@@ -38,5 +39,9 @@ configuration = AppConfiguration
   , confOptions     = []
   , error404file    = "404.html"
   , error500file    = "500.html"
+  , authType        = emptyAuth
+  , authOpts        = []
   }
 
+instance AppConfiguration () where
+    getInstance = ()
