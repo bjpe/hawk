@@ -44,9 +44,12 @@ debugA = arrIO debugM
 debugA' :: (ArrowIO a, Show b) => a b b
 debugA' = arr id &&& arrIO (debugM . show) >>> arr (\(x,_) -> x)
 -}
+
+-- | The Prefix of the hawk namespace
 hawkPrefix :: String
 hawkPrefix = "hawk"
 
+-- | Create a qualified name for the hawk prefix
 hawkQName :: String -> QN.QName
 hawkQName l = QN.mkQName hawkPrefix l ""
 -- TODO use url not prefix
@@ -70,6 +73,7 @@ evalTemplate f fp = do
 -- General template processing
 -- --------------------------------------------------------------------------
 
+-- | process a file with all controllers. 
 mainA :: (XmlTree -> StateController [XmlTree]) -> HawkArrow String (Either Response String)
 mainA rw = prepareDoc
      >>> invokeController rw
@@ -77,9 +81,7 @@ mainA rw = prepareDoc
                      >>> processTD interpreteLast
                      >>> headMerge
                      >>> clearNamespace
-                     -- TODO this should be read from template ...
-                     >>> addDoctypeDecl "html" "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd"
-                     >>> writeDocumentToString [(a_no_empty_elements,v_1), (a_indent, v_1), (a_output_html,v_1), (a_output_encoding, utf8)]
+                     >>> writeDocumentToString [(a_no_empty_elements,v_1), (a_indent, v_1), (a_output_html,v_1), (a_output_encoding, utf8), (a_add_default_dtd, v_1)]
                      )
 
 
