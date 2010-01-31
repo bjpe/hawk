@@ -13,13 +13,11 @@
 -}
 -- --------------------------------------------------------------------------
 module Hawk.Controller.Session
-  ( Session
+  ( Session (..)
   , SessionOpts
   , defaultName
   , emptySession
-  , sessionId
   , setSessionId
-  , expiry
   , setExpiry
   , getValue
   , setValue

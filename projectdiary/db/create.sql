@@ -60,3 +60,11 @@ CREATE TABLE `workers` (
 )
 ;
 
+DROP TABLE IF EXISTS `session`;
+CREATE TABLE `session` (
+  `_id` INTEGER NOT NULL PRIMARY KEY AUTOINCREMENT,
+  `expiry` DATETIME  NULL,
+  `data` TEXT NOT NULL
+)
+;
+

@@ -6,7 +6,7 @@ import System.Log.Logger
 import Hawk.Controller.Initializer (AppEnvironment (..))
 import Hawk.Controller.Types
 import Hawk.Controller.Routes (simpleRouting)
-import Hawk.Controller.Session.CookieSession
+import Hawk.Controller.Session.DatabaseSession
 
 
 import Database.HDBC.Sqlite3
@@ -18,14 +18,14 @@ import Hawk.Controller.Auth.EmptyAuth (emptyAuth)
 development :: AppEnvironment
 development = AppEnvironment
   { connectToDB = liftM HDBC.ConnWrapper $ connectSqlite3 "./db/database.db"
-  , logLevels   = [(rootLoggerName, DEBUG), ("Hawk.Model", WARNING)]
+  , logLevels   = [(rootLoggerName, DEBUG), ("Hawk.Model", DEBUG)]
   , envOptions  = [] -- [("hide_hol", "True")] -- TODO need to document
   }
 
 configuration :: BasicConfiguration
 configuration = BasicConfiguration
   { -- Session
-    sessionStore    = cookieStore
+    sessionStore    = databaseStore
   , sessionOpts     = [("secret" , "12345678901234567890123456789012")]
 
     -- dispatcher

@@ -13,7 +13,7 @@
 -}
 -- --------------------------------------------------------------------------
 {-# LANGUAGE Rank2Types, FlexibleContexts, FlexibleInstances,
-    GeneralizedNewtypeDeriving, TypeFamilies #-}
+    GeneralizedNewtypeDeriving, TypeFamilies, UndecidableInstances #-}
 module Hawk.Controller.Types
   ( Options
   , BasicConfiguration (..)
@@ -95,7 +95,10 @@ data ResponseState = ResponseState
 
 instance Default ResponseState where def = ResponseState def def def def def
 
-class ( MonadReader RequestEnv m, MonadState ResponseState m ) => HasState m where
+class ( MonadReader RequestEnv m, MonadState ResponseState m, MonadCatchIO m ) => HasState m where
+
+instance (MonadReader RequestEnv m, MonadCatchIO m) => MonadDB m where
+  getConnection = asks databaseConnection
 
 -- --------------------------------------------------------------------------
 -- EnvController
@@ -104,8 +107,7 @@ newtype EnvController a
   = EnvController { runController :: ReaderT RequestEnv IO a }
   deriving (Functor, Monad, MonadIO, MonadCatchIO, MonadReader RequestEnv)
 
-instance MonadDB EnvController where
-  getConnection = asks databaseConnection
+--instance MonadDB EnvController where getConnection = asks databaseConnection
 
 -- --------------------------------------------------------------------------
 -- StateController
@@ -115,8 +117,8 @@ type StateController = EitherT Response (StateT ResponseState EnvController)
 instance HasState (StateT ResponseState EnvController) where
 
 instance HasState (EitherT e (StateT ResponseState EnvController)) where
-instance MonadDB (EitherT e (StateT ResponseState EnvController)) where
-  getConnection = lift $ lift getConnection
+--instance MonadDB (EitherT e (StateT ResponseState EnvController)) where
+--  getConnection = lift $ lift getConnection
 
 -- --------------------------------------------------------------------------
 -- AuthedStateController
