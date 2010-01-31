@@ -1,0 +1,44 @@
+module App.Model.GuestbookEntry (GuestbookEntry (..)) where
+
+import Hawk.Model
+import Control.Monad.Trans (liftIO)
+import Data.Time (Day, UTCTime(..), getCurrentTime)
+
+data GuestbookEntry = GuestbookEntry
+  { _id         :: PrimaryKey
+  , name        :: String
+  , message     :: String
+  , createdAt   :: UTCTime
+  } deriving (Eq, Read, Show)
+
+instance Persistent GuestbookEntry where
+  persistentType _ = "GuestbookEntry"
+  fromSqlList (l0:l1:l2:l3:[])
+    = GuestbookEntry (fromSql l0) (fromSql l1) (fromSql l2) (fromSql l3)
+  fromSqlList _ = error "wrong list length"
+  toSqlAL x = [ ("_id"       , toSql $ _id       x)
+              , ("name"      , toSql $ name      x)
+              , ("message"   , toSql $ message   x)
+              , ("createdAt" , toSql $ createdAt x)
+              ]
+  tableName = const "guestbook"
+
+instance WithPrimaryKey GuestbookEntry where
+  primaryKey = _id
+  pkColumn = head . tableColumns
+  setPrimaryKey pk c = c {_id = pk}
+
+instance Model GuestbookEntry where
+  new = do
+    t <- liftIO getCurrentTime
+    return $ GuestbookEntry 0 "" "" t
+  insert c = do
+    now <- liftIO getCurrentTime
+    insertInTransaction $ c { createdAt = now }
+
+instance Validatable GuestbookEntry where
+  validator c = do
+    validateNotNull "name"          $ name    c
+    validateLength  5 400 "message" $ message c
+    return ()
+

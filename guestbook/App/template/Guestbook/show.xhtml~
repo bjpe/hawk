@@ -1,0 +1,16 @@
+<?xml version="1.0" encoding="utf-8" ?>
+<hawk:surround with="../Layouts/header.xhtml" at="content" xmlns:hawk="http://fh-wedel.de/hawk">
+  <form method="POST" action="/guestbook/insert/">
+    <p>
+      <label for="name">Name</label><br/>
+      <input type="text" name="name"/>
+    </p>
+    <p>
+      <label for="name">Message</label><br/>
+      <textarea cols="50" rows="5" name="message"/>
+    </p>
+    <input type="Submit" value="Post"/>
+  </form>
+  <hawk:embed what="single.xhtml"/>
+</hawk:surround>
+

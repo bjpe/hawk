@@ -1,0 +1,24 @@
+Name:		Hayoo
+Version:	0.0.1
+Description:	Super cool mega code
+License:	BSD3
+Author:		Alexander Treptow
+Build-Type:	Simple
+Cabal-Version:	>=1.2
+
+Executable  hayoo
+  ghc-options:       -Wall
+  Build-Depends:     base == 4.*,
+    hack-handler-simpleserver >= 0.0.1 && < 1,
+    HDBC >= 2.1.0 && <3,
+    HDBC-sqlite3 >= 2.1.0.0 && < 3,
+    utf8-string >= 0.3.5 && < 1,
+    hslogger >= 1.0.7 && < 2,
+    containers >= 0.2.0.1 && < 1,
+    mtl >= 1.1.0.2 && < 2,
+    SHA >= 1.4.0 && < 2,
+    Hawk >= 0.0.1 && <0.1,
+    Holumbus-Searchengine >= 0.0.8 && < 1,
+    hxt >= 8.3.1 && < 9,
+    binary >= 0.5
+  main-is:           Main.hs

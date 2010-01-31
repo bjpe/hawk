@@ -1,0 +1,31 @@
+module Config.Config (environment, configuration) where
+
+import qualified Config.Routes as Routes
+
+import Hawk.Controller.Initializer (AppEnvironment (..))
+import Hawk.Controller.Routes (simpleRouting)
+import Hawk.Controller.Session.CookieSession (cookieStore)
+import Hawk.Controller.Types (AppConfiguration (..))
+
+import Control.Monad (liftM)
+import Database.HDBC.Sqlite3
+import Database.HDBC (ConnWrapper(..))
+
+environment :: AppEnvironment
+environment = AppEnvironment
+  { connectToDB = ConnWrapper `liftM`
+                  connectSqlite3 "./db/database.db"
+  , logLevels   = [(rootLoggerName, DEBUG)]
+  , envOptions  = []
+  }
+
+configuration :: AppConfiguration
+configuration = AppConfiguration
+  { routing      = simpleRouting Routes.routing
+  , templatePath = "./App/template"
+  , publicDir    = "./public"
+  , confOptions  = []
+  , error404file = "404.html"
+  , error500file = "500.html"
+  }
+

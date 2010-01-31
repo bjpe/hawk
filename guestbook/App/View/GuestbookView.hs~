@@ -1,0 +1,28 @@
+{-# LANGUAGE TemplateHaskell #-}
+module App.View.GuestbookView (showXhtml) where
+
+import App.Model.GuestbookEntry
+
+import Hawk.Controller
+import Hawk.View.Template.DataType
+import qualified Hawk.View.Template.HtmlHelper as H
+
+$(viewDataType "Guestbook" "show")
+$(viewDataType "Guestbook" "single")
+
+showXhtml :: [GuestbookEntry] -> StateController GuestbookShow
+showXhtml gs = do
+  ge <- mapM entryXhtml gs
+  return GuestbookShow
+    { guestbookSingle = ge
+    , title = [H.text "My first Guestbook"]
+    }
+
+entryXhtml :: GuestbookEntry -> StateController GuestbookSingle
+entryXhtml ge = return GuestbookSingle
+    { name = name ge
+    , createdAt = createdAt ge
+    , message = message ge
+    , delete = [H.textlink ("/guestbook/delete?id=" ++ show (_id ge)) "Delete"]
+    }
+

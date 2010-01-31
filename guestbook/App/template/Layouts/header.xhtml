@@ -1,0 +1,26 @@
+<?xml version="1.0" encoding="utf-8" ?>
+<html>
+<head>
+  <title><hawk:bind name="title"/></title>
+  <link href="/stylesheets/style.css" media="screen" rel="Stylesheet" type="text/css"/>
+</head>
+<body>
+  <!-- error message -->
+  <hawk:message type="error">
+    <div class="error">
+    <image alt="Warning" title="Warning" src="/images/warning.png"/>
+    <hawk:content/>
+    </div>
+  </hawk:message>  
+  <!-- info message -->
+  <hawk:message type="notice">
+    <div class="notice">
+    <image alt="info" title="Info" src="/images/info.png"/>
+    <hawk:content/>
+    </div>
+  </hawk:message>
+  <!-- content -->
+  <hawk:bind name="content"/>
+</body>
+</html>
+

@@ -1,0 +1,69 @@
+<?xml version="1.0" encoding="utf-8" ?>
+<html>
+<head>
+  <title><hawk:bind name="title"/></title>
+  <meta http-equiv="content-type" content="text/html; charset=UTF-8"/>
+  <meta content="nofollow" name="robots"/>
+  <meta name="keywords" content="Haskell, API, Search, Hackage, Functions, Types, Packages"/>
+  <meta name="description" lang="en" content="A Haskell API search engine with find-as-you-type and suggestions. Searches for function and type defintions in all Haskell packages from Hackage."/>
+  <link href="/images/favicon.ico" type="image/ico" rel="Shortcut icon"/>
+  <link href="/stylesheets/hayoo.css" media="screen" rel="Stylesheet" type="text/css"/>
+</head>
+<body>
+  <div id="container">
+    <!-- page header -->
+    <!--<hawk:embed what="../Layouts/pageheader.xhtml"/>-->
+    <div id="info">
+      <hawk:bind name="settings"/>
+      <a href="/index/help">Help</a> |
+      <a href="/index/about">About</a> |
+      <a href="http://hackage.haskell.org">Hackage</a> |
+      <a href="http://www.haskell.org">Haskell</a>
+    </div>
+    <div id="query">
+      <div id="logo">
+        <a href="/index/index">
+          <img class="logo" src="/images/hayoo.png" alt="Hayoo logo"/>
+        </a>
+      </div>
+      <form id="queryform" method="get" action="search">
+        <div id="queryinterface">
+          <input id="querytext" type="text" name="q" autocomplete="off" value=""/>
+          <input id="querybutton" type="submit" value="Search"/>
+          <img id="throbber" src="/images/loader.gif" alt="Throbber" style="display:none;"/>
+        </div>
+      </form>
+    </div>
+    <hawk:bind name="login"/>
+    <!-- page body -->
+    <div id="result">
+      <div id="status"><hawk:bind name="mystatus"/></div>
+      <!-- error message -->
+      <hawk:message type="error">
+        <div class="error">
+          <image class="message" alt="Warning" title="Warning" src="/images/warning.png"/>
+          <hawk:content/>
+        </div>
+      </hawk:message>  
+      <!-- info message -->
+      <hawk:message type="notice">
+        <div class="notice">
+          <image class="message" alt="info" title="Info" src="/images/info.png"/>
+          <hawk:content/>
+        </div>
+      </hawk:message>
+      <!-- success message -->
+      <hawk:message type="success">
+        <div class="success">
+          <image class="message" alt="success" title="Success" src="/images/success.png"/>
+          <hawk:content/>
+        </div>
+      </hawk:message>
+      <!-- content -->
+      <hawk:bind name="content"/>
+    </div>
+    <!-- page footer -->
+    <hawk:embed what="../Layouts/pagefooter.xhtml"/>
+  </div>
+</body>
+</html>
