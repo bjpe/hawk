@@ -1,8 +1,9 @@
+{-# LANGUAGE TemplateHaskell #-}
 -- --------------------------------------------------------------------------
 {- |
-   Module      :  Hawk.Model.Persistence.MonadDB
+   Module      :  $Header$
    Copyright   :  Copyright (C) 2009 Bj�rn Peem�ller, Stefan Roggensack
-   License     :  NONE
+   License     :  BSD3
 
    Maintainer  :  {inf6254, inf6509}fh-wedel.de
    Stability   :  experimental
@@ -11,7 +12,6 @@
 
 -}
 -- --------------------------------------------------------------------------
-{-# LANGUAGE TemplateHaskell #-}
 module Hawk.Model.MonadDB
   ( MonadDB (..)
   , commit

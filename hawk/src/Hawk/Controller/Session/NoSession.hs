@@ -1,8 +1,8 @@
 -- --------------------------------------------------------------------------
 {- |
-   Module      :  Hawk.Core.Session.NoSession
+   Module      :  $Header$
    Copyright   :  Copyright (C) 2009 Björn Peemöller, Stefan Roggensack
-   License     :  NONE
+   License     :  BSD3
 
    Maintainer  :  {inf6254, inf6509}fh-wedel.de
    Stability   :  experimental

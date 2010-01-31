@@ -1,6 +1,6 @@
 -- --------------------------------------------------------------------------
 {- |
-   Module      :  App.Model.Base.Project.Functions
+   Module      :  $Header$
    Copyright   :  Copyright (C) 2009 Björn Peemöller, Stefan Roggensack
    License     :  BSD3
 

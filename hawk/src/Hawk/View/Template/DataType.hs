@@ -1,7 +1,7 @@
 {-# LANGUAGE Arrows, NoMonomorphismRestriction, TemplateHaskell #-}
 -- --------------------------------------------------------------------------
 {- |
-   Module      :  Hawk.Model.Validator
+   Module      :  $Header$
    Copyright   :  Copyright (C) 2009-2010 Björn Peemöller, Stefan Roggensack
    License     :  BSD3
 
