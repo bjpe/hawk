@@ -62,9 +62,8 @@ formElement label elem = do
 
 configFormContent :: [(String, String)] -> XmlTrees
 configFormContent l = do
-  [ formElement "Case-Sensitive" (text "")
-   ,formElement "Fuzzy search" (text "")
-   ,formElement "Allow all Packages" (text "")
-   ,formElement "Optimize Query" (text "")
-   ,formElement "Word Limit" (text "")
+  [ formElement "Case-Sensitive" (checkbox "" "caseSensitive" False [])
+   ,formElement "Fuzzy search" (checkbox "" "useFuzzy" False [])
+   ,formElement "Optimize Query" (checkbox "" "optimizeQuery" True [])
+   ,formElement "Word Limit" (textfield "wordLimit" "20" [])
    ]

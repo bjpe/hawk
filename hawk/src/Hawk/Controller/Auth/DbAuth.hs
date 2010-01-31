@@ -9,22 +9,22 @@ import Hawk.Model.Criteria
 import Hawk.Model.CriteriaSelect
 
 import Database.HDBC.SqlValue
-import Control.Monad.Trans (MonadIO)
+import Control.Monad.Trans ()
 import Control.Monad.Reader
 
--- authOpts have to be: [tableName, identityColumnName, credentialColumnName, cryptoFunctionName]
+-- authOpts are: [tableName, identityColumnName, credentialColumnName, cryptoFunctionName]
 
 dbAuth :: AuthType
 dbAuth = AuthType
-  { -- authenticate :: (String, String) -> m AuthResult
+  { -- authenticate :: String -> String -> m AuthResult
     authenticate = dbAuthenticate
   }
 
 dbAuthenticate :: (MonadDB m, MonadIO m, HasState m) => String -> String -> m AuthResult
 dbAuthenticate u p = do
-    sess <- getSessionAuth
+    sess <- isAuthed
     case sess of
-      Nothing -> do
+      False -> do
         (t, idCol, credCol, crypto) <- getOpts
         --select idcol and credcol from table where idcol == id
         rows <- querySelect
@@ -36,21 +36,21 @@ dbAuthenticate u p = do
         case rows of
           (x:[])   -> case lookupAuthDbRes (encrypt crypto p) x of -- compare for correct password
                         Nothing -> return AuthFailureInvalidCredential
-                        Just v  -> setSessionAuth u >> return AuthSuccess -- TODO setup session values for that
-          (x:xs:_) -> return AuthFailureAmbiguousId       -- id is not unique
+                        Just _  -> setSessionAuth u >> return AuthSuccess
+          (_:_:_) -> return AuthFailureAmbiguousId       -- id is not unique
           _        -> return AuthFailureIdNotFound        -- no identity found
-      Just v  -> return AuthSuccess -- update session timeout, -> session timeout will be automatically updated, by session handler
+      True -> return AuthSuccess
 
 getOpts :: (MonadIO m, HasState m) => m (String, String, String, String)
 getOpts = do
-  c <- asks configuration
-  let o = authOpts c 
+  conf <- asks configuration
+  let o = authOpts conf 
   case o of
     (t:i:c:cr:_) -> return (t, i, c, cr)
     _ -> return ("wrong-authOpts", "", "", "") -- this will occur in a db request error
 
 lookupAuthDbRes :: String -> [SqlValue] -> Maybe String
-lookupAuthDbRes s [] = Nothing
+lookupAuthDbRes _ [] = Nothing
 lookupAuthDbRes s (x:xs)
   | s == (fromSql x) = Just s
   | otherwise        = lookupAuthDbRes s xs

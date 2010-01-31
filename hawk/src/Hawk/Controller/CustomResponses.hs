@@ -2,6 +2,7 @@ module Hawk.Controller.CustomResponses where
 
 import Control.Monad.Either
 import Hawk.Controller.Responses
+import Hawk.Controller.Request (getParamsAsList)
 import Hawk.Controller.Routes (actionUrl)
 import Hawk.Controller.Types
 
@@ -17,4 +18,5 @@ redirectTo c a ps = actionUrl c a ps >>= redirectToUrl
 redirectToAction :: String -> String -> StateController a
 redirectToAction c a = redirectTo c a []
 
--- redirectWithParams
+redirectWithParams :: String -> String -> StateController a
+redirectWithParams c a = getParamsAsList >>= redirectTo c a

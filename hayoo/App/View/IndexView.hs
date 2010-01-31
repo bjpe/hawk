@@ -44,6 +44,7 @@ configXhtml _ = do
     , configSettings = settings
     , configForm = form
     }
+
 helpXhtml :: a -> StateController IndexIndex
 helpXhtml _ = defaultIndexPage
 

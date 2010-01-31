@@ -28,9 +28,11 @@ module Hawk.View.Template.Helper.FormHelper
   , password
   , hidden
   , submit
+  , submitWithName
   , fileupload
 
     -- other
+  , form
   , slabel
   , label
   , textlink
@@ -162,6 +164,9 @@ submit :: String -> Attributes -> XmlTree
 submit value attrs = inputWithValue "commit" value attrs'
   where attrs' = ("type", "submit") : attrs
 
+submitWithName :: String -> String -> Attributes -> XmlTree
+submitWithName name value attrs = submit value attrs'
+  where attrs' = ("id",name) : attrs
 
 -- | Create a fileupload field
 fileupload :: String -> Attributes -> XmlTree
@@ -184,6 +189,10 @@ input name attrs = tag "input" attrs'
 -- --------------------------------------------------------------------------
 -- labels, links, images
 -- --------------------------------------------------------------------------
+
+form :: String -> String -> String -> Attributes -> XmlTrees -> XmlTree
+form name method action attrs = contentTag "form" attrs'
+  where attrs' = ("id",name) : ("method",method) : ("action",action) : attrs
 
 -- | Create a label with the name as value
 slabel :: String -> Attributes -> XmlTree

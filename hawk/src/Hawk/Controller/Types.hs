@@ -71,6 +71,7 @@ data BasicConfiguration = BasicConfiguration
   , routing      :: Hack.Env -> Maybe Controller
   , templatePath :: String
   , publicDir    :: String
+  , error401file :: String
   , error404file :: String
   , error500file :: String
   , confOptions  :: Options
@@ -118,6 +119,11 @@ instance MonadDB (EitherT e (StateT ResponseState EnvController)) where
   getConnection = lift $ lift getConnection
 
 -- --------------------------------------------------------------------------
+-- AuthedStateController
+-- --------------------------------------------------------------------------
+-- type AuthedStateController = undefined
+
+-- --------------------------------------------------------------------------
 -- Rendering
 -- --------------------------------------------------------------------------
 class View a where
@@ -137,9 +143,6 @@ data SessionStore = SessionStore
 -- --------------------------------------------------------------------------
 data AuthType = AuthType
   { authenticate :: (MonadDB m, MonadIO m, HasState m) => String -> String -> m AuthResult }
-
---class Auth a where
---  auth :: a -> EnvController AuthResult
 
 -- --------------------------------------------------------------------------
 -- Routing
