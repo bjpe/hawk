@@ -1,8 +1,9 @@
+{-# LANGUAGE FlexibleContexts, GeneralizedNewtypeDeriving #-}
 -- --------------------------------------------------------------------------
 {- |
-   Module      :  Hawk.Model.Validator
+   Module      :  $Header$
    Copyright   :  Copyright (C) 2009 Björn Peemöller, Stefan Roggensack
-   License     :  NONE
+   License     :  BSD3
 
    Maintainer  :  {inf6254, inf6509}fh-wedel.de
    Stability   :  experimental
@@ -11,7 +12,6 @@
 
 -}
 -- --------------------------------------------------------------------------
-{-# LANGUAGE FlexibleContexts, GeneralizedNewtypeDeriving #-}
 module Hawk.Model.Validator 
   ( ValidationError
   , AttributeName

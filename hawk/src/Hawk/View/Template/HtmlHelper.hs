@@ -1,6 +1,6 @@
 -- --------------------------------------------------------------------------
 {- |
-   Module      :  Hawk.Template.HtmlHelper
+   Module      :  $Header$
    Copyright   :  Copyright (C) 2009 Björn Peemöller, Stefan Roggensack
    License     :  BSD3
 

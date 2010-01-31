@@ -1,6 +1,6 @@
 -- --------------------------------------------------------------------------
 {- |
-   Module      :  Hawk.Core.Cookies
+   Module      :  $Header$
    Copyright   :  Copyright (C) 2009 Björn Peemöller, Stefan Roggensack
    License     :  BSD3
    
@@ -23,6 +23,8 @@ module Hawk.Controller.Cookies
   , setCookieValue
   , deleteCookie
   , withCookies
+  , setTestCookie
+  , checkTestCookie
   ) where
 
 import Hawk.Controller.Responses (addHeader)
@@ -41,6 +43,9 @@ import Network.CGI.Cookie
   )
 import qualified Network.CGI.Cookie as C (deleteCookie)
 import Network.HTTP.Headers (HeaderName(..))
+
+testCookie :: (String, String)
+testCookie = ("foo", "42")
 
 getRequestCookies :: HasState m => m [Cookie]
 getRequestCookies = do
@@ -77,3 +82,11 @@ withCookies contr = do
   case cs of
     [] -> return res
     cl -> return $ addHeader HdrSetCookie (intercalate ";" $ map showCookie cl) res
+
+setTestCookie :: HasState m => m ()
+setTestCookie = uncurry setCookieValue testCookie
+
+checkTestCookie :: HasState m => m Bool
+checkTestCookie = do
+    t <- getCookieValue (fst testCookie) 
+    return $ maybe False ((==) $ snd testCookie) t

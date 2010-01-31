@@ -1,8 +1,8 @@
 -- --------------------------------------------------------------------------
 {- |
-   Module      :  Hawk.Controller.Session.DatabaseSession
-   Copyright   :  Copyright (C) 2010 Björn Peemöller
-   License     :  NONE
+   Module      :  $Header$
+   Copyright   :  Copyright (C) 2010 Björn Peemöller, Stefan Roggensack
+   License     :  BSD3
    
    Maintainer  :  inf6254@fh-wedel.de
    Stability   :  experimental

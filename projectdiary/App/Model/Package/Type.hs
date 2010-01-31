@@ -1,6 +1,6 @@
 -- --------------------------------------------------------------------------
 {- |
-   Module      :  App.Model.Base.Package.Type
+   Module      :  $Header$
    Copyright   :  Copyright (C) 2009 Björn Peemöller, Stefan Roggensack
    License     :  BSD3
 

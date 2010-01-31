@@ -1,8 +1,8 @@
 -- --------------------------------------------------------------------------
 {- |
-   Module      :  Hawk.Core.Responses
+   Module      :  $Header$
    Copyright   :  Copyright (C) 2009 Bj�rn Peem�ller, Stefan Roggensack
-   License     :  NONE
+   License     :  BSD3
 
    Maintainer  :  {inf6254, inf6509}fh-wedel.de
    Stability   :  experimental

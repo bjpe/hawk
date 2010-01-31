@@ -1,6 +1,6 @@
 -- --------------------------------------------------------------------------
 {- |
-   Module      :  App.Model.Step
+   Module      :  $Header$
    Copyright   :  Copyright (C) 2009 Bj�rn Peem�ller, Stefan Roggensack
    License     :  BSD3
 
