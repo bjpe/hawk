@@ -4,7 +4,7 @@ module App.Action.Common where
 import qualified App.Model.User as User
 import qualified App.Model.Project as Project
 
-import Hawk.Controller
+import Hawk.Controller hiding (logout)
 import Hawk.Model
 import Hawk.Controller.Util.Monad
 import Hawk.View.Template.HtmlHelper as Html
