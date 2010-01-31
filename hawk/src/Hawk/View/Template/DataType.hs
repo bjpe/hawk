@@ -22,7 +22,6 @@ import Text.XML.HXT.Arrow hiding (mkName)
 import Language.Haskell.TH
 import Hawk.Controller.Util.Text (firstLower, firstUpper, toCamelCase)
 import Hawk.View.Template.Interpreter
-import qualified Hawk.View.Template.HtmlHelper as Html
 import Hawk.View.Template.ToXhtml
 
 import Control.Monad ((>=>), liftM, filterM)

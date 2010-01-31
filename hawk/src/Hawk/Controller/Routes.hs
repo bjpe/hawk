@@ -30,6 +30,7 @@ import Hawk.Controller.Util.Uri
 defaultAction :: String
 defaultAction = "index"
 
+defaultController :: String
 defaultController = defaultAction
 
 dispatch :: String -> Route

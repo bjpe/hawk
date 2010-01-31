@@ -20,7 +20,7 @@ import Hawk.Controller.Cookies
 import Hawk.Controller.Util.Read (maybeRead)
 import Data.Digest.Pure.SHA (hmacSha256, bytestringDigest)
 import Data.ByteString.Lazy.UTF8 (fromString, toString)
-import Data.ByteString.Lazy (ByteString, unpack, append)
+import Data.ByteString.Lazy (unpack, append)
 import Data.Maybe (fromMaybe, fromJust)
 import qualified Codec.Binary.Base64Url as Base64 (encode, decode)
 import qualified Codec.Binary.UTF8.String as UTF8 (decode)

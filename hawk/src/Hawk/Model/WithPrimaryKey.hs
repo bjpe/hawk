@@ -78,7 +78,7 @@ findMaybeByPK k = result
 --  updated
 insertByPK :: (MonadDB m, WithPrimaryKey p) => p -> m p
 insertByPK p = do
-  executeManipulation $ setValues (nonPKValues p) $ newInsert $ tableName p
+  _ <- executeManipulation $ setValues (nonPKValues p) $ newInsert $ tableName p
   newId <- sqlSelect "SELECT last_insert_rowid()" []
   return $ setPrimaryKey (fromSql $ head $ head newId) p
 

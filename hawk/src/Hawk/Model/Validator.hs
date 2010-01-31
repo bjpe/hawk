@@ -16,7 +16,7 @@ module Hawk.Model.Validator
   ( ValidationError
   , AttributeName
   , ValidationErrors
-  , ValidatorT
+  , ValidatorT (ValidatorT)
   , Validatable (..)
   , execValidatorT
   , runValidatorT
