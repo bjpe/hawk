@@ -82,7 +82,7 @@ getParams :: HasState m => m (M.Map String String)
 getParams = extractParams `liftM` asks request
 
 getParamsAsList :: HasState m => m [(String, String)]
-getParamsAsList = (M.toList . extractParams) `liftM` asks request
+getParamsAsList = M.toList `liftM` getParams
 
 extractParams :: Env -> M.Map String String
 extractParams e = M.fromList getReq `M.union` M.fromList postReq

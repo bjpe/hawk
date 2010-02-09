@@ -127,6 +127,11 @@ instance HasState (EitherT e (StateT ResponseState EnvController)) where
 -- type AuthedStateController = undefined
 
 -- --------------------------------------------------------------------------
+-- AuthedStateController
+-- --------------------------------------------------------------------------
+-- type AuthedStateController = undefined
+
+-- --------------------------------------------------------------------------
 -- Rendering
 -- --------------------------------------------------------------------------
 class View a where

@@ -58,6 +58,7 @@ library
     Hawk.Controller.Session.NoSession
     Hawk.Controller.Session.CookieSession
     Hawk.Controller.Session.DatabaseSession
+--    Hawk.Controller.Session.UrlSession
     Hawk.Controller.StateAccess
     Hawk.Controller.Static
     Hawk.Controller.Types
