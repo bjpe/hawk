@@ -13,8 +13,7 @@
    and such stuff.
 -}
 -- --------------------------------------------------------------------------
-{-# LANGUAGE Rank2Types, FlexibleContexts, FlexibleInstances,
-    GeneralizedNewtypeDeriving, TypeFamilies #-}
+{-# LANGUAGE Rank2Types #-}
 module Hawk.Controller.Initializer
   ( AppEnvironment (..)
   , loadEnvironment
@@ -34,6 +33,8 @@ import System.Log.Logger
   , setLevel
 --  , rootLoggerName
   )
+  
+import Control.Monad.Trans
 
 import Database.HDBC (ConnWrapper)
 import Hack (Application)
@@ -55,7 +56,7 @@ loadEnvironment appEnv = do
 updateLogger :: [(String, Priority)] -> IO ()
 updateLogger = mapM_ (\(name, level) -> updateGlobalLogger name (setLevel level))
 
-getApplication :: (forall a. AppConfiguration a => a) -> AppEnvironment -> BasicConfiguration -> Application
+getApplication :: (forall a m. (AppConfiguration a, MonadIO m) => m a) -> AppEnvironment -> BasicConfiguration -> Application
 getApplication app env conf x = do
   (conn, envOpts) <- loadEnvironment env
   requestHandler app conn conf envOpts x

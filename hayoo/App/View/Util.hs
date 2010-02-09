@@ -24,7 +24,7 @@ showLogin = do
       ([form "loginform" "post" "/user/login" [] 
         [(textfield "username" "" []), 
          (password "password" "" [("id","password")]),
-         (submitWithName "authbutton" "Login" [])
+         (formButton "authbutton" "Login" [])
         ]
        ])
     Just v  -> return 
@@ -40,8 +40,9 @@ singleRequestConfig = do
   query <- getParam "q"
   return
     [form "configform" "post" "/index/search" []
-     (formElement "Search-Term" (textfield "q" query []):
-      configFormContent []
+     (   [formElement "Search-Term" (textfield "q" query [])]
+      ++ (configFormContent [])
+      ++ [formButton "search" "Send Request" []]
      )
     ]
 
@@ -49,8 +50,8 @@ generateConfigForm :: [(String, String)]  -> StateController XmlTrees
 generateConfigForm values = do
   return
     [form "configform" "post" "/user/edit" []
-     [
-     ]
+     (  configFormContent []
+     )
     ]
 
 formElement :: String -> XmlTree -> XmlTree
@@ -66,4 +67,15 @@ configFormContent l = do
    ,formElement "Fuzzy search" (checkbox "" "useFuzzy" False [])
    ,formElement "Optimize Query" (checkbox "" "optimizeQuery" True [])
    ,formElement "Word Limit" (textfield "wordLimit" "20" [])
+   ,formElement "Only this Modules" (textarea "onlyModules" "" []) -- if "only this" is not empty, the disallowed modules/packages will be ignored
+   ,formElement "Disallowed Modules" (textarea "disallowModules" "" [])
+   ,formElement "Only this Packages" (textarea "onlyPackages" "" [])
+   ,formElement "Disallowed Packages" (textarea "disallowPackages" "" [])
    ]
+
+formButton name value attrs = submitWithName name value attrs'
+  where attrs' = ("class","formButton") : attrs
+
+mkQueryText :: String -> XmlTrees
+mkQueryText q = [textfield "q" q [("autocomplete","off")]]
+

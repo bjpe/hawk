@@ -1,15 +1,11 @@
 module Config.Types where
 
---import Holumbus.Index.Inverted.OneFile
-import Holumbus.Index.Inverted.OneFile (Persistent)
-import Holumbus.Index.SmallDocuments
-import Holumbus.Index.Common
-
 import App.HolumbusWrapper.Types
 
 import Hawk.Controller.Types (AppConfiguration (..))
 
 import System.IO.Unsafe
+import Control.Monad.Trans
 
 import Holumbus.Query.Result
 import Holumbus.Query.Processor
@@ -17,21 +13,19 @@ import Holumbus.Query.Fuzzy
 import Holumbus.Query.Language.Parser
 import Holumbus.Query.Language.Grammar
 import Holumbus.Index.Common
+import Holumbus.Index.Inverted.OneFile (Persistent)
+import Holumbus.Index.SmallDocuments
 
 data AppConfig = AppConfig
   { hayooIndexHandler :: Persistent
   , hayooDocsHandler  :: SmallDocuments FunctionInfo
-  , test              :: String 
---  , authConfigHandler :: AuthDBConfig
---  , dbHandler       :: ConnWrapper
   }
 
--- TODO get rid of unsafePerformIO
-loadIndex :: Persistent
-loadIndex = unsafePerformIO (loadFromFile "./indexes/hayoo-index.bin")
+loadIndex :: MonadIO m => m Persistent
+loadIndex = liftIO (loadFromFile "./indexes/hayoo-index.bin")
 
-loadDocs :: SmallDocuments FunctionInfo
-loadDocs = unsafePerformIO (loadFromFile "./indexes/docs-small.bin")
+loadDocs :: MonadIO m => m (SmallDocuments FunctionInfo)
+loadDocs = liftIO (loadFromFile "./indexes/docs-small.bin")
 
 {-main :: IO ()
 main = do
@@ -48,15 +42,12 @@ main = do
     q = parseQuery "to"
 -}
 instance AppConfiguration AppConfig where
-  getInstance = --do 
-    -- load index and document file
-    -- index <- loadIndex
-    -- docs <- loadDocs
-    -- initialize authentification
-    -- create result type
-    AppConfig 
-      { hayooIndexHandler = loadIndex
-      , hayooDocsHandler  = loadDocs
-      , test = "mein test string"
+--  getInstance :: (AppConfiguration a, MonadIO m) => m a
+  getInstance = do
+     idx <- loadIndex
+     dcs <- loadDocs
+     return AppConfig 
+      { hayooIndexHandler = idx
+      , hayooDocsHandler  = dcs
       }
 

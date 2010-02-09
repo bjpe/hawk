@@ -37,6 +37,7 @@ module Hawk.View.Template.Helper.FormHelper
   , label
   , textlink
   , link
+  , linkA
   , image
   ) where
 
@@ -165,8 +166,8 @@ submit value attrs = inputWithValue "commit" value attrs'
   where attrs' = ("type", "submit") : attrs
 
 submitWithName :: String -> String -> Attributes -> XmlTree
-submitWithName name value attrs = submit value attrs'
-  where attrs' = ("id",name) : attrs
+submitWithName name value attrs = inputWithValue name value attrs'
+  where attrs' = ("type", "submit") : attrs
 
 -- | Create a fileupload field
 fileupload :: String -> Attributes -> XmlTree
@@ -177,13 +178,13 @@ fileupload name attrs = input name attrs'
 -- Create a input field with a value
 inputWithValue :: String -> String -> Attributes -> XmlTree
 inputWithValue name value attrs = input name attrs'
-  where attrs' = attrs ++ [("value", value)]
+  where attrs' = ("value", value) : attrs
 
 
 -- Create a input field
 input :: String -> Attributes -> XmlTree
 input name attrs = tag "input" attrs'
-  where attrs' = attrs ++ [("name", name), ("id", name)]
+  where attrs' = ("name", name) : ("id", name) : attrs
 
 
 -- --------------------------------------------------------------------------
@@ -192,7 +193,7 @@ input name attrs = tag "input" attrs'
 
 form :: String -> String -> String -> Attributes -> XmlTrees -> XmlTree
 form name method action attrs = contentTag "form" attrs'
-  where attrs' = ("id",name) : ("method",method) : ("action",action) : attrs
+  where attrs' = ("id", name) : ("method", method) : ("action", action) : attrs
 
 -- | Create a label with the name as value
 slabel :: String -> Attributes -> XmlTree
@@ -209,10 +210,14 @@ label name value attrs = contentTag "label" attrs' [mkText value]
 textlink :: String -> String -> XmlTree
 textlink target content = link target [mkText content]
 
-
 -- | Create a link with an arbitrary content
 link :: String -> XmlTrees -> XmlTree
-link target = contentTag "a" [("href", target)]
+link target = linkA target []
+
+-- | Create a link with an arbitrary content
+linkA :: String -> Attributes -> XmlTrees -> XmlTree
+linkA target attrs = contentTag "a" attrs'
+  where attrs' = ("href", target) : attrs
 
 
 -- | Create an image element

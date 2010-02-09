@@ -33,7 +33,7 @@ formatList = P.formatList
 formatOffsetList :: Result FunctionInfo -> Int -> XmlTrees
 formatOffsetList = P.formatOffsetList
 
-formatStatus :: Result FunctionInfo -> String -> XmlTrees
+formatStatus :: Result FunctionInfo -> XmlTrees
 formatStatus = P.formatStatus
 
 -- extra function for json output? - or parameter for the printing module

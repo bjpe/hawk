@@ -9,11 +9,10 @@ import Hawk.Controller.Util.Text
 
 import Hawk.Model.MonadDB
 
-import Control.Monad.Trans()
+import Control.Monad.Trans
 import Control.Monad.Reader
 
 import HAppS.Crypto.Base64 ( decode )
-import System.IO.Unsafe
 
 httpAuth :: AuthType
 httpAuth = AuthType
@@ -40,18 +39,12 @@ httpAuthenticate user pass = do
                   (u,p) = splitWhere (== ':') (decode s)
               in httpAuth' u p
     True -> return AuthSuccess
-{-data AuthResult = AuthSuccess
-                | AuthFailureUnknown String -- can contain a sql exception string
-                | AuthFailureIdNotFound
-                | AuthFailureAmbiguousId
-                | AuthFailureInvalidCredential
--}
 
 httpAuth' :: (MonadDB m, MonadIO m, HasState m) => String -> String -> m AuthResult
 httpAuth' u p = do
   path <- getOpts
-  let fc = unsafePerformIO (readFile path)
-      t = splitAll (== ',') fc
+  fc <- liftIO (readFile path)
+  let t = splitAll (== ',') fc
       l = map (splitWhere (== ':')) t
   case (lookup u l) of
     Nothing -> return AuthFailureIdNotFound

@@ -50,6 +50,7 @@ import Control.Monad.CatchIO ( MonadCatchIO (..) )
 import Control.Monad.Either
 import Control.Monad.Reader
 import Control.Monad.State
+import Control.Monad.Trans
 import Data.ByteString.Lazy ( ByteString )
 import Data.Default
 import Data.Map (Map)
@@ -82,7 +83,7 @@ data RequestEnv = RequestEnv
   , configuration      :: BasicConfiguration
   , request            :: Hack.Env
   , environmentOptions :: Options
-  , appConfiguration   :: (AppConfiguration a) => a -- type defined by application
+  , appConfiguration   :: (AppConfiguration a, MonadIO m) => m a -- type defined by application
   }
 
 data ResponseState = ResponseState
@@ -161,5 +162,5 @@ type Controller = StateController ByteString
 -- AppConfig
 -- --------------------------------------------------------------------------
 class AppConfiguration a where
-  getInstance :: a
+  getInstance :: MonadIO m => m a
 

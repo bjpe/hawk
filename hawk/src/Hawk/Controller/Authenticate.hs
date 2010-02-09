@@ -16,7 +16,7 @@ auth :: (MonadDB m, MonadIO m, HasState m) => String -> String -> m AuthResult
 auth u p = do 
   s <- asks configuration
   let f = authType s
-  (authenticate f) u p
+  authenticate f u p
 
 tryLogin :: (MonadDB m, MonadIO m, HasState m) => String -> String -> m AuthResult
 tryLogin = auth
@@ -25,7 +25,7 @@ getSessionAuth :: (HasState m) => m (Maybe String)
 getSessionAuth = getSessionValue "user_auth"
 
 setSessionAuth :: (HasState m) => String -> m ()
-setSessionAuth u = setSessionValue "user_auth" u
+setSessionAuth = setSessionValue "user_auth"
 
 delSessionAuth :: (HasState m) => m ()
 delSessionAuth = deleteSessionKey "user_auth"

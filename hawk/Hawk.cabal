@@ -10,7 +10,7 @@ Category:   Web
 Cabal-Version:	>=1.6
 
 library
-  ghc-options:       -Wall
+  ghc-options:       -Wall -fregs-graph
   hs-source-dirs:   src
   Build-Depends:     base == 4.*,
     HDBC >= 2.1.0 && <3,

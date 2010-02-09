@@ -8,20 +8,36 @@ import qualified Hawk.View as H
 import App.HolumbusWrapper.Types
 
 import qualified Data.Map as M
+import qualified Data.ByteString.UTF8 as B
 
 formatCloud :: Result FunctionInfo -> H.XmlTrees
-formatCloud r = [H.showtext $ getDocuments r]
+formatCloud r = [H.text "here will be the function name cloud"]--[H.showtext $ getDocuments r]
 
 formatList :: Result FunctionInfo -> H.XmlTrees
 formatList r = toDivList (getDocuments r)
 
 formatOffsetList :: Result FunctionInfo -> Int -> H.XmlTrees
-formatOffsetList r n = toDivList ( drop n (getDocuments r))
+formatOffsetList r n = toDivList ( take 10 (drop n (getDocuments r)))
 
-formatStatus :: Result FunctionInfo -> String -> H.XmlTrees
-formatStatus r q = [H.text ("Found " ++ show (sizeDocHits r) ++ " entries for search term \"" ++ q ++"\".")]
+formatStatus :: Result FunctionInfo -> H.XmlTrees
+formatStatus r = let wHits = sizeWordHits r
+                 in case wHits of
+                   0 -> [H.text "No entry found."]
+                   1 -> [H.text ("Found " ++ show (sizeDocHits r) ++ " entries.")]
+                   _ -> [H.text ("Found " ++ show (sizeDocHits r) ++ " entries and " ++ show wHits ++ " completions.")]
 
 toDivList :: [Document FunctionInfo] -> H.XmlTrees
 toDivList []     = [H.tag "div" []]
-toDivList (x:[]) = [H.contentTag "div" [] [(H.showtext x)]]
-toDivList (x:xs) = (H.contentTag "div" [] [(H.showtext x)]) : toDivList xs
+toDivList (x:[]) = [H.contentTag "div" [] (formatDocument x)]
+toDivList (x:xs) = (H.contentTag "div" [] (formatDocument x)) : toDivList xs
+
+formatDocument :: Document FunctionInfo -> H.XmlTrees
+formatDocument d = case custom d of
+                     Nothing -> [H.link (uri d) [H.text (title d)]]
+                     Just f  -> [ H.link (uri d) [H.text (B.toString (package f))]
+                                , H.text " @ "
+                                , H.link (uri d) [H.text ((B.toString (moduleName f)) ++ ".")]
+                                , H.link (uri d) [H.text (title d)]
+                                , H.text " :: "
+                                , H.text (B.toString (signature f))
+                                ]

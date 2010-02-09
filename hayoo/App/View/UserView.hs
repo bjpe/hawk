@@ -24,5 +24,6 @@ defaultUserPage = do
     , mystatus = statusDefaultText
     , login = loginT
     , settings = settingsT
+    , querytext = mkQueryText ""
     }
 

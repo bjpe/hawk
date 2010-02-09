@@ -287,12 +287,12 @@ span.source {
 	margin:0px;
 }
 
-#querytext, #username, #password {
+#q, #username, #password {
 	margin-top:5px;
 	border: 1px solid silver;
 }
 
-#querytext {width: 300px}
+#q {width: 300px}
 #username, #password {
   margin-top: 0px;
   width: 100px; 
@@ -300,14 +300,15 @@ span.source {
   font-size: 12px;
 }
 
-#querybutton, #authbutton {
+.formButton, #querybutton {
 	margin-top:5px;
 	border: 1px solid silver;
 	background-color:#F4F4F4;
 }
+
 #authbutton {
   margin-top: 0px;
-  height: 18px;
+  max-height: 18px;
   font-size: 11px;
 }
 

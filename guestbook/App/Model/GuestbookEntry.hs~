@@ -2,7 +2,7 @@ module App.Model.GuestbookEntry (GuestbookEntry (..)) where
 
 import Hawk.Model
 import Control.Monad.Trans (liftIO)
-import Data.Time (Day, UTCTime(..), getCurrentTime)
+import Data.Time (UTCTime(..), getCurrentTime)
 
 data GuestbookEntry = GuestbookEntry
   { _id         :: PrimaryKey
@@ -26,19 +26,24 @@ instance Persistent GuestbookEntry where
 instance WithPrimaryKey GuestbookEntry where
   primaryKey = _id
   pkColumn = head . tableColumns
-  setPrimaryKey pk c = c {_id = pk}
+  setPrimaryKey pk ge = ge {_id = pk}
 
 instance Model GuestbookEntry where
   new = do
     t <- liftIO getCurrentTime
     return $ GuestbookEntry 0 "" "" t
-  insert c = do
+  insert ge = do
     now <- liftIO getCurrentTime
-    insertInTransaction $ c { createdAt = now }
+    insertInTransaction $ ge { createdAt = now }
 
 instance Validatable GuestbookEntry where
-  validator c = do
-    validateNotNull "name"          $ name    c
-    validateLength  5 400 "message" $ message c
+  validator ge = do
+    validateNotNull "name"          $ name    ge
+    validateLength  5 400 "message" $ message ge
     return ()
 
+instance Updateable GuestbookEntry where
+  updater ge s = do
+    n <- updater (name    ge) $ subParam s "name"
+    m <- updater (message ge) $ subParam s "message"
+    return $ ge { name = n, message = m }

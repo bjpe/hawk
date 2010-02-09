@@ -12,8 +12,7 @@
    The main dispatcher.
 -}
 -- --------------------------------------------------------------------------
-{-# LANGUAGE TemplateHaskell, Rank2Types, FlexibleContexts, FlexibleInstances,
-    GeneralizedNewtypeDeriving, TypeFamilies #-}
+{-# LANGUAGE TemplateHaskell, Rank2Types #-}
 module Hawk.Controller.Server ( requestHandler ) where
 
 import Control.Exception ( SomeException )
@@ -21,6 +20,7 @@ import Control.Monad.CatchIO ( catch )
 import Control.Monad.State
 import Control.Monad.Reader
 import Control.Monad.Either
+import Control.Monad.Trans
 import Data.ByteString.Lazy.UTF8 ( fromString )
 import Data.Default
 import qualified Data.Map as M
@@ -53,7 +53,7 @@ $(deriveLoggers "Logger" [Logger.DEBUG])
 -- --------------------------------------------------------------------------
 -- The request handler
 -- --------------------------------------------------------------------------
-requestHandler :: (forall a. AppConfiguration a => a) -> ConnWrapper -> BasicConfiguration -> Options -> Application
+requestHandler :: (forall a m. (AppConfiguration a, MonadIO m) => m a) -> ConnWrapper -> BasicConfiguration -> Options -> Application
 requestHandler app conn conf opts env = runReaderT (runController dispatch) (RequestEnv conn conf env opts app)
 
 -- | Dispatch a 'Request' and return the 'Response'

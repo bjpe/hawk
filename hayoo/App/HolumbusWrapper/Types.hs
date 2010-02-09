@@ -22,23 +22,25 @@ data QueryInfo = QueryInfo
   }
 
 data QuerySettings = QuerySettings 
-  { caseSensitiveSearch :: Bool -- default is False
-  , fuzzyCfg            :: FuzzyConfig
-  , packageConfig       :: [PConfig] -- default is empty list
-  , optimizeQry         :: Bool -- default is True
-  , wordLmt             :: Int
+  { caseSensitive    :: Bool -- default is False
+  , optimizeQry      :: Bool -- default is True
+  , wordLmt          :: Int
+  , fuzzyCfg         :: FuzzyConfig
+  , useModules       :: [PMConfig] -- default is empty List
+  , disallowModules  :: [String]
+  , usePackages      :: [PMConfig]
+  , diallowPackages  :: [String]
   }
   | NoSettings
 
--- empty packageConfig list -> all allowed
--- not empty packageConfig list -> only packages in list are allowed to search
-data PConfig = PConfig
+data PMConfig = PMRank
   { name    :: String
   , ranking :: Int
   }
+  | PMName { name :: String }
 
 defaultHConfig :: QuerySettings
-defaultHConfig = QuerySettings False fcfg [] True 50
+defaultHConfig = QuerySettings False True 50 fcfg [] [] [] []
   where fcfg = FuzzyConfig False True 1.0 []
 
 -- | Additional information about a function.

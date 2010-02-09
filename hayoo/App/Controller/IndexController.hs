@@ -34,13 +34,14 @@ indexAction = do
 searchAction :: StateController (Result T.FunctionInfo, String)
 searchAction = do 
   appCfg <- asks appConfiguration
+  cfg <- appCfg
   q <- lookupParam "q"
   case q of
     Nothing -> redirectToAction "index" "index"
-    Just v  -> return (doThat appCfg v, v)
+    Just v  -> return (doThat cfg v, v)
 
-showConfigAction :: StateController ()
-showConfigAction = return ()
+showConfigAction :: StateController String
+showConfigAction = getParam "q"
 
 -- ### local ############
 -- TODO also handle optional query configuration

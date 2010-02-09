@@ -40,7 +40,7 @@ error404Response = lift (lift error404) >>= returnLeft
 error401 :: EnvController Response
 error401 = asks ((++) "/" . error401file . configuration)
     >>= tryStatic
-    >>= maybe (warningM "could not find error 401 file" >> error500) (return . (setStatus 401) . addCustomHeaders [("WWW-Authenticate", "Basic")])
+    >>= maybe (warningM "could not find error 401 file" >> error500) (return . setStatus 401 . addCustomHeaders [("WWW-Authenticate", "Basic")])
 
 error401Response :: StateController a
 error401Response = lift (lift error401) >>= returnLeft

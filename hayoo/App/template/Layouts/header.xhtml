@@ -26,9 +26,10 @@
           <img class="logo" src="/images/hayoo.png" alt="Hayoo logo"/>
         </a>
       </div>
-      <form id="queryform" method="get" action="search">
+      <form id="queryform" method="get" action="/index/search">
         <div id="queryinterface">
-          <input id="querytext" type="text" name="q" autocomplete="off" value=""/>
+          <!--<input id="querytext" type="text" name="q" autocomplete="off" value=""/>-->
+          <hawk:bind name="querytext"/>
           <input id="querybutton" type="submit" value="Search"/>
           <img id="throbber" src="/images/loader.gif" alt="Throbber" style="display:none;"/>
         </div>

@@ -42,4 +42,3 @@ contentTag name attrs children = mkElement qn al children
 tag :: String -> Attributes -> XmlTree
 tag name attrs = contentTag name attrs []
 
-

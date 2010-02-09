@@ -25,15 +25,16 @@ searchXhtml (r,q) = do
   settings <- showSettings
   return IndexSearch
     { searchTitle = pageTitle
-    , searchMystatus = formatStatus r q
+    , searchMystatus = formatStatus r
     , searchCloud = formatCloud r
-    , searchList = formatList r
+    , searchList = formatList r --formatOffsetList r 0
     , searchLogin = login
     , searchSettings = settings
+    , searchQuerytext = mkQueryText q
     } 
 
-configXhtml :: a -> StateController IndexConfig
-configXhtml _ = do
+configXhtml :: String -> StateController IndexConfig
+configXhtml q = do
   login <- showLogin
   settings <- showSettings
   form <- singleRequestConfig
@@ -43,6 +44,7 @@ configXhtml _ = do
     , configLogin = login
     , configSettings = settings
     , configForm = form
+    , configQuerytext = mkQueryText q
     }
 
 helpXhtml :: a -> StateController IndexIndex
@@ -60,5 +62,6 @@ defaultIndexPage = do
     , mystatus = statusDefaultText
     , login = loginT
     , settings = settingsT
+    , querytext = mkQueryText ""
     }
 

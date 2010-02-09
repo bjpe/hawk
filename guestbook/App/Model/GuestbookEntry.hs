@@ -2,7 +2,7 @@ module App.Model.GuestbookEntry (GuestbookEntry (..)) where
 
 import Hawk.Model
 import Control.Monad.Trans (liftIO)
-import Data.Time (UTCTime(..), getCurrentTime)
+import Data.Time (UTCTime, getCurrentTime)
 
 data GuestbookEntry = GuestbookEntry
   { _id         :: PrimaryKey
