@@ -19,8 +19,8 @@ $(viewDataTypeWithPrefix "Config" "Index" "config")
 indexXhtml :: a -> StateController IndexIndex
 indexXhtml _ = defaultIndexPage
 
-searchXhtml :: (Result FunctionInfo, String) -> StateController IndexSearch
-searchXhtml (r,q) = do
+searchXhtml :: (Result FunctionInfo, String, QuerySettings) -> StateController IndexSearch
+searchXhtml (r, q, qs) = do
   login <- showLogin
   settings <- showSettings
   return IndexSearch

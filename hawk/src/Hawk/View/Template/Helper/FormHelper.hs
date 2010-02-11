@@ -100,7 +100,7 @@ checkbox :: String     -- ^ name of the field
          -> Bool       -- ^ flag whether the checkbox should be checked
          -> Attributes -- ^ additional 'Attributes'
          -> XmlTree
-checkbox name value checked attrs = inputWithValue name value attrs'
+checkbox name _value checked attrs = input name attrs' --inputWithValue name value attrs'
   where
     attrs' = ("type","checkbox") : checkedAttr checked ++ attrs
 

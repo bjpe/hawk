@@ -20,7 +20,7 @@ import Control.Monad.CatchIO ( catch )
 import Control.Monad.State
 import Control.Monad.Reader
 import Control.Monad.Either
-import Control.Monad.Trans
+import Control.Monad.Trans()
 import Data.ByteString.Lazy.UTF8 ( fromString )
 import Data.Default
 import qualified Data.Map as M
@@ -79,6 +79,7 @@ tryDynamic contr = do
   case rtng req of
     Nothing       -> contr
     Just dynContr -> executeController dynContr
+--    Just (dynContr, [m a -> m a]) -> 
 
 executeController :: StateController ByteString -> EnvController Response
 executeController = (\s -> evalStateT s def)

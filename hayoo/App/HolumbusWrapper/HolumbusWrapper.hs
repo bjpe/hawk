@@ -39,8 +39,8 @@ formatStatus = P.formatStatus
 -- extra function for json output? - or parameter for the printing module
 
 -- constructor for query configuration type
-getQuerySettings :: QuerySettings
-getQuerySettings = NoSettings
+--getQuerySettings :: QuerySettings
+--getQuerySettings = NoSettings
 -- getQuerySettingsFromUser
 
 -- getQuerySettingsFromSession

@@ -16,7 +16,7 @@ query (QueryInfo q s i d)  =  do
   processQuery config i d parsedQuery 
 
 mkConfig :: QuerySettings -> ProcessConfig
-mkConfig NoSettings = ProcessConfig (FuzzyConfig False True 1.0 []) True 10
+--mkConfig NoSettings = ProcessConfig (FuzzyConfig False True 1.0 []) True 50
 mkConfig s = ProcessConfig (fuzzyCfg s) (optimizeQry s) (wordLmt s)
 
 parseQry :: QuerySettings -> String -> Query

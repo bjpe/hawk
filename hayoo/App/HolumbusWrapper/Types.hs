@@ -27,20 +27,22 @@ data QuerySettings = QuerySettings
   , wordLmt          :: Int
   , fuzzyCfg         :: FuzzyConfig
   , useModules       :: [PMConfig] -- default is empty List
-  , disallowModules  :: [String]
+  , disallowModules  :: [String] -- TODO optimize -> only use or disallow is used, dont need two record fields
   , usePackages      :: [PMConfig]
   , diallowPackages  :: [String]
   }
   | NoSettings
+  deriving (Show)
 
 data PMConfig = PMRank
   { name    :: String
   , ranking :: Int
   }
   | PMName { name :: String }
+  deriving (Show)
 
-defaultHConfig :: QuerySettings
-defaultHConfig = QuerySettings False True 50 fcfg [] [] [] []
+defaultQSConfig :: QuerySettings
+defaultQSConfig = QuerySettings False True 50 fcfg [] [] [] []
   where fcfg = FuzzyConfig False True 1.0 []
 
 -- | Additional information about a function.

@@ -63,14 +63,22 @@ formElement label elem = do
 
 configFormContent :: [(String, String)] -> XmlTrees
 configFormContent l = do
-  [ formElement "Case-Sensitive" (checkbox "" "caseSensitive" False [])
-   ,formElement "Fuzzy search" (checkbox "" "useFuzzy" False [])
-   ,formElement "Optimize Query" (checkbox "" "optimizeQuery" True [])
+  [ formElement "Case-Sensitive" (checkbox "caseSensitive" "" False [])
+   ,formElement "Fuzzy search" (checkbox "useFuzzy" "" False [])
+   ,formElement "Swap Charakters" (checkbox "swapChars" "" False [])
+   ,formElement "Max. Fuzzyness" (textfield "maxFuzzy" "0.9" [])
+   ,formElement "Custom Replacement" (
+      select "replacements" (
+         optionsFromString [("",""),("English", "English"), ("German","German")]
+         ) []
+      )
+   ,formElement "Optimize Query" (checkbox "optimizeQuery" "" True [])
    ,formElement "Word Limit" (textfield "wordLimit" "20" [])
    ,formElement "Only this Modules" (textarea "onlyModules" "" []) -- if "only this" is not empty, the disallowed modules/packages will be ignored
    ,formElement "Disallowed Modules" (textarea "disallowModules" "" [])
    ,formElement "Only this Packages" (textarea "onlyPackages" "" [])
    ,formElement "Disallowed Packages" (textarea "disallowPackages" "" [])
+   ,hidden "singleConfig" "true" []
    ]
 
 formButton name value attrs = submitWithName name value attrs'

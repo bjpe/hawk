@@ -50,7 +50,7 @@ import Control.Monad.CatchIO ( MonadCatchIO (..) )
 import Control.Monad.Either
 import Control.Monad.Reader
 import Control.Monad.State
-import Control.Monad.Trans
+import Control.Monad.Trans()
 import Data.ByteString.Lazy ( ByteString )
 import Data.Default
 import Data.Map (Map)
@@ -66,7 +66,6 @@ type Options = [(String, String)]
 data BasicConfiguration = BasicConfiguration
   { sessionStore :: SessionStore
   , sessionOpts  :: SessionOpts
---  , authConfig   :: AuthConfig
   , authType     :: AuthType
   , authOpts     :: [String]
   , routing      :: Hack.Env -> Maybe Controller
@@ -120,16 +119,6 @@ instance HasState (StateT ResponseState EnvController) where
 instance HasState (EitherT e (StateT ResponseState EnvController)) where
 --instance MonadDB (EitherT e (StateT ResponseState EnvController)) where
 --  getConnection = lift $ lift getConnection
-
--- --------------------------------------------------------------------------
--- AuthedStateController
--- --------------------------------------------------------------------------
--- type AuthedStateController = undefined
-
--- --------------------------------------------------------------------------
--- AuthedStateController
--- --------------------------------------------------------------------------
--- type AuthedStateController = undefined
 
 -- --------------------------------------------------------------------------
 -- Rendering
