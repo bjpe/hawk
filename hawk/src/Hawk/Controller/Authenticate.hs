@@ -4,7 +4,7 @@ module Hawk.Controller.Authenticate
 where
 
 --import Hawk.Controller.Types 
-import Hawk.Controller.StateAccess ( getSessionValue, setSessionValue, deleteSessionKey )
+import Hawk.Controller.StateAccess ( getSessionValue, setSessionValue, deleteSessionKey, setFlash )
 import Hawk.Controller.CustomResponses ( redirectToAction )
 import Hawk.Controller.Auth.ResultType
 import Hawk.Controller.Types -- ( AuthType (..) )
@@ -43,14 +43,23 @@ isAuthed = do
   case a of
     Nothing -> return False
     Just _  -> return True
-{-
-extAuth :: (HasState m) => m a
-extAuth = do
-  conf <- asks $ authOpts . configuration
-  case (drop 4 conf) of
-    (c:a:_) -> redirectToAction c a
-    _ -> return ()
--}
+
+-- argumente sind hier die aktion auf die redirected werden soll
+authF :: String -> String -> StateController a -> StateController a
+authF = authF' ""
+
+authF' :: String -> String -> String -> StateController a -> StateController a
+authF' e c a contr = do
+  b <- isAuthed
+  if b
+    then contr
+    else
+      case e of 
+        "" -> redirectToAction c a
+        _ -> do
+          setFlash "error" e --"You are not logged in."
+          redirectToAction c a
+
 -- if auth is implemented as controller store result in session
 {-
 getAuthResult :: (HasState m) => m (Maybe String)

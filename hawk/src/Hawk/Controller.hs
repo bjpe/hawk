@@ -18,6 +18,7 @@ import Hawk.Controller.Routes
   ( addUrlParams
   , urlFor
   , actionUrl
+  , combine
   )
 import Hawk.Controller.Session
 import Hawk.Controller.StateAccess

@@ -4,7 +4,6 @@ import Hawk.Controller
 import Hawk.View
 import Hawk.Model
 import Hawk.Controller.Auth.ResultType
-import qualified Hawk.Controller.Authenticate as A
 import Hawk.Controller.Static
 
 import Hawk.Controller
@@ -15,22 +14,18 @@ import App.Model.User
 
 routes :: [Routing]
 routes = 
+  [ ("register",registerAction >>= render (typedView "register" registerXhtml))
+  , ("login",authAction >> redirectToAction "index" "index")
+  ] ++ combine (authF' "You are not logged in." "index" "index") 
+  -- following actions require a logged in user, else he'll be redirected to index page
   [ ("index",indexAction >>= render (typedView "index" indexXhtml))
   , ("show",indexAction >>= render (typedView "index" indexXhtml))
   , ("edit",editAction >> redirectToAction "user" "index")
-  , ("register",registerAction >>= render (typedView "register" registerXhtml))
-  , ("login",authAction >> redirectToAction "index" "index")
   , ("logout",logoutAction >> redirectToAction "index" "index")
   ]
 
 indexAction :: StateController ()
-indexAction = do
-  a <- isAuthed
-  if a
-    then return () -- TODO load user configuration from db
-    else do
-      setFlash "error" "You are not logged in."
-      redirectToAction "index" "index"
+indexAction = return () -- TODO load user configuration from db
 
 editAction :: StateController ()
 editAction = return () -- TODO try to set new user configuration and redirect to user/index
@@ -66,12 +61,12 @@ authAction = do
   p <- lookupParam "password"
   case (u,p) of
     (Just user, Just pass) -> do
-      r <- A.tryLogin user pass
+      r <- tryLogin user pass
       flashAuth r
     _ -> setFlash "error" "No username or password entered."
 
 logoutAction :: StateController ()
-logoutAction = A.logout
+logoutAction = logout
 
 -- ############## private
 
