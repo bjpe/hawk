@@ -7,12 +7,11 @@ import Hawk.Controller.Authenticate
 import Hawk.Controller.Request
 import Hawk.Controller.Util.Text
 
-import Hawk.Model.MonadDB()
-
 import Control.Monad.Trans
 import Control.Monad.Reader
 
-import HAppS.Crypto.Base64 ( decode )
+import Codec.Binary.Base64 ( decode )
+import qualified Codec.Binary.UTF8.String as UTF8 (decode)
 
 -- only supports csv based basic authentication
 -- this http authentication is only usable for a single userclass
@@ -21,16 +20,14 @@ import HAppS.Crypto.Base64 ( decode )
 httpAuth :: AuthType
 httpAuth = do
   sess <- isAuthed
-  case sess of
-    False -> do
-      a <- getRequestHeader "Authorization"
-      case a of
-        Nothing -> return AuthFailureIdNotFound
-        Just v  ->
-          let s = snd (splitWhere (== ' ') v) 
-              (u,p) = splitWhere (== ':') (decode s)
-          in httpAuth' u p
-    True -> return AuthSuccess
+  (if sess then return AuthSuccess else
+     (do a <- getRequestHeader "Authorization"
+         case a of
+             Nothing -> return AuthFailureIdNotFound
+             Just v -> case decode (snd (splitWhere (== ' ') v)) of
+                   Nothing -> return AuthFailureIdNotFound
+                   Just v' -> uncurry httpAuth' $
+                        splitWhere (== ':') (UTF8.decode v')))
   where 
   httpAuth' u p = do
     path <- getOpts
