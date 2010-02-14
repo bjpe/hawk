@@ -36,11 +36,11 @@ tryGetQSfromParams m = do
       oq = M.findWithDefault "" "optimizeQuery" m
       wl = M.findWithDefault "" "wordLimit" m
       om = M.findWithDefault "" "onlyModules" m
-      dm = M.findWithDefault "" "disallowModules" m
+--      dm = M.findWithDefault "" "disallowModules" m
       op = M.findWithDefault "" "onlyPackages" m
-      dp = M.findWithDefault "" "disallowPackages" m
+--      dp = M.findWithDefault "" "disallowPackages" m
   if (toBool b)
-    then Just (toQS [cs,uf,sc,mf,rp,oq,wl,om,dm,op,dp])
+    then Just (toQS [cs,uf,sc,mf,rp,oq,wl,om,op])
     else Nothing
 --  case [cs,uf,sc,mf,rp,oq,wl,om,dm,op,dp] of
 --    [Just c, Just f, Just s, Just mm, Just r,Just q, Just l, Just m, Just d, Just p, Just dd] ->
@@ -54,7 +54,7 @@ tryGetQSfromDB :: Maybe QuerySettings
 tryGetQSfromDB = Nothing
 
 toQS :: [String] -> QuerySettings
-toQS (l0:l1:l2:l3:l4:l5:l6:l7:l8:l9:la:_) = --T.defaultQSConfig
+toQS (l0:l1:l2:l3:l4:l5:l6:l7:l8:_) = --T.defaultQSConfig
   QuerySettings 
     (cbToBool l0)
     (cbToBool l5)
@@ -65,9 +65,7 @@ toQS (l0:l1:l2:l3:l4:l5:l6:l7:l8:l9:la:_) = --T.defaultQSConfig
       (toFloat l3)
       (toReplacement l4) )
     (toPMConfig (splitAll (== ' ') l7))
-    (splitAll (== ' ') l8)
-    (toPMConfig (splitAll (== ' ') l9))
-    (splitAll (== ' ') la)
+    (toPMConfig (splitAll (== ' ') l8))
 
 toBool :: String -> Bool
 toBool "true" = True
@@ -99,3 +97,9 @@ toPMConfig (x:xs) = (toPMConfig' x) : (toPMConfig xs)
   toPMConfig' ('(':ns) = let (n,r) = splitWhere (== ',') ns
                             in PMRank n (toInt (init r))
   toPMConfig' n = PMName n
+
+pmcfgToList :: [PMConfig] -> [String]
+pmcfgToList [] = []
+pmcfgToList (x:xs) = toL x : pmcfgToList xs
+  where toL (PMName s) = s
+        toL (PMRank s _) = s

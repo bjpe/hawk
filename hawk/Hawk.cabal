@@ -38,7 +38,8 @@ library
     regex-posix >= 0.94 && < 0.100,
     Stringable >= 0.0.1 && < 0.1,
     EitherT >= 0.0.1 && < 0.1,
-    HAppS-Util >= 0.9 && < 1
+    HAppS-Util >= 0.9 && < 1,
+    json-b >= 0.0.4 && < 1
   Exposed-Modules:
     Hawk.Controller
     Hawk.Controller.Authenticate
@@ -69,6 +70,7 @@ library
     Hawk.Controller.Util.List
     Hawk.View
     Hawk.View.EmptyView
+    Hawk.View.JsonView
     Hawk.View.TextView
     Hawk.View.Template.HtmlHelper
     Hawk.View.Template.Helper.TagHelper

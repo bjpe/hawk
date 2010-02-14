@@ -3,7 +3,8 @@ module App.HolumbusWrapper.Query where
 import Holumbus.Query.Result
 import Holumbus.Query.Processor
 import Holumbus.Query.Fuzzy
-import Holumbus.Query.Language.Parser
+--import Holumbus.Query.Language.Parser
+import App.HolumbusWrapper.Parser
 import Holumbus.Query.Language.Grammar
 import Holumbus.Index.Common
 

@@ -1,4 +1,4 @@
-{-# LANGUAGE TemplateHaskell #-}
+--{-# LANGUAGE TemplateHaskell #-}
 module App.Controller.IndexController where
 
 import App.View.IndexView

@@ -48,7 +48,7 @@ registerAction = do
 
 authAction :: StateController ()
 authAction = do
-{- http basic auth
+{-  -- http basic auth
   u <- lookupParam "username"
   p <- lookupParam "password"
   r <- case (u,p) of
@@ -57,6 +57,7 @@ authAction = do
   case r of
     AuthSuccess -> setFlash "success" "Authentication succeeded." 
     _ -> error401Response -- this overwrites the redirectToAction from the routing list -}
+  -- db auth
   u <- lookupParam "username"
   p <- lookupParam "password"
   case (u,p) of

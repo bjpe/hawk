@@ -58,6 +58,10 @@ span.query {
 	z-index:1000;
 }
 
+select, input, textarea {
+	border: 1px solid silver;
+}
+
 .text {
 	color:gray;
 	padding:20px;
@@ -288,7 +292,7 @@ span.source {
 }
 
 #q, #username, #password {
-	margin-top:5px;
+/*	margin-top:5px;*/
 	border: 1px solid silver;
 }
 
@@ -409,14 +413,24 @@ p.cloud {
   height: 24px;
 }
 
+#configSearch {
+  margin: 10 auto;
+  width: 600px;
+}
+
 #configform div {
   width: 600px;
 }
 
 .formname {
-  width: 250px;
+  width: 150px;
+  padding-top: 4px;
+  float: left;
 }
 
 .formfield {
-  width: 350px;
+}
+
+#search {
+  margin-left: 90px;
 }
