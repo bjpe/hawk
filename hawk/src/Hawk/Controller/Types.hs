@@ -29,7 +29,7 @@ module Hawk.Controller.Types
 
   , View (..)
 
-  , AuthType (..)
+  , AuthType
   , SessionStore (..)
   , Route (..)
   , Routing
@@ -138,8 +138,7 @@ data SessionStore = SessionStore
 -- --------------------------------------------------------------------------
 -- Authentication
 -- --------------------------------------------------------------------------
-data AuthType = AuthType
-  { authenticate :: (MonadDB m, MonadIO m, HasState m) => String -> String -> m AuthResult }
+type AuthType = (MonadDB m, MonadIO m, HasState m) => m AuthResult
 
 -- --------------------------------------------------------------------------
 -- Routing

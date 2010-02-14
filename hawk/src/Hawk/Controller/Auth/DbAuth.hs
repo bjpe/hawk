@@ -3,8 +3,8 @@ module Hawk.Controller.Auth.DbAuth where
 import Hawk.Controller.Types
 import Hawk.Controller.Auth.ResultType ( AuthResult (..) )
 import Hawk.Controller.Authenticate
+import Hawk.Controller.Request ( getParam )
 
-import Hawk.Model.MonadDB
 import Hawk.Model.Criteria
 import Hawk.Model.CriteriaSelect
 
@@ -12,20 +12,17 @@ import Database.HDBC.SqlValue
 import Control.Monad.Trans ()
 import Control.Monad.Reader
 
--- authOpts are: [tableName, identityColumnName, credentialColumnName, cryptoFunctionName]
+-- authOpts are: [tableName, identityColumnName, credentialColumnName, cryptoFunctionName, username-formfield, password-formfield]
 
+--(MonadDB m, MonadIO m, HasState m) => String -> String -> m AuthResult
 dbAuth :: AuthType
-dbAuth = AuthType
-  { -- authenticate :: String -> String -> m AuthResult
-    authenticate = dbAuthenticate
-  }
-
-dbAuthenticate :: (MonadDB m, MonadIO m, HasState m) => String -> String -> m AuthResult
-dbAuthenticate u p = do
+dbAuth = do
     sess <- isAuthed
     case sess of
       False -> do
-        (t, idCol, credCol, crypto) <- getOpts
+        (t, idCol, credCol, crypto, user, pass) <- getOpts
+        u <- getParam user
+        p <- getParam pass
         --select idcol and credcol from table where idcol == id
         rows <- querySelect
              $ setProjection [colP idCol, colP credCol]
@@ -41,13 +38,13 @@ dbAuthenticate u p = do
           _        -> return AuthFailureIdNotFound        -- no identity found
       True -> return AuthSuccess
 
-getOpts :: (MonadIO m, HasState m) => m (String, String, String, String)
+getOpts :: (MonadIO m, HasState m) => m (String, String, String, String, String, String)
 getOpts = do
   conf <- asks configuration
   let o = authOpts conf 
   case o of
-    (t:i:c:cr:_) -> return (t, i, c, cr)
-    _ -> return ("wrong-authOpts", "", "", "") -- this will occur in a db request error
+    (t:i:c:cr:uf:pf:_) -> return (t, i, c, cr, uf, pf)
+    _ -> return ("wrong-authOpts", "", "", "", "", "") -- this will occur in a db request error
 
 lookupAuthDbRes :: String -> [SqlValue] -> Maybe String
 lookupAuthDbRes _ [] = Nothing

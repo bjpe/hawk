@@ -58,13 +58,8 @@ authAction = do
     AuthSuccess -> setFlash "success" "Authentication succeeded." 
     _ -> error401Response -- this overwrites the redirectToAction from the routing list -}
   -- db auth
-  u <- lookupParam "username"
-  p <- lookupParam "password"
-  case (u,p) of
-    (Just user, Just pass) -> do
-      r <- tryLogin user pass
-      flashAuth r
-    _ -> setFlash "error" "No username or password entered."
+  r <- tryLogin
+  flashAuth r
 
 logoutAction :: StateController ()
 logoutAction = logout

@@ -1,3 +1,17 @@
+-- --------------------------------------------------------------------------
+{- |
+   Module      :  $Header$
+   Copyright   :  Copyright (C) 2010 Alexander Treptow
+   License     :  BSD3
+
+   Maintainer  :  {inf6866}fh-wedel.de
+   Stability   :  experimental
+   Portability :  portable
+   Version     :  
+
+   
+-}
+-- --------------------------------------------------------------------------
 {-# LANGUAGE TypeFamilies #-}
 module Hawk.View.JsonView
   ( JsonView (..)
@@ -12,8 +26,8 @@ import Hawk.Controller.Types
   , View (..)
   )
 
-import Data.ByteString.UTF8 ( ByteString )
---import Data.ByteString.Lazy.Internal ( ByteString )
+--import Data.ByteString.UTF8 ( ByteString )
+import Data.ByteString.Lazy.Internal ( ByteString )
 
 import Text.JSONb.Simple ( JSON (..) )
 import Text.JSONb.Decode ( decode )
