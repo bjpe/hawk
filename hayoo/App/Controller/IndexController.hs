@@ -37,29 +37,18 @@ indexAction = do
     Nothing -> return ()
     Just v  -> redirectWithParams "index" "search"
 
-searchAction :: StateController (Result T.FunctionInfo, String, T.QuerySettings)
+searchAction :: StateController (Result T.FunctionInfo, T.QueryInfo)
 searchAction = do 
   appCfg <- asks appConfiguration
   cfg <- appCfg
   q <- lookupParam "q"
+  o <- getParam "o"
   qs <- getQuerySettings
   case q of
     Nothing -> redirectToAction "index" "index"
-    Just v  -> return (doThat cfg v qs, v, qs)
+    Just v  -> let qi = createQuery cfg v qs $ toInt o
+               in return $ (query qi, qi)
 
 showConfigAction :: StateController String
 showConfigAction = getParam "q"
-
--- ### local ############
--- TODO also handle optional query configuration
-doThat :: AppConfig -> String -> T.QuerySettings -> Result T.FunctionInfo
-doThat cfg q qs = query $ createQuery cfg q qs
-
-createQuery :: AppConfig -> String -> T.QuerySettings -> T.QueryInfo
-createQuery cfg q qs = T.QueryInfo
-  { T.queryString   = q
-  , T.querySettings = qs
-  , T.index         = hayooIndexHandler cfg
-  , T.documents     = hayooDocsHandler cfg
-  }
 

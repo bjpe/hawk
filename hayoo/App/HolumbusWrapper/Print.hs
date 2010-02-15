@@ -26,6 +26,12 @@ formatStatus r = let wHits = sizeWordHits r
                    1 -> [H.text ("Found " ++ show (sizeDocHits r) ++ " entries.")]
                    _ -> [H.text ("Found " ++ show (sizeDocHits r) ++ " entries and " ++ show wHits ++ " completions.")]
 
+formatPages :: Result FunctionInfo -> Int -> H.XmlTrees
+formatPages r i = [H.text ("pages " ++ (show i))]
+
+formatPM :: Result FunctionInfo -> H.XmlTrees
+formatPM r = [H.text "packages and modules"]
+
 toDivList :: [Document FunctionInfo] -> H.XmlTrees
 toDivList []     = [H.tag "div" []]
 toDivList (x:[]) = [H.contentTag "div" [] (formatDocument x)]

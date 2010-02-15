@@ -17,6 +17,7 @@ import Control.Monad (liftM)
 data QueryInfo = QueryInfo
   { queryString   :: String
   , querySettings :: QuerySettings
+  , offset        :: Int
   , index         :: Persistent
   , documents     :: SmallDocuments FunctionInfo
   }

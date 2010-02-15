@@ -39,7 +39,8 @@ library
     Stringable >= 0.0.1 && < 0.1,
     EitherT >= 0.0.1 && < 0.1,
     HAppS-Util >= 0.9 && < 1,
-    json-b >= 0.0.4 && < 1
+    json-b >= 0.0.4 && < 0.1,
+    bytestring-trie >= 0.1.4 && < 0.2
   Exposed-Modules:
     Hawk.Controller
     Hawk.Controller.Authenticate

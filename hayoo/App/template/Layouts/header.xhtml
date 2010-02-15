@@ -8,6 +8,8 @@
   <meta name="description" lang="en" content="A Haskell API search engine with find-as-you-type and suggestions. Searches for function and type defintions in all Haskell packages from Hackage."/>
   <link href="/images/favicon.ico" type="image/ico" rel="Shortcut icon"/>
   <link href="/stylesheets/hayoo.css" media="screen" rel="Stylesheet" type="text/css"/>
+  <script src="/javascript/prototype.js" type="text/javascript"/>
+  <script src="/javascript/hayoo.js" type="text/javascript"/>
 </head>
 <body>
   <div id="container">
@@ -26,11 +28,11 @@
           <img class="logo" src="/images/hayoo.png" alt="Hayoo logo"/>
         </a>
       </div>
-      <form id="queryform" method="get" action="/index/search">
+      <form id="queryform" method="get" action="/index/search" onsubmit="return submitQuery()">
         <div id="queryinterface">
           <!--<input id="querytext" type="text" name="q" autocomplete="off" value=""/>-->
           <hawk:bind name="querytext"/>
-          <input id="querybutton" type="submit" value="Search"/>
+          <input class="formbutton" id="querybutton" type="submit" value="Search"/>
           <img id="throbber" src="/images/loader.gif" alt="Throbber" style="display:none;"/>
           <a href="/index/config">extended search</a>
         </div>

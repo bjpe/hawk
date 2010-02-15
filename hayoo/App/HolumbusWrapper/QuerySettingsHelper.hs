@@ -1,15 +1,29 @@
 module App.HolumbusWrapper.QuerySettingsHelper 
-  ( getQuerySettings )
+  ( getQuerySettings
+  , createQuery
+  , toInt
+  , toFloat )
   where
 
 import App.HolumbusWrapper.Types
 
-import Hawk.Controller
+import Config.Types
+
+import Hawk.Controller (HasState, getParams)
 import Hawk.Controller.Util.Text
 
 import Holumbus.Query.Fuzzy
 
 import qualified Data.Map as M
+
+createQuery :: AppConfig -> String -> QuerySettings -> Int -> QueryInfo
+createQuery cfg q qs o = QueryInfo
+  { queryString   = q
+  , querySettings = qs
+  , offset        = o
+  , index         = hayooIndexHandler cfg
+  , documents     = hayooDocsHandler cfg
+  }
 
 getQuerySettings :: HasState m => m QuerySettings
 getQuerySettings = do 
@@ -84,6 +98,7 @@ toReplacement "German" = germanReplacements
 toReplacement "English" = englishReplacements
 
 toInt :: String -> Int
+toInt "" = 0
 toInt s = read s::Int
 
 toFloat :: String -> Float

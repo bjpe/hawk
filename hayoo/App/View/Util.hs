@@ -22,8 +22,8 @@ showLogin = do
   case a of
     Nothing -> return 
       ([form "loginform" "post" "/user/login" [] 
-        [(textfield "username" "" []), 
-         (password "password" "" [("id","password")]),
+        [(textfield "username" "Username" []), 
+         (password "password" "Password" [("id","password")]),
          (formButton "authbutton" "Login" [])
         ]
        ])
@@ -101,5 +101,5 @@ formButton name value attrs = submitWithName name value attrs'
   where attrs' = ("class","formButton") : attrs
 
 mkQueryText :: String -> XmlTrees
-mkQueryText q = [textfield "q" q [("autocomplete","off")]]
+mkQueryText q = [textfield "q" q [("autocomplete","off"),("onkeyup","processQuery()")]]
 

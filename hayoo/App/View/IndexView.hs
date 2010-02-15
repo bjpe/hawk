@@ -6,7 +6,7 @@ import Hawk.View.Template.DataType
 
 import Holumbus.Query.Result
 
-import App.HolumbusWrapper.Types
+import qualified App.HolumbusWrapper.Types as T
 import App.HolumbusWrapper.HolumbusWrapper
 
 import App.View.Util
@@ -19,18 +19,18 @@ $(viewDataTypeWithPrefix "Config" "Index" "config")
 indexXhtml :: a -> StateController IndexIndex
 indexXhtml _ = defaultIndexPage
 
-searchXhtml :: (Result FunctionInfo, String, QuerySettings) -> StateController IndexSearch
-searchXhtml (r, q, qs) = do
+searchXhtml :: (Result T.FunctionInfo, T.QueryInfo) -> StateController IndexSearch
+searchXhtml (r, qi) = do
   login <- showLogin
   settings <- showSettings
   return IndexSearch
     { searchTitle = pageTitle
     , searchMystatus = formatStatus r
     , searchCloud = formatCloud r
-    , searchList = formatList r --formatOffsetList r 0
+    , searchList = formatOffsetList r $ T.offset qi
     , searchLogin = login
     , searchSettings = settings
-    , searchQuerytext = mkQueryText q
+    , searchQuerytext = mkQueryText $ T.queryString qi
     } 
 
 configXhtml :: String -> StateController IndexConfig

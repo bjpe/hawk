@@ -55,8 +55,19 @@ setBody content r = r { body = content }
 htmlResponse :: ByteString -> Response -> Response
 htmlResponse content = setHeader HdrContentType "text/html; charset=UTF-8" . setBody content
 
+{-jsonResponse :: ByteString -> Response -> Response
+jsonResponse content = setHeader HdrContentType "text/x-json; charset=UTF-8" . setBody content-}
+
 pageResponse :: ByteString -> Response
-pageResponse content =  setStatus 200 $ htmlResponse content def
+pageResponse content = setStatus 200 $ htmlResponse content def
+{-  case (shead content) of
+    Just '{' -> jR
+    Just '[' -> jR
+    Just _ -> hR
+    Nothing -> hR
+  where shead l = if B.null l then Nothing else (Just $ B.head l)
+        jR = setStatus 200 $ jsonResponse content def
+        hR = setStatus 200 $ htmlResponse content def-}
 
 cachedResponse :: Int -> String -> ByteString -> Response -> Response
 cachedResponse age contentType content

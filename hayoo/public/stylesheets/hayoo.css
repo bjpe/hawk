@@ -5,7 +5,7 @@ html {
 body {
 	font-family:Tahoma,Verdana,sans-serif;
 	margin:0px;
-	font-size:8pt;
+	font-size:9pt;
 	height:100%;
 }
 
@@ -291,35 +291,28 @@ span.source {
 	margin:0px;
 }
 
-#q, #username, #password {
-/*	margin-top:5px;*/
-	border: 1px solid silver;
-}
-
 #q {width: 300px}
-#username, #password {
-  margin-top: 0px;
-  width: 100px; 
-  height: 14px;
-  font-size: 12px;
-}
 
-.formButton, #querybutton {
-	margin-top:5px;
+.formButton {
+/*	margin-top:5px;*/
 	border: 1px solid silver;
 	background-color:#F4F4F4;
 }
 
-#authbutton {
-  margin-top: 0px;
-  max-height: 18px;
-  font-size: 11px;
-}
-
 #loginform {
   float: right;
-  margin: 6px 3px 0px 0px;
+  margin: -7px 4px 3px 0px;
 }
+#authbutton {
+  max-height: 18px;
+  font-size: 12px;
+}
+#username, #password {
+  width: 100px; 
+  height: 18px;
+  font-size: 12px;
+}
+
 
 #pager {
 	text-align:center;
