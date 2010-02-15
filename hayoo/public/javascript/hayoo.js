@@ -1,12 +1,17 @@
 
 function submitQuery () {
-  processQuery();
+  processQuery(0);
   return false;
 }
 
-function processQuery () {
+function offsetQuery (offset) {
+  processQuery(offset);
+  return false;
+}
+
+function processQuery (offset) {
   var query = $("q").value;
-  new Ajax.Request ("/ajax/search?q=" + query,
+  new Ajax.Request ("/ajax/search?q=" + encodeURIComponent(query),
     {
      method:'get',
      onSuccess: function(transport) {
