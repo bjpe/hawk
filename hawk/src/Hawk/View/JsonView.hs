@@ -41,22 +41,25 @@ import Hawk.View.Template.HtmlHelper (XmlTrees)
 import Data.ByteString.Lazy.Internal ( ByteString )
 import qualified Data.ByteString.UTF8 as U
 import Data.Ratio
-
 import Data.Trie
+
+import Control.Monad (liftM)
 
 import Text.JSONb.Simple ( JSON (..) )
 import Text.JSONb.Decode ( decode )
 import Text.JSONb.Encode ( encode, Style (..) )
 
-data JsonView a = JsonView {toJson :: a -> StateController ByteString}
+import Text.XML.HXT.DOM.ShowXml
 
-jsonView :: (a -> StateController ByteString) -> JsonView a
+data JsonView a = JsonView {toJson :: a -> StateController JSON}
+
+jsonView :: (a -> StateController JSON) -> JsonView a
 jsonView = JsonView
 
 instance View (JsonView a) where
   type Target (JsonView a) = a
   -- :: a -> Target a -> StateController ByteString
-  render jv = toJson jv
+  render jv = liftM jsonEncode . toJson jv
 
 jsonEncode :: JSON -> ByteString
 jsonEncode = encode Compact
@@ -82,7 +85,7 @@ jString :: String -> JSON
 jString s = String $ U.fromString s
 
 jXml :: XmlTrees -> JSON
-jXml x = jString $ show x
+jXml x = jString $ xshow x
 
 jNumber :: Rational -> JSON
 jNumber = Number

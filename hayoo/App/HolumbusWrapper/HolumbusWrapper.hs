@@ -36,7 +36,7 @@ formatOffsetList = P.formatOffsetList
 formatStatus :: Result FunctionInfo -> XmlTrees
 formatStatus = P.formatStatus
 
-formatPages :: Result FunctionInfo -> Int -> XmlTrees
+formatPages :: Result FunctionInfo -> Int -> String -> XmlTrees
 formatPages = P.formatPages
 
 formatPM :: Result FunctionInfo -> XmlTrees

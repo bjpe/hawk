@@ -1,22 +1,37 @@
 
 function submitQuery () {
-  processQuery(0);
+  offsetQuery(0);
   return false;
 }
 
 function offsetQuery (offset) {
-  processQuery(offset);
+  processQuery($("q").value, offset);
   return false;
 }
 
-function processQuery (offset) {
-  var query = $("q").value;
-  new Ajax.Request ("/ajax/search?q=" + encodeURIComponent(query),
+function processQuery (query, offset) {
+  process(query, offset);
+  return false;
+}
+
+function process (query, offset) {
+  $("throbber").toggle();
+  refreshRequired = true;
+  new Ajax.Request ("/ajax/search?q=" + encodeURIComponent(query) + "&o=" + offset,
     {
      method:'get',
      onSuccess: function(transport) {
        c = getContentAs(transport, "json");
-       alert('Text:' + c + " " + c.q + "-" + c.offset);
+       $("status").update(c.status);
+       $("cloud").update(c.cloud);
+       $("documents").update(c.documents);
+       $("toppm").update(c.toppm);
+       $("pages").update(c.pages);
+/*       if (window.location.pathName != "/index/search") {
+         window.location.pathName = "/index/search"
+         window.location.search = "?q=" + encodeURIComponent(query) + "&o=" + offset;
+       }*/
+       $("throbber").toggle();
      },
      onFailure: function() { alert('Something went wrong ...'); }
     }

@@ -12,19 +12,20 @@ import App.View.Util
 
 --import Data.ByteString.UTF8 (ByteString)
 
-indexJson :: JSON -> StateController ByteString
-indexJson s = return $ jsonEncode s
+indexJson :: JSON -> StateController JSON
+indexJson = return
 
-searchJson :: (Result T.FunctionInfo, T.QueryInfo) -> StateController ByteString
+searchJson :: (Result T.FunctionInfo, T.QueryInfo) -> StateController JSON
 searchJson (r, qi) = 
   let o = T.offset qi
-  in return $ jsonEncode $
+      q = T.queryString qi
+  in return $
   jObject 
-    [ ("q", jString $ T.queryString qi)
+    [ ("q", jString q)
     , ("offset", jInt o)
     , ("status", jXml (formatStatus r))
     , ("cloud", jXml (formatCloud r))
     , ("documents", jXml (formatOffsetList r o))
-    , ("pages", jXml (formatPages r o))
+    , ("pages", jXml (formatPages r o q))
     , ("toppm", jXml (formatPM r))
     ]

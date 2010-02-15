@@ -101,5 +101,5 @@ formButton name value attrs = submitWithName name value attrs'
   where attrs' = ("class","formButton") : attrs
 
 mkQueryText :: String -> XmlTrees
-mkQueryText q = [textfield "q" q [("autocomplete","off"),("onkeyup","processQuery()")]]
+mkQueryText q = [textfield "q" q [("autocomplete","off"),("onkeyup","offsetQuery(0)")]]
 

@@ -21,16 +21,20 @@ indexXhtml _ = defaultIndexPage
 
 searchXhtml :: (Result T.FunctionInfo, T.QueryInfo) -> StateController IndexSearch
 searchXhtml (r, qi) = do
+  let o = T.offset qi
+      q = T.queryString qi
   login <- showLogin
   settings <- showSettings
   return IndexSearch
     { searchTitle = pageTitle
     , searchMystatus = formatStatus r
     , searchCloud = formatCloud r
-    , searchList = formatOffsetList r $ T.offset qi
+    , searchList = formatOffsetList r o
     , searchLogin = login
     , searchSettings = settings
-    , searchQuerytext = mkQueryText $ T.queryString qi
+    , searchQuerytext = mkQueryText q
+    , searchToppm = formatPM r
+    , searchPages = formatPages r o q
     } 
 
 configXhtml :: String -> StateController IndexConfig
