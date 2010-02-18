@@ -27,5 +27,8 @@ searchJson (r, qi) =
     , ("cloud", jXml (formatCloud r))
     , ("documents", jXml (formatOffsetList r o))
     , ("pages", jXml (formatPages r o q))
-    , ("toppm", jXml (formatPM r))
+    , ("toppm", jXml ((test o q (maxScoreWordHits r)) : (formatPM r)))
     ]
+
+test :: Int -> String -> Float -> XmlTree
+test i s f = text ((show i) ++ s ++ (show f))
