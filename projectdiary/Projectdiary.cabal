@@ -12,7 +12,7 @@ Executable  projectdiary
     hack-handler-simpleserver >= 0.0.1 && < 1,
     HDBC >= 2.1.0 && <3,
     HDBC-sqlite3 >= 2.1.0.0 && < 3,
-    utf8-string >= 0.3.5 && < 1,
+    utf8-string >= 0.3.4 && < 1,
     hslogger >= 1.0.7 && < 2,
     containers >= 0.2.0.1 && < 1,
     time >= 1.1.4 && < 2,
