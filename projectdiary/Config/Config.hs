@@ -44,4 +44,4 @@ configuration = BasicConfiguration
   }
 
 instance AppConfiguration () where
-    getInstance = ()
+    getInstance = return ()
