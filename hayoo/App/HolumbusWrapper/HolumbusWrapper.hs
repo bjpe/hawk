@@ -3,6 +3,7 @@ module App.HolumbusWrapper.HolumbusWrapper where
 -- holumbus imports
 import Holumbus.Query.Result
 import Holumbus.Index.SmallDocuments
+import Holumbus.Index.Common
 
 import Hawk.Controller
 import Hawk.View
@@ -27,10 +28,10 @@ query = Q.query
 formatCloud :: Result FunctionInfo -> XmlTrees
 formatCloud = P.formatCloud
 
-formatList :: Result FunctionInfo -> XmlTrees
-formatList = P.formatList
+{-formatList :: Result FunctionInfo -> XmlTrees
+formatList = P.formatList-}
 
-formatOffsetList :: Result FunctionInfo -> Int -> XmlTrees
+formatOffsetList :: HolCache c => Result FunctionInfo -> Int -> c -> XmlTrees
 formatOffsetList = P.formatOffsetList
 
 formatStatus :: Result FunctionInfo -> XmlTrees

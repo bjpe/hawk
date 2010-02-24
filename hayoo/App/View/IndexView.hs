@@ -23,13 +23,14 @@ searchXhtml :: (Result T.FunctionInfo, T.QueryInfo) -> StateController IndexSear
 searchXhtml (r, qi) = do
   let o = T.offset qi
       q = T.queryString qi
+      c = T.cache qi
   login <- showLogin
   settings <- showSettings
   return IndexSearch
     { searchTitle = pageTitle
     , searchMystatus = formatStatus r
     , searchCloud = formatCloud r
-    , searchList = formatOffsetList r o
+    , searchList = formatOffsetList r o c
     , searchLogin = login
     , searchSettings = settings
     , searchQuerytext = mkQueryText q

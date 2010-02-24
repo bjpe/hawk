@@ -10,16 +10,23 @@ import App.HolumbusWrapper.Types
 import qualified Data.Map as M
 import qualified Data.List as L
 import qualified Data.ByteString.UTF8 as B
+import qualified Data.IntMap as IM
+
+import Control.Monad.Trans (liftIO)
+import System.IO.Unsafe (unsafePerformIO)
 
 formatCloud :: Result FunctionInfo -> H.XmlTrees
 formatCloud r = let max = maxScoreWordHits r 
                 in cloud max $ toSortedScoreList $ wordHits r
 
-formatList :: Result FunctionInfo -> H.XmlTrees
-formatList r = toDivList (getDocuments r)
+{-formatList :: Result FunctionInfo -> H.XmlTrees
+formatList r = toDivList (getDocuments r)-}
 
-formatOffsetList :: Result FunctionInfo -> Int -> H.XmlTrees
-formatOffsetList r n = toDivList ( take 10 (drop n (getDocuments r)))
+formatOffsetList :: HolCache c => Result FunctionInfo -> Int -> c -> H.XmlTrees
+formatOffsetList r n c = toDivList (offset (sortedList (docHits r)))
+  where offset l = take 10 $ drop n l
+        toDivList = map (formatDocument c)
+        sortedList = IM.toList -- TODO sort it
 
 formatStatus :: Result FunctionInfo -> H.XmlTrees
 formatStatus r = let wHits = sizeWordHits r
@@ -38,11 +45,11 @@ formatPages r i q = let n = flip div 10 $ sizeDocHits r
                       else pages s e cur n ("index/search?q=" ++ q ++ "&o=") q (-1)
 
 formatPM :: Result FunctionInfo -> H.XmlTrees
-formatPM r = [H.contentTag "div" [("id","modules")] 
+formatPM r = [xDivId "modules" 
                (
-                 (H.contentTag "div" [("class","headline")] [H.text "Top 15 Modules"])
+                 (xDivClass "headline" [H.text "Top 15 Modules"])
                  : printPMList (L.take 15 modules) "Module"
-                 ++ ((H.contentTag "div" [("class","headline")] [H.text "Top 15 Packages"])
+                 ++ ((xDivClass "headline" [H.text "Top 15 Packages"])
                  : printPMList (L.take 15 packages) "Package"
                  )
                )
@@ -52,25 +59,24 @@ formatPM r = [H.contentTag "div" [("id","modules")]
 -- -----------------------------------------------------------------------------
 -- LOCALS
 -- -----------------------------------------------------------------------------
-toDivList :: [Document FunctionInfo] -> H.XmlTrees
-toDivList []     = [H.tag "div" []]
-toDivList (x:[]) = [H.contentTag "div" [] (formatDocument x)]
-toDivList (x:xs) = (H.contentTag "div" [] (formatDocument x)) : toDivList xs
-
-formatDocument :: Document FunctionInfo -> H.XmlTrees
-formatDocument d = case custom d of
-                     Nothing -> [H.link (uri d) [H.text (title d)]]
-                     Just f  -> [ H.link (uri d) [H.text (B.toString (package f))]
-                                , H.text " @ "
-                                , H.link (uri d) [H.text ((B.toString (moduleName f)) ++ ".")]
-                                , H.link (uri d) [H.text (title d)]
-                                , H.text " :: "
-                                , H.text (B.toString (signature f))
-                                ]
+formatDocument :: HolCache c => c -> (DocId, (DocInfo FunctionInfo, DocContextHits)) -> H.XmlTree
+formatDocument c (i, (DocInfo d _, _)) = 
+  case custom d of
+    Nothing -> xDiv [H.link (uri d) [H.text (title d)]]
+    Just f  -> xDiv [ xDivClass "function" [getModule, getFunction, getSignature]
+                    , xDivClass "details"  [getPackage, getDescription]
+                    ]
+        where 
+        getPackage = xSpanClass "package" [xLinkClass (uri d) "package" [H.text (B.toString (package f))]]
+        getModule = xSpanClass "module" [xLinkClass (uri d) "module" [H.text ((B.toString (moduleName f)) ++ ".")]]
+        getFunction = xSpanClass "function" [xLinkClass (uri d) "function" [H.text (title d)]]
+        getSignature = xSpanClass "signature" [H.text (B.toString (signature f))]
+        getDescription = xSpanClass "description" [maybe (H.text "No Description") (\s -> H.text s) (getDescr i)]
+          where getDescr = unsafePerformIO . getDocText c "description"
 
 cloud :: Float -> [(Word,Score)] -> H.XmlTrees
 cloud m [] = []
-cloud m ((w,s):xs) = (H.contentTag "span" [("class","clouds")] cloudLink) : (H.text " ") : cloud m xs
+cloud m ((w,s):xs) = (xSpanClass "clouds" cloudLink) : (H.text " ") : cloud m xs
      where cloudLink = [H.contentTag "a" [("class","cloud"++cloudScore)] [H.text (w ++ (show s))]]
            cloudScore | m < 0.1 = show 3 -- min value
                       | otherwise = show $ round (9 - ((m - s) / m) * 8) -- max - ((maxScore - curScore) / maxScore) * (max - min)
@@ -100,18 +106,19 @@ pageEnd n m
 
 pages :: Int -> Int -> Int -> Int -> String -> String-> Int -> H.XmlTrees
 pages s e i m t q n 
+  | m == 0 = [H.text ""]
   | n<0 = (H.contentTag "a" (attrs (i-1)) [H.text "<"]) : pages s e i m t q (n+1)
   | s+n > e = if (i<m) then [H.contentTag "a" (attrs (i+1)) [H.text ">"]] else []
-  | s+n == i = (H.contentTag "span" [("class","current")] [H.text (show i)]) : pages s e i m t q (n+1)
+  | s+n == i = (xSpanClass "current" [H.text (show i)]) : pages s e i m t q (n+1)
   | otherwise = (H.contentTag "a" (attrs (s+n)) [H.text (show (s+n))]) : pages s e i m t q (n+1)
   where attrs i = [("href",t ++ (toPN i)), ("class","page"), ("onclick","return processQuery(\""++q++"\","++(toPN i)++")")]
         toPN i = (show i) ++ "0"
 
 printPMList :: [(Int, String)] -> String -> H.XmlTrees
 printPMList [] n = []
-printPMList (x:xs) n = (H.contentTag "div" [("class","root"++n)] (content x)) : printPMList xs n
-   where content (i,s) = [ H.contentTag "a" [("class","root"++n++"Name")] [H.text s]
-                         , H.contentTag "span" [("class","root"++n++"Count")] [H.text (show i)]]
+printPMList (x:xs) n = (xDivClass ("root"++n) (content x)) : printPMList xs n
+   where content (i,s) = [ xLinkClass "" ("root"++n++"Name") [H.text s]
+                         , xSpanClass ("root"++n++"Count") [H.text (' ':(show i))]]
 
 toCountedList :: [String] -> [(Int, String)]
 toCountedList [] = []
@@ -140,3 +147,16 @@ toModuleList (x:xs) = case custom x of
 getRootModule :: String -> String
 getRootModule l = fst $ break (=='.') l
 
+
+xDiv :: H.XmlTrees -> H.XmlTree
+xDiv = H.contentTag "div" []
+xDivClass :: String -> H.XmlTrees -> H.XmlTree
+xDivClass s = H.contentTag "div" [("class",s)]
+xDivId :: String -> H.XmlTrees -> H.XmlTree
+xDivId s = H.contentTag "div" [("id",s)]
+xSpan :: H.XmlTrees -> H.XmlTree
+xSpan = H.contentTag "span" []
+xSpanClass :: String -> H.XmlTrees -> H.XmlTree
+xSpanClass s = H.contentTag "span" [("class",s)]
+xLinkClass :: String -> String -> H.XmlTrees -> H.XmlTree
+xLinkClass uri c = H.contentTag "a" [("href",uri),("class",c)]

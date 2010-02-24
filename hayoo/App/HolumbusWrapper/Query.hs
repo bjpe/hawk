@@ -11,7 +11,7 @@ import Holumbus.Index.Common
 import App.HolumbusWrapper.Types
 
 query :: QueryInfo -> Result FunctionInfo
-query (QueryInfo q s _ i d)  =  do
+query (QueryInfo q s _ i d _)  =  do
   let parsedQuery = parseQry s q
   let config = mkConfig s
   processQuery config i d parsedQuery 

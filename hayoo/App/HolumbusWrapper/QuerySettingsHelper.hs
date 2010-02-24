@@ -23,6 +23,7 @@ createQuery cfg q qs o = QueryInfo
   , offset        = o
   , index         = hayooIndexHandler cfg
   , documents     = hayooDocsHandler cfg
+  , cache         = hayooCacheHandler cfg
   }
 
 getQuerySettings :: HasState m => m QuerySettings

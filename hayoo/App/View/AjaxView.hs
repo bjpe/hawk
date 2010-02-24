@@ -19,13 +19,14 @@ searchJson :: (Result T.FunctionInfo, T.QueryInfo) -> StateController JSON
 searchJson (r, qi) = 
   let o = T.offset qi
       q = T.queryString qi
+      c = T.cache qi
   in return $
   jObject 
     [ ("q", jString q)
     , ("offset", jInt o)
     , ("status", jXml (formatStatus r))
     , ("cloud", jXml (formatCloud r))
-    , ("documents", jXml (formatOffsetList r o))
+    , ("documents", jXml (formatOffsetList r o c))
     , ("pages", jXml (formatPages r o q))
     , ("toppm", jXml ((test o q (maxScoreWordHits r)) : (formatPM r)))
     ]

@@ -3,6 +3,7 @@ module App.HolumbusWrapper.Types where
 
 import Holumbus.Index.Inverted.OneFile (Persistent)
 import Holumbus.Index.SmallDocuments (SmallDocuments)
+import Holumbus.Index.Cache (Cache)
 import Holumbus.Query.Fuzzy
 
 import Data.Binary
@@ -20,6 +21,7 @@ data QueryInfo = QueryInfo
   , offset        :: Int
   , index         :: Persistent
   , documents     :: SmallDocuments FunctionInfo
+  , cache         :: Cache
   }
 
 data QuerySettings = QuerySettings 

@@ -188,7 +188,7 @@ a.rootModuleName {
 #documents {
 	padding:10px;
 }
-
+/*
 tr.description td {
 	padding-bottom: 10px;
 }
@@ -217,7 +217,7 @@ td.package {
 	vertical-align: top;
 	color: #25CA00;
 	font-weight:bold;
-}
+}*/
 
 a.module {
 	font-weight: normal;
@@ -272,7 +272,7 @@ a.toggleFold {
 }
 
 span.description {
-	float:left;
+	/*float:left;*/
 	max-width:90%;
 }
 
