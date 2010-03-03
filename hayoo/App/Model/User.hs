@@ -8,21 +8,42 @@ import Hawk.Model
 -- - e-mail : String
 -- - _id : int
 data User = User
-  { _uid      :: PrimaryKey
-  , username :: String
-  , password :: String
-  , email    :: Maybe String
+  { _uid           :: PrimaryKey
+  , username       :: String
+  , password       :: String
+  , email          :: Maybe String
+  , useCase        :: Maybe Bool -- null means find as you type
+  , optimizeQuery  :: Bool
+  , wordLimit      :: Int
+  , f_replace      :: Bool
+  , f_swapChars    :: Bool
+  , f_replacements :: Maybe String
+  , f_max          :: Double
+  , modules        :: Maybe String
+  , packages       :: Maybe String
   } deriving (Eq, Read, Show)
 
 instance Persistent User where
   persistentType _ = "User"
-  fromSqlList (l0:l1:l2:l3:[])
+  fromSqlList (l0:l1:l2:l3:l4:l5:l6:l7:l8:l9:l10:l11:l12:[])
     = User (fromSql l0) (fromSql l1) (fromSql l2) (fromSql l3)
+           (fromSql l4) (fromSql l5) (fromSql l6) (fromSql l7)
+           (fromSql l8) (fromSql l9) (fromSql l10) (fromSql l11)
+           (fromSql l12)
   fromSqlList _ = error "wrong list length"
-  toSqlAL x = [ ("_uid"     , toSql $ _uid     x)
-              , ("username" , toSql $ username x) 
-              , ("password" , toSql $ password x)
-              , ("email"    , toSql $ email    x)
+  toSqlAL x = [ ("_uid"          , toSql $ _uid           x)
+              , ("username"      , toSql $ username       x) 
+              , ("password"      , toSql $ password       x)
+              , ("email"         , toSql $ email          x)
+              , ("useCase"       , toSql $ useCase        x) 
+              , ("optimizeQuery" , toSql $ optimizeQuery  x)
+              , ("wordLimit"     , toSql $ wordLimit      x)
+              , ("f_replace"     , toSql $ f_replace      x)
+              , ("f_swapChars"   , toSql $ f_swapChars    x)
+              , ("f_replacements", toSql $ f_replacements x)
+              , ("f_max"         , toSql $ f_max          x)
+              , ("modules"       , toSql $ modules        x)
+              , ("packages"      , toSql $ packages       x)
               ]
   tableName = const "user"
 
@@ -33,20 +54,42 @@ instance WithPrimaryKey User where
   setPrimaryKey pk c = c {_uid = pk}
 
 instance Model User where
-  new = return $ User 0 "" "" Nothing
+  new = return $ User 0 "" "" Nothing Nothing True 0 False False Nothing 0.0 Nothing Nothing
   
 instance Updateable User where
   updater u s = do
-    user <- updater (username u) $ subParam s "username"
-    pass <- updater (password u) $ subParam s "password"
-    mail <- updater (email    u) $ subParam s "email"
-    return $ u { username = user, password = pass, email = mail }
+    user <- updater (username       u) $ subParam s "username"
+    pass <- updater (password       u) $ subParam s "password"
+    mail <- updater (email          u) $ subParam s "email"
+    uc   <- updater (useCase        u) $ subParam s "useCase"
+    o    <- updater (optimizeQuery  u) $ subParam s "optimizeQuery"
+    w    <- updater (wordLimit      u) $ subParam s "wordLimit"
+    fr   <- updater (f_replace      u) $ subParam s "f_replace"
+    fs   <- updater (f_swapChars    u) $ subParam s "f_swapChars"
+    fp   <- updater (f_replacements u) $ subParam s "f_replacements"
+    fm   <- updater (f_max          u) $ subParam s "f_max"
+    mdl  <- updater (modules        u) $ subParam s "modules"
+    pkg  <- updater (packages       u) $ subParam s "packages"
+    return $ u 
+      { username = user
+      , password = pass
+      , email = mail
+      , useCase = uc
+      , optimizeQuery = o
+      , wordLimit = w
+      , f_replace = fr
+      , f_swapChars = fs
+      , f_replacements = fp
+      , f_max = fm
+      , modules = mdl
+      , packages = pkg }
+
 
 instance Validatable User where
   validator u = do
-    validateNotNull    "username" $ username u
+    validateNotNull    "username"       $ username u
+    validateNotNull    "password"       $ password u
     validateUniqueness [("username", toSql $ username u)] username "username" u
-    validateNotNull    "password" $ password u
     return ()
 
 

@@ -37,7 +37,7 @@ indexAction = do
     Nothing -> return ()
     Just v  -> redirectWithParams "index" "search"
 
-searchAction :: StateController (Result T.FunctionInfo, T.QueryInfo)
+searchAction :: StateController (T.HayooResult, T.QueryInfo)
 searchAction = do 
   appCfg <- asks appConfiguration
   cfg <- appCfg

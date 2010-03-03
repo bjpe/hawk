@@ -77,7 +77,7 @@ formatDocument c (i, (DocInfo d _, _)) =
 cloud :: Float -> [(Word,Score)] -> H.XmlTrees
 cloud m [] = []
 cloud m ((w,s):xs) = (xSpanClass "clouds" cloudLink) : (H.text " ") : cloud m xs
-     where cloudLink = [H.contentTag "a" [("class","cloud"++cloudScore)] [H.text (w ++ (show s))]]
+     where cloudLink = [H.contentTag "a" [("class","cloud"++cloudScore)] [H.text w]] -- (w ++ (show s))
            cloudScore | m < 0.1 = show 3 -- min value
                       | otherwise = show $ round (9 - ((m - s) / m) * 8) -- max - ((maxScore - curScore) / maxScore) * (max - min)
 
@@ -90,7 +90,7 @@ toSortedScoreList wh = --L.sort $ clrWhitespace $ fst $ L.unzip $ (M.toList wh)
                            | otherwise = (w,(wordScore (fst x))) : toScoreList xs
                         where hasWS [] = False
                               hasWS (' ':xs) = True
-                              hasWS ('>':xs) = True
+                              hasWS ('-':'>':xs) = True
                               hasWS (_:xs) = hasWS xs
 
 -- | Number of pages; current offset

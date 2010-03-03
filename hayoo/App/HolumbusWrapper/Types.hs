@@ -5,6 +5,7 @@ import Holumbus.Index.Inverted.OneFile (Persistent)
 import Holumbus.Index.SmallDocuments (SmallDocuments)
 import Holumbus.Index.Cache (Cache)
 import Holumbus.Query.Fuzzy
+import Holumbus.Query.Result
 
 import Data.Binary
 
@@ -30,16 +31,14 @@ data QuerySettings = QuerySettings
   , wordLmt          :: Int
   , fuzzyCfg         :: FuzzyConfig
   , useModules       :: [PMConfig] -- default is empty List
---  , disallowModules  :: [String] -- TODO optimize -> only use or disallow is used, dont need two record fields
   , usePackages      :: [PMConfig]
---  , diallowPackages  :: [String]
   }
   | NoSettings
   deriving (Show)
 
 data PMConfig = PMRank
   { name    :: String
-  , ranking :: Int
+  , ranking :: Score
   }
   | PMName { name :: String }
   deriving (Show)
@@ -47,6 +46,8 @@ data PMConfig = PMRank
 defaultQSConfig :: QuerySettings
 defaultQSConfig = QuerySettings False True 50 fcfg [] []
   where fcfg = FuzzyConfig False True 1.0 []
+
+type HayooResult = (Result FunctionInfo, String)
 
 -- | Additional information about a function.
 data FunctionInfo = FunctionInfo 

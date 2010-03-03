@@ -6,6 +6,7 @@ module App.HolumbusWrapper.QuerySettingsHelper
   where
 
 import App.HolumbusWrapper.Types
+import App.Model.User
 
 import Config.Types
 
@@ -79,8 +80,8 @@ toQS (l0:l1:l2:l3:l4:l5:l6:l7:l8:_) = --T.defaultQSConfig
       (cbToBool l2)
       (toFloat l3)
       (toReplacement l4) )
-    (toPMConfig (splitAll (== ' ') l7))
-    (toPMConfig (splitAll (== ' ') l8))
+    (strToPMConfig l7)
+    (strToPMConfig l8)
 
 toBool :: String -> Bool
 toBool "true" = True
@@ -100,18 +101,25 @@ toReplacement "English" = englishReplacements
 
 toInt :: String -> Int
 toInt "" = 0
-toInt s = read s::Int
+toInt s = hd $ reads s
+  where hd [] = 0
+        hd l = fst $ head l
 
 toFloat :: String -> Float
-toFloat s = read s::Float
+toFloat "" = 0.0
+toFloat s  = hd $ reads s
+  where hd [] = 0.0
+        hd l = fst $ head l
 
 toPMConfig :: [String] -> [PMConfig]
 toPMConfig [] = []
 toPMConfig (x:xs) = (toPMConfig' x) : (toPMConfig xs)
   where
   toPMConfig' :: String -> PMConfig
-  toPMConfig' ('(':ns) = let (n,r) = splitWhere (== ',') ns
-                            in PMRank n (toInt (init r))
+  toPMConfig' ('(':ns) = do
+                     let (n, r) = splitWhere (== ',') ns
+                         f = toFloat $ init r
+                     if f /= 0.0 then PMRank n f else PMName n
   toPMConfig' n = PMName n
 
 pmcfgToList :: [PMConfig] -> [String]
@@ -119,3 +127,27 @@ pmcfgToList [] = []
 pmcfgToList (x:xs) = toL x : pmcfgToList xs
   where toL (PMName s) = s
         toL (PMRank s _) = s
+
+fromUser :: User -> QuerySettings
+fromUser u = QuerySettings 
+  (maybe False id $ useCase u)
+  (optimizeQuery u)
+  (wordLimit u)
+  (FuzzyConfig
+    (f_replace u)
+    (f_swapChars u)
+    (realToFrac $ f_max u)
+    (maybe [] toReplacement $ f_replacements u)
+  )
+  (strToPMConfig $ maybe "" id $ modules u)
+  (strToPMConfig $ maybe "" id $ packages u)
+
+strToPMConfig :: String -> [PMConfig]
+strToPMConfig s = toPMConfig $ splitAll (== ' ') s
+
+pmCfgToStr :: [PMConfig] -> String
+pmCfgToStr [] = ""
+pmCfgToStr pm = tail $ concat $ map f pm
+  where f (PMRank s r) = " (" ++ s ++ "," ++ show r ++ ")"
+        f (PMName s) = ' ' : s
+

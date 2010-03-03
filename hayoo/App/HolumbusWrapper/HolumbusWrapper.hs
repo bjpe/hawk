@@ -21,8 +21,8 @@ import qualified App.HolumbusWrapper.Print as P
 
 -- function to send a query
 -- change FunctionInfo to your result type
-query :: QueryInfo -> Result FunctionInfo
-query = Q.query
+query :: QueryInfo -> HayooResult
+query = Q.rankedQuery -- Q.query
 
 -- function to format a query for output as html
 formatCloud :: Result FunctionInfo -> XmlTrees

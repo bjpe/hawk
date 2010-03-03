@@ -15,8 +15,8 @@ import App.View.Util
 indexJson :: JSON -> StateController JSON
 indexJson = return
 
-searchJson :: (Result T.FunctionInfo, T.QueryInfo) -> StateController JSON
-searchJson (r, qi) = 
+searchJson :: (T.HayooResult, T.QueryInfo) -> StateController JSON
+searchJson ((r, e), qi) = 
   let o = T.offset qi
       q = T.queryString qi
       c = T.cache qi
@@ -24,7 +24,7 @@ searchJson (r, qi) =
   jObject 
     [ ("q", jString q)
     , ("offset", jInt o)
-    , ("status", jXml (formatStatus r))
+    , ("status", if e == "" then jXml (formatStatus r) else jString e)
     , ("cloud", jXml (formatCloud r))
     , ("documents", jXml (formatOffsetList r o c))
     , ("pages", jXml (formatPages r o q))

@@ -1,3 +1,4 @@
+{-# LANGUAGE TemplateHaskell #-}
 module App.Controller.UserController where
 
 import Hawk.Controller
@@ -11,6 +12,11 @@ import Hawk.View
 
 import App.View.UserView
 import App.Model.User
+
+import qualified System.Log.Logger as Logger
+import System.Log.Logger.TH ( deriveLoggers )
+
+$(deriveLoggers "Logger" [Logger.DEBUG])
 
 routes :: [Routing]
 routes = 

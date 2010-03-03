@@ -3,6 +3,7 @@ module App.View.IndexView where
 
 import Hawk.Controller
 import Hawk.View.Template.DataType
+import qualified Hawk.View.Template.HtmlHelper as H
 
 import Holumbus.Query.Result
 
@@ -19,8 +20,8 @@ $(viewDataTypeWithPrefix "Config" "Index" "config")
 indexXhtml :: a -> StateController IndexIndex
 indexXhtml _ = defaultIndexPage
 
-searchXhtml :: (Result T.FunctionInfo, T.QueryInfo) -> StateController IndexSearch
-searchXhtml (r, qi) = do
+searchXhtml :: (T.HayooResult, T.QueryInfo) -> StateController IndexSearch
+searchXhtml ((r, e), qi) = do
   let o = T.offset qi
       q = T.queryString qi
       c = T.cache qi
@@ -28,7 +29,7 @@ searchXhtml (r, qi) = do
   settings <- showSettings
   return IndexSearch
     { searchTitle = pageTitle
-    , searchMystatus = formatStatus r
+    , searchMystatus = if e == "" then formatStatus r else [H.text e]
     , searchCloud = formatCloud r
     , searchList = formatOffsetList r o c
     , searchLogin = login

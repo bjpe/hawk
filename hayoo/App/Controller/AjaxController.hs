@@ -23,7 +23,7 @@ routes =
 indexAction :: StateController JSON
 indexAction = return $ jObject [("status", jString "here i am")]
 
-searchAction :: StateController (Result FunctionInfo, QueryInfo)
+searchAction :: StateController (HayooResult, QueryInfo)
 searchAction = do
   appCfg <- asks appConfiguration
   cfg <- appCfg
@@ -31,7 +31,7 @@ searchAction = do
   o <- getParam "o"
   qs <- getQuerySettings
   case q of
-    Nothing -> return (emptyResult, createQuery cfg "" qs $ toInt o)
+    Nothing -> return ((emptyResult, "No query to parse"), createQuery cfg "" qs $ toInt o)
     Just v  -> let qi = createQuery cfg v qs $ toInt o
                in return $ (query qi, qi)
 
