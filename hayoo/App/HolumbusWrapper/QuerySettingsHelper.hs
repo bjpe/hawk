@@ -2,6 +2,7 @@ module App.HolumbusWrapper.QuerySettingsHelper
   ( getQuerySettings
   , createQuery
   , toInt
+  , toIgr
   , toFloat )
   where
 
@@ -42,26 +43,19 @@ getQuerySettings = do
     Just qs -> return qs
 
 tryGetQSfromParams :: M.Map String String -> Maybe QuerySettings
-tryGetQSfromParams m = do
-  b <- M.lookup "singleConfig" m
-  let cs = M.findWithDefault "" "caseSensitive" m
-      uf = M.findWithDefault "" "useFuzzy" m
-      sc = M.findWithDefault "" "swapChars" m
-      mf = M.findWithDefault "" "maxFuzzy" m
-      rp = M.findWithDefault "" "replacements" m
-      oq = M.findWithDefault "" "optimizeQuery" m
-      wl = M.findWithDefault "" "wordLimit" m
-      om = M.findWithDefault "" "onlyModules" m
---      dm = M.findWithDefault "" "disallowModules" m
-      op = M.findWithDefault "" "onlyPackages" m
---      dp = M.findWithDefault "" "disallowPackages" m
-  if (toBool b)
-    then Just (toQS [cs,uf,sc,mf,rp,oq,wl,om,op])
-    else Nothing
---  case [cs,uf,sc,mf,rp,oq,wl,om,dm,op,dp] of
---    [Just c, Just f, Just s, Just mm, Just r,Just q, Just l, Just m, Just d, Just p, Just dd] ->
---      Just (toQS [c,f,s,mm,r,q,l,m,d,p,dd])
---    _ -> Nothing
+tryGetQSfromParams m = 
+  if not $ toBool $ M.findWithDefault "" "singleConfig" m
+    then Nothing
+    else Just (toQS [cs,uf,sc,mf,rp,oq,wl,om,op])
+         where cs = M.findWithDefault "" "caseSensitive" m
+               uf = M.findWithDefault "" "useFuzzy" m
+               sc = M.findWithDefault "" "swapChars" m
+               mf = M.findWithDefault "" "maxFuzzy" m
+               rp = M.findWithDefault "" "replacements" m
+               oq = M.findWithDefault "" "optimizeQuery" m
+               wl = M.findWithDefault "" "wordLimit" m
+               om = M.findWithDefault "" "onlyModules" m
+               op = M.findWithDefault "" "onlyPackages" m
 
 tryGetQSfromSession :: Maybe QuerySettings
 tryGetQSfromSession = Nothing
@@ -104,6 +98,9 @@ toInt "" = 0
 toInt s = hd $ reads s
   where hd [] = 0
         hd l = fst $ head l
+
+toIgr :: String -> Integer
+toIgr = toInteger . toInt
 
 toFloat :: String -> Float
 toFloat "" = 0.0

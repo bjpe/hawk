@@ -3,27 +3,31 @@ module App.View.UserView where
 
 import Hawk.Controller
 import Hawk.View.Template.DataType
+import Hawk.View.Template.HtmlHelper
 
 import App.View.Util
+import App.Model.User
 
 $(viewDataType "User" "index")
--- $(viewDataType "User" "register")
+$(viewDataTypeWithPrefix "Register" "User" "register")
 
-indexXhtml :: a -> StateController UserIndex
-indexXhtml _ = defaultUserPage
-
-registerXhtml :: a -> StateController UserIndex
-registerXhtml _ = defaultUserPage
-
-defaultUserPage :: StateController UserIndex
-defaultUserPage = do
-  loginT <- showLogin
-  settingsT <- showSettings
+indexXhtml :: User -> StateController UserIndex
+indexXhtml u =
   return UserIndex
     { title = pageTitle
     , mystatus = statusDefaultText
-    , login = loginT
-    , settings = settingsT
+    , login = showLogin $ username u -- user is logged in if he can see this, so only show his name
+    , settings = showSettings $ username u   --  -||-
     , querytext = mkQueryText ""
+    , content = showUser u
     }
 
+registerXhtml :: a -> StateController UserRegister
+registerXhtml _ =
+  return UserRegister
+    { registerTitle = pageTitle
+    , registerMystatus = statusDefaultText
+    , registerLogin = showLogin ""
+    , registerSettings = showSettings ""
+    , registerQuerytext = mkQueryText ""
+    }

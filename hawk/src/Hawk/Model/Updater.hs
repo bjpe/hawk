@@ -71,9 +71,8 @@ class Updateable u where
 
 
 instance Updateable Bool where
-  updater value name = primitiveUpdate value name maybeRead $ 
+  updater value name = primitiveUpdate value name maybeReadBool $ 
                       "The attribute '" ++ name ++"' must be a Bool"
-
 
 instance Updateable String where
   updater value name = primitiveUpdate value name Just $ 
@@ -126,3 +125,10 @@ primitiveUpdate value name parser err = do
 
 maybeRead :: Read a => String -> Maybe a
 maybeRead = listToMaybe . map fst . filter (null . snd) . reads
+
+-- | Workaround for check boxes
+maybeReadBool :: Read a => String -> Maybe a 
+maybeReadBool = maybeRead . mkBool
+  where mkBool "on" = "true"
+        mkBool "off" = "false"
+        mkBool v = v

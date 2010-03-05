@@ -1,4 +1,6 @@
-module App.Model.User where
+module App.Model.User 
+  ( User (..)
+  ) where
 
 import Hawk.Model
 
@@ -61,13 +63,13 @@ instance Updateable User where
     user <- updater (username       u) $ subParam s "username"
     pass <- updater (password       u) $ subParam s "password"
     mail <- updater (email          u) $ subParam s "email"
-    uc   <- updater (useCase        u) $ subParam s "useCase"
-    o    <- updater (optimizeQuery  u) $ subParam s "optimizeQuery"
+    uc   <- updater (useCase        u) $ toBool $ subParam s "useCase"
+    o    <- updater (optimizeQuery  u) $ toBool $ subParam s "optimizeQuery"
     w    <- updater (wordLimit      u) $ subParam s "wordLimit"
-    fr   <- updater (f_replace      u) $ subParam s "f_replace"
-    fs   <- updater (f_swapChars    u) $ subParam s "f_swapChars"
-    fp   <- updater (f_replacements u) $ subParam s "f_replacements"
-    fm   <- updater (f_max          u) $ subParam s "f_max"
+    fr   <- updater (f_replace      u) $ toBool $ subParam s "useFuzzy"
+    fs   <- updater (f_swapChars    u) $ toBool $ subParam s "swapChars"
+    fp   <- updater (f_replacements u) $ subParam s "replacements"
+    fm   <- updater (f_max          u) $ subParam s "maxFuzzy"
     mdl  <- updater (modules        u) $ subParam s "modules"
     pkg  <- updater (packages       u) $ subParam s "packages"
     return $ u 
@@ -92,4 +94,8 @@ instance Validatable User where
     validateUniqueness [("username", toSql $ username u)] username "username" u
     return ()
 
+toBool :: String -> String
+toBool "true" = "true"
+toBool "on" = "true"
+toBool _ = "false"
 

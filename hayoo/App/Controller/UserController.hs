@@ -11,7 +11,11 @@ import Hawk.Controller
 import Hawk.View
 
 import App.View.UserView
-import App.Model.User
+import App.Model.User as U
+import App.HolumbusWrapper.QuerySettingsHelper (toIgr)
+
+import qualified Data.Map as M
+import Control.Monad (liftM)
 
 import qualified System.Log.Logger as Logger
 import System.Log.Logger.TH ( deriveLoggers )
@@ -28,13 +32,32 @@ routes =
   , ("show",indexAction >>= render (typedView "index" indexXhtml))
   , ("edit",editAction >> redirectToAction "user" "index")
   , ("logout",logoutAction >> redirectToAction "index" "index")
+  , ("delete",deleteAction >> redirectToAction "index" "index")
   ]
 
-indexAction :: StateController ()
-indexAction = return () -- TODO load user configuration from db
+indexAction :: StateController User
+indexAction = isAuthedAs >>= (\u -> selectOne $ restrictionCriteria $ (val u) .==. (col "username"))
 
 editAction :: StateController ()
-editAction = return () -- TODO try to set new user configuration and redirect to user/index
+editAction = do --return () -- TODO try to set new user configuration and redirect to user/index
+  method <- getRequestMethod
+  case method of
+    POST -> do
+      params <- getParams
+      n <- (findMaybe $ toIgr $ M.findWithDefault "-1" "uid" params)::StateController (Maybe User)
+      case n of
+        Nothing -> setFlash "error" "An error occurred." >> redirectToAction "user" "logout"
+        Just v -> do
+          (u, errs) <- getParams >>= updateByParams v ""
+          if null errs 
+            then do
+              update u
+              setFlash "success" "Successfully changes your Settings."
+            else do
+              setFlash "error" $ show errs
+              setErrors "userEdit" errs
+          return ()
+    _ -> return ()
 
 registerAction :: StateController ()
 registerAction = do
@@ -69,6 +92,9 @@ authAction = do
 
 logoutAction :: StateController ()
 logoutAction = logout
+
+deleteAction :: StateController ()
+deleteAction = return ()
 
 -- ############## private
 

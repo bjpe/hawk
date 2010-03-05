@@ -5,69 +5,63 @@ import Hawk.Controller
 import Hawk.View.Template.DataType
 import qualified Hawk.View.Template.HtmlHelper as H
 
-import Holumbus.Query.Result
+import Holumbus.Query.Result (Result (..))
 
 import qualified App.HolumbusWrapper.Types as T
 import App.HolumbusWrapper.HolumbusWrapper
-
 import App.View.Util
+
+
 
 $(viewDataType "Index" "index")
 $(viewDataTypeWithPrefix "Search" "Index" "search")
 $(viewDataTypeWithPrefix "Config" "Index" "config")
 
 -- version with data type
-indexXhtml :: a -> StateController IndexIndex
-indexXhtml _ = defaultIndexPage
+indexXhtml :: String -> StateController IndexIndex
+indexXhtml = defaultIndexPage
 
-searchXhtml :: (T.HayooResult, T.QueryInfo) -> StateController IndexSearch
-searchXhtml ((r, e), qi) = do
+searchXhtml :: (T.HayooResult, T.QueryInfo, String) -> StateController IndexSearch
+searchXhtml ((r, e), qi, user) =
   let o = T.offset qi
       q = T.queryString qi
       c = T.cache qi
-  login <- showLogin
-  settings <- showSettings
-  return IndexSearch
+  in return IndexSearch
     { searchTitle = pageTitle
-    , searchMystatus = if e == "" then formatStatus r else [H.text e]
+    , searchMystatus = if null e then formatStatus r else [H.text e]
     , searchCloud = formatCloud r
     , searchList = formatOffsetList r o c
-    , searchLogin = login
-    , searchSettings = settings
+    , searchLogin = showLogin user
+    , searchSettings = showSettings user
     , searchQuerytext = mkQueryText q
     , searchToppm = formatPM r
     , searchPages = formatPages r o q
     } 
 
-configXhtml :: String -> StateController IndexConfig
-configXhtml q = do
-  login <- showLogin
-  settings <- showSettings
-  form <- singleRequestConfig
+configXhtml :: (String, String) -> StateController IndexConfig
+configXhtml (q, user) =
   return IndexConfig
     { configTitle = pageTitle
     , configMystatus = statusDefaultText
-    , configLogin = login
-    , configSettings = settings
-    , configForm = form
+    , configLogin = showLogin user
+    , configSettings = showSettings user
+    , configForm = singleRequestConfig q
     , configQuerytext = mkQueryText q
     }
 
-helpXhtml :: a -> StateController IndexIndex
-helpXhtml _ = defaultIndexPage
+helpXhtml :: String -> StateController IndexIndex
+helpXhtml = defaultIndexPage
 
-aboutXhtml :: a -> StateController IndexIndex
-aboutXhtml _ = defaultIndexPage
+aboutXhtml :: String -> StateController IndexIndex
+aboutXhtml = defaultIndexPage
 
-defaultIndexPage :: StateController IndexIndex
-defaultIndexPage = do
-  loginT <- showLogin
-  settingsT <- showSettings
+defaultIndexPage :: String -> StateController IndexIndex
+defaultIndexPage user = 
   return IndexIndex
     { title = pageTitle
     , mystatus = statusDefaultText
-    , login = loginT
-    , settings = settingsT
+    , login = showLogin user
+    , settings = showSettings user
     , querytext = mkQueryText ""
     }
 
