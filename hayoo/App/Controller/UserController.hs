@@ -12,10 +12,12 @@ import Hawk.View
 
 import App.View.UserView
 import App.Model.User as U
-import App.HolumbusWrapper.QuerySettingsHelper (toIgr)
+import App.HolumbusWrapper.QuerySettingsHelper (toInt, toFloat)
 
 import qualified Data.Map as M
 import Control.Monad (liftM)
+
+import Control.Monad.Error (catchError)
 
 import qualified System.Log.Logger as Logger
 import System.Log.Logger.TH ( deriveLoggers )
@@ -32,31 +34,30 @@ routes =
   , ("show",indexAction >>= render (typedView "index" indexXhtml))
   , ("edit",editAction >> redirectToAction "user" "index")
   , ("logout",logoutAction >> redirectToAction "index" "index")
-  , ("delete",deleteAction >> redirectToAction "index" "index")
+  , ("delete",deleteAction >> redirectToAction "user" "logout")
   ]
 
 indexAction :: StateController User
-indexAction = isAuthedAs >>= (\u -> selectOne $ restrictionCriteria $ (val u) .==. (col "username"))
+indexAction = getCurUser
 
 editAction :: StateController ()
-editAction = do --return () -- TODO try to set new user configuration and redirect to user/index
+editAction = do
   method <- getRequestMethod
   case method of
     POST -> do
-      params <- getParams
-      n <- (findMaybe $ toIgr $ M.findWithDefault "-1" "uid" params)::StateController (Maybe User)
-      case n of
-        Nothing -> setFlash "error" "An error occurred." >> redirectToAction "user" "logout"
-        Just v -> do
-          (u, errs) <- getParams >>= updateByParams v ""
-          if null errs 
-            then do
-              update u
-              setFlash "success" "Successfully changes your Settings."
-            else do
-              setFlash "error" $ show errs
-              setErrors "userEdit" errs
+      user <- getCurUser
+      debugM $ show user
+      (u, errs) <- getParams >>= updateAndValidate user ""
+--      u <- getParams >>= myUpdateByParams user
+      if null errs 
+        then do
+          debugM $ show u
+          update u
+          setFlash "success" "Successfully changed your Settings."
           return ()
+        else do
+          setFlash "error" $ show errs
+          setErrors "userEdit" errs
     _ -> return ()
 
 registerAction :: StateController ()
@@ -94,7 +95,10 @@ logoutAction :: StateController ()
 logoutAction = logout
 
 deleteAction :: StateController ()
-deleteAction = return ()
+deleteAction = do 
+  res <- getCurUser >>= delete
+  if res then setFlash "success" "Your account were deleted successfully."
+         else setFlash "error" "Failed to delete your account, please contact us."
 
 -- ############## private
 
@@ -104,3 +108,26 @@ flashAuth AuthFailureIdNotFound = setFlash "error" "Username not found."
 flashAuth AuthFailureInvalidCredential = setFlash "error" "Wrong password."
 flashAuth _ = setFlash "error" "An unknown error occurred while login."
 
+getCurUser :: StateController User
+getCurUser = isAuthedAs >>= (\u -> selectOne $ restrictionCriteria $ (val u) .==. (col "username"))
+
+myUpdateByParams :: User -> M.Map String String -> StateController User
+myUpdateByParams u m = return $ u 
+      { --username = user -- not changeable
+      --, password = pass
+      --, email = mail
+       useCase = maybe (useCase u) (Just . toBool) $ M.lookup "useCase" m
+      , optimizeQuery = maybe (optimizeQuery u) toBool $ M.lookup "optimizeQuery" m
+      , wordLimit = maybe (wordLimit u) toInt $ M.lookup "wordLimit" m
+      , f_replace = maybe (f_replace u) toBool $ M.lookup "replace" m
+      , f_swapChars = maybe (f_swapChars u) toBool $ M.lookup "swapChars" m
+      , f_replacements = maybe (f_replacements u) justStr $ M.lookup "replacements" m
+      , f_max = maybe (f_max u) (realToFrac . toFloat) $ M.lookup "maxFuzzy" m
+      , modules = maybe (modules u) justStr $ M.lookup "modules" m
+      , packages = maybe (packages u) justStr $ M.lookup "packages" m
+      } 
+      where toBool "on" = True
+            toBool "true" = True
+            toBool _ = False
+            justStr [] = Nothing
+            justStr s = Just s

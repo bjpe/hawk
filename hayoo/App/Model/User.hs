@@ -66,7 +66,7 @@ instance Updateable User where
     uc   <- updater (useCase        u) $ toBool $ subParam s "useCase"
     o    <- updater (optimizeQuery  u) $ toBool $ subParam s "optimizeQuery"
     w    <- updater (wordLimit      u) $ subParam s "wordLimit"
-    fr   <- updater (f_replace      u) $ toBool $ subParam s "useFuzzy"
+    fr   <- updater (f_replace      u) $ toBool $ subParam s "replace"
     fs   <- updater (f_swapChars    u) $ toBool $ subParam s "swapChars"
     fp   <- updater (f_replacements u) $ subParam s "replacements"
     fm   <- updater (f_max          u) $ subParam s "maxFuzzy"
@@ -95,7 +95,7 @@ instance Validatable User where
     return ()
 
 toBool :: String -> String
-toBool "true" = "true"
-toBool "on" = "true"
-toBool _ = "false"
+toBool "true" = "True"
+toBool "on" = "True"
+toBool _ = "False"
 

@@ -46,7 +46,7 @@ generateConfigForm u =
       (  (configFormContent $ Just u)
       ++ [hidden "uid" (show $ U._uid u) []]
       ++ [formButton "edit" "Save Configuration" []] 
-      ++ [textlink ("/user/delete?id=" ++ (show $ U._uid u)) "Delete Account"]
+      ++ [textlink "/user/delete" "Delete Account"]
       )
      )
     ]]
@@ -72,7 +72,7 @@ configFormContent u =
         optionsWithSelected id id getWordLimit ["0", "5", "10", "20", "40", "60", "100", "200"]
       ) []
     )
-   ,formElement "Fuzzy search" (checkbox "useFuzzy" "" getUseFuzzy [])
+   ,formElement "Fuzzy search" (checkbox "replace" "" getReplace [])
    ,formElement "Swap Charakters" (checkbox "swapChars" "" getSwapChars [])
    ,formElement "Max. Fuzzyness" (
       select "maxFuzzy" (
@@ -84,13 +84,13 @@ configFormContent u =
         optionsWithSelected id id getReplacements ["", "English", "German"]
       ) []
     )
-   ,formElementT "Only this Modules" (textarea "onlyModules" getModules [("cols", "40")]) -- if "only this" is not empty, the disallowed modules/packages will be ignored
-   ,formElementT "Only this Packages" (textarea "onlyPackages" getPackages [("cols", "40")])
+   ,formElementT "Only this Modules" (textarea "modules" getModules [("cols", "40")]) -- if "only this" is not empty, the disallowed modules/packages will be ignored
+   ,formElementT "Only this Packages" (textarea "packages" getPackages [("cols", "40")])
    ]
    where getCaseSensitive = maybe False (\v -> maybe False id $ U.useCase v) u
          getOptimizeQuery = maybe True U.optimizeQuery u
          getWordLimit = maybe "0" (show . U.wordLimit) u
-         getUseFuzzy = maybe False U.f_replace u
+         getReplace = maybe False U.f_replace u
          getSwapChars = maybe False U.f_swapChars u
          getMaxFuzzy = maybe "1.0" (show . U.f_max) u
          getReplacements = maybe "" (\v -> maybe "" id $ U.f_replacements v) u
