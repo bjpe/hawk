@@ -1,4 +1,6 @@
-module Config.Types where
+module Config.Types 
+  ( AppConfig (..)
+  )where
 
 import App.HolumbusWrapper.Types
 
