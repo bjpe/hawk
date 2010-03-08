@@ -2,7 +2,7 @@ module Config.Config --(development, configuration, appConfiguration)
 where
 
 import qualified Config.Routes as Routes (routing)
-import Config.Types
+--import Config.Types
 
 import Hawk.Controller.Initializer (AppEnvironment (..))
 import Hawk.Controller.Routes (simpleRouting )

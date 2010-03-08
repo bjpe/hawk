@@ -7,16 +7,13 @@ import Hawk.Model
 import Hawk.Controller.Auth.ResultType
 import Hawk.Controller.Static
 
-import Hawk.Controller
-import Hawk.View
-
 import App.View.UserView
 import App.Model.User as U
-import App.HolumbusWrapper.QuerySettingsHelper (toInt, toFloat)
+-- import App.HolumbusWrapper.QuerySettingsHelper (toInt, toFloat)
 
 import qualified Data.Map as M
-import Control.Monad (liftM)
 
+import Control.Monad (liftM, mapM)
 import Control.Monad.Error (catchError)
 
 import qualified System.Log.Logger as Logger
@@ -111,6 +108,11 @@ flashAuth _ = setFlash "error" "An unknown error occurred while login."
 getCurUser :: StateController User
 getCurUser = isAuthedAs >>= (\u -> selectOne $ restrictionCriteria $ (val u) .==. (col "username"))
 
+-- | You can call this when you've successfully loaded an user
+addToSession :: User -> StateController ()
+addToSession u = head `liftM` (mapM (uncurry (setSessionValue)) $ U.toList u)
+
+{-
 myUpdateByParams :: User -> M.Map String String -> StateController User
 myUpdateByParams u m = return $ u 
       { --username = user -- not changeable
@@ -130,4 +132,4 @@ myUpdateByParams u m = return $ u
             toBool "true" = True
             toBool _ = False
             justStr [] = Nothing
-            justStr s = Just s
+            justStr s = Just s-}

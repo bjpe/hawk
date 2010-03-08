@@ -2,13 +2,14 @@
 module App.Controller.IndexController where
 
 import App.View.IndexView
-import App.HolumbusWrapper.HolumbusWrapper
+import App.HolWrapper
+{-import App.HolumbusWrapper.HolumbusWrapper
 import App.HolumbusWrapper.QuerySettingsHelper
-import qualified App.HolumbusWrapper.Types as T
+import qualified App.HolumbusWrapper.Types as T-}
 
-import Config.Types
+-- import Config.Types
 
-import Holumbus.Query.Result
+--import Holumbus.Query.Result
 
 import Hawk.Controller
 import Hawk.View
@@ -38,9 +39,15 @@ indexAction = do
     Nothing -> getUser
     Just v  -> redirectWithParams "index" "search"
 
-searchAction :: StateController (T.HayooResult, T.QueryInfo, String)
+searchAction :: StateController (SearchResult, String) -- (T.HayooResult, T.QueryInfo, String)
 searchAction = do 
-  appCfg <- asks appConfiguration
+  qi <- mkQueryInfo
+  case qi of
+    Nothing -> redirectToAction "index" "index"
+    Just v -> do
+      u <- getUser
+      return (query v customParser customRanking, u)
+{-  appCfg <- asks appConfiguration
   cfg <- appCfg
   q <- lookupParam "q"
   o <- getParam "o"
@@ -50,7 +57,7 @@ searchAction = do
     Nothing -> redirectToAction "index" "index"
     Just v  -> let qi = createQuery cfg v qs $ toInt o
                in return $ (query qi, qi, user)
-
+-}
 showConfigAction :: StateController (String, String)
 showConfigAction = do
   q <- getParam "q"

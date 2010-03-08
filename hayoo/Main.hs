@@ -1,7 +1,7 @@
 module Main (main) where
 
 import Config.Config (configuration, development)
-import Config.Types
+import App.HolWrapper.Types --import Config.Types
 
 import Hawk.Controller.Initializer (getApplication)
 import Hawk.Controller.Types (AppConfiguration (..))

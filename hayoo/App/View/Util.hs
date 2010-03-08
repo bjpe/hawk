@@ -87,13 +87,13 @@ configFormContent u =
    ,formElementT "Only this Modules" (textarea "modules" getModules [("cols", "40")]) -- if "only this" is not empty, the disallowed modules/packages will be ignored
    ,formElementT "Only this Packages" (textarea "packages" getPackages [("cols", "40")])
    ]
-   where getCaseSensitive = maybe False (\v -> maybe False id $ U.useCase v) u
+   where getCaseSensitive = maybe False (\v -> maybe False id $ U.caseSensitive v) u
          getOptimizeQuery = maybe True U.optimizeQuery u
          getWordLimit = maybe "0" (show . U.wordLimit) u
-         getReplace = maybe False U.f_replace u
-         getSwapChars = maybe False U.f_swapChars u
-         getMaxFuzzy = maybe "1.0" (show . U.f_max) u
-         getReplacements = maybe "" (\v -> maybe "" id $ U.f_replacements v) u
+         getReplace = maybe False U.replace u
+         getSwapChars = maybe False U.swapChars u
+         getMaxFuzzy = maybe "1.0" (show . U.maxFuzzy) u
+         getReplacements = maybe "" (\v -> maybe "" id $ U.replacements v) u
          getModules = maybe "" (\v -> maybe "" id $ U.modules v) u
          getPackages = maybe "" (\v -> maybe "" id $ U.packages v) u
 

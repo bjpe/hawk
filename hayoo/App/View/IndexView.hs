@@ -5,13 +5,12 @@ import Hawk.Controller
 import Hawk.View.Template.DataType
 import qualified Hawk.View.Template.HtmlHelper as H
 
-import Holumbus.Query.Result (Result (..))
+--import Holumbus.Query.Result (Result (..))
 
-import qualified App.HolumbusWrapper.Types as T
-import App.HolumbusWrapper.HolumbusWrapper
+{-import qualified App.HolumbusWrapper.Types as T
+import App.HolumbusWrapper.HolumbusWrapper-}
+import App.HolWrapper
 import App.View.Util
-
-
 
 $(viewDataType "Index" "index")
 $(viewDataTypeWithPrefix "Search" "Index" "search")
@@ -21,7 +20,19 @@ $(viewDataTypeWithPrefix "Config" "Index" "config")
 indexXhtml :: String -> StateController IndexIndex
 indexXhtml = defaultIndexPage
 
-searchXhtml :: (T.HayooResult, T.QueryInfo, String) -> StateController IndexSearch
+searchXhtml :: (SearchResult, String) -> StateController IndexSearch
+searchXhtml (Right r, user) = return IndexSearch
+  { searchTitle = pageTitle
+  , searchMystatus = formatStatus r
+  , searchCloud = formatCloud r
+  , searchList = formatOffsetList r
+  , searchLogin = showLogin user
+  , searchSettings = showSettings user
+  , searchQuerytext = mkQueryText $ getSearchString r
+  , searchToppm = formatPM r
+  , searchPages = formatPages r
+  } 
+{-searchXhtml :: (T.HayooResult, T.QueryInfo, String) -> StateController IndexSearch
 searchXhtml ((r, e), qi, user) =
   let o = T.offset qi
       q = T.queryString qi
@@ -37,7 +48,7 @@ searchXhtml ((r, e), qi, user) =
     , searchToppm = formatPM r
     , searchPages = formatPages r o q
     } 
-
+-}
 configXhtml :: (String, String) -> StateController IndexConfig
 configXhtml (q, user) =
   return IndexConfig

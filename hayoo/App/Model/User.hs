@@ -1,26 +1,22 @@
 module App.Model.User 
   ( User (..)
+  , toList
   ) where
 
 import Hawk.Model
 
--- User table
--- - username : String
--- - password : String
--- - e-mail : String
--- - _id : int
 data User = User
   { _uid           :: PrimaryKey
   , username       :: String
   , password       :: String
   , email          :: Maybe String
-  , useCase        :: Maybe Bool -- null means find as you type
+  , caseSensitive  :: Maybe Bool -- null means find as you type
   , optimizeQuery  :: Bool
   , wordLimit      :: Int
-  , f_replace      :: Bool
-  , f_swapChars    :: Bool
-  , f_replacements :: Maybe String
-  , f_max          :: Double
+  , replace        :: Bool
+  , swapChars      :: Bool
+  , replacements   :: Maybe String
+  , maxFuzzy       :: Double
   , modules        :: Maybe String
   , packages       :: Maybe String
   } deriving (Eq, Read, Show)
@@ -37,13 +33,13 @@ instance Persistent User where
               , ("username"      , toSql $ username       x) 
               , ("password"      , toSql $ password       x)
               , ("email"         , toSql $ email          x)
-              , ("useCase"       , toSql $ useCase        x) 
+              , ("caseSensitive" , toSql $ caseSensitive  x) 
               , ("optimizeQuery" , toSql $ optimizeQuery  x)
               , ("wordLimit"     , toSql $ wordLimit      x)
-              , ("f_replace"     , toSql $ f_replace      x)
-              , ("f_swapChars"   , toSql $ f_swapChars    x)
-              , ("f_replacements", toSql $ f_replacements x)
-              , ("f_max"         , toSql $ f_max          x)
+              , ("replace"       , toSql $ replace        x)
+              , ("swapChars"     , toSql $ swapChars      x)
+              , ("replacements"  , toSql $ replacements   x)
+              , ("maxFuzzy"      , toSql $ maxFuzzy       x)
               , ("modules"       , toSql $ modules        x)
               , ("packages"      , toSql $ packages       x)
               ]
@@ -63,29 +59,28 @@ instance Updateable User where
     user <- updater (username       u) $ subParam s "username"
     pass <- updater (password       u) $ subParam s "password"
     mail <- updater (email          u) $ subParam s "email"
-    uc   <- updater (useCase        u) $ toBool $ subParam s "useCase"
-    o    <- updater (optimizeQuery  u) $ toBool $ subParam s "optimizeQuery"
+    uc   <- updater (caseSensitive  u) $ subParam s "caseSensitive"
+    o    <- updater (optimizeQuery  u) $ subParam s "optimizeQuery"
     w    <- updater (wordLimit      u) $ subParam s "wordLimit"
-    fr   <- updater (f_replace      u) $ toBool $ subParam s "replace"
-    fs   <- updater (f_swapChars    u) $ toBool $ subParam s "swapChars"
-    fp   <- updater (f_replacements u) $ subParam s "replacements"
-    fm   <- updater (f_max          u) $ subParam s "maxFuzzy"
+    fr   <- updater (replace        u) $ subParam s "replace"
+    fs   <- updater (swapChars      u) $ subParam s "swapChars"
+    fp   <- updater (replacements   u) $ subParam s "replacements"
+    fm   <- updater (maxFuzzy       u) $ subParam s "maxFuzzy"
     mdl  <- updater (modules        u) $ subParam s "modules"
     pkg  <- updater (packages       u) $ subParam s "packages"
     return $ u 
       { username = user
       , password = pass
       , email = mail
-      , useCase = uc
+      , caseSensitive = uc
       , optimizeQuery = o
       , wordLimit = w
-      , f_replace = fr
-      , f_swapChars = fs
-      , f_replacements = fp
-      , f_max = fm
+      , replace = fr
+      , swapChars = fs
+      , replacements = fp
+      , maxFuzzy = fm
       , modules = mdl
       , packages = pkg }
-
 
 instance Validatable User where
   validator u = do
@@ -94,8 +89,6 @@ instance Validatable User where
     validateUniqueness [("username", toSql $ username u)] username "username" u
     return ()
 
-toBool :: String -> String
-toBool "true" = "True"
-toBool "on" = "True"
-toBool _ = "False"
+toList :: User -> [(String, String)]
+toList u = map (\(x,y) -> (x, show y)) $ toSqlAL u
 
