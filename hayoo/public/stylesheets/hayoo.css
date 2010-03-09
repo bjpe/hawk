@@ -187,8 +187,17 @@ a.rootModuleName {
 
 #documents {
 	padding:10px;
+	font-weight: normal;
 }
-/*
+
+td {
+  font-size: 12px;
+}
+
+tr.details td {
+  padding-bottom:15px;
+}
+
 tr.description td {
 	padding-bottom: 10px;
 }
@@ -217,7 +226,7 @@ td.package {
 	vertical-align: top;
 	color: #25CA00;
 	font-weight:bold;
-}*/
+}
 
 a.module {
 	font-weight: normal;
@@ -278,6 +287,11 @@ span.description {
 
 span.source {
 	padding-left:5px;
+}
+
+td.signature {
+	max-height:1.2em;
+	overflow:hidden;
 }
 
 #queryinterface {
@@ -417,11 +431,32 @@ span.clouds {
 
 #configSearch {
   margin: 10 auto;
-  width: 600px;
+  width: 400px;
+}
+
+#form {
+  margin: 10 auto;
+  width: 300px;
+}
+
+#registerForm div {
+  padding-top: 5px;
+  padding-bottom: 5px;
+}
+
+.formnames {
+  width: 100px;
+  padding-top: 4px;
+  float: left;
+}
+
+#registerButton {
+  margin-left: 45px;
+  margin-top: 10px;
 }
 
 #configform div {
-  width: 600px;
+  width: 300px;
 }
 
 .formname {
@@ -435,4 +470,10 @@ span.clouds {
 
 #search {
   margin-left: 90px;
+}
+
+.hint {
+  color: #777;
+  font-size: 10px;
+  font-style: italic;
 }

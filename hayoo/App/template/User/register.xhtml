@@ -1,17 +1,27 @@
 <?xml version="1.0" encoding="utf-8" ?>
 <hawk:surround with="../Layouts/header.xhtml" at="content" xmlns:hawk="http://fh-wedel.de/hawk">
   <div id="form">
-    <form method="post" action="/user/register">
+    <form method="post" id="registerForm" action="/user/register">
       <div>
-        Username: <input type="text" name="username"/><br />
+        You'll be able to define search settings for all your request after registering.<br />
+        After registration succeeds, you will be logged in and a "Settings" link will occur in place of the "Register" link at top of the page.
       </div>
       <div>
-        Password: <input type="text" name="password"/><br />
+        <span class="formnames">Username*: </span>
+        <span class="formfield"><input type="text" name="username"/></span>
       </div>
       <div>
-        E-Mail:   <input type="text" name="email"/><br />
+        <span class="formnames">Password*:</span>
+        <span class="formfield"><input type="text" name="password"/></span>
       </div>
-      <input type="submit" value="Submit"/>
+      <div>
+        <span class="formnames">E-Mail:</span>
+        <span class="formfield"><input type="text" name="email"/></span>
+      </div>
+      <div class="hint">
+        *: These fields are required.
+      </div>
+      <input id="registerButton" class="formButton" type="submit" value="Send Registration &amp; Login"/>
     </form>
   </div>
 </hawk:surround>

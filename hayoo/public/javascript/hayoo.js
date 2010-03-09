@@ -25,12 +25,13 @@ function process (query, offset) {
        $("status").update(c.status);
        $("cloud").update(c.cloud);
        $("documents").update(c.documents);
-       $("toppm").update(c.toppm);
+       if ($("toppm") == null) {
+         $("cloud").insert({before: new Element('div', {id: 'toppm'})});
+       }
+       if (($("toppm") != null) && (c.toppm != "")) {
+         $("toppm").update(c.toppm);
+       }
        $("pages").update(c.pages);
-/*       if (window.location.pathName != "/index/search") {
-         window.location.pathName = "/index/search"
-         window.location.search = "?q=" + encodeURIComponent(query) + "&o=" + offset;
-       }*/
        $("throbber").toggle();
      },
      onFailure: function() { alert('Something went wrong ...'); }

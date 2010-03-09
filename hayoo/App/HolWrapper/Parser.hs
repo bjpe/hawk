@@ -1,6 +1,7 @@
 module App.HolWrapper.Parser
   ( customParser
   , defaultParser
+  , replace
   ) where
 
 import App.HolWrapper.Common

@@ -53,7 +53,7 @@ querySettingsByDatabase l = do
   if null $ maybe "" id username
     then querySettingsByDefault l
     else do
-      user <- UC.getCurUser
+      user <- UC.getCurUser -- TODO catch monadic exception
       return $ listToQuerySettings $ l ++ (userToQSList user)
 
 querySettingsByDefault :: [String] -> StateController QuerySettings

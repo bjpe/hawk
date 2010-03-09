@@ -25,3 +25,10 @@ linkId href attr = linkA href [("id", attr)]
 
 linkClass :: String -> String -> XmlTrees -> XmlTree
 linkClass href attr = linkA href [("class", attr)]
+
+tdClass :: String -> XmlTrees -> XmlTree
+tdClass attr = contentTag "td" [("class", attr)]
+
+trClass :: String -> XmlTrees -> XmlTree
+trClass attr = contentTag "tr" [("class", attr)]
+

@@ -12,14 +12,18 @@ import Holumbus.Index.Common
 import Holumbus.Query.Result
 
 import qualified Hawk.View as H
+import Hawk.Controller.Util.Text (splitWhere)
 
 import App.HolWrapper.Types
+import App.HolWrapper.Parser (replace)
 import App.View.HtmlCommon
 
 import qualified Data.Map as M
 import qualified Data.List as L
 import qualified Data.ByteString.UTF8 as B
 import qualified Data.IntMap as IM
+
+import Text.XML.HXT.DOM.Util (stringToLower)
 
 import System.IO.Unsafe (unsafePerformIO)
 
@@ -30,8 +34,13 @@ formatCloud (r, _) = let max = maxScoreWordHits r
 formatOffsetList :: {-HolCache c => -}ResultTuple -> H.XmlTrees -- Result FunctionInfo -> Int -> c -> H.XmlTrees
 formatOffsetList (r, i) = toDivList (offsetL (sortedList (docHits r)))
   where offsetL l = take 10 $ drop (offset (querySettings i)) l
-        toDivList = map (formatDocument $ cache i)
-        sortedList = IM.toList -- TODO sort it
+        toDivList l = [H.contentTag "table" [] (L.concat $ map (formatDocument' $ cache i) l)]
+        -- toDivList = map (formatDocument $ cache i)
+        sortedList d = reverse $ L.sortBy sortF (IM.toList d)
+
+sortF :: (DocId, (DocInfo FunctionInfo, DocContextHits)) -> (DocId, (DocInfo FunctionInfo, DocContextHits)) -> Ordering
+sortF x y = compare (st x) (st y)
+  where st = docScore . fst . snd
 
 formatStatus :: ResultTuple -> H.XmlTrees
 formatStatus (r, _) = let wHits = sizeWordHits r
@@ -51,12 +60,12 @@ formatPages (r, i) = let n = flip div 10 $ sizeDocHits r
                       else pages s e cur n ("index/search?q=" ++ q ++ "&o=") q (-1)
 
 formatPM :: ResultTuple -> H.XmlTrees
-formatPM (r, _) = [divId "modules" 
+formatPM (r, i) = [divId "modules" 
                (
                  (divClass "headline" [H.text "Top 15 Modules"])
-                 : printPMList (L.take 15 modules) "Module"
+                 : (printPMList (L.take 15 modules) "Module" $ searchString $ querySettings i)
                  ++ ((divClass "headline" [H.text "Top 15 Packages"])
-                 : printPMList (L.take 15 packages) "Package"
+                 : (printPMList (L.take 15 packages) "Package" $ searchString $ querySettings i)
                  )
                )
               ]
@@ -74,17 +83,48 @@ formatDocument c (i, (DocInfo d _, _)) =
                     , divClass "details"  [getPackage, getDescription]
                     ]
         where 
-        getPackage = spanClass "package" [linkClass (uri d) "package" [H.text (B.toString (package f))]]
+        getPackage = spanClass "package" [linkClass (uri d) "package" [H.text (B.toString $ package f)]]
         getModule = spanClass "module" [linkClass (uri d) "module" [H.text ((B.toString (moduleName f)) ++ ".")]]
         getFunction = spanClass "function" [linkClass (uri d) "function" [H.text (title d)]]
-        getSignature = spanClass "signature" [H.text (B.toString (signature f))]
-        getDescription = spanClass "description" [maybe (H.text "No Description") (\s -> H.text s) (getDescr i)]
+        getSignature = spanClass "signature" [H.text (":: " ++ (B.toString (signature f)))]
+        getDescription = spanClass "description" [ maybe (H.text "No Description") (\s -> H.text s) (getDescr i)]
           where getDescr = unsafePerformIO . getDocText c "description"
+
+formatDocument' :: HolCache c => c -> (DocId, (DocInfo FunctionInfo, DocContextHits)) -> H.XmlTrees
+formatDocument' c (i, (DocInfo d _, _)) = 
+  case custom d of
+    Nothing -> [H.link (uri d) [H.text (title d)]]
+    Just f  -> [ trClass "function" [getModule, getFunction, getSignature]
+               , trClass "details"  [getPackage, getDescription]
+               ]
+        where 
+        getPackage = tdClass "package" [linkClass (packLink pkg) "package" [H.text pkg]]
+          where pkg = B.toString $ package f
+                packLink "gtk2hs" = "http://www.haskell.org/gtk2hs"
+                packLink p = "http://hackage.haskell.org/cgi-bin/hackage-scripts/package/" ++ p
+        getModule = tdClass "module" [linkClass (modLink $ uri d) "module" [H.text ((B.toString (moduleName f)) ++ ".")]]
+          where modLink = takeWhile (/= '#')
+        getFunction = tdClass "function" [linkClass (uri d) "function" [H.text (title d)]]
+        getSignature = tdClass "signature" [H.text sig]
+          where sig = replace' [("->"," -> "),("[ ", "["),(" ]","]")] $ ":: " ++ (B.toString $ signature f)
+        getDescription = H.contentTag "td" [("class", "description"), ("colspan", "2")]
+                           [ maybe (H.text "No Description") (\s -> divX [H.text s]) (getDescr i)
+                           , linkClass (srcUri (uri d)) "source" [H.text " Source"]]
+          where getDescr = unsafePerformIO . getDocText c "description"
+                srcUri = (\(a,b) -> (reverse b) ++ "/src/" ++ (delType a)) . splitWhere (== '/') . reverse 
+                  where delType = (\(a,b) -> a ++ "#" ++ (snd $ splitWhere (== ':') b)) . splitWhere (== '#') . reverse
+
+replace' :: [(String, String)] -> String -> String
+replace' [] s = s
+replace' ((x,y):xs) s = replace' xs $ replace x y s
 
 cloud :: Float -> [(Word,Score)] -> H.XmlTrees
 cloud m [] = []
 cloud m ((w,s):xs) = (spanClass "clouds" cloudLink) : (H.text " ") : cloud m xs
-     where cloudLink = [H.contentTag "a" [("class","cloud"++cloudScore)] [H.text w]] -- (w ++ (show s))
+     where cloudLink = [H.contentTag "a" (cAttr w) [H.text w]] -- (w ++ (show s))
+             where cAttr w = [ ("class","cloud"++cloudScore)
+                             , ("href","/index/search?q=" ++ w)
+                             , ("onclick","return processQuery(" ++ w ++ ",0)")]
            cloudScore | m < 0.1 = show 3 -- min value
                       | otherwise = show $ round (9 - ((m - s) / m) * 8) -- max - ((maxScore - curScore) / maxScore) * (max - min)
 
@@ -121,10 +161,14 @@ pages s e i m t q n
   where attrs i = [("href",t ++ (toPN i)), ("class","page"), ("onclick","return processQuery(\""++q++"\","++(toPN i)++")")]
         toPN i = (show i) ++ "0"
 
-printPMList :: [(Int, String)] -> String -> H.XmlTrees
-printPMList [] n = []
-printPMList (x:xs) n = (divClass ("root"++n) (content x)) : printPMList xs n
-   where content (i,s) = [ linkClass "" ("root"++n++"Name") [H.text s]
+printPMList :: [(Int, String)] -> String -> String -> H.XmlTrees
+printPMList [] n q = []
+printPMList (x:xs) n q = (divClass ("root"++n) (content x)) : printPMList xs n q
+   where content (i,s) = [ H.contentTag "a" 
+                            [ ("href", "/index/search?q=" ++ q ++ " " ++ (stringToLower n) ++ ":" ++ s)
+                            , ("onclick", "return processQuery(" ++ q ++ " " ++ (stringToLower n) ++ ":" ++ s ++ ",0)")
+                            , ("class", "root"++n++"Name")
+                            ] [H.text s]
                          , spanClass ("root"++n++"Count") [H.text (' ':(show i))]]
 
 toCountedList :: [String] -> [(Int, String)]

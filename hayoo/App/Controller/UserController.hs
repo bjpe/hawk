@@ -9,6 +9,7 @@ import Hawk.Controller.Static
 
 import App.View.UserView
 import App.Model.User as U
+import App.HolWrapper.Common
 -- import App.HolumbusWrapper.QuerySettingsHelper (toInt, toFloat)
 
 import qualified Data.Map as M
@@ -42,10 +43,11 @@ editAction = do
   method <- getRequestMethod
   case method of
     POST -> do
+      let errs = ""
       user <- getCurUser
       debugM $ show user
-      (u, errs) <- getParams >>= updateAndValidate user ""
---      u <- getParams >>= myUpdateByParams user
+--      (u, errs) <- getParams >>= updateAndValidate user "" -- checkboxes will not be updated
+      u <- getParams >>= myUpdateByParams user
       if null errs 
         then do
           debugM $ show u
@@ -54,7 +56,7 @@ editAction = do
           return ()
         else do
           setFlash "error" $ show errs
-          setErrors "userEdit" errs
+          --setErrors "userEdit" errs
     _ -> return ()
 
 registerAction :: StateController ()
@@ -112,24 +114,21 @@ getCurUser = isAuthedAs >>= (\u -> selectOne $ restrictionCriteria $ (val u) .==
 addToSession :: User -> StateController ()
 addToSession u = head `liftM` (mapM (uncurry (setSessionValue)) $ U.toList u)
 
-{-
+
 myUpdateByParams :: User -> M.Map String String -> StateController User
 myUpdateByParams u m = return $ u 
       { --username = user -- not changeable
       --, password = pass
       --, email = mail
-       useCase = maybe (useCase u) (Just . toBool) $ M.lookup "useCase" m
+       caseSensitive = maybe (caseSensitive u) (Just . toBool) $ M.lookup "caseSensitive" m
       , optimizeQuery = maybe (optimizeQuery u) toBool $ M.lookup "optimizeQuery" m
       , wordLimit = maybe (wordLimit u) toInt $ M.lookup "wordLimit" m
-      , f_replace = maybe (f_replace u) toBool $ M.lookup "replace" m
-      , f_swapChars = maybe (f_swapChars u) toBool $ M.lookup "swapChars" m
-      , f_replacements = maybe (f_replacements u) justStr $ M.lookup "replacements" m
-      , f_max = maybe (f_max u) (realToFrac . toFloat) $ M.lookup "maxFuzzy" m
+      , replace = maybe (replace u) toBool $ M.lookup "replace" m
+      , swapChars = maybe (swapChars u) toBool $ M.lookup "swapChars" m
+      , replacements = maybe (replacements u) justStr $ M.lookup "replacements" m
+      , maxFuzzy = maybe (maxFuzzy u) (realToFrac . toFloat) $ M.lookup "maxFuzzy" m
       , modules = maybe (modules u) justStr $ M.lookup "modules" m
       , packages = maybe (packages u) justStr $ M.lookup "packages" m
       } 
-      where toBool "on" = True
-            toBool "true" = True
-            toBool _ = False
-            justStr [] = Nothing
-            justStr s = Just s-}
+      where justStr [] = Nothing
+            justStr s = Just s
