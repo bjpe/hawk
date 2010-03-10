@@ -1,21 +1,21 @@
 module Hawk.Model
-  ( -- Basic modules
+  ( -- * Basic modules
     module Hawk.Model.Criteria
   , module Hawk.Model.CriteriaSelect
   , module Hawk.Model.MonadDB
   , module Hawk.Model.Types
   , module Hawk.Model.Util
 
-    -- Default mapping
+    -- * Default mapping
   , module Hawk.Model.Persistent
   , module Hawk.Model.WithPrimaryKey
   , module Hawk.Model.WithForeignKey
 
-    -- Model access
+    -- * Model access
   , module Hawk.Model.Model
   , module Hawk.Model.Association
 
-    -- Validation
+    -- * Validation
   , module Hawk.Model.Updater
   , module Hawk.Model.Validator
   ) where

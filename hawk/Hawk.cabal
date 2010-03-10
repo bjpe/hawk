@@ -1,10 +1,10 @@
 Name:		Hawk
-Version:	0.0.1
-Description:	A library to create Web Applciations with Haskell
+Version:	0.0.2
+Description:	A library and framework to create Web Applciations with Haskell
 Synopsis:   Haskell Web Application Kit
 License:	BSD3
 License-file: LICENCE
-Author:		Björn Peemöller, Stefan Roggensack
+Author:		Björn Peemöller, Stefan Roggensack, Alexander Treptow
 Build-Type:	Simple
 Category:   Web
 Cabal-Version:	>=1.6

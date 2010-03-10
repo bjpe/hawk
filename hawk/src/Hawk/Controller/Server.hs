@@ -53,9 +53,18 @@ $(deriveLoggers "Logger" [Logger.DEBUG])
 -- --------------------------------------------------------------------------
 -- The request handler
 -- --------------------------------------------------------------------------
-requestHandler :: (forall a m. (AppConfiguration a, MonadIO m) => m a) -> ConnWrapper -> BasicConfiguration -> Options -> Application
+-- | Runs the 'EnvController' from "Types" with the dispatching function 
+-- to process all requests "Hack" sends to the application
+requestHandler :: (forall a m. (AppConfiguration a, MonadIO m) => m a)  -- ^ 'AppConfiguration' Type you defined in your application, $a$ is not known to Hawk
+               -> ConnWrapper        -- ^ Database Connection
+               -> BasicConfiguration -- ^ Hawk configuration type for its modules, e.g. Session, Authentication, etc. as well as base directories
+               -> Options            -- ^
+               -> Application
 requestHandler app conn conf opts env = runReaderT (runController dispatch) (RequestEnv conn conf env opts app)
 
+-- --------------------------------------------------------------------------
+-- Private request handling functions
+-- --------------------------------------------------------------------------
 -- | Dispatch a 'Request' and return the 'Response'
 dispatch :: EnvController Response
 dispatch = liftM addDefaultHeaders

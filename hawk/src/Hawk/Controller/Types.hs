@@ -9,7 +9,7 @@
    Portability :  portable
    Version     :  $Id: Main.hs 57 2009-05-29 11:33:59Z inf6254 $
 
-   
+   Provides library-wide used Types and Classes
 -}
 -- --------------------------------------------------------------------------
 {-# LANGUAGE Rank2Types, FlexibleContexts, FlexibleInstances,

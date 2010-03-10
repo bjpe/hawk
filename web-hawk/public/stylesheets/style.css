@@ -1,0 +1,188 @@
+body {
+  font-size: 9pt;
+  margin: 0 0;
+  background-color: #EFF6FF;
+  background-image: url("../images/bg.jpg");
+/*  background-repeat: repeat-x;*/
+  background-attachment: fixed;
+  color: #555;
+}
+
+a {
+  text-decoration: none;
+  color: #49F;
+  font-weight: bold;
+}
+
+a:hover {
+  color: #9CF;
+}
+
+#positioner {
+  margin: 0 auto;
+  width: 900px;
+  border-left: 1px solid silver;
+  border-right: 1px solid silver;
+}
+
+#header {
+  background-color: #FFF;
+  height: 250px;
+}
+
+#headimg {
+  height: 213px;
+}
+
+#menu {
+  height: 30px;
+  background-color: #EEE;
+  text-align: center;
+  padding-top: 5px;
+  border-top: 1px solid silver;
+  border-bottom: 1px solid silver;
+}
+
+.menuitem {
+  padding-left: 23px;
+  padding-right: 23px;
+  height: 25px;
+}
+
+.menuitem > a {
+  font-size: 13pt;
+  font-weight: bold;
+}
+
+.menuspacer {
+  border-left: 1px solid silver;
+}
+
+#main {
+  min-height: 400px;
+  padding: 5px;
+  background-color: #FFF;
+}
+
+#shortlinks {
+  float: left;
+  text-align: right;
+  padding-right: 10px;
+  padding-left: 5px;
+  width: 150px;
+}
+
+#shortlinkhead, .newshead {
+  font-size: 11pt;
+  font-weight: bold;
+  padding-bottom: 5px;
+  border-bottom: 1px dotted silver;
+  margin-bottom: 5px;
+}
+
+.shortlink {
+  line-height: 2em;
+}
+
+#maincontent {
+  margin-left: 165px;
+  margin-right: 165px;
+}
+
+.contenthead {
+  padding-left: 4px;
+  padding-bottom: 3px;
+  border-bottom: 1px dotted silver;
+  margin-bottom: 3px;
+  font-size: 12pt;
+  font-weight: bold;
+  color: #49F;
+}
+
+.contentbody {
+  padding: 8px;
+  text-align: justify;
+  margin-bottom: 20px;
+}
+
+#news {
+  float: right;
+  width: 150px;
+}
+
+.newsbody{
+
+}
+
+#footer {
+  height: 40px;
+  margin-bottom: 10px;
+  padding: 5px;
+  border-top: 1px solid silver;
+  border-bottom: 1px solid silver;
+  background-color: #EEE;
+  color: #777;
+  line-height: 1.8em;
+  
+}
+
+#copyright, #contact {
+  float: right;
+}
+
+#credit {
+/*  float: ;*/
+}
+
+/* 
+ * Application error message formating 
+ */
+.notice {
+  border: 2px solid green;
+  margin-bottom: 2px;
+  padding: 5px;
+  margin-left:0.5%;
+  margin-right:0.5%;
+  background-color: #f0f0f0;
+  font-weight: bold;
+}
+
+.error {
+  border: 2px solid red;
+  margin-bottom: 2px;
+  padding: 5px;
+  margin-left:0.5%;
+  margin-right:0.5%;
+  background-color: #f0f0f0;
+  font-weight: bold;
+}
+
+#errorExplanation {
+  margin-left:0.5%;
+  margin-right:0.5%;  border: 2px solid red;
+  padding: 7px;
+  padding-bottom: 12px;
+  margin-bottom: 20px;
+  background-color: #f0f0f0;
+}
+
+#errorExplanation h2 {
+  text-align: left;
+  font-weight: bold;
+  padding: 5px 5px 5px 15px;
+  font-size: 12px;
+  margin: -7px;
+  background-color: #c00;
+  color: #fff;
+}
+
+#errorExplanation p {
+  color: #333;
+  margin-bottom: 0;
+  padding: 5px;
+}
+
+#errorExplanation ul li {
+  font-size: 12px;
+  list-style: square;
+}

@@ -41,10 +41,12 @@ import Hack (Application)
 
 import Hawk.Controller.Server (requestHandler)
 
+-- | 'AppEnvironment' you have to define to run your application properly
 data AppEnvironment = AppEnvironment
-  { connectToDB :: IO ConnWrapper
-  , logLevels   :: [(String, Priority)]
-  , envOptions  :: Options
+  { connectToDB :: IO ConnWrapper       -- ^ DB connection to your DB, e.g. $ConnWrapper \`liftM\` connectSqlite3 \".\/db\/database.db\"$
+                                        -- atm only Sqlite3 is supported
+  , logLevels   :: [(String, Priority)] -- ^
+  , envOptions  :: Options              -- ^
   }
 
 loadEnvironment :: AppEnvironment -> IO (ConnWrapper, Options)
@@ -56,7 +58,11 @@ loadEnvironment appEnv = do
 updateLogger :: [(String, Priority)] -> IO ()
 updateLogger = mapM_ (\(name, level) -> updateGlobalLogger name (setLevel level))
 
-getApplication :: (forall a m. (AppConfiguration a, MonadIO m) => m a) -> AppEnvironment -> BasicConfiguration -> Application
+-- | Call this function to encapsulate your application into Hawk-Framework
+getApplication :: (forall a m. (AppConfiguration a, MonadIO m) => m a)  -- ^ 'AppConfiguration' Type you defined in your application, not known to Hawk
+               -> AppEnvironment     -- ^ 'AppEnvironment' look above
+               -> BasicConfiguration -- ^ Hawk configuration Type
+               -> Application
 getApplication app env conf x = do
   (conn, envOpts) <- loadEnvironment env
   requestHandler app conn conf envOpts x

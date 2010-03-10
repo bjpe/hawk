@@ -1,0 +1,11 @@
+#!/bin/sh
+
+# grep all haskell files from src and write to temp
+grep -R ^module src > temp
+# replace : with newline to separate relative filenames from grep results
+sed -i 's/:/\n/g' temp
+mkdir docs
+# read only lines from temp ending with .hs, to omit all file contents and .hs~ files
+grep -Rh .hs$ temp | haddock -h -o docs
+# cleanup
+rm temp

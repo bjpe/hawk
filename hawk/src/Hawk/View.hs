@@ -1,9 +1,12 @@
 module Hawk.View
-  ( module Hawk.View.EmptyView
+  ( -- | View Types
+    module Hawk.View.EmptyView
   , module Hawk.View.JsonView
   , module Hawk.View.TextView
   , module Hawk.View.TemplateView
+    -- | Helper to create Html with 'HXT'
   , module Hawk.View.Template.HtmlHelper
+    -- | 'TH' to define output Data Types
   , module Hawk.View.Template.DataType
   ) where
 
