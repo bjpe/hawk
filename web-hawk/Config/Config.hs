@@ -16,7 +16,7 @@ import System.Log.Logger
 development :: AppEnvironment
 development = AppEnvironment
   { connectToDB = ConnWrapper `liftM` connectSqlite3 "./db/database.db"
-  , logLevels   = [(rootLoggerName, DEBUG)]
+  , logLevels   = [] --[(rootLoggerName, DEBUG)]
   , envOptions  = []
   }
 

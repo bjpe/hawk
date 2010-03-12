@@ -11,5 +11,6 @@ routes =
   , ("start",return () >>= render (typedView "index" startXhtml))
   , ("download",return () >>= render (typedView "index" downloadXhtml))
   , ("api",return () >>= render (typedView "index" apiXhtml))
+  , ("faq",return () >>= render (typedView "index" faqXhtml))
   ]
 

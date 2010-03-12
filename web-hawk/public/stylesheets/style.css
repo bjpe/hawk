@@ -1,5 +1,8 @@
+/* haskell: 6bcade / 6a6bd8 */
+
 body {
   font-size: 9pt;
+  font-family: sans-serif;
   margin: 0 0;
   background-color: #EFF6FF;
   background-image: url("../images/bg.jpg");
@@ -8,9 +11,15 @@ body {
   color: #555;
 }
 
+pre {
+  background-color: #EEE;
+  width: 690px;
+  padding: 5px;
+}
+
 a {
   text-decoration: none;
-  color: #49F;
+  color: #6a6bd8; /*#49F;*/
   font-weight: bold;
 }
 
@@ -28,10 +37,11 @@ a:hover {
 #header {
   background-color: #FFF;
   height: 250px;
+  border-bottom: 1px solid silver;
 }
 
 #headimg {
-  height: 213px;
+  height: 0px; /*213px*/
 }
 
 #menu {
@@ -64,7 +74,7 @@ a:hover {
   background-color: #FFF;
 }
 
-#shortlinks {
+#leftlcr, #leftlc {
   float: left;
   text-align: right;
   padding-right: 10px;
@@ -72,46 +82,134 @@ a:hover {
   width: 150px;
 }
 
-#shortlinkhead, .newshead {
+#lefthead, .righthead {
   font-size: 11pt;
   font-weight: bold;
+  padding-right: 5px;
   padding-bottom: 5px;
   border-bottom: 1px dotted silver;
   margin-bottom: 5px;
 }
 
-.shortlink {
+.leftlink {
   line-height: 2em;
+  text-align: center;
+  background-color: #EEE;
+  margin-top: 5px;
 }
 
-#maincontent {
+.leftlink1 {
+  line-height: 1.5em;
+  font-size: 8pt;
+  padding-right: 3px;
+}
+.leftlink1 a {font-weight: normal;}
+
+#mainlcr {
   margin-left: 165px;
   margin-right: 165px;
 }
 
-.contenthead {
-  padding-left: 4px;
+#mainlc {
+  margin-left: 165px;
+  margin-right: 5px;
+}
+
+.contenthead, .contenthead1 {
   padding-bottom: 3px;
   border-bottom: 1px dotted silver;
   margin-bottom: 3px;
-  font-size: 12pt;
   font-weight: bold;
-  color: #49F;
+  color: #6a6bd8; /*#49F;*/
+}
+
+.contenthead {
+  padding-left: 4px;
+  font-size: 14pt;
+}
+
+.contenthead1 {
+  padding-left: 8px;
+  font-size: 12pt;
 }
 
 .contentbody {
   padding: 8px;
-  text-align: justify;
+  /*text-align: justify;*/
   margin-bottom: 20px;
 }
 
-#news {
+#rightlcr {
   float: right;
   width: 150px;
 }
 
-.newsbody{
+.rightbody{
 
+}
+
+.code {
+  border: 1px solid #DAA;
+  margin-top: 0px;
+}
+
+.shell {
+  border: 1px solid #AAF;
+}
+
+.codei {
+  font-family: monospace;
+  /*background-color: #E5E9F5;*/
+  font-size: 8pt;
+  font-weight: bold;
+}
+
+.img {
+  margin-top: 5px;
+  margin-bottom: 5px;
+}
+
+.note:before {
+  content: "Note: ";
+  color: #555;
+  font-weight: bold;
+}
+.note {
+  font-size: 7pt;
+  color: #777;
+}
+
+#history th {
+  text-align: left;
+  background-color: #BBB;
+  padding-left: 2px;
+}
+
+.history {
+  background-color: #CCC;
+  height: 18px;
+  font-size: 10pt;
+}
+
+.history td {
+  margin-left: 2px;
+  padding-left: 3px;  
+  padding-top: 2px;
+  background-color: #DDD;
+}
+
+.historyName {
+  width: 350px;
+}
+
+.historyVersion, .historySize, .historyLink {
+  text-align: right;
+  padding-right: 5px;
+  width: 110px;
+}
+
+.historyLink {
+  margin-top: 2px;
 }
 
 #footer {
