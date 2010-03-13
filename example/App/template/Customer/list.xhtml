@@ -1,0 +1,15 @@
+<?xml version="1.0" encoding="utf-8" ?>
+<hawk:surround with="../Layouts/header.xhtml" at="content" xmlns:hawk="http://fh-wedel.de/hawk">
+  <h1>Customer list</h1>
+  <table>
+    <tr>
+      <th>Name</th>
+      <th>Date of Birth</th>
+      <th>Customer Category</th>
+      <th>Actions</th>
+    </tr>
+    <hawk:embed what="customer.xhtml"/>
+  </table>
+  <br/>
+  <hawk:bind name="newlink"/>
+</hawk:surround>

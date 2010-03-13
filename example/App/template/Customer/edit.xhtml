@@ -1,0 +1,44 @@
+<?xml version="1.0" encoding="utf-8" ?>
+<hawk:surround with="../Layouts/header.xhtml" at="content" xmlns:hawk="http://fh-wedel.de/hawk" xmlns="http://www.w3.org/1999/xhtml">
+  <head>
+    <title>Edit Customer</title>
+  </head>
+
+  <h1>Edit Customer</h1>
+
+  <hawk:error for="customer">
+    <div class="errorExplanation" id="errorExplanation">
+      <h2>The following errors prohibited the customer from being saved</h2>
+      <p>There were problems with the following attributes:</p>    
+      <hawk:content/>
+    </div>
+  </hawk:error>
+
+  <form action="/customer/edit" method="post">
+    <p>
+      <label for="firstname">First Name:</label><br/>
+      <hawk:bind name="firstname"/>
+    </p>
+    <p>
+      <label for="initials">Initials:</label><br/>
+      <hawk:bind name="initials"/>
+    </p>
+    <p>
+      <label for="lastname">Last Name:</label><br/>
+      <hawk:bind name="lastname"/>
+    </p>
+    <p>
+      <label for="dateofbirth">Date of Birth:</label><br/>
+      <hawk:bind name="dateofbirth"/>
+    </p>
+    <p>
+      <label for="category">Category:</label><br/>
+      <hawk:bind name="category"/>
+    </p>
+    <hawk:bind name="id"/>
+    <input type="Submit" value="Save"/>
+    <input type="reset" value="Reset"/>
+  </form>
+  <br/>
+  <hawk:bind name="listlink"/>
+</hawk:surround>

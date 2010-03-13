@@ -24,7 +24,7 @@ a {
 }
 
 a:hover {
-  color: #9CF;
+  color: #6bcade;/*#9CF;*/
 }
 
 #positioner {
@@ -41,7 +41,8 @@ a:hover {
 }
 
 #headimg {
-  height: 0px; /*213px*/
+  height: 213px; /*213px*/
+  background-image: url(../images/header.jpg);
 }
 
 #menu {
@@ -54,8 +55,8 @@ a:hover {
 }
 
 .menuitem {
-  padding-left: 23px;
-  padding-right: 23px;
+  padding-left: 19px;
+  padding-right: 19px;
   height: 25px;
 }
 
@@ -87,7 +88,7 @@ a:hover {
   font-weight: bold;
   padding-right: 5px;
   padding-bottom: 5px;
-  border-bottom: 1px dotted silver;
+  border-bottom: 1px dashed silver;
   margin-bottom: 5px;
 }
 
@@ -177,6 +178,14 @@ a:hover {
 .note {
   font-size: 7pt;
   color: #777;
+}
+
+.filehead {
+  background-color: #CCC;
+  margin-right: 2px;
+  margin-bottom: 0px;
+  padding-left: 5px;
+  padding-right: 5px;
 }
 
 #history th {

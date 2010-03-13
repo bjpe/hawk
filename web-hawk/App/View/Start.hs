@@ -40,10 +40,10 @@ startC = [ cHead "Getting Started" ""
                  , text "). Also we will show you how to set up your project structure, to keep track of your project and a step by step introduction to your first web application using Hawk Framework, by writing a guestbook."
                  ]
 -- Installation
-         , cHead "Installation -> refer to /index/download#install" "install"
-         , cBody [ text "This installation guide describes how to setup Hawk Framework on Ubuntu 9.04 or higher. Who already have installed GHC 6.10 or higher, curl, sqlite3 and its header files can skip install GHC and libraries and start directly with installing Hawk Framework."
-                 , linebreak, linebreak
-                 , note "Hawk Framework runs on every OS, because Haskell is system independent, but there are maybe some problems especially when using Windows. You will need to setup Cygwin or mingw to be able to use posix and curl."
+         , cHead "Install Hawk" "install"
+         , cBody [ text "See our "
+                 , link "/index/download" [text "Download"]
+                 , text " section for how to install Hawk."
                  ]
 -- Project Structure
          , cHead "Project Structure" "structure"
