@@ -7,7 +7,6 @@ where
 import Hawk.Controller.StateAccess ( getSessionValue, setSessionValue, deleteSessionKey, setFlash )
 import Hawk.Controller.CustomResponses ( redirectToAction )
 import Hawk.Controller.Types -- ( AuthType (..) )
-import Hawk.Model.MonadDB ( MonadDB )
 
 import Control.Monad.Reader
 
