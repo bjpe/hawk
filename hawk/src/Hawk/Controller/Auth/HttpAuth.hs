@@ -7,7 +7,7 @@ import Hawk.Controller.Authenticate
 import Hawk.Controller.Request
 import Hawk.Controller.Util.Text
 
-import Control.Monad.Trans
+import Control.Monad.Trans()
 import Control.Monad.Reader
 
 import Codec.Binary.Base64 ( decode )
