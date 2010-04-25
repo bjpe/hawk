@@ -1,4 +1,4 @@
-{-# LANGUAGE FlexibleContexts, TypeFamilies #-}
+--{-# LANGUAGE FlexibleContexts, TypeFamilies #-}
 -- session handling is required for authentification
 module Hawk.Controller.Authenticate
 where
@@ -7,27 +7,26 @@ where
 import Hawk.Controller.StateAccess ( getSessionValue, setSessionValue, deleteSessionKey, setFlash )
 import Hawk.Controller.CustomResponses ( redirectToAction )
 import Hawk.Controller.Types -- ( AuthType (..) )
-import Hawk.Model.MonadDB ( MonadDB )
 
 import Control.Monad.Reader
 
+import Data.Maybe (isJust)
+
 -- monaddb only needed for db auth support
 auth :: AuthType --(MonadDB m, MonadIO m, HasState m) => m AuthResult
-auth = do 
-  s <- asks configuration
-  authType s
+auth = asks configuration >>= authType
 
 tryLogin :: AuthType
 tryLogin = auth
 
 getSessionAuth :: (HasState m) => m (Maybe String)
-getSessionAuth = getSessionValue "user_auth"
+getSessionAuth = getSessionValue authKey
 
 setSessionAuth :: (HasState m) => String -> m ()
-setSessionAuth = setSessionValue "user_auth"
+setSessionAuth = setSessionValue authKey
 
 delSessionAuth :: (HasState m) => m ()
-delSessionAuth = deleteSessionKey "user_auth"
+delSessionAuth = deleteSessionKey authKey
 
 logout :: (HasState m) => m ()
 logout = delSessionAuth
@@ -36,11 +35,10 @@ isAuthedAs :: (HasState m) => m (Maybe String)
 isAuthedAs = getSessionAuth
 
 isAuthed :: (HasState m) => m Bool
-isAuthed = do
-  a <- getSessionAuth
-  case a of
-    Nothing -> return False
-    Just _  -> return True
+isAuthed = isJust `liftM` getSessionAuth
+
+authKey :: String
+authKey = "user_auth"
 
 -- argumente sind hier die aktion auf die redirected werden soll
 authF :: String -> String -> StateController a -> StateController a

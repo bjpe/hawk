@@ -5,8 +5,12 @@ module App.HolWrapper
   , module App.HolWrapper.QueryInfo
   , module App.HolWrapper.QuerySettings
   , module App.HolWrapper.Ranking
-  , module App.HolWrapper.Types -- do not use QueryInfo, QuerySettings or FunctionInfo in your application
-  
+  , module App.HolWrapper.Types 
+{-         ( SearchResult
+         , ResultTuple
+         , HayooConfig
+         , loadHayooConfig) -- do not use QueryInfo, QuerySettings or FunctionInfo in your application
+  -}
   , query
   
   , numResults

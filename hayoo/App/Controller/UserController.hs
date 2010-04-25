@@ -76,7 +76,7 @@ registerAction = do
         else setErrors "registerUser" errs -- registration failed, show form
 
 authAction :: StateController ()
-authAction = do
+authAction = tryLogin >>= flashAuth
 {-  -- http basic auth
   u <- lookupParam "username"
   p <- lookupParam "password"
@@ -87,8 +87,8 @@ authAction = do
     AuthSuccess -> setFlash "success" "Authentication succeeded." 
     _ -> error401Response -- this overwrites the redirectToAction from the routing list -}
   -- db auth
-  r <- tryLogin
-  flashAuth r
+--  r <- tryLogin
+--  flashAuth r
 
 logoutAction :: StateController ()
 logoutAction = logout

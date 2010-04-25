@@ -19,12 +19,13 @@ module Hawk.Controller.Initializer
   , loadEnvironment
   , updateLogger
   , getApplication
+--  , AppConfiguration
   ) where
 
 import Hawk.Controller.Types
   ( BasicConfiguration
   , Options
-  , AppConfiguration
+  , AppConfiguration (..)
   )
 
 import System.Log.Logger
@@ -48,6 +49,9 @@ data AppEnvironment = AppEnvironment
   , logLevels   :: [(String, Priority)] -- ^
   , envOptions  :: Options              -- ^
   }
+
+instance AppConfiguration () where
+  getInstance = return ()
 
 loadEnvironment :: AppEnvironment -> IO (ConnWrapper, Options)
 loadEnvironment appEnv = do
