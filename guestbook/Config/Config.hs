@@ -5,7 +5,7 @@ import qualified Config.Routes as Routes (routing)
 import Hawk.Controller.Initializer (AppEnvironment (..))
 import Hawk.Controller.Routes (simpleRouting)
 import Hawk.Controller.Session.CookieSession (cookieStore)
-import Hawk.Controller.Types (AppConfiguration (..), BasicConfiguration(..))
+import Hawk.Controller.Types ({-AppConfiguration (..),-} BasicConfiguration(..))
 import Hawk.Controller.Auth.EmptyAuth
 
 import Control.Monad (liftM)
@@ -36,6 +36,6 @@ configuration = BasicConfiguration
   , error500file = "500.html"
   }
 
-instance AppConfiguration () where
-  getInstance = return ()
+--instance AppConfiguration () where
+--  getInstance = return ()
 

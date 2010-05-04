@@ -66,7 +66,7 @@ urlFor target = do
 actionUrl :: HasState m => String -> String -> [(String, String)] -> m String
 actionUrl c a ps = addUrlParams ps `liftM` urlFor ('/':c ++ '/':a)
 
-combine :: (StateController ByteString -> StateController ByteString) -> [Routing] -> [Routing]
+combine :: (Controller -> Controller) -> [Routing] -> [Routing]
 combine _ []     = []
 combine f (x:xs) = fx : combine f xs
         where fx = (fst x, f $ snd x)
