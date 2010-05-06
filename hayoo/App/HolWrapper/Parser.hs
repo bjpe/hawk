@@ -4,7 +4,7 @@ module App.HolWrapper.Parser
   , replace
   ) where
 
-import App.HolWrapper.Common
+--import App.HolWrapper.Common
 import App.HolWrapper.Types
 
 import Holumbus.Query.Language.Parser (parseQuery)

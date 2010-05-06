@@ -3,7 +3,7 @@ module App.View.UserView where
 
 import Hawk.Controller
 import Hawk.View.Template.DataType
-import Hawk.View.Template.HtmlHelper
+--import Hawk.View.Template.HtmlHelper
 
 import App.View.Util
 import App.Model.User

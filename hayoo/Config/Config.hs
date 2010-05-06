@@ -8,7 +8,7 @@ import Hawk.Controller.Initializer (AppEnvironment (..))
 import Hawk.Controller.Routes (simpleRouting )
 import Hawk.Controller.Session.CookieSession (cookieStore)
 import Hawk.Controller.Auth.DbAuth (dbAuth)
-import Hawk.Controller.Auth.HttpAuth (httpAuth)
+--import Hawk.Controller.Auth.HttpAuth (httpAuth)
 import Hawk.Controller.Types (BasicConfiguration (..))
 
 import Control.Monad (liftM)

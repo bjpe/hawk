@@ -31,7 +31,7 @@ import Holumbus.Query.Processor (processQuery)
 import Holumbus.Query.Ranking (rank)
 import Holumbus.Query.Result
 
-import Data.Either --(either)
+--import Data.Either --(either)
 
 -- ## Query Functions
 query :: QueryInfo    -- ^ 

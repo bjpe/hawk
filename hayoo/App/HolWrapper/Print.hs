@@ -28,8 +28,8 @@ import Text.XML.HXT.DOM.Util (stringToLower)
 import System.IO.Unsafe (unsafePerformIO)
 
 formatCloud :: ResultTuple -> H.XmlTrees
-formatCloud (r, _) = let max = maxScoreWordHits r 
-                in cloud max $ toSortedScoreList $ wordHits r
+formatCloud (r, _) = let ms = maxScoreWordHits r 
+                in cloud ms $ toSortedScoreList $ wordHits r
 
 formatOffsetList :: {-HolCache c => -}ResultTuple -> H.XmlTrees -- Result FunctionInfo -> Int -> c -> H.XmlTrees
 formatOffsetList (r, i) = toDivList (offsetL (sortedList (docHits r)))
@@ -63,19 +63,19 @@ formatPM :: ResultTuple -> H.XmlTrees
 formatPM (r, i) = [divId "modules" 
                (
                  (divClass "headline" [H.text "Top 15 Modules"])
-                 : (printPMList (L.take 15 modules) "Module" $ searchString $ querySettings i)
+                 : (printPMList (L.take 15 moduleL) "Module" $ searchString $ querySettings i)
                  ++ ((divClass "headline" [H.text "Top 15 Packages"])
-                 : (printPMList (L.take 15 packages) "Package" $ searchString $ querySettings i)
+                 : (printPMList (L.take 15 packageL) "Package" $ searchString $ querySettings i)
                  )
                )
               ]
-         where modules = toCountedList $ toModuleList $ getDocuments r
-               packages = toCountedList $ toPackageList $ getDocuments r
+         where moduleL = toCountedList $ toModuleList $ getDocuments r
+               packageL = toCountedList $ toPackageList $ getDocuments r
 
 -- -----------------------------------------------------------------------------
 -- LOCALS
 -- -----------------------------------------------------------------------------
-formatDocument :: HolCache c => c -> (DocId, (DocInfo FunctionInfo, DocContextHits)) -> H.XmlTree
+{-formatDocument :: HolCache c => c -> (DocId, (DocInfo FunctionInfo, DocContextHits)) -> H.XmlTree
 formatDocument c (i, (DocInfo d _, _)) = 
   case custom d of
     Nothing -> divX [H.link (uri d) [H.text (title d)]]
@@ -89,7 +89,7 @@ formatDocument c (i, (DocInfo d _, _)) =
         getSignature = spanClass "signature" [H.text (":: " ++ (B.toString (signature f)))]
         getDescription = spanClass "description" [ maybe (H.text "No Description") (\s -> H.text s) (getDescr i)]
           where getDescr = unsafePerformIO . getDocText c "description"
-
+-}
 formatDocument' :: HolCache c => c -> (DocId, (DocInfo FunctionInfo, DocContextHits)) -> H.XmlTrees
 formatDocument' c (i, (DocInfo d _, _)) = 
   case custom d of
@@ -119,13 +119,13 @@ replace' [] s = s
 replace' ((x,y):xs) s = replace' xs $ replace x y s
 
 cloud :: Float -> [(Word,Score)] -> H.XmlTrees
-cloud m [] = []
+cloud _ [] = []
 cloud m ((w,s):xs) = (spanClass "clouds" cloudLink) : (H.text " ") : cloud m xs
-     where cloudLink = [H.contentTag "a" (cAttr w) [H.text w]] -- (w ++ (show s))
-             where cAttr w = [ ("class","cloud"++cloudScore)
-                             , ("href","/index/search?q=" ++ w)
-                             , ("onclick","return processQuery(" ++ w ++ ",0)")]
-           cloudScore | m < 0.1 = show 3 -- min value
+     where cloudLink = [H.contentTag "a" cAttr [H.text w]] -- (w ++ (show s))
+             where cAttr = [ ("class","cloud"++cloudScore)
+                           , ("href","/index/search?q=" ++ w)
+                           , ("onclick","return processQuery(" ++ w ++ ",0)")]
+           cloudScore | m < 0.1 = "3" -- min value
                       | otherwise = show $ round (9 - ((m - s) / m) * 8) -- max - ((maxScore - curScore) / maxScore) * (max - min)
 
 toSortedScoreList :: WordHits -> [(Word, Score)]
@@ -136,13 +136,13 @@ toSortedScoreList wh = --L.sort $ clrWhitespace $ fst $ L.unzip $ (M.toList wh)
                            | hasWS w = toScoreList xs
                            | otherwise = (w,(wordScore (fst x))) : toScoreList xs
                         where hasWS [] = False
-                              hasWS (' ':xs) = True
-                              hasWS ('-':'>':xs) = True
-                              hasWS (_:xs) = hasWS xs
+                              hasWS (' ':_) = True
+                              hasWS ('-':'>':_) = True
+                              hasWS (_:ys) = hasWS ys
 
 -- | Number of pages; current offset
 pageStart :: Int -> Int -> Int
-pageStart n i
+pageStart _n i
   | i <= 5 = 0
   | otherwise = i-5
 
@@ -158,11 +158,11 @@ pages s e i m t q n
   | s+n > e = if (i<m) then [H.contentTag "a" (attrs (i+1)) [H.text ">"]] else []
   | s+n == i = (spanClass "current" [H.text (show i)]) : pages s e i m t q (n+1)
   | otherwise = (H.contentTag "a" (attrs (s+n)) [H.text (show (s+n))]) : pages s e i m t q (n+1)
-  where attrs i = [("href",t ++ (toPN i)), ("class","page"), ("onclick","return processQuery(\""++q++"\","++(toPN i)++")")]
-        toPN i = (show i) ++ "0"
+  where attrs j = [("href",t ++ (toPN j)), ("class","page"), ("onclick","return processQuery(\""++q++"\","++(toPN j)++")")]
+        toPN j = (show j) ++ "0"
 
 printPMList :: [(Int, String)] -> String -> String -> H.XmlTrees
-printPMList [] n q = []
+printPMList [] _n _q = []
 printPMList (x:xs) n q = (divClass ("root"++n) (content x)) : printPMList xs n q
    where content (i,s) = [ H.contentTag "a" 
                             [ ("href", "/index/search?q=" ++ q ++ " " ++ (stringToLower n) ++ ":" ++ s)
@@ -179,8 +179,8 @@ toCountedList l = L.sort $ accum l []
     accum (x:xs) a
         | preLook x a = accum xs incr
         | otherwise = accum xs ((1,x):a)-- x does not exist in a, add it
-       where preLook s [] = False
-             preLook s ((_,as):ass) = if as==s then True else False  -- = maybe False (\_ -> True) (look x a)
+       where preLook _s [] = False
+             preLook s ((_,as):_ass) = as==s  -- = maybe False (\_ -> True) (look x a)
              incr = map (\(i,s) -> if s==x then (i+1,s) else (i,s)) a
 
 toPackageList :: [Document FunctionInfo] -> [String]

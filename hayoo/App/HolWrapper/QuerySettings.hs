@@ -58,6 +58,8 @@ querySettingsByDatabase l = do
 
 querySettingsByDefault :: [String] -> StateController QuerySettings
 querySettingsByDefault (q:o:_) = return $ QuerySettings q (toInt o) False defaultProcessConfig [] []
+querySettingsByDefault (q:_) = return $ QuerySettings q 0 False defaultProcessConfig [] []
+querySettingsByDefault [] = return $ QuerySettings "" 0 False defaultProcessConfig [] []
 
 getQuerySettingsFromSession :: [String] -> StateController [String]
 getQuerySettingsFromSession = mapM f
@@ -69,6 +71,7 @@ toLookupList :: M.Map String String -> [String] -> [String]
 toLookupList m = L.map (\s -> M.findWithDefault "" s m) 
 
 listToQuerySettings :: [String] -> QuerySettings
+listToQuerySettings [] = QuerySettings "" 0 False defaultProcessConfig [] []
 listToQuerySettings (q:o:c:oq:w:r:s:f:re:m:p:_) = QuerySettings
   { searchString  = q
   , offset        = toInt o
@@ -86,6 +89,8 @@ listToQuerySettings (q:o:c:oq:w:r:s:f:re:m:p:_) = QuerySettings
   , modules       = toRConfig m
   , packages      = toRConfig p
   }
+listToQuerySettings (q:o:_) = QuerySettings q (toInt o) False defaultProcessConfig [] []
+listToQuerySettings (q:_) = QuerySettings q 0 False defaultProcessConfig [] []
 
 userToQSList :: U.User -> [String]
 userToQSList u = filter (not . null) $ L.map (getList $ U.toList u) settingElems

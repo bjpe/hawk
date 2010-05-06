@@ -21,6 +21,17 @@ indexXhtml :: String -> StateController IndexIndex
 indexXhtml = defaultIndexPage
 
 searchXhtml :: (SearchResult, String) -> StateController IndexSearch
+searchXhtml (Left r, user) = return IndexSearch
+  { searchTitle = pageTitle
+  , searchMystatus = [H.text r]
+  , searchCloud = [H.text ""]
+  , searchList = [H.text ""]
+  , searchLogin = showLogin user
+  , searchSettings = showSettings user
+  , searchQuerytext = mkQueryText ""
+  , searchToppm = [H.text ""]
+  , searchPages = [H.text ""]
+  } 
 searchXhtml (Right r, user) = return IndexSearch
   { searchTitle = pageTitle
   , searchMystatus = formatStatus r
@@ -32,23 +43,7 @@ searchXhtml (Right r, user) = return IndexSearch
   , searchToppm = formatPM r
   , searchPages = formatPages r
   } 
-{-searchXhtml :: (T.HayooResult, T.QueryInfo, String) -> StateController IndexSearch
-searchXhtml ((r, e), qi, user) =
-  let o = T.offset qi
-      q = T.queryString qi
-      c = T.cache qi
-  in return IndexSearch
-    { searchTitle = pageTitle
-    , searchMystatus = if null e then formatStatus r else [H.text e]
-    , searchCloud = formatCloud r
-    , searchList = formatOffsetList r o c
-    , searchLogin = showLogin user
-    , searchSettings = showSettings user
-    , searchQuerytext = mkQueryText q
-    , searchToppm = formatPM r
-    , searchPages = formatPages r o q
-    } 
--}
+
 configXhtml :: (String, String) -> StateController IndexConfig
 configXhtml (q, user) =
   return IndexConfig

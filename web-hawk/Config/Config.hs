@@ -6,12 +6,12 @@ import Hawk.Controller.Initializer (AppEnvironment (..))
 import Hawk.Controller.Routes (simpleRouting)
 import Hawk.Controller.Session.NoSession (noSession)
 import Hawk.Controller.Auth.EmptyAuth (emptyAuth)
-import Hawk.Controller.Types (BasicConfiguration (..), AppConfiguration (..))
+import Hawk.Controller.Types (BasicConfiguration (..))
 
 import Control.Monad (liftM)
 import Database.HDBC.Sqlite3
 import Database.HDBC (ConnWrapper(..))
-import System.Log.Logger
+--import System.Log.Logger
 
 development :: AppEnvironment
 development = AppEnvironment
@@ -35,4 +35,4 @@ configuration = BasicConfiguration
   , error500file = "500.html"
   }
 
-instance AppConfiguration () where getInstance = return ()
+--instance AppConfiguration () where getInstance = return ()

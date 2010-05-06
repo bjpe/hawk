@@ -13,9 +13,9 @@ import qualified App.HolumbusWrapper.Types as T-}
 
 import Hawk.Controller
 import Hawk.View
-import Hawk.Controller.Util.Text
+--import Hawk.Controller.Util.Text
 
-import Control.Monad.Reader (asks)
+--import Control.Monad.Reader (asks)
 import Control.Monad (liftM)
 
 -- import qualified System.Log.Logger as Logger
@@ -37,7 +37,7 @@ indexAction = do
 --  debugM $ "Text"
   case q of
     Nothing -> getUser
-    Just v  -> redirectWithParams "index" "search"
+    Just _v  -> redirectWithParams "index" "search"
 
 searchAction :: StateController (SearchResult, String) -- (T.HayooResult, T.QueryInfo, String)
 searchAction = do 

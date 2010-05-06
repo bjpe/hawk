@@ -8,7 +8,7 @@ import Hawk.View
 {-import qualified App.HolumbusWrapper.Types as T
 import App.HolumbusWrapper.HolumbusWrapper
 -}
-import App.View.Util
+--import App.View.Util
 import App.HolWrapper
 
 --import Data.ByteString.UTF8 (ByteString)

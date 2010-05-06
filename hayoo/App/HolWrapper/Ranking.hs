@@ -7,7 +7,7 @@ module App.HolWrapper.Ranking
 import App.HolWrapper.Types
 
 import Holumbus.Index.Common
-import Holumbus.Query.Language.Grammar
+--import Holumbus.Query.Language.Grammar
 import Holumbus.Query.Ranking
 import Holumbus.Query.Result
 import Holumbus.Utility

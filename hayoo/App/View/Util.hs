@@ -52,15 +52,15 @@ generateConfigForm u =
     ]]
 
 formElement :: String -> XmlTree -> XmlTree
-formElement label elem = divX 
-    [contentTag "span" [("id", label), ("class","formname")] [text (label ++ " :")],
-     spanClass "formfield" [elem]
+formElement labl input = divX 
+    [contentTag "span" [("id", labl), ("class","formname")] [text (labl ++ " :")],
+     spanClass "formfield" [input]
     ]
 
 formElementT :: String -> XmlTree -> XmlTree
-formElementT label elem = divX
-    [contentTag "div" [("id", label), ("class","formnameT")] [text (label ++ " :")],
-     divClass "formfieldT" [elem]
+formElementT labl input = divX
+    [contentTag "div" [("id", labl), ("class","formnameT")] [text (labl ++ " :")],
+     divClass "formfieldT" [input]
     ]
 
 configFormContent :: Maybe U.User -> XmlTrees
@@ -97,6 +97,7 @@ configFormContent u =
          getModules = maybe "" (\v -> maybe "" id $ U.modules v) u
          getPackages = maybe "" (\v -> maybe "" id $ U.packages v) u
 
+formButton :: String -> String -> [(String, String)] -> XmlTree
 formButton name value attrs = submitWithName name value attrs'
   where attrs' = ("class","formButton") : attrs
 

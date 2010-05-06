@@ -5,7 +5,7 @@ import Hawk.Controller
 import Hawk.View
 import Hawk.Model
 import Hawk.Controller.Auth.ResultType
-import Hawk.Controller.Static
+--import Hawk.Controller.Static
 
 import App.View.UserView
 import App.Model.User as U
@@ -14,8 +14,8 @@ import App.HolWrapper.Common
 
 import qualified Data.Map as M
 
-import Control.Monad (liftM, mapM)
-import Control.Monad.Error (catchError)
+import Control.Monad (liftM)
+--import Control.Monad.Error (catchError)
 
 import qualified System.Log.Logger as Logger
 import System.Log.Logger.TH ( deriveLoggers )
@@ -51,7 +51,7 @@ editAction = do
       if null errs 
         then do
           debugM $ show u
-          update u
+          _ <- update u
           setFlash "success" "Successfully changed your Settings."
           return ()
         else do
@@ -65,11 +65,11 @@ registerAction = do
   if null u
     then return () -- showRegistrationForm
     else do
-      new <- new :: StateController User
-      (user, errs) <- getParams >>= updateAndValidate new ""
+      n <- new :: StateController User
+      (user, errs) <- getParams >>= updateAndValidate n ""
       if null errs
         then do
-          insert user
+          _ <- insert user
           p <- getParam "password"
           setFlash "success" ("You are successfully registered as " ++ u)
           redirectTo "user" "login" [("username",u),("password",p)]

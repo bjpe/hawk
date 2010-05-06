@@ -84,9 +84,9 @@ instance Updateable User where
 
 instance Validatable User where
   validator u = do
-    validateNotNull    "username"       $ username u
-    validateNotNull    "password"       $ password u
-    validateUniqueness [("username", toSql $ username u)] username "username" u
+    _ <- validateNotNull    "username"       $ username u
+    _ <- validateNotNull    "password"       $ password u
+    _ <- validateUniqueness [("username", toSql $ username u)] username "username" u
     return ()
 
 toList :: User -> [(String, String)]

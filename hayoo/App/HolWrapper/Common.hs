@@ -19,7 +19,7 @@ import App.HolWrapper.Types
 import Text.XML.HXT.DOM.Util (decimalStringToInt, stringToLower)
 
 import qualified Data.List as L
-import qualified Data.Map as M
+--import qualified Data.Map as M
 
 -- | Create a hard coded ProcessConfig
 defaultProcessConfig :: ProcessConfig
