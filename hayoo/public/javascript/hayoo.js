@@ -23,6 +23,15 @@ function process (query, offset) {
      onSuccess: function(transport) {
        c = getContentAs(transport, "json");
        $("status").update(c.status);
+       if ($("cloud") == null) {
+         $("status").insert({after: new Element('div', {id: 'cloud'})});
+       }
+       if ($("documents") == null) {
+         $("cloud").insert({after: new Element('div', {id: 'documents'})});
+       }
+       if ($("pages") == null) {
+         $("documents").insert({after: new Element('div', {id: 'pages'})});
+       }
        $("cloud").update(c.cloud);
        $("documents").update(c.documents);
        if ($("toppm") == null) {

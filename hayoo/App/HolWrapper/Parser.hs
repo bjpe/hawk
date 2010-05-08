@@ -19,13 +19,30 @@ import Data.Char (isSpace)
 -- | Parse a Query as you want
 -- / (to be customized, i.e. customize all private functions)
 customParser :: QueryParser -- QuerySettings -> Either String Query
-customParser = customParseQuery . searchString
+customParser qs = let s = searchString qs
+                  in caseSense $ customParseQuery $ addr "module" $ addr "package" s
+-- . addCaseSensitive
+                  where addr :: String -> String -> String
+                        addr r s = s ++ (concat $ map (rCTC r) $ modules qs)
+                        caseSense (Left s) = Left s
+                        caseSense (Right q) | caseSensitive qs = Right $ toCase q
+                                            | otherwise = Right q
 
 -- | Use the default Holumbus parser for queries 
 defaultParser :: QueryParser -- QuerySettings -> Either String Query
 defaultParser = parseQuery . searchString
 
 -- ## Private
+toCase :: Query -> Query
+toCase (Word s) = CaseWord s
+toCase (Phrase s) = CasePhrase s
+toCase (FuzzyWord s) = CaseWord s
+toCase (BinQuery o q1 q2) = BinQuery o (toCase q1) (toCase q2)
+toCase q = q
+
+rCTC :: String -> RConfig -> String
+rCTC s (Rank (n,_)) = ' ' : s ++ ":" ++ n
+rCTC s (Name n) = ' ' : s ++ ":" ++ n
 
 -- ----------------------------------------------------------------------------
 {- |

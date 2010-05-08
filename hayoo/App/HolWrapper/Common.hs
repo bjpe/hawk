@@ -46,8 +46,9 @@ toInt :: String -> Int
 toInt = decimalStringToInt
 
 toFloat :: String -> Float
-toFloat s = encodeFloat (toInteger $ toInt fs) (toInt sc)
-  where (fs, sc) = L.break (== '.') s
+toFloat s = read s :: Float 
+ --encodeFloat (toInteger $ toInt fs) (toInt sc)
+ -- where (fs, sc) = L.break (== '.') s
 
 toReplacements :: String -> Replacements
 toReplacements [] = []

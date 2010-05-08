@@ -92,7 +92,11 @@ configFormContent u =
          getWordLimit = maybe "0" (show . U.wordLimit) u
          getReplace = maybe False U.replace u
          getSwapChars = maybe False U.swapChars u
-         getMaxFuzzy = maybe "1.0" (show . U.maxFuzzy) u
+         getMaxFuzzy = maybe "1.0" (fuzzShow . U.maxFuzzy) u
+           where fuzzShow f | f < 0.15 = "0.1" | f < 0.25 = "0.2" | f < 0.35 = "0.3"
+                            | f < 0.45 = "0.4" | f < 0.55 = "0.5" | f < 0.65 = "0.6"
+                            | f < 0.75 = "0.7" | f < 0.85 = "0.8" | f < 0.95 = "0.9"
+                            | otherwise = "1.0"
          getReplacements = maybe "" (\v -> maybe "" id $ U.replacements v) u
          getModules = maybe "" (\v -> maybe "" id $ U.modules v) u
          getPackages = maybe "" (\v -> maybe "" id $ U.packages v) u

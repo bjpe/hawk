@@ -46,6 +46,8 @@ editAction = do
       let errs = ""
       user <- getCurUser
       debugM $ show user
+      m <- getParam "maxFuzzy"
+      debugM $ show m
 --      (u, errs) <- getParams >>= updateAndValidate user "" -- checkboxes will not be updated
       u <- getParams >>= myUpdateByParams user
       if null errs 
@@ -76,7 +78,11 @@ registerAction = do
         else setErrors "registerUser" errs -- registration failed, show form
 
 authAction :: StateController ()
-authAction = tryLogin >>= flashAuth
+authAction = tryLogin 
+         >>= flashAuth 
+--          >> getCurUser
+--         >>= addToSession
+
 {-  -- http basic auth
   u <- lookupParam "username"
   p <- lookupParam "password"
@@ -113,7 +119,6 @@ getCurUser = isAuthedAs >>= (\u -> selectOne $ restrictionCriteria $ (val u) .==
 -- | You can call this when you've successfully loaded an user
 addToSession :: User -> StateController ()
 addToSession u = head `liftM` (mapM (uncurry (setSessionValue)) $ U.toList u)
-
 
 myUpdateByParams :: User -> M.Map String String -> StateController User
 myUpdateByParams u m = return $ u 
