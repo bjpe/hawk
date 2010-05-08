@@ -17,12 +17,10 @@ import Hawk.View
 
 routes :: [Routing]
 routes = 
-  [ ("index", indexAction >>= render (jsonView indexJson))
+  [ --("index", indexAction >>= render (jsonView indexJson))
+    ("api", searchAction >>= render (jsonView apiJson))
   , ("search", searchAction >>= render (jsonView searchJson))
   ]
-
-indexAction :: StateController JSON
-indexAction = return $ jObject [("status", jString "here i am")]
 
 searchAction :: StateController SearchResult -- (HayooResult, QueryInfo)
 searchAction = do

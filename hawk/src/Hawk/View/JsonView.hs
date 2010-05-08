@@ -27,6 +27,7 @@ module Hawk.View.JsonView
   , jInt
   , jInteger
   , jDouble
+  , jFloat
   , jBool
   , jNull
   ) where
@@ -98,6 +99,9 @@ jInteger i = jNumber (i % 1)
 
 jDouble :: Double -> JSON
 jDouble d = jNumber $ approxRational d 0.000001
+
+jFloat :: Float -> JSON
+jFloat f = jNumber $ approxRational f 0.000001
 
 jBool :: Bool -> JSON
 jBool = Boolean

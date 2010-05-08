@@ -6,6 +6,10 @@ module App.HolWrapper.Print
   , formatStatus
   , formatPages
   , formatPM
+  , formatApiFunctions
+  , formatApiCompletitions
+  , formatApiModules
+  , formatApiPackages
   ) where
 
 import Holumbus.Index.Common
@@ -15,6 +19,7 @@ import qualified Hawk.View as H
 import Hawk.Controller.Util.Text (splitWhere)
 
 import App.HolWrapper.Types
+import App.HolWrapper.Common
 import App.HolWrapper.Parser (replace)
 import App.View.HtmlCommon
 
@@ -63,15 +68,35 @@ formatPM :: ResultTuple -> H.XmlTrees
 formatPM (r, i) = [divId "modules" 
                (
                  (divClass "headline" [H.text "Top 15 Modules"])
-                 : (printPMList (L.take 15 moduleL) "Module" $ searchString $ querySettings i)
+                 : (printPMList (L.take 15 $ moduleL r) "Module" $ searchString $ querySettings i)
                  ++ ((divClass "headline" [H.text "Top 15 Packages"])
-                 : (printPMList (L.take 15 packageL) "Package" $ searchString $ querySettings i)
+                 : (printPMList (L.take 15 $ packageL r) "Package" $ searchString $ querySettings i)
                  )
                )
               ]
-         where moduleL = toCountedList $ toModuleList $ getDocuments r
-               packageL = toCountedList $ toPackageList $ getDocuments r
 
+formatApiFunctions :: ResultTuple -> H.JSON
+formatApiFunctions (r, i) = H.jArray $ map docs $ IM.toList $ docHits r
+  where docs (_, (DocInfo (Document t u (Just (FunctionInfo m s p _))) _, _)) = 
+            H.jObject [ ("name", H.jString t)
+                      , ("uri", H.jString u)
+                      , ("module", H.jString $ B.toString m)
+                      , ("signature", H.jString $ B.toString s)
+                      , ("package", H.jString $ B.toString p)
+                      ]
+        docs _ = H.jObject []
+
+formatApiCompletitions :: ResultTuple -> H.JSON
+formatApiCompletitions (r, i) = H.jArray $ map words $ M.toList $ wordHits r
+  where words (w, (WordInfo _ s, _)) = H.jObject [ ("word", H.jString w)
+                                                 , ("count", H.jFloat s)] 
+
+formatApiModules :: ResultTuple -> H.JSON
+formatApiModules (r, i) = H.jArray $ map toPL $ moduleL r
+
+formatApiPackages :: ResultTuple -> H.JSON
+formatApiPackages (r, i) = H.jArray $ map toPL $ packageL r
+  
 -- -----------------------------------------------------------------------------
 -- LOCALS
 -- -----------------------------------------------------------------------------
@@ -170,6 +195,16 @@ printPMList (x:xs) n q = (divClass ("root"++n) (content x)) : printPMList xs n q
                             , ("class", "root"++n++"Name")
                             ] [H.text s]
                          , spanClass ("root"++n++"Count") [H.text (' ':(show i))]]
+
+moduleL :: Result FunctionInfo -> [(Int, String)]
+moduleL r = toCountedList $ toModuleList $ getDocuments r
+
+packageL :: Result FunctionInfo -> [(Int, String)]
+packageL r = toCountedList $ toPackageList $ getDocuments r
+
+toPL :: (Int, String) -> H.JSON
+toPL (i,s) = H.jObject [ ("name", H.jString s)
+                       , ("count", H.jInt i)]
 
 toCountedList :: [String] -> [(Int, String)]
 toCountedList [] = []

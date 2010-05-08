@@ -13,8 +13,23 @@ import App.HolWrapper
 
 --import Data.ByteString.UTF8 (ByteString)
 
-indexJson :: JSON -> StateController JSON
-indexJson = return
+apiJson :: SearchResult -> StateController JSON
+apiJson (Left s) = return $ jObject
+  [ ("message", jString s)
+  , ("hits", jInt 0)
+  , ("functions", jString "")
+  , ("completitions", jString "")
+  , ("modules", jString "")
+  , ("packages", jString "")
+  ]
+apiJson (Right r) = return $ jObject
+  [ ("message", jXml $ formatStatus r)
+  , ("hits", jInt $ numResults r)
+  , ("functions", formatApiFunctions r)
+  , ("completitions", formatApiCompletitions r)
+  , ("modules", formatApiModules r)
+  , ("packages", formatApiPackages r)
+  ]
 
 searchJson :: SearchResult -> StateController JSON
 searchJson (Left s) = return $ jObject
