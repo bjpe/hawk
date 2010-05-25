@@ -68,6 +68,7 @@ data QuerySettings = QuerySettings
 -- | RConfig is either a (String, Float) or only a String
 data RConfig = Rank (String, Score)
              | Name String
+             deriving (Show, Eq)
 
 -- Configuration for application configuration
 

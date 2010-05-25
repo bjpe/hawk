@@ -46,7 +46,11 @@ toInt :: String -> Int
 toInt = decimalStringToInt
 
 toFloat :: String -> Float
-toFloat s = read s :: Float 
+toFloat s = case reads s of
+  [] -> 0
+  [(n,_)] -> n
+  _ -> error "Failed to Parse String to Float."
+--read s :: Float 
  --encodeFloat (toInteger $ toInt fs) (toInt sc)
  -- where (fs, sc) = L.break (== '.') s
 
@@ -57,6 +61,8 @@ toReplacements s | (stringToLower s) == "english" = englishReplacements
                  | otherwise = [] -- or customized replacements here
 
 toRConfig :: String -> [RConfig]
+toRConfig [] = []
+toRConfig "SqlNull" = []
 toRConfig s = L.map toRConfig' $ L.filter (not . null) $ splitAll (== ' ') s
   where 
     toRConfig' x = toRConfig'' $ splitWhere (== ',') x

@@ -22,24 +22,16 @@ function process (query, offset) {
      method:'get',
      onSuccess: function(transport) {
        c = getContentAs(transport, "json");
+       $("result").update("");
+       $("result").insert({bottom: new Element('div', {id: 'status'})});
+       $("result").insert({bottom: new Element('div', {id: 'toppm'})});
+       $("result").insert({bottom: new Element('div', {id: 'cloud'})});
+       $("result").insert({bottom: new Element('div', {id: 'documents'})});
+       $("result").insert({bottom: new Element('div', {id: 'pages'})});
        $("status").update(c.status);
-       if ($("cloud") == null) {
-         $("status").insert({after: new Element('div', {id: 'cloud'})});
-       }
-       if ($("documents") == null) {
-         $("cloud").insert({after: new Element('div', {id: 'documents'})});
-       }
-       if ($("pages") == null) {
-         $("documents").insert({after: new Element('div', {id: 'pages'})});
-       }
+       $("toppm").update(c.toppm);
        $("cloud").update(c.cloud);
        $("documents").update(c.documents);
-       if ($("toppm") == null) {
-         $("cloud").insert({before: new Element('div', {id: 'toppm'})});
-       }
-       if (($("toppm") != null) && (c.toppm != "")) {
-         $("toppm").update(c.toppm);
-       }
        $("pages").update(c.pages);
        $("throbber").toggle();
      },

@@ -23,7 +23,9 @@ customParser qs = let s = searchString qs
                   in caseSense $ customParseQuery $ addr "module" $ addr "package" s
 -- . addCaseSensitive
                   where addr :: String -> String -> String
-                        addr r s = s ++ (concat $ map (rCTC r) $ modules qs)
+                        addr r s = case (modules qs) of
+                                     [] -> s
+                                     l -> s ++ (concat $ map (rCTC r) l)
                         caseSense (Left s) = Left s
                         caseSense (Right q) | caseSensitive qs = Right $ toCase q
                                             | otherwise = Right q
