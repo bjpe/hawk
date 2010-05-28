@@ -1,0 +1,12 @@
+DROP TABLE IF EXISTS `user`;
+CREATE TABLE `user` (
+  `_id` INTEGER NOT NULL PRIMARY KEY AUTOINCREMENT,
+  `username` VARCHAR(100) NOT NULL,
+  `password` VARCHAR(100) NOT NULL,
+  `student` BOOLEAN NOT NULL,
+  `tutorial` BOOLEAN NOT NULL,
+  `workshop` BOOLEAN NOT NULL,
+  `party` BOOLEAN NOT NULL,
+  `created` DATETIME NOT NULL
+);
+

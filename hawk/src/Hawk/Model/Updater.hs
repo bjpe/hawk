@@ -73,9 +73,9 @@ class Updateable u where
 instance Updateable Bool where
   updater value name = primitiveUpdate value name (maybeRead . mkBool) $ 
                       "The attribute '" ++ name ++"' must be a Bool"
-                      where mkBool "on" = "True"
-                            mkBool "off" = "False"
-                            mkBool v = v
+                      where mkBool :: String -> String
+                            mkBool s | or [s == "on",s == "true"] = "True"
+                                     | otherwise = "False"
 
 instance Updateable String where
   updater value name = primitiveUpdate value name Just $ 

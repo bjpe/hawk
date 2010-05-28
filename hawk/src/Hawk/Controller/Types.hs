@@ -29,6 +29,7 @@ module Hawk.Controller.Types
 
   , View (..)
 
+  , module Hawk.Controller.Auth.ResultType 
   , AuthType
   , SessionStore (..)
   , Route (..)

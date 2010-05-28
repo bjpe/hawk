@@ -1,7 +1,6 @@
 module Hawk.Controller.Auth.HttpAuth where
 
 import Hawk.Controller.Types
-import Hawk.Controller.Auth.ResultType ( AuthResult (..) )
 import Hawk.Controller.Authenticate
 
 import Hawk.Controller.Request
