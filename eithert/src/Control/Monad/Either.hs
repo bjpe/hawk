@@ -27,10 +27,7 @@ import Control.Monad
 import Control.Monad.CatchIO
 import Control.Monad.Fix
 import Control.Monad.RWS.Class
-import Control.Monad.Reader.Class
-import Control.Monad.State.Class
 import Control.Monad.Trans
-import Control.Monad.Writer.Class
 import Prelude hiding (catch)
 
 -- --------------------------------------------------------------------------
@@ -125,8 +122,4 @@ instance MonadCatchIO m => MonadCatchIO (EitherT e m) where
   m `catch` f = mapEitherT (`catch` (runEitherT . f)) m
   block       = mapEitherT block
   unblock     = mapEitherT unblock
-
-
-
-
 
