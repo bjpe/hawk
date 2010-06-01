@@ -50,9 +50,6 @@ data AppEnvironment = AppEnvironment
   , envOptions  :: Options              -- ^
   }
 
-instance AppConfiguration () where
-  getInstance = return ()
-
 loadEnvironment :: AppEnvironment -> IO (ConnWrapper, Options)
 loadEnvironment appEnv = do
   updateLogger (logLevels appEnv)

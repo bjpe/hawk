@@ -158,3 +158,5 @@ type Controller = StateController ByteString
 class AppConfiguration a where
   getInstance :: MonadIO m => m a
 
+instance AppConfiguration () where
+  getInstance = return ()
