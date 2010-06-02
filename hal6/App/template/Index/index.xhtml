@@ -1,19 +1,20 @@
 <?xml version="1.0" encoding="utf-8" ?>
 <hawk:surround with="../Layouts/header.xhtml" at="content" xmlns:hawk="http://fh-wedel.de/hawk">
-  <h2>Anmeldung für die HaL6</h2>
-  <div id="forms">
-    <hawk:bind name="regform"/>
-    <hawk:bind name="loginform"/>
+  <div id="content">
+    <div id="forms">
+      <hawk:bind name="regform"/>
+      <hawk:bind name="loginform"/>
+    </div>
+    <div id="numb"><hawk:bind name="num"/> Registered</div>
+    <table cellspacing="0"><tr>
+      <th class="uname">Full Name</th>
+      <th class="ucreated">Registration Date</th>
+      <th class="ustudent">work</th>
+      <th class="ututorial">tutorial</th>
+      <th class="uworkshop">workshop</th>
+      <th class="uparty">party</th>
+    </tr>
+    <hawk:embed what="user.xhtml"/>
+    </table>
   </div>
-  <div id="numb"><hawk:bind name="num"/> Registered</div>
-  <table cellspacing="0"><tr>
-    <th class="uname">Full Name</th>
-    <th class="ucreated">Registration Date</th>
-    <th class="ustudent">work</th>
-    <th class="ututorial">tutorial</th>
-    <th class="uworkshop">workshop</th>
-    <th class="uparty">party</th>
-  </tr>
-  <hawk:embed what="user.xhtml"/>
-  </table>
 </hawk:surround>

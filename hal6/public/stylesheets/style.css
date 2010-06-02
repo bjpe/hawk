@@ -3,6 +3,10 @@
    $Author: winf2370 $
 */
 
+body {
+  margin: 0 auto;
+}
+
 form {
   border: 1px solid silver;
   width: 200px;
@@ -28,6 +32,16 @@ td {
   border-top: 1px solid #AAA;
 }
 
+a {
+  text-decoration: none;
+  font-weight: bold;
+  color: #6a6bdc;
+}
+
+a:hover {
+  color: 6bd8dc;
+}
+
 td.uname{text-align: left;}
 
 .uname {width: 180px;}
@@ -45,7 +59,35 @@ td.uname{text-align: left;}
   float: left;
 }
 
-#forms {height: 250px;}
+#forms {
+  height: 250px;
+  padding-top: 15px;
+}
+
+#content {
+  height: 500px;
+  width: 800px;
+  margin-left: 30px;
+}
+
+#header {
+  border-top: 1px solid #bbbbdc;
+  margin-bottom: 6px;
+  border-bottom: 1px solid #666;
+  height: 50px;
+  background-color: #bbbbdc;
+}
+
+#footer {
+  margin-top: 6px;
+  padding-top: 6px;
+  padding-left: 10px;
+  border-top: 1px solid #666;
+  height: 30px;
+  background-color: #bbbbdc;
+  color: #777;
+  font-size: small;
+}
 
 /*flashs*/
 .notice {

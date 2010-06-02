@@ -53,8 +53,10 @@ formatLogin Nothing = [H.form "loginform" "POST" "/index/login" []
                        ,H.submitWithName "submit" "Login" []
                        ]]
 formatLogin (Just u) = [H.text ("You are logged in as " ++ (username u) ++ ".")
-                     ,H.contentTag "div" [] [H.textlink "/index/logout" "Logout"]
-                     ,H.contentTag "div" [] [H.textlink "/index/delete" "Unregister"]]
+                     ,H.tag "br" []
+                     ,H.contentTag "span" [] [H.textlink "/index/logout" "Logout"]
+                     ,H.text " | "
+                     ,H.contentTag "span" [] [H.textlink "/index/delete" "Unregister"]]
 
 formatForm :: Maybe User -> H.XmlTrees
 formatForm u = [H.form "saveform" "POST" "/index/save" []
