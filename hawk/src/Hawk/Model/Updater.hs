@@ -71,12 +71,13 @@ class Updateable u where
 
 
 instance Updateable Bool where
-  updater value name = primitiveUpdate value name (maybeRead . mkBool) $ 
-                      "The attribute '" ++ name ++"' must be a Bool"
-                      where mkBool :: String -> String
-                            mkBool s | or [s == "on",s == "true"] = "True"
-                                     | otherwise = "False"
-
+  updater value name = do
+    params <- ask
+    case M.lookup name params of
+      Nothing -> return False
+      Just v  -> if (or [v == "on", v == "true"]) then return True
+                  else return value
+  
 instance Updateable String where
   updater value name = primitiveUpdate value name Just $ 
                       "The attribute '" ++ name ++"' must be a string"
