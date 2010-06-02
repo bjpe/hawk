@@ -1,13 +1,14 @@
-Name:		Hawk
-Version:	0.0.2
-Description:	A library and framework to create Web Applciations with Haskell
-Synopsis:   Haskell Web Application Kit
-License:	BSD3
-License-file: LICENCE
-Author:		Björn Peemöller, Stefan Roggensack, Alexander Treptow
-Build-Type:	Simple
-Category:   Web
-Cabal-Version:	>=1.6
+Name:          Hawk
+Version:       0.0.2
+Description:   A library and framework to create Web Applications with Haskell
+Synopsis:      Haskell Web Application Kit
+License:       BSD3
+License-file:  LICENCE
+Author:        Björn Peemöller, Stefan Roggensack, Alexander Treptow
+Maintainer:    Björn Peemöller <fh-wedel@gmx.de>, Stefan Roggensack, Alexander Treptow <alextreptow@gmx.de>
+Build-Type:    Simple
+Category:      Web
+Cabal-Version: >=1.6
 
 library
   ghc-options:       -Wall -fregs-graph
@@ -36,11 +37,12 @@ library
     MonadCatchIO-mtl >= 0.2.0.0 && < 0.3,
     convertible >= 1.0.7 && < 1.1,
     regex-posix >= 0.94 && < 0.100,
-    Stringable >= 0.0.1 && < 0.1,
-    EitherT >= 0.0.1 && < 0.1,
     json-b >= 0.0.4 && < 0.1,
     bytestring-trie >= 0.1.4 && < 0.2
   Exposed-Modules:
+    Control.Monad.Either
+    Data.Stringable
+    Data.EitherMapTree
     Hawk.Controller
     Hawk.Controller.Authenticate
     Hawk.Controller.Auth.ResultType
@@ -100,7 +102,7 @@ library
     Hawk.Model.Types
     Hawk.Model.Association
 -- Non Hawk Modules
-    Data.EitherMapTree
+
 --  Other-Modules:
 
 -- Tests:     Hawk.Model.Criteria.Test
