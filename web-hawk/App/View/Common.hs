@@ -76,8 +76,8 @@ cBodyS c = cBody [text c]
 rHead :: String -> XmlTree
 rHead h = divClass "righthead" [text h]
 
-rBody :: String -> XmlTree
-rBody c = divClass "rightbody" [text c]
+rBody :: XmlTrees -> XmlTree
+rBody c = divClass "rightbody" c
 
 -- ------------------------------------------------------------------------------
 -- html functions

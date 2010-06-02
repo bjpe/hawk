@@ -35,4 +35,3 @@ configuration = BasicConfiguration
   , error500file = "500.html"
   }
 
-instance AppConfiguration () where getInstance = return ()

@@ -1,4 +1,4 @@
-{-# LANGUAGE BangPatterns #-}
+{-# LANGUAGE BangPatterns, TemplateHaskell #-}
 module App.HolWrapper.Types
   ( SearchResult
   , ResultTuple
@@ -31,6 +31,11 @@ import Control.Monad.Trans (liftIO, MonadIO)
 import Control.Monad (liftM)
 
 import Text.XML.HXT.Arrow
+
+import qualified System.Log.Logger as Logger
+import System.Log.Logger.TH ( deriveLoggers )
+
+$(deriveLoggers "Logger" [Logger.DEBUG])
 
 type SearchResult = Either String ResultTuple
 type ResultTuple = (Result FunctionInfo, QueryInfo)

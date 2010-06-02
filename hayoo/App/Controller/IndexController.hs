@@ -1,4 +1,4 @@
-{-# LANGUAGE TemplateHaskell #-}
+--{-# LANGUAGE TemplateHaskell #-}
 module App.Controller.IndexController where
 
 import App.View.IndexView
@@ -18,10 +18,10 @@ import Hawk.View
 --import Control.Monad.Reader (asks)
 import Control.Monad (liftM)
 
-import qualified System.Log.Logger as Logger
+{-import qualified System.Log.Logger as Logger
 import System.Log.Logger.TH ( deriveLoggers )
 
-$(deriveLoggers "Logger" [Logger.DEBUG])
+$(deriveLoggers "Logger" [Logger.DEBUG])-}
 
 routes :: [Routing]
 routes = 
@@ -45,7 +45,6 @@ searchAction = do
   case qi of
     Nothing -> redirectToAction "index" "index"
     Just v -> do
-      debugM $ show $ modules $ querySettings v
       u <- getUser
       return (query v customParser customRanking, u)
 {-  appCfg <- asks appConfiguration
