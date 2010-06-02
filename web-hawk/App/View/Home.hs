@@ -21,6 +21,11 @@ homeC = [ cHead "What is Hawk?" "about"
 
 homeR :: XmlTrees
 homeR = [ rHead "Now on Hackage"
-        , rBody "Hawk now is available from Hackage via Cabal or as gzip."
+        , rBody [text "Hawk now is available from Hackage via Cabal or as gzip."]
+        , rHead "Download Links"
+        , rBody [link "/packages/hawk-latest.tar.gz" [text "Latest Hawk Version"]
+                ,link "/packages/create-project.tar.gz" [text "Project Creator"]
+                ,link "/packages/example.tar.gz" [text "Example Application"]
+                ]
         ]
 

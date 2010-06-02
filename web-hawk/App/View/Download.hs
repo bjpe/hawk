@@ -17,7 +17,7 @@ downloadC :: XmlTrees
 downloadC = [ cHead "Get Haskell Web Application Kit" ""
             , cBody [ text "We recommend using Linux for developing Web Applications with Hawk, because Mac OSX and Windows can cause some problems installing needed development libraries."
                     , linebreak, linebreak
-                    , text "The Versions of Hawk, available for download have only Beta status. They are still under developement. There is a lot of work to do, but if you've any inspirations, comments, feedback or you want to join us, please mail us at "
+                    , text "The Versions of Hawk, available for download have only Beta status. It is still under developement. There is a lot of work to do, but if you've any inspirations, comments, feedback or you want to join us, please mail us at "
                     , link "mail:mail@hawk-project.org" [text "mail@hawk-project.org"]
                     ]
             , cHead "Latest Release" "latest"
@@ -41,7 +41,7 @@ downloadC = [ cHead "Get Haskell Web Application Kit" ""
                          , contentTag "th" [] [text "Size"]
                          , contentTag "th" [] [text "Download"]
                          ]
-                       , history "hawk-latest.tar.gz" "0.0.2" "2.1 MB"
+                       , history "hawk-latest.tar.gz" "0.0.2" "50.1 KB"
                        ]
                     ]
             , cHead "Install Haskell" "ghc"

@@ -36,12 +36,12 @@ a:hover {
 
 #header {
   background-color: #FFF;
-  height: 250px;
+  height: 287px;
   border-bottom: 1px solid silver;
 }
 
 #headimg {
-  height: 213px; /*213px*/
+  height: 250px; /*213px*/
   background-image: url(../images/header.jpg);
 }
 
@@ -72,6 +72,7 @@ a:hover {
 #main {
   min-height: 400px;
   padding: 5px;
+  padding-top: 10px;
   background-color: #FFF;
 }
 
@@ -91,6 +92,9 @@ a:hover {
   border-bottom: 1px dashed silver;
   margin-bottom: 5px;
 }
+
+#lefthead {padding-right: 10px;}
+
 
 .leftlink {
   line-height: 2em;
@@ -146,7 +150,8 @@ a:hover {
 }
 
 .rightbody{
-
+  padding-bottom: 12px;
+  padding-left: 5px;
 }
 
 .code {
@@ -223,7 +228,7 @@ a:hover {
 
 #footer {
   height: 40px;
-  margin-bottom: 10px;
+  /*margin-bottom: 10px;*/
   padding: 5px;
   border-top: 1px solid silver;
   border-bottom: 1px solid silver;
