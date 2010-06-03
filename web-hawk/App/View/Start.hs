@@ -36,7 +36,7 @@ startC = [ cHead "Getting Started" ""
                  , text "."
                  , linebreak
                  , text "In this part we will guide you to a setup of the framework and we'll try to spot all possible pitfalls (so if you find any that is not mentioned here, please "
-                 , link "mailto:mail@hawk-project.org" [text "mail us"]
+                 , link "mailto:" [text "mail us"]
                  , text "). Also we will show you how to set up your project structure, to keep track of your project and a step by step introduction to your first web application using Hawk Framework, by writing a guestbook."
                  ]
 -- Installation

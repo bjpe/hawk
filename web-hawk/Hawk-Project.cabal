@@ -2,6 +2,7 @@ Name: Hawk-Project
 Version: 0.0.1
 Description: Hawk Project Web Application
 License: BSD3
+Build-Type:	Simple
 Author: Björn Peemöller, Stefan Roggensack, Alexander Treptow
 Cabal-Version: >=1.6
 

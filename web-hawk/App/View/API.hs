@@ -10,18 +10,22 @@ apiL = (lHead "Documentation")
 
 apiC :: XmlTrees
 apiC = [ cHead "Documentation" ""
-       , cBody [ text ""
+       , cBody [ text "Hawk was developed in the "
+               , link "/thesis/thesis-hawk.pdf" [text "Master's Thesis of Björn Peemöller and Stefan Roggensack"]
+               , text ". The "
+               , link "/thesis/thesis-ext-hawk.pdf" [text "Master's Thesis of Alexander Treptow"]
+               , text " improved the Framework."
                ]
        , cHead "Haddock generated API Documentation" "api"
        , cBody [ text "You can find the generated API Documentation "
-               , linkN "" [text "here"]
+               , linkN "/haddock/index.html" [text "here"]
                , text "."
                ]
        , cHead "Frequently Asked Questions" "faq"
        , cBody [ text "If you want to get more information about a special topic please visit our "
                , link "/index/faq" [text "FAQ"]
                , text " or just "
-               , link "mailto:mail@hawk-project.org" [text "mail us"]
+               , link "mailto:" [text "mail us (comming soon)"]
                , text "."
                ]
        ]

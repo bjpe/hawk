@@ -18,7 +18,7 @@ downloadC = [ cHead "Get Haskell Web Application Kit" ""
             , cBody [ text "We recommend using Linux for developing Web Applications with Hawk, because Mac OSX and Windows can cause some problems installing needed development libraries."
                     , linebreak, linebreak
                     , text "The Versions of Hawk, available for download have only Beta status. It is still under developement. There is a lot of work to do, but if you've any inspirations, comments, feedback or you want to join us, please mail us at "
-                    , link "mail:mail@hawk-project.org" [text "mail@hawk-project.org"]
+                    , link "mailto:" [text "mail (comming soon)"]
                     ]
             , cHead "Latest Release" "latest"
             , cBody [ text "Download the latest release from right "
@@ -129,7 +129,7 @@ downloadC = [ cHead "Get Haskell Web Application Kit" ""
                     , text "If you got any trouble installing Hawk, please have a look at our "
                     , link "/index/faq#install" [text "FAQ"]
                     , text " or just "
-                    , link "mailto:mail@hawk-project.org" [text "mail us"]
+                    , link "mailto:" [text "mail us (comming soon)"]
                     , text "."
                     ]
             , cHead "Test Your Installation" "test"

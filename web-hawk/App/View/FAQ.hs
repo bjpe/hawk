@@ -17,7 +17,7 @@ faqL = (lHead "FAQ")
 
 faqC :: XmlTrees
 faqC = [ cHead "Frequently Asked Questions (FAQ)" ""
-       , cBody [ text "" ]
+       , cBody [ text "comming soon ..." ]
        , cHead "Installation" "install"
        , cBody [ text "all about installation" ]
        , cHead "Overall" "overall"
