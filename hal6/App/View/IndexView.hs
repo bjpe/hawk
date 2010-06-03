@@ -60,8 +60,8 @@ formatLogin (Just u) = [H.text ("You are logged in as " ++ (username u) ++ ".")
 
 formatForm :: Maybe User -> H.XmlTrees
 formatForm u = [H.form "saveform" "POST" "/index/save" []
-                [formElem "Full Name" (H.textfield "username" (maybe "" username u) [])
-                ,formElem "Password" (H.password "password" (maybe "" password u) [])
+                [maybe (formElem "Full Name" (H.textfield "username" "" [])) (\_ -> H.text "") u
+                ,maybe (formElem "Password" (H.password "password" "" [])) (\_ -> H.text "") u
                 ,formElem "Student" (H.checkbox "student" "" (maybe False student u) [])
                 ,formElem "Attend Tutorials" (H.checkbox "tutorial" "" (maybe False tutorial u) [])
                 ,formElem "Attend Workshops" (H.checkbox "workshop" "" (maybe False workshop u) [])

@@ -74,13 +74,16 @@ instance Updateable Bool where
   updater value name = do
     params <- ask
     case M.lookup name params of
-      Nothing -> return False
-      Just v  -> if (or [v == "on", v == "true"]) then return True
-                  else return value
-  
+      Nothing -> return False -- checkboxes (cb) return nothing if they are not set
+      Just v  -> case v of
+                   "on" -> return True -- cb return "on" if checked
+                   "off" -> return False -- just to complete checking
+                   _ -> primitiveUpdate value name maybeRead $ -- check case insensitive "true" and "false"
+                      "The attribute '" ++ name ++ "' must be a bool"
+
 instance Updateable String where
   updater value name = primitiveUpdate value name Just $ 
-                      "The attribute '" ++ name ++"' must be a string"
+                      "The attribute '" ++ name ++ "' must be a string"
 
 
 instance Updateable Int where
