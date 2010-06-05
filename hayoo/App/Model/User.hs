@@ -59,11 +59,11 @@ instance Updateable User where
     user <- updater (username       u) $ subParam s "username"
     pass <- updater (password       u) $ subParam s "password"
     mail <- updater (email          u) $ subParam s "email"
-    uc   <- updater (caseSensitive  u) $ toBoolStr $ subParam s "caseSensitive"
-    o    <- updater (optimizeQuery  u) $ toBoolStr $ subParam s "optimizeQuery"
+    uc   <- updater (caseSensitive  u) $ subParam s "caseSensitive"
+    o    <- updater (optimizeQuery  u) $ subParam s "optimizeQuery"
     w    <- updater (wordLimit      u) $ subParam s "wordLimit"
-    fr   <- updater (replace        u) $ toBoolStr $ subParam s "replace"
-    fs   <- updater (swapChars      u) $ toBoolStr $ subParam s "swapChars"
+    fr   <- updater (replace        u) $ subParam s "replace"
+    fs   <- updater (swapChars      u) $ subParam s "swapChars"
     fp   <- updater (replacements   u) $ subParam s "replacements"
     fm   <- updater (maxFuzzy       u) $ subParam s "maxFuzzy"
     mdl  <- updater (modules        u) $ subParam s "modules"
@@ -91,11 +91,3 @@ instance Validatable User where
 
 toList :: User -> [(String, String)]
 toList u = map (\(x,y) -> (x, show y)) $ toSqlAL u
-
--- | workaround for checkboxes
-toBoolStr :: String -> String
-toBoolStr [] = "False"
-toBoolStr s = tB $ head s
-  where tB 'o' = "True"
-        tB 't' = "True"
-        tB _ = "False"

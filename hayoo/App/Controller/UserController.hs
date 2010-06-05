@@ -48,8 +48,7 @@ editAction = do
       debugM $ show user
       m <- getParam "maxFuzzy"
       debugM $ show m
---      (u, errs) <- getParams >>= updateAndValidate user "" -- checkboxes will not be updated
-      u <- getParams >>= myUpdateByParams user
+      (u, errs) <- getParams >>= updateAndValidate user ""
       if null errs 
         then do
           debugM $ show u
@@ -120,7 +119,7 @@ getCurUser = isAuthedAs >>= (\u -> selectOne $ restrictionCriteria $ (val u) .==
 addToSession :: User -> StateController ()
 addToSession u = head `liftM` (mapM (uncurry (setSessionValue)) $ U.toList u)
 
-myUpdateByParams :: User -> M.Map String String -> StateController User
+{-myUpdateByParams :: User -> M.Map String String -> StateController User
 myUpdateByParams u m = return $ u 
       { --username = user -- not changeable
       --, password = pass
@@ -136,4 +135,4 @@ myUpdateByParams u m = return $ u
       , packages = maybe (packages u) justStr $ M.lookup "packages" m
       } 
       where justStr [] = Nothing
-            justStr s = Just s
+            justStr s = Just s-}
