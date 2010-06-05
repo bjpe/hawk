@@ -1,0 +1,612 @@
+<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN" "http://www.w3.org/TR/html4/loose.dtd">
+<!--Rendered using the Haskell Html Library v0.2-->
+<HTML
+><HEAD
+><META HTTP-EQUIV="Content-Type" CONTENT="text/html; charset=UTF-8"
+><TITLE
+>Hawk.Model.Criteria.Types</TITLE
+><LINK HREF="haddock.css" REL="stylesheet" TYPE="text/css"
+><SCRIPT SRC="haddock-util.js" TYPE="text/javascript"
+></SCRIPT
+><SCRIPT TYPE="text/javascript"
+>window.onload = function () {setSynopsis("mini_Hawk-Model-Criteria-Types.html")};</SCRIPT
+></HEAD
+><BODY
+><TABLE CLASS="vanilla" CELLSPACING="0" CELLPADDING="0"
+><TR
+><TD CLASS="topbar"
+><TABLE CLASS="vanilla" CELLSPACING="0" CELLPADDING="0"
+><TR
+><TD
+><IMG SRC="haskell_icon.gif" WIDTH="16" HEIGHT="16" ALT=" "
+></TD
+><TD CLASS="title"
+>Hawk-0.0.2: Haskell Web Application Kit</TD
+><TD CLASS="topbut"
+><A HREF="index.html"
+>Contents</A
+></TD
+><TD CLASS="topbut"
+><A HREF="doc-index.html"
+>Index</A
+></TD
+></TR
+></TABLE
+></TD
+></TR
+><TR
+><TD CLASS="modulebar"
+><TABLE CLASS="vanilla" CELLSPACING="0" CELLPADDING="0"
+><TR
+><TD
+><FONT SIZE="6"
+>Hawk.Model.Criteria.Types</FONT
+></TD
+><TD ALIGN="right"
+><TABLE CLASS="narrow" CELLSPACING="0" CELLPADDING="0"
+><TR
+><TD CLASS="infohead"
+>Portability</TD
+><TD CLASS="infoval"
+>portable</TD
+></TR
+><TR
+><TD CLASS="infohead"
+>Stability</TD
+><TD CLASS="infoval"
+>experimental</TD
+></TR
+><TR
+><TD CLASS="infohead"
+>Maintainer</TD
+><TD CLASS="infoval"
+>{inf6254, inf6509}fh-wedel.de</TD
+></TR
+></TABLE
+></TD
+></TR
+></TABLE
+></TD
+></TR
+><TR
+><TD CLASS="s15"
+></TD
+></TR
+><TR
+><TD CLASS="section1"
+>Description</TD
+></TR
+><TR
+><TD CLASS="doc"
+><P
+>Version     :  $Id: Types.hs 307 2009-05-06 10:29:12Z inf6254 $
+</P
+><P
+>Types for the criteria api
+</P
+></TD
+></TR
+><TR
+><TD CLASS="s15"
+></TD
+></TR
+><TR
+><TD CLASS="section1"
+>Synopsis</TD
+></TR
+><TR
+><TD CLASS="s15"
+></TD
+></TR
+><TR
+><TD CLASS="body"
+><TABLE CLASS="vanilla" CELLSPACING="0" CELLPADDING="0"
+><TR
+><TD CLASS="decl"
+><SPAN CLASS="keyword"
+>class</SPAN
+>  <A HREF="#t%3AShowSql"
+>ShowSql</A
+> p  <SPAN CLASS="keyword"
+>where</SPAN
+></TD
+></TR
+><TR
+><TD CLASS="body"
+><TABLE CLASS="vanilla" CELLSPACING="0" CELLPADDING="0"
+><TR
+><TD CLASS="decl"
+><A HREF="#v%3AshowSql"
+>showSql</A
+> :: p -&gt; <A HREF="/home/ghc612/ghc-6.12.1//share/doc/ghc/html/libraries/base-4.2.0.0/Data-Char.html#t%3AString"
+>String</A
+></TD
+></TR
+></TABLE
+></TD
+></TR
+><TR
+><TD CLASS="s8"
+></TD
+></TR
+><TR
+><TD CLASS="decl"
+><SPAN CLASS="keyword"
+>class</SPAN
+>  <A HREF="#t%3AGetValues"
+>GetValues</A
+> c  <SPAN CLASS="keyword"
+>where</SPAN
+></TD
+></TR
+><TR
+><TD CLASS="body"
+><TABLE CLASS="vanilla" CELLSPACING="0" CELLPADDING="0"
+><TR
+><TD CLASS="decl"
+><A HREF="#v%3AgetValues"
+>getValues</A
+> :: c -&gt; [<A HREF="Hawk-Model-Types.html#t%3ASqlValue"
+>SqlValue</A
+>]</TD
+></TR
+></TABLE
+></TD
+></TR
+><TR
+><TD CLASS="s8"
+></TD
+></TR
+><TR
+><TD CLASS="decl"
+><A HREF="#v%3AtoExprPair"
+>toExprPair</A
+> :: (<A HREF="Hawk-Model-Criteria-Types.html#t%3AGetValues"
+>GetValues</A
+> c, <A HREF="Hawk-Model-Criteria-Types.html#t%3AShowSql"
+>ShowSql</A
+> c) =&gt; c -&gt; <A HREF="Hawk-Model-Criteria-Types.html#t%3ASqlExprPair"
+>SqlExprPair</A
+></TD
+></TR
+><TR
+><TD CLASS="s8"
+></TD
+></TR
+><TR
+><TD CLASS="decl"
+><SPAN CLASS="keyword"
+>type</SPAN
+> <A HREF="#t%3ASqlExprPair"
+>SqlExprPair</A
+> = (<A HREF="/home/ghc612/ghc-6.12.1//share/doc/ghc/html/libraries/base-4.2.0.0/Data-Char.html#t%3AString"
+>String</A
+>, [<A HREF="Hawk-Model-Types.html#t%3ASqlValue"
+>SqlValue</A
+>])</TD
+></TR
+><TR
+><TD CLASS="s8"
+></TD
+></TR
+><TR
+><TD CLASS="decl"
+>module <A HREF="Hawk-Model-Types.html"
+>Hawk.Model.Types</A
+></TD
+></TR
+></TABLE
+></TD
+></TR
+><TR
+><TD CLASS="s15"
+></TD
+></TR
+><TR
+><TD CLASS="section1"
+>Documentation</TD
+></TR
+><TR
+><TD CLASS="s15"
+></TD
+></TR
+><TR
+><TD CLASS="decl"
+><SPAN CLASS="keyword"
+>class</SPAN
+>  <A NAME="t:ShowSql"
+><A NAME="t%3AShowSql"
+></A
+></A
+><B
+>ShowSql</B
+> p  <SPAN CLASS="keyword"
+>where</SPAN
+></TD
+></TR
+><TR
+><TD CLASS="body"
+><TABLE CLASS="vanilla" CELLSPACING="0" CELLPADDING="0"
+><TR
+><TD CLASS="ndoc"
+>SQL-Generating
+</TD
+></TR
+><TR
+><TD CLASS="s8"
+></TD
+></TR
+><TR
+><TD CLASS="section4"
+>Methods</TD
+></TR
+><TR
+><TD CLASS="body"
+><TABLE CLASS="vanilla" CELLSPACING="0" CELLPADDING="0"
+><TR
+><TD CLASS="decl"
+><A NAME="v:showSql"
+><A NAME="v%3AshowSql"
+></A
+></A
+><B
+>showSql</B
+> :: p -&gt; <A HREF="/home/ghc612/ghc-6.12.1//share/doc/ghc/html/libraries/base-4.2.0.0/Data-Char.html#t%3AString"
+>String</A
+></TD
+></TR
+></TABLE
+></TD
+></TR
+><TR
+><TD CLASS="s8"
+></TD
+></TR
+><TR
+><TD CLASS="section4"
+><IMG SRC="minus.gif" CLASS="coll" ONCLICK="toggle(this,'i:ShowSql')" ALT="show/hide"
+> Instances</TD
+></TR
+><TR
+><TD CLASS="body"
+><DIV ID="i:ShowSql" STYLE="display:block;"
+><TABLE CLASS="vanilla" CELLSPACING="1" CELLPADDING="0"
+><TR
+><TD CLASS="arg"
+><A HREF="Hawk-Model-Criteria-Types.html#t%3AShowSql"
+>ShowSql</A
+> <A HREF="Hawk-Model-Types.html#t%3ASqlValue"
+>SqlValue</A
+></TD
+><TD CLASS="rdoc"
+></TD
+></TR
+><TR
+><TD CLASS="arg"
+><A HREF="Hawk-Model-Criteria-Types.html#t%3AShowSql"
+>ShowSql</A
+> <A HREF="Hawk-Model-Criteria-Order.html#t%3AOrder"
+>Order</A
+></TD
+><TD CLASS="rdoc"
+></TD
+></TR
+><TR
+><TD CLASS="arg"
+><A HREF="Hawk-Model-Criteria-Types.html#t%3AShowSql"
+>ShowSql</A
+> OrderType</TD
+><TD CLASS="rdoc"
+></TD
+></TR
+><TR
+><TD CLASS="arg"
+><A HREF="Hawk-Model-Criteria-Types.html#t%3AShowSql"
+>ShowSql</A
+> <A HREF="Hawk-Model-Criteria-Projection.html#t%3AProjection"
+>Projection</A
+></TD
+><TD CLASS="rdoc"
+></TD
+></TR
+><TR
+><TD CLASS="arg"
+><A HREF="Hawk-Model-Criteria-Types.html#t%3AShowSql"
+>ShowSql</A
+> Op</TD
+><TD CLASS="rdoc"
+></TD
+></TR
+><TR
+><TD CLASS="arg"
+><A HREF="Hawk-Model-Criteria-Types.html#t%3AShowSql"
+>ShowSql</A
+> BinOp</TD
+><TD CLASS="rdoc"
+></TD
+></TR
+><TR
+><TD CLASS="arg"
+><A HREF="Hawk-Model-Criteria-Types.html#t%3AShowSql"
+>ShowSql</A
+> UnOp</TD
+><TD CLASS="rdoc"
+></TD
+></TR
+><TR
+><TD CLASS="arg"
+><A HREF="Hawk-Model-Criteria-Types.html#t%3AShowSql"
+>ShowSql</A
+> <A HREF="Hawk-Model-Criteria-Restriction.html#t%3ACompareValue"
+>CompareValue</A
+></TD
+><TD CLASS="rdoc"
+></TD
+></TR
+><TR
+><TD CLASS="arg"
+><A HREF="Hawk-Model-Criteria-Types.html#t%3AShowSql"
+>ShowSql</A
+> SimpleRestriction</TD
+><TD CLASS="rdoc"
+></TD
+></TR
+><TR
+><TD CLASS="arg"
+><A HREF="Hawk-Model-Criteria-Types.html#t%3AShowSql"
+>ShowSql</A
+> LogicOp</TD
+><TD CLASS="rdoc"
+></TD
+></TR
+><TR
+><TD CLASS="arg"
+><A HREF="Hawk-Model-Criteria-Types.html#t%3AShowSql"
+>ShowSql</A
+> <A HREF="Hawk-Model-Criteria-Restriction.html#t%3ARestriction"
+>Restriction</A
+></TD
+><TD CLASS="rdoc"
+></TD
+></TR
+><TR
+><TD CLASS="arg"
+><A HREF="Hawk-Model-Criteria-Types.html#t%3AShowSql"
+>ShowSql</A
+> <A HREF="Hawk-Model-Criteria-Criteria.html#t%3AManipulation"
+>Manipulation</A
+></TD
+><TD CLASS="rdoc"
+></TD
+></TR
+><TR
+><TD CLASS="arg"
+><A HREF="Hawk-Model-Criteria-Types.html#t%3AShowSql"
+>ShowSql</A
+> <A HREF="Hawk-Model-Criteria-Criteria.html#t%3AQuery"
+>Query</A
+></TD
+><TD CLASS="rdoc"
+></TD
+></TR
+><TR
+><TD CLASS="arg"
+><A HREF="Hawk-Model-Criteria-Types.html#t%3AShowSql"
+>ShowSql</A
+> <A HREF="Hawk-Model-Criteria-Criteria.html#t%3ACriteria"
+>Criteria</A
+></TD
+><TD CLASS="rdoc"
+></TD
+></TR
+></TABLE
+></DIV
+></TD
+></TR
+></TABLE
+></TD
+></TR
+><TR
+><TD CLASS="s15"
+></TD
+></TR
+><TR
+><TD CLASS="decl"
+><SPAN CLASS="keyword"
+>class</SPAN
+>  <A NAME="t:GetValues"
+><A NAME="t%3AGetValues"
+></A
+></A
+><B
+>GetValues</B
+> c  <SPAN CLASS="keyword"
+>where</SPAN
+></TD
+></TR
+><TR
+><TD CLASS="body"
+><TABLE CLASS="vanilla" CELLSPACING="0" CELLPADDING="0"
+><TR
+><TD CLASS="ndoc"
+>Getting out the values
+</TD
+></TR
+><TR
+><TD CLASS="s8"
+></TD
+></TR
+><TR
+><TD CLASS="section4"
+>Methods</TD
+></TR
+><TR
+><TD CLASS="body"
+><TABLE CLASS="vanilla" CELLSPACING="0" CELLPADDING="0"
+><TR
+><TD CLASS="decl"
+><A NAME="v:getValues"
+><A NAME="v%3AgetValues"
+></A
+></A
+><B
+>getValues</B
+> :: c -&gt; [<A HREF="Hawk-Model-Types.html#t%3ASqlValue"
+>SqlValue</A
+>]</TD
+></TR
+></TABLE
+></TD
+></TR
+><TR
+><TD CLASS="s8"
+></TD
+></TR
+><TR
+><TD CLASS="section4"
+><IMG SRC="minus.gif" CLASS="coll" ONCLICK="toggle(this,'i:GetValues')" ALT="show/hide"
+> Instances</TD
+></TR
+><TR
+><TD CLASS="body"
+><DIV ID="i:GetValues" STYLE="display:block;"
+><TABLE CLASS="vanilla" CELLSPACING="1" CELLPADDING="0"
+><TR
+><TD CLASS="arg"
+><A HREF="Hawk-Model-Criteria-Types.html#t%3AGetValues"
+>GetValues</A
+> <A HREF="Hawk-Model-Criteria-Restriction.html#t%3ACompareValue"
+>CompareValue</A
+></TD
+><TD CLASS="rdoc"
+></TD
+></TR
+><TR
+><TD CLASS="arg"
+><A HREF="Hawk-Model-Criteria-Types.html#t%3AGetValues"
+>GetValues</A
+> SimpleRestriction</TD
+><TD CLASS="rdoc"
+></TD
+></TR
+><TR
+><TD CLASS="arg"
+><A HREF="Hawk-Model-Criteria-Types.html#t%3AGetValues"
+>GetValues</A
+> <A HREF="Hawk-Model-Criteria-Restriction.html#t%3ARestriction"
+>Restriction</A
+></TD
+><TD CLASS="rdoc"
+></TD
+></TR
+><TR
+><TD CLASS="arg"
+><A HREF="Hawk-Model-Criteria-Types.html#t%3AGetValues"
+>GetValues</A
+> <A HREF="Hawk-Model-Criteria-Criteria.html#t%3AManipulation"
+>Manipulation</A
+></TD
+><TD CLASS="rdoc"
+></TD
+></TR
+><TR
+><TD CLASS="arg"
+><A HREF="Hawk-Model-Criteria-Types.html#t%3AGetValues"
+>GetValues</A
+> <A HREF="Hawk-Model-Criteria-Criteria.html#t%3AQuery"
+>Query</A
+></TD
+><TD CLASS="rdoc"
+></TD
+></TR
+><TR
+><TD CLASS="arg"
+><A HREF="Hawk-Model-Criteria-Types.html#t%3AGetValues"
+>GetValues</A
+> <A HREF="Hawk-Model-Criteria-Criteria.html#t%3ACriteria"
+>Criteria</A
+></TD
+><TD CLASS="rdoc"
+></TD
+></TR
+></TABLE
+></DIV
+></TD
+></TR
+></TABLE
+></TD
+></TR
+><TR
+><TD CLASS="s15"
+></TD
+></TR
+><TR
+><TD CLASS="decl"
+><A NAME="v:toExprPair"
+><A NAME="v%3AtoExprPair"
+></A
+></A
+><B
+>toExprPair</B
+> :: (<A HREF="Hawk-Model-Criteria-Types.html#t%3AGetValues"
+>GetValues</A
+> c, <A HREF="Hawk-Model-Criteria-Types.html#t%3AShowSql"
+>ShowSql</A
+> c) =&gt; c -&gt; <A HREF="Hawk-Model-Criteria-Types.html#t%3ASqlExprPair"
+>SqlExprPair</A
+></TD
+></TR
+><TR
+><TD CLASS="doc"
+>Converts a ExprPair for HDBC
+</TD
+></TR
+><TR
+><TD CLASS="s15"
+></TD
+></TR
+><TR
+><TD CLASS="decl"
+><SPAN CLASS="keyword"
+>type</SPAN
+> <A NAME="t:SqlExprPair"
+><A NAME="t%3ASqlExprPair"
+></A
+></A
+><B
+>SqlExprPair</B
+> = (<A HREF="/home/ghc612/ghc-6.12.1//share/doc/ghc/html/libraries/base-4.2.0.0/Data-Char.html#t%3AString"
+>String</A
+>, [<A HREF="Hawk-Model-Types.html#t%3ASqlValue"
+>SqlValue</A
+>])</TD
+></TR
+><TR
+><TD CLASS="doc"
+>A Pair from query string and sql values for HDBC
+</TD
+></TR
+><TR
+><TD CLASS="s15"
+></TD
+></TR
+><TR
+><TD CLASS="decl"
+>module <A HREF="Hawk-Model-Types.html"
+>Hawk.Model.Types</A
+></TD
+></TR
+><TR
+><TD CLASS="s15"
+></TD
+></TR
+><TR
+><TD CLASS="botbar"
+>Produced by <A HREF="http://www.haskell.org/haddock/"
+>Haddock</A
+> version 2.7.2</TD
+></TR
+></TABLE
+></BODY
+></HTML
+>

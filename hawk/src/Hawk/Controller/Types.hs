@@ -16,7 +16,7 @@
     GeneralizedNewtypeDeriving, TypeFamilies, UndecidableInstances #-}
 module Hawk.Controller.Types
   ( Options
-  , BasicConfiguration (..)
+  , AppEnvironment (..)
   , RequestEnv (..)
   , ResponseState (..)
   , HasState
@@ -58,14 +58,16 @@ import Data.Map (Map)
 import Database.HDBC ( ConnWrapper )
 import Hack
 import Network.CGI.Cookie ( Cookie )
+import System.Log.Logger ( Priority )
 
 -- --------------------------------------------------------------------------
 -- Options, BasicConfiguration, ResponseEnv, ResponseState
 -- --------------------------------------------------------------------------
 type Options = [(String, String)]
 
-data BasicConfiguration = BasicConfiguration
-  { sessionStore :: SessionStore
+data AppEnvironment = AppEnvironment
+  { dbConnection :: ConnWrapper
+  , sessionStore :: SessionStore
   , sessionOpts  :: SessionOpts
   , authType     :: AuthType
   , authOpts     :: [String]
@@ -76,14 +78,14 @@ data BasicConfiguration = BasicConfiguration
   , error404file :: String
   , error500file :: String
   , confOptions  :: Options
+  , envOptions   :: Options 
+  , logLevels    :: [(String, Priority)]
+  , appData      :: (AppConfiguration a, MonadIO m) => m a -- type defined by application
   }
 
 data RequestEnv = RequestEnv
-  { databaseConnection :: ConnWrapper
-  , configuration      :: BasicConfiguration
-  , request            :: Hack.Env
-  , environmentOptions :: Options
-  , appConfiguration   :: (AppConfiguration a, MonadIO m) => m a -- type defined by application
+  { configuration :: AppEnvironment
+  , request       :: Hack.Env
   }
 
 data ResponseState = ResponseState
@@ -99,7 +101,7 @@ instance Default ResponseState where def = ResponseState def def def def def
 class ( MonadReader RequestEnv m, MonadState ResponseState m, MonadCatchIO m ) => HasState m where
 
 instance (MonadReader RequestEnv m, MonadCatchIO m) => MonadDB m where
-  getConnection = asks databaseConnection
+  getConnection = asks (dbConnection . configuration)
 
 -- --------------------------------------------------------------------------
 -- EnvController

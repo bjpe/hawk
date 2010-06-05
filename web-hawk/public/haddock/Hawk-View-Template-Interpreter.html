@@ -1,0 +1,407 @@
+<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN" "http://www.w3.org/TR/html4/loose.dtd">
+<!--Rendered using the Haskell Html Library v0.2-->
+<HTML
+><HEAD
+><META HTTP-EQUIV="Content-Type" CONTENT="text/html; charset=UTF-8"
+><TITLE
+>Hawk.View.Template.Interpreter</TITLE
+><LINK HREF="haddock.css" REL="stylesheet" TYPE="text/css"
+><SCRIPT SRC="haddock-util.js" TYPE="text/javascript"
+></SCRIPT
+><SCRIPT TYPE="text/javascript"
+>window.onload = function () {setSynopsis("mini_Hawk-View-Template-Interpreter.html")};</SCRIPT
+></HEAD
+><BODY
+><TABLE CLASS="vanilla" CELLSPACING="0" CELLPADDING="0"
+><TR
+><TD CLASS="topbar"
+><TABLE CLASS="vanilla" CELLSPACING="0" CELLPADDING="0"
+><TR
+><TD
+><IMG SRC="haskell_icon.gif" WIDTH="16" HEIGHT="16" ALT=" "
+></TD
+><TD CLASS="title"
+>Hawk-0.0.2: Haskell Web Application Kit</TD
+><TD CLASS="topbut"
+><A HREF="index.html"
+>Contents</A
+></TD
+><TD CLASS="topbut"
+><A HREF="doc-index.html"
+>Index</A
+></TD
+></TR
+></TABLE
+></TD
+></TR
+><TR
+><TD CLASS="modulebar"
+><TABLE CLASS="vanilla" CELLSPACING="0" CELLPADDING="0"
+><TR
+><TD
+><FONT SIZE="6"
+>Hawk.View.Template.Interpreter</FONT
+></TD
+></TR
+></TABLE
+></TD
+></TR
+><TR
+><TD CLASS="s15"
+></TD
+></TR
+><TR
+><TD CLASS="s15"
+></TD
+></TR
+><TR
+><TD CLASS="section1"
+>Synopsis</TD
+></TR
+><TR
+><TD CLASS="s15"
+></TD
+></TR
+><TR
+><TD CLASS="body"
+><TABLE CLASS="vanilla" CELLSPACING="0" CELLPADDING="0"
+><TR
+><TD CLASS="decl"
+><A HREF="#v%3AevalTemplate"
+>evalTemplate</A
+> :: (<A HREF="Hawk-View-TemplateView.html#t%3AXmlTree"
+>XmlTree</A
+> -&gt; <A HREF="Hawk-Controller-Types.html#t%3AStateController"
+>StateController</A
+> [<A HREF="Hawk-View-TemplateView.html#t%3AXmlTree"
+>XmlTree</A
+>]) -&gt; <A HREF="/home/ghc612/ghc-6.12.1//share/doc/ghc/html/libraries/base-4.2.0.0/System-IO.html#t%3AFilePath"
+>FilePath</A
+> -&gt; <A HREF="Hawk-Controller-Types.html#t%3AStateController"
+>StateController</A
+> <A HREF="Hawk-Controller-Types.html#t%3AByteString"
+>ByteString</A
+></TD
+></TR
+><TR
+><TD CLASS="s8"
+></TD
+></TR
+><TR
+><TD CLASS="decl"
+><A HREF="#v%3Abind"
+>bind</A
+> :: ArrowXml cat =&gt; [(<A HREF="/home/ghc612/ghc-6.12.1//share/doc/ghc/html/libraries/base-4.2.0.0/Data-Char.html#t%3AString"
+>String</A
+>, [<A HREF="Hawk-View-TemplateView.html#t%3AXmlTree"
+>XmlTree</A
+>])] -&gt; cat <A HREF="Hawk-View-TemplateView.html#t%3AXmlTree"
+>XmlTree</A
+> <A HREF="Hawk-View-TemplateView.html#t%3AXmlTree"
+>XmlTree</A
+></TD
+></TR
+><TR
+><TD CLASS="s8"
+></TD
+></TR
+><TR
+><TD CLASS="decl"
+><A HREF="#v%3AbindAttribute"
+>bindAttribute</A
+> :: ArrowXml cat =&gt; [(<A HREF="/home/ghc612/ghc-6.12.1//share/doc/ghc/html/libraries/base-4.2.0.0/Data-Char.html#t%3AString"
+>String</A
+>, [<A HREF="Hawk-View-TemplateView.html#t%3AXmlTree"
+>XmlTree</A
+>])] -&gt; cat <A HREF="Hawk-View-TemplateView.html#t%3AXmlTree"
+>XmlTree</A
+> <A HREF="Hawk-View-TemplateView.html#t%3AXmlTree"
+>XmlTree</A
+></TD
+></TR
+><TR
+><TD CLASS="s8"
+></TD
+></TR
+><TR
+><TD CLASS="decl"
+><A HREF="#v%3AprepareDoc"
+>prepareDoc</A
+> ::  IOStateArrow s <A HREF="/home/ghc612/ghc-6.12.1//share/doc/ghc/html/libraries/base-4.2.0.0/Data-Char.html#t%3AString"
+>String</A
+> <A HREF="Hawk-View-TemplateView.html#t%3AXmlTree"
+>XmlTree</A
+></TD
+></TR
+><TR
+><TD CLASS="s8"
+></TD
+></TR
+><TR
+><TD CLASS="decl"
+><A HREF="#v%3AbindTyped"
+>bindTyped</A
+> :: <A HREF="Hawk-View-TemplateView.html#t%3AXmlTree"
+>XmlTree</A
+> -&gt; <A HREF="Hawk-View-Template-Interpreter.html#t%3ABindTree"
+>BindTree</A
+> -&gt; [(<A HREF="/home/ghc612/ghc-6.12.1//share/doc/ghc/html/libraries/base-4.2.0.0/Data-Char.html#t%3AString"
+>String</A
+>, [(<A HREF="/home/ghc612/ghc-6.12.1//share/doc/ghc/html/libraries/base-4.2.0.0/Data-Char.html#t%3AString"
+>String</A
+>, <A HREF="/home/ghc612/ghc-6.12.1//share/doc/ghc/html/libraries/base-4.2.0.0/Data-Char.html#t%3AString"
+>String</A
+>)])] -&gt; [<A HREF="Hawk-View-TemplateView.html#t%3AXmlTree"
+>XmlTree</A
+>]</TD
+></TR
+><TR
+><TD CLASS="s8"
+></TD
+></TR
+><TR
+><TD CLASS="decl"
+><SPAN CLASS="keyword"
+>type</SPAN
+> <A HREF="#t%3ABindTree"
+>BindTree</A
+> = <A HREF="Data-EitherMapTree.html#t%3AEitherMapTree"
+>EitherMapTree</A
+> <A HREF="/home/ghc612/ghc-6.12.1//share/doc/ghc/html/libraries/base-4.2.0.0/Data-Char.html#t%3AString"
+>String</A
+> [<A HREF="Hawk-View-TemplateView.html#t%3AXmlTree"
+>XmlTree</A
+>]</TD
+></TR
+><TR
+><TD CLASS="s8"
+></TD
+></TR
+><TR
+><TD CLASS="decl"
+><A HREF="#v%3AprepareDoc%27"
+>prepareDoc'</A
+> ::  IOStateArrow s <A HREF="/home/ghc612/ghc-6.12.1//share/doc/ghc/html/libraries/base-4.2.0.0/Data-Char.html#t%3AString"
+>String</A
+> <A HREF="Hawk-View-TemplateView.html#t%3AXmlTree"
+>XmlTree</A
+></TD
+></TR
+><TR
+><TD CLASS="s8"
+></TD
+></TR
+><TR
+><TD CLASS="decl"
+><A HREF="#v%3AhawkPrefix"
+>hawkPrefix</A
+> :: <A HREF="/home/ghc612/ghc-6.12.1//share/doc/ghc/html/libraries/base-4.2.0.0/Data-Char.html#t%3AString"
+>String</A
+></TD
+></TR
+></TABLE
+></TD
+></TR
+><TR
+><TD CLASS="s15"
+></TD
+></TR
+><TR
+><TD CLASS="section1"
+>Documentation</TD
+></TR
+><TR
+><TD CLASS="s15"
+></TD
+></TR
+><TR
+><TD CLASS="decl"
+><A NAME="v:evalTemplate"
+><A NAME="v%3AevalTemplate"
+></A
+></A
+><B
+>evalTemplate</B
+> :: (<A HREF="Hawk-View-TemplateView.html#t%3AXmlTree"
+>XmlTree</A
+> -&gt; <A HREF="Hawk-Controller-Types.html#t%3AStateController"
+>StateController</A
+> [<A HREF="Hawk-View-TemplateView.html#t%3AXmlTree"
+>XmlTree</A
+>]) -&gt; <A HREF="/home/ghc612/ghc-6.12.1//share/doc/ghc/html/libraries/base-4.2.0.0/System-IO.html#t%3AFilePath"
+>FilePath</A
+> -&gt; <A HREF="Hawk-Controller-Types.html#t%3AStateController"
+>StateController</A
+> <A HREF="Hawk-Controller-Types.html#t%3AByteString"
+>ByteString</A
+></TD
+></TR
+><TR
+><TD CLASS="s15"
+></TD
+></TR
+><TR
+><TD CLASS="decl"
+><A NAME="v:bind"
+><A NAME="v%3Abind"
+></A
+></A
+><B
+>bind</B
+> :: ArrowXml cat =&gt; [(<A HREF="/home/ghc612/ghc-6.12.1//share/doc/ghc/html/libraries/base-4.2.0.0/Data-Char.html#t%3AString"
+>String</A
+>, [<A HREF="Hawk-View-TemplateView.html#t%3AXmlTree"
+>XmlTree</A
+>])] -&gt; cat <A HREF="Hawk-View-TemplateView.html#t%3AXmlTree"
+>XmlTree</A
+> <A HREF="Hawk-View-TemplateView.html#t%3AXmlTree"
+>XmlTree</A
+></TD
+></TR
+><TR
+><TD CLASS="doc"
+>Inserts the values of a list of (name, value) pairs into a template at the
+  positions defined by bind-Tags.
+</TD
+></TR
+><TR
+><TD CLASS="s15"
+></TD
+></TR
+><TR
+><TD CLASS="decl"
+><A NAME="v:bindAttribute"
+><A NAME="v%3AbindAttribute"
+></A
+></A
+><B
+>bindAttribute</B
+> :: ArrowXml cat =&gt; [(<A HREF="/home/ghc612/ghc-6.12.1//share/doc/ghc/html/libraries/base-4.2.0.0/Data-Char.html#t%3AString"
+>String</A
+>, [<A HREF="Hawk-View-TemplateView.html#t%3AXmlTree"
+>XmlTree</A
+>])] -&gt; cat <A HREF="Hawk-View-TemplateView.html#t%3AXmlTree"
+>XmlTree</A
+> <A HREF="Hawk-View-TemplateView.html#t%3AXmlTree"
+>XmlTree</A
+></TD
+></TR
+><TR
+><TD CLASS="s15"
+></TD
+></TR
+><TR
+><TD CLASS="decl"
+><A NAME="v:prepareDoc"
+><A NAME="v%3AprepareDoc"
+></A
+></A
+><B
+>prepareDoc</B
+> ::  IOStateArrow s <A HREF="/home/ghc612/ghc-6.12.1//share/doc/ghc/html/libraries/base-4.2.0.0/Data-Char.html#t%3AString"
+>String</A
+> <A HREF="Hawk-View-TemplateView.html#t%3AXmlTree"
+>XmlTree</A
+></TD
+></TR
+><TR
+><TD CLASS="s15"
+></TD
+></TR
+><TR
+><TD CLASS="decl"
+><A NAME="v:bindTyped"
+><A NAME="v%3AbindTyped"
+></A
+></A
+><B
+>bindTyped</B
+> :: <A HREF="Hawk-View-TemplateView.html#t%3AXmlTree"
+>XmlTree</A
+> -&gt; <A HREF="Hawk-View-Template-Interpreter.html#t%3ABindTree"
+>BindTree</A
+> -&gt; [(<A HREF="/home/ghc612/ghc-6.12.1//share/doc/ghc/html/libraries/base-4.2.0.0/Data-Char.html#t%3AString"
+>String</A
+>, [(<A HREF="/home/ghc612/ghc-6.12.1//share/doc/ghc/html/libraries/base-4.2.0.0/Data-Char.html#t%3AString"
+>String</A
+>, <A HREF="/home/ghc612/ghc-6.12.1//share/doc/ghc/html/libraries/base-4.2.0.0/Data-Char.html#t%3AString"
+>String</A
+>)])] -&gt; [<A HREF="Hawk-View-TemplateView.html#t%3AXmlTree"
+>XmlTree</A
+>]</TD
+></TR
+><TR
+><TD CLASS="s15"
+></TD
+></TR
+><TR
+><TD CLASS="decl"
+><SPAN CLASS="keyword"
+>type</SPAN
+> <A NAME="t:BindTree"
+><A NAME="t%3ABindTree"
+></A
+></A
+><B
+>BindTree</B
+> = <A HREF="Data-EitherMapTree.html#t%3AEitherMapTree"
+>EitherMapTree</A
+> <A HREF="/home/ghc612/ghc-6.12.1//share/doc/ghc/html/libraries/base-4.2.0.0/Data-Char.html#t%3AString"
+>String</A
+> [<A HREF="Hawk-View-TemplateView.html#t%3AXmlTree"
+>XmlTree</A
+>]</TD
+></TR
+><TR
+><TD CLASS="s15"
+></TD
+></TR
+><TR
+><TD CLASS="decl"
+><A NAME="v:prepareDoc'"
+><A NAME="v%3AprepareDoc%27"
+></A
+></A
+><B
+>prepareDoc'</B
+> ::  IOStateArrow s <A HREF="/home/ghc612/ghc-6.12.1//share/doc/ghc/html/libraries/base-4.2.0.0/Data-Char.html#t%3AString"
+>String</A
+> <A HREF="Hawk-View-TemplateView.html#t%3AXmlTree"
+>XmlTree</A
+></TD
+></TR
+><TR
+><TD CLASS="s15"
+></TD
+></TR
+><TR
+><TD CLASS="decl"
+><A NAME="v:hawkPrefix"
+><A NAME="v%3AhawkPrefix"
+></A
+></A
+><B
+>hawkPrefix</B
+> :: <A HREF="/home/ghc612/ghc-6.12.1//share/doc/ghc/html/libraries/base-4.2.0.0/Data-Char.html#t%3AString"
+>String</A
+></TD
+></TR
+><TR
+><TD CLASS="doc"
+>The Prefix of the hawk namespace
+</TD
+></TR
+><TR
+><TD CLASS="s15"
+></TD
+></TR
+><TR
+><TD CLASS="botbar"
+>Produced by <A HREF="http://www.haskell.org/haddock/"
+>Haddock</A
+> version 2.7.2</TD
+></TR
+></TABLE
+></BODY
+></HTML
+>

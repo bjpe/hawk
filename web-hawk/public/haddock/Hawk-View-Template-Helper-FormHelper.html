@@ -1,0 +1,1290 @@
+<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN" "http://www.w3.org/TR/html4/loose.dtd">
+<!--Rendered using the Haskell Html Library v0.2-->
+<HTML
+><HEAD
+><META HTTP-EQUIV="Content-Type" CONTENT="text/html; charset=UTF-8"
+><TITLE
+>Hawk.View.Template.Helper.FormHelper</TITLE
+><LINK HREF="haddock.css" REL="stylesheet" TYPE="text/css"
+><SCRIPT SRC="haddock-util.js" TYPE="text/javascript"
+></SCRIPT
+><SCRIPT TYPE="text/javascript"
+>window.onload = function () {setSynopsis("mini_Hawk-View-Template-Helper-FormHelper.html")};</SCRIPT
+></HEAD
+><BODY
+><TABLE CLASS="vanilla" CELLSPACING="0" CELLPADDING="0"
+><TR
+><TD CLASS="topbar"
+><TABLE CLASS="vanilla" CELLSPACING="0" CELLPADDING="0"
+><TR
+><TD
+><IMG SRC="haskell_icon.gif" WIDTH="16" HEIGHT="16" ALT=" "
+></TD
+><TD CLASS="title"
+>Hawk-0.0.2: Haskell Web Application Kit</TD
+><TD CLASS="topbut"
+><A HREF="index.html"
+>Contents</A
+></TD
+><TD CLASS="topbut"
+><A HREF="doc-index.html"
+>Index</A
+></TD
+></TR
+></TABLE
+></TD
+></TR
+><TR
+><TD CLASS="modulebar"
+><TABLE CLASS="vanilla" CELLSPACING="0" CELLPADDING="0"
+><TR
+><TD
+><FONT SIZE="6"
+>Hawk.View.Template.Helper.FormHelper</FONT
+></TD
+><TD ALIGN="right"
+><TABLE CLASS="narrow" CELLSPACING="0" CELLPADDING="0"
+><TR
+><TD CLASS="infohead"
+>Portability</TD
+><TD CLASS="infoval"
+>portable</TD
+></TR
+><TR
+><TD CLASS="infohead"
+>Stability</TD
+><TD CLASS="infoval"
+>experimental</TD
+></TR
+><TR
+><TD CLASS="infohead"
+>Maintainer</TD
+><TD CLASS="infoval"
+>{inf6254, inf6509}fh-wedel.de</TD
+></TR
+></TABLE
+></TD
+></TR
+></TABLE
+></TD
+></TR
+><TR
+><TD CLASS="s15"
+></TD
+></TR
+><TR
+><TD CLASS="section1"
+>Description</TD
+></TR
+><TR
+><TD CLASS="doc"
+><P
+>Version     :  $Id: Main.hs 57 2009-05-29 11:33:59Z inf6254 $
+</P
+><P
+>Helper functions for creating xhtml form elements
+</P
+></TD
+></TR
+><TR
+><TD CLASS="s15"
+></TD
+></TR
+><TR
+><TD CLASS="section1"
+>Synopsis</TD
+></TR
+><TR
+><TD CLASS="s15"
+></TD
+></TR
+><TR
+><TD CLASS="body"
+><TABLE CLASS="vanilla" CELLSPACING="0" CELLPADDING="0"
+><TR
+><TD CLASS="decl"
+><A HREF="#v%3Aselect"
+>select</A
+> :: <A HREF="/home/ghc612/ghc-6.12.1//share/doc/ghc/html/libraries/base-4.2.0.0/Data-Char.html#t%3AString"
+>String</A
+> -&gt; XmlTrees -&gt; Attributes -&gt; <A HREF="Hawk-View-TemplateView.html#t%3AXmlTree"
+>XmlTree</A
+></TD
+></TR
+><TR
+><TD CLASS="s8"
+></TD
+></TR
+><TR
+><TD CLASS="decl"
+><A HREF="#v%3Amultiselect"
+>multiselect</A
+> :: <A HREF="/home/ghc612/ghc-6.12.1//share/doc/ghc/html/libraries/base-4.2.0.0/Data-Char.html#t%3AString"
+>String</A
+> -&gt; XmlTrees -&gt; Attributes -&gt; <A HREF="Hawk-View-TemplateView.html#t%3AXmlTree"
+>XmlTree</A
+></TD
+></TR
+><TR
+><TD CLASS="s8"
+></TD
+></TR
+><TR
+><TD CLASS="decl"
+><A HREF="#v%3Aoptions"
+>options</A
+> ::  (a -&gt; <A HREF="/home/ghc612/ghc-6.12.1//share/doc/ghc/html/libraries/base-4.2.0.0/Data-Char.html#t%3AString"
+>String</A
+>) -&gt; (a -&gt; <A HREF="/home/ghc612/ghc-6.12.1//share/doc/ghc/html/libraries/base-4.2.0.0/Data-Char.html#t%3AString"
+>String</A
+>) -&gt; [a] -&gt; XmlTrees</TD
+></TR
+><TR
+><TD CLASS="s8"
+></TD
+></TR
+><TR
+><TD CLASS="decl"
+><A HREF="#v%3AoptionsWithSelected"
+>optionsWithSelected</A
+> :: (<A HREF="/home/ghc612/ghc-6.12.1//share/doc/ghc/html/libraries/base-4.2.0.0/Data-Eq.html#t%3AEq"
+>Eq</A
+> a, <A HREF="/home/ghc612/ghc-6.12.1//share/doc/ghc/html/libraries/base-4.2.0.0/Text-Show.html#t%3AShow"
+>Show</A
+> a) =&gt; (a -&gt; <A HREF="/home/ghc612/ghc-6.12.1//share/doc/ghc/html/libraries/base-4.2.0.0/Data-Char.html#t%3AString"
+>String</A
+>) -&gt; (a -&gt; <A HREF="/home/ghc612/ghc-6.12.1//share/doc/ghc/html/libraries/base-4.2.0.0/Data-Char.html#t%3AString"
+>String</A
+>) -&gt; a -&gt; [a] -&gt; XmlTrees</TD
+></TR
+><TR
+><TD CLASS="s8"
+></TD
+></TR
+><TR
+><TD CLASS="decl"
+><A HREF="#v%3AoptionsFromString"
+>optionsFromString</A
+> :: [(<A HREF="/home/ghc612/ghc-6.12.1//share/doc/ghc/html/libraries/base-4.2.0.0/Data-Char.html#t%3AString"
+>String</A
+>, <A HREF="/home/ghc612/ghc-6.12.1//share/doc/ghc/html/libraries/base-4.2.0.0/Data-Char.html#t%3AString"
+>String</A
+>)] -&gt; XmlTrees</TD
+></TR
+><TR
+><TD CLASS="s8"
+></TD
+></TR
+><TR
+><TD CLASS="decl"
+><A HREF="#v%3Acheckbox"
+>checkbox</A
+> :: <A HREF="/home/ghc612/ghc-6.12.1//share/doc/ghc/html/libraries/base-4.2.0.0/Data-Char.html#t%3AString"
+>String</A
+> -&gt; <A HREF="/home/ghc612/ghc-6.12.1//share/doc/ghc/html/libraries/base-4.2.0.0/Data-Char.html#t%3AString"
+>String</A
+> -&gt; <A HREF="/home/ghc612/ghc-6.12.1//share/doc/ghc/html/libraries/base-4.2.0.0/Data-Bool.html#t%3ABool"
+>Bool</A
+> -&gt; Attributes -&gt; <A HREF="Hawk-View-TemplateView.html#t%3AXmlTree"
+>XmlTree</A
+></TD
+></TR
+><TR
+><TD CLASS="s8"
+></TD
+></TR
+><TR
+><TD CLASS="decl"
+><A HREF="#v%3Aradio"
+>radio</A
+> :: <A HREF="/home/ghc612/ghc-6.12.1//share/doc/ghc/html/libraries/base-4.2.0.0/Data-Char.html#t%3AString"
+>String</A
+> -&gt; <A HREF="/home/ghc612/ghc-6.12.1//share/doc/ghc/html/libraries/base-4.2.0.0/Data-Char.html#t%3AString"
+>String</A
+> -&gt; <A HREF="/home/ghc612/ghc-6.12.1//share/doc/ghc/html/libraries/base-4.2.0.0/Data-Bool.html#t%3ABool"
+>Bool</A
+> -&gt; Attributes -&gt; <A HREF="Hawk-View-TemplateView.html#t%3AXmlTree"
+>XmlTree</A
+></TD
+></TR
+><TR
+><TD CLASS="s8"
+></TD
+></TR
+><TR
+><TD CLASS="decl"
+><A HREF="#v%3Atextfield"
+>textfield</A
+> :: <A HREF="/home/ghc612/ghc-6.12.1//share/doc/ghc/html/libraries/base-4.2.0.0/Data-Char.html#t%3AString"
+>String</A
+> -&gt; <A HREF="/home/ghc612/ghc-6.12.1//share/doc/ghc/html/libraries/base-4.2.0.0/Data-Char.html#t%3AString"
+>String</A
+> -&gt; Attributes -&gt; <A HREF="Hawk-View-TemplateView.html#t%3AXmlTree"
+>XmlTree</A
+></TD
+></TR
+><TR
+><TD CLASS="s8"
+></TD
+></TR
+><TR
+><TD CLASS="decl"
+><A HREF="#v%3Atextarea"
+>textarea</A
+> :: <A HREF="/home/ghc612/ghc-6.12.1//share/doc/ghc/html/libraries/base-4.2.0.0/Data-Char.html#t%3AString"
+>String</A
+> -&gt; <A HREF="/home/ghc612/ghc-6.12.1//share/doc/ghc/html/libraries/base-4.2.0.0/Data-Char.html#t%3AString"
+>String</A
+> -&gt; Attributes -&gt; <A HREF="Hawk-View-TemplateView.html#t%3AXmlTree"
+>XmlTree</A
+></TD
+></TR
+><TR
+><TD CLASS="s8"
+></TD
+></TR
+><TR
+><TD CLASS="decl"
+><A HREF="#v%3Apassword"
+>password</A
+> :: <A HREF="/home/ghc612/ghc-6.12.1//share/doc/ghc/html/libraries/base-4.2.0.0/Data-Char.html#t%3AString"
+>String</A
+> -&gt; <A HREF="/home/ghc612/ghc-6.12.1//share/doc/ghc/html/libraries/base-4.2.0.0/Data-Char.html#t%3AString"
+>String</A
+> -&gt; Attributes -&gt; <A HREF="Hawk-View-TemplateView.html#t%3AXmlTree"
+>XmlTree</A
+></TD
+></TR
+><TR
+><TD CLASS="s8"
+></TD
+></TR
+><TR
+><TD CLASS="decl"
+><A HREF="#v%3Ahidden"
+>hidden</A
+> :: <A HREF="/home/ghc612/ghc-6.12.1//share/doc/ghc/html/libraries/base-4.2.0.0/Data-Char.html#t%3AString"
+>String</A
+> -&gt; <A HREF="/home/ghc612/ghc-6.12.1//share/doc/ghc/html/libraries/base-4.2.0.0/Data-Char.html#t%3AString"
+>String</A
+> -&gt; Attributes -&gt; <A HREF="Hawk-View-TemplateView.html#t%3AXmlTree"
+>XmlTree</A
+></TD
+></TR
+><TR
+><TD CLASS="s8"
+></TD
+></TR
+><TR
+><TD CLASS="decl"
+><A HREF="#v%3Asubmit"
+>submit</A
+> :: <A HREF="/home/ghc612/ghc-6.12.1//share/doc/ghc/html/libraries/base-4.2.0.0/Data-Char.html#t%3AString"
+>String</A
+> -&gt; Attributes -&gt; <A HREF="Hawk-View-TemplateView.html#t%3AXmlTree"
+>XmlTree</A
+></TD
+></TR
+><TR
+><TD CLASS="s8"
+></TD
+></TR
+><TR
+><TD CLASS="decl"
+><A HREF="#v%3AsubmitWithName"
+>submitWithName</A
+> :: <A HREF="/home/ghc612/ghc-6.12.1//share/doc/ghc/html/libraries/base-4.2.0.0/Data-Char.html#t%3AString"
+>String</A
+> -&gt; <A HREF="/home/ghc612/ghc-6.12.1//share/doc/ghc/html/libraries/base-4.2.0.0/Data-Char.html#t%3AString"
+>String</A
+> -&gt; Attributes -&gt; <A HREF="Hawk-View-TemplateView.html#t%3AXmlTree"
+>XmlTree</A
+></TD
+></TR
+><TR
+><TD CLASS="s8"
+></TD
+></TR
+><TR
+><TD CLASS="decl"
+><A HREF="#v%3Afileupload"
+>fileupload</A
+> :: <A HREF="/home/ghc612/ghc-6.12.1//share/doc/ghc/html/libraries/base-4.2.0.0/Data-Char.html#t%3AString"
+>String</A
+> -&gt; Attributes -&gt; <A HREF="Hawk-View-TemplateView.html#t%3AXmlTree"
+>XmlTree</A
+></TD
+></TR
+><TR
+><TD CLASS="s8"
+></TD
+></TR
+><TR
+><TD CLASS="decl"
+><A HREF="#v%3Aform"
+>form</A
+> :: <A HREF="/home/ghc612/ghc-6.12.1//share/doc/ghc/html/libraries/base-4.2.0.0/Data-Char.html#t%3AString"
+>String</A
+> -&gt; <A HREF="/home/ghc612/ghc-6.12.1//share/doc/ghc/html/libraries/base-4.2.0.0/Data-Char.html#t%3AString"
+>String</A
+> -&gt; <A HREF="/home/ghc612/ghc-6.12.1//share/doc/ghc/html/libraries/base-4.2.0.0/Data-Char.html#t%3AString"
+>String</A
+> -&gt; Attributes -&gt; XmlTrees -&gt; <A HREF="Hawk-View-TemplateView.html#t%3AXmlTree"
+>XmlTree</A
+></TD
+></TR
+><TR
+><TD CLASS="s8"
+></TD
+></TR
+><TR
+><TD CLASS="decl"
+><A HREF="#v%3Aslabel"
+>slabel</A
+> :: <A HREF="/home/ghc612/ghc-6.12.1//share/doc/ghc/html/libraries/base-4.2.0.0/Data-Char.html#t%3AString"
+>String</A
+> -&gt; Attributes -&gt; <A HREF="Hawk-View-TemplateView.html#t%3AXmlTree"
+>XmlTree</A
+></TD
+></TR
+><TR
+><TD CLASS="s8"
+></TD
+></TR
+><TR
+><TD CLASS="decl"
+><A HREF="#v%3Alabel"
+>label</A
+> :: <A HREF="/home/ghc612/ghc-6.12.1//share/doc/ghc/html/libraries/base-4.2.0.0/Data-Char.html#t%3AString"
+>String</A
+> -&gt; <A HREF="/home/ghc612/ghc-6.12.1//share/doc/ghc/html/libraries/base-4.2.0.0/Data-Char.html#t%3AString"
+>String</A
+> -&gt; Attributes -&gt; <A HREF="Hawk-View-TemplateView.html#t%3AXmlTree"
+>XmlTree</A
+></TD
+></TR
+><TR
+><TD CLASS="s8"
+></TD
+></TR
+><TR
+><TD CLASS="decl"
+><A HREF="#v%3Atextlink"
+>textlink</A
+> :: <A HREF="/home/ghc612/ghc-6.12.1//share/doc/ghc/html/libraries/base-4.2.0.0/Data-Char.html#t%3AString"
+>String</A
+> -&gt; <A HREF="/home/ghc612/ghc-6.12.1//share/doc/ghc/html/libraries/base-4.2.0.0/Data-Char.html#t%3AString"
+>String</A
+> -&gt; <A HREF="Hawk-View-TemplateView.html#t%3AXmlTree"
+>XmlTree</A
+></TD
+></TR
+><TR
+><TD CLASS="s8"
+></TD
+></TR
+><TR
+><TD CLASS="decl"
+><A HREF="#v%3Alink"
+>link</A
+> :: <A HREF="/home/ghc612/ghc-6.12.1//share/doc/ghc/html/libraries/base-4.2.0.0/Data-Char.html#t%3AString"
+>String</A
+> -&gt; XmlTrees -&gt; <A HREF="Hawk-View-TemplateView.html#t%3AXmlTree"
+>XmlTree</A
+></TD
+></TR
+><TR
+><TD CLASS="s8"
+></TD
+></TR
+><TR
+><TD CLASS="decl"
+><A HREF="#v%3AlinkA"
+>linkA</A
+> :: <A HREF="/home/ghc612/ghc-6.12.1//share/doc/ghc/html/libraries/base-4.2.0.0/Data-Char.html#t%3AString"
+>String</A
+> -&gt; Attributes -&gt; XmlTrees -&gt; <A HREF="Hawk-View-TemplateView.html#t%3AXmlTree"
+>XmlTree</A
+></TD
+></TR
+><TR
+><TD CLASS="s8"
+></TD
+></TR
+><TR
+><TD CLASS="decl"
+><A HREF="#v%3Aimage"
+>image</A
+> :: <A HREF="/home/ghc612/ghc-6.12.1//share/doc/ghc/html/libraries/base-4.2.0.0/Data-Char.html#t%3AString"
+>String</A
+> -&gt; <A HREF="/home/ghc612/ghc-6.12.1//share/doc/ghc/html/libraries/base-4.2.0.0/Data-Char.html#t%3AString"
+>String</A
+> -&gt; Attributes -&gt; <A HREF="Hawk-View-TemplateView.html#t%3AXmlTree"
+>XmlTree</A
+></TD
+></TR
+></TABLE
+></TD
+></TR
+><TR
+><TD CLASS="s15"
+></TD
+></TR
+><TR
+><TD CLASS="section1"
+>Documentation</TD
+></TR
+><TR
+><TD CLASS="s15"
+></TD
+></TR
+><TR
+><TD CLASS="decl"
+><A NAME="v:select"
+><A NAME="v%3Aselect"
+></A
+></A
+><B
+>select</B
+></TD
+></TR
+><TR
+><TD CLASS="body"
+><TABLE CLASS="vanilla" CELLSPACING="0" CELLPADDING="0"
+><TR
+><TD CLASS="arg"
+>:: <A HREF="/home/ghc612/ghc-6.12.1//share/doc/ghc/html/libraries/base-4.2.0.0/Data-Char.html#t%3AString"
+>String</A
+></TD
+><TD CLASS="rdoc"
+>name of the field
+</TD
+></TR
+><TR
+><TD CLASS="arg"
+>-&gt; XmlTrees</TD
+><TD CLASS="rdoc"
+>options to select
+</TD
+></TR
+><TR
+><TD CLASS="arg"
+>-&gt; Attributes</TD
+><TD CLASS="rdoc"
+>additional <TT
+>Attributes</TT
+> for the select tag
+</TD
+></TR
+><TR
+><TD CLASS="arg"
+>-&gt; <A HREF="Hawk-View-TemplateView.html#t%3AXmlTree"
+>XmlTree</A
+></TD
+><TD CLASS="rdoc"
+></TD
+></TR
+><TR
+><TD CLASS="ndoc" COLSPAN="2"
+>Create a dropdown selection box
+</TD
+></TR
+></TABLE
+></TD
+></TR
+><TR
+><TD CLASS="s15"
+></TD
+></TR
+><TR
+><TD CLASS="decl"
+><A NAME="v:multiselect"
+><A NAME="v%3Amultiselect"
+></A
+></A
+><B
+>multiselect</B
+></TD
+></TR
+><TR
+><TD CLASS="body"
+><TABLE CLASS="vanilla" CELLSPACING="0" CELLPADDING="0"
+><TR
+><TD CLASS="arg"
+>:: <A HREF="/home/ghc612/ghc-6.12.1//share/doc/ghc/html/libraries/base-4.2.0.0/Data-Char.html#t%3AString"
+>String</A
+></TD
+><TD CLASS="rdoc"
+>name of the field
+</TD
+></TR
+><TR
+><TD CLASS="arg"
+>-&gt; XmlTrees</TD
+><TD CLASS="rdoc"
+>options to select
+</TD
+></TR
+><TR
+><TD CLASS="arg"
+>-&gt; Attributes</TD
+><TD CLASS="rdoc"
+>additional <TT
+>Attributes</TT
+> for the select tag
+</TD
+></TR
+><TR
+><TD CLASS="arg"
+>-&gt; <A HREF="Hawk-View-TemplateView.html#t%3AXmlTree"
+>XmlTree</A
+></TD
+><TD CLASS="rdoc"
+></TD
+></TR
+><TR
+><TD CLASS="ndoc" COLSPAN="2"
+>Create a multiselect dropdown box
+</TD
+></TR
+></TABLE
+></TD
+></TR
+><TR
+><TD CLASS="s15"
+></TD
+></TR
+><TR
+><TD CLASS="decl"
+><A NAME="v:options"
+><A NAME="v%3Aoptions"
+></A
+></A
+><B
+>options</B
+> ::  (a -&gt; <A HREF="/home/ghc612/ghc-6.12.1//share/doc/ghc/html/libraries/base-4.2.0.0/Data-Char.html#t%3AString"
+>String</A
+>) -&gt; (a -&gt; <A HREF="/home/ghc612/ghc-6.12.1//share/doc/ghc/html/libraries/base-4.2.0.0/Data-Char.html#t%3AString"
+>String</A
+>) -&gt; [a] -&gt; XmlTrees</TD
+></TR
+><TR
+><TD CLASS="doc"
+>Create a list of options
+</TD
+></TR
+><TR
+><TD CLASS="s15"
+></TD
+></TR
+><TR
+><TD CLASS="decl"
+><A NAME="v:optionsWithSelected"
+><A NAME="v%3AoptionsWithSelected"
+></A
+></A
+><B
+>optionsWithSelected</B
+></TD
+></TR
+><TR
+><TD CLASS="body"
+><TABLE CLASS="vanilla" CELLSPACING="0" CELLPADDING="0"
+><TR
+><TD CLASS="arg"
+>:: (<A HREF="/home/ghc612/ghc-6.12.1//share/doc/ghc/html/libraries/base-4.2.0.0/Data-Eq.html#t%3AEq"
+>Eq</A
+> a, <A HREF="/home/ghc612/ghc-6.12.1//share/doc/ghc/html/libraries/base-4.2.0.0/Text-Show.html#t%3AShow"
+>Show</A
+> a)</TD
+><TD CLASS="rdoc"
+></TD
+></TR
+><TR
+><TD CLASS="arg"
+>=&gt; (a -&gt; <A HREF="/home/ghc612/ghc-6.12.1//share/doc/ghc/html/libraries/base-4.2.0.0/Data-Char.html#t%3AString"
+>String</A
+>)</TD
+><TD CLASS="rdoc"
+>function for printing the value
+</TD
+></TR
+><TR
+><TD CLASS="arg"
+>-&gt; (a -&gt; <A HREF="/home/ghc612/ghc-6.12.1//share/doc/ghc/html/libraries/base-4.2.0.0/Data-Char.html#t%3AString"
+>String</A
+>)</TD
+><TD CLASS="rdoc"
+>function for printing the label for choosing
+</TD
+></TR
+><TR
+><TD CLASS="arg"
+>-&gt; a</TD
+><TD CLASS="rdoc"
+>pre-selected value
+</TD
+></TR
+><TR
+><TD CLASS="arg"
+>-&gt; [a]</TD
+><TD CLASS="rdoc"
+>the value list
+</TD
+></TR
+><TR
+><TD CLASS="arg"
+>-&gt; XmlTrees</TD
+><TD CLASS="rdoc"
+></TD
+></TR
+><TR
+><TD CLASS="ndoc" COLSPAN="2"
+>Create a list of options for selection
+</TD
+></TR
+></TABLE
+></TD
+></TR
+><TR
+><TD CLASS="s15"
+></TD
+></TR
+><TR
+><TD CLASS="decl"
+><A NAME="v:optionsFromString"
+><A NAME="v%3AoptionsFromString"
+></A
+></A
+><B
+>optionsFromString</B
+></TD
+></TR
+><TR
+><TD CLASS="body"
+><TABLE CLASS="vanilla" CELLSPACING="0" CELLPADDING="0"
+><TR
+><TD CLASS="arg"
+>:: [(<A HREF="/home/ghc612/ghc-6.12.1//share/doc/ghc/html/libraries/base-4.2.0.0/Data-Char.html#t%3AString"
+>String</A
+>, <A HREF="/home/ghc612/ghc-6.12.1//share/doc/ghc/html/libraries/base-4.2.0.0/Data-Char.html#t%3AString"
+>String</A
+>)]</TD
+><TD CLASS="rdoc"
+>the options
+</TD
+></TR
+><TR
+><TD CLASS="arg"
+>-&gt; XmlTrees</TD
+><TD CLASS="rdoc"
+></TD
+></TR
+><TR
+><TD CLASS="ndoc" COLSPAN="2"
+>Create an option list from a list of <TT
+><A HREF="/home/ghc612/ghc-6.12.1//share/doc/ghc/html/libraries/base-4.2.0.0/Data-Char.html#t%3AString"
+>String</A
+></TT
+> pairs (key, value)
+</TD
+></TR
+></TABLE
+></TD
+></TR
+><TR
+><TD CLASS="s15"
+></TD
+></TR
+><TR
+><TD CLASS="decl"
+><A NAME="v:checkbox"
+><A NAME="v%3Acheckbox"
+></A
+></A
+><B
+>checkbox</B
+></TD
+></TR
+><TR
+><TD CLASS="body"
+><TABLE CLASS="vanilla" CELLSPACING="0" CELLPADDING="0"
+><TR
+><TD CLASS="arg"
+>:: <A HREF="/home/ghc612/ghc-6.12.1//share/doc/ghc/html/libraries/base-4.2.0.0/Data-Char.html#t%3AString"
+>String</A
+></TD
+><TD CLASS="rdoc"
+>name of the field
+</TD
+></TR
+><TR
+><TD CLASS="arg"
+>-&gt; <A HREF="/home/ghc612/ghc-6.12.1//share/doc/ghc/html/libraries/base-4.2.0.0/Data-Char.html#t%3AString"
+>String</A
+></TD
+><TD CLASS="rdoc"
+>value of the field
+</TD
+></TR
+><TR
+><TD CLASS="arg"
+>-&gt; <A HREF="/home/ghc612/ghc-6.12.1//share/doc/ghc/html/libraries/base-4.2.0.0/Data-Bool.html#t%3ABool"
+>Bool</A
+></TD
+><TD CLASS="rdoc"
+>flag whether the checkbox should be checked
+</TD
+></TR
+><TR
+><TD CLASS="arg"
+>-&gt; Attributes</TD
+><TD CLASS="rdoc"
+>additional <TT
+>Attributes</TT
+>
+</TD
+></TR
+><TR
+><TD CLASS="arg"
+>-&gt; <A HREF="Hawk-View-TemplateView.html#t%3AXmlTree"
+>XmlTree</A
+></TD
+><TD CLASS="rdoc"
+></TD
+></TR
+><TR
+><TD CLASS="ndoc" COLSPAN="2"
+>Create a checkbox field
+</TD
+></TR
+></TABLE
+></TD
+></TR
+><TR
+><TD CLASS="s15"
+></TD
+></TR
+><TR
+><TD CLASS="decl"
+><A NAME="v:radio"
+><A NAME="v%3Aradio"
+></A
+></A
+><B
+>radio</B
+></TD
+></TR
+><TR
+><TD CLASS="body"
+><TABLE CLASS="vanilla" CELLSPACING="0" CELLPADDING="0"
+><TR
+><TD CLASS="arg"
+>:: <A HREF="/home/ghc612/ghc-6.12.1//share/doc/ghc/html/libraries/base-4.2.0.0/Data-Char.html#t%3AString"
+>String</A
+></TD
+><TD CLASS="rdoc"
+>name of the field
+</TD
+></TR
+><TR
+><TD CLASS="arg"
+>-&gt; <A HREF="/home/ghc612/ghc-6.12.1//share/doc/ghc/html/libraries/base-4.2.0.0/Data-Char.html#t%3AString"
+>String</A
+></TD
+><TD CLASS="rdoc"
+>value of the field
+</TD
+></TR
+><TR
+><TD CLASS="arg"
+>-&gt; <A HREF="/home/ghc612/ghc-6.12.1//share/doc/ghc/html/libraries/base-4.2.0.0/Data-Bool.html#t%3ABool"
+>Bool</A
+></TD
+><TD CLASS="rdoc"
+>flag whether the radio button should be checked
+</TD
+></TR
+><TR
+><TD CLASS="arg"
+>-&gt; Attributes</TD
+><TD CLASS="rdoc"
+>additional <TT
+>Attributes</TT
+>
+</TD
+></TR
+><TR
+><TD CLASS="arg"
+>-&gt; <A HREF="Hawk-View-TemplateView.html#t%3AXmlTree"
+>XmlTree</A
+></TD
+><TD CLASS="rdoc"
+></TD
+></TR
+><TR
+><TD CLASS="ndoc" COLSPAN="2"
+>Create a radio button.
+   The id will be generated by concatenating the name, an underscore and
+   the value: <EM
+>name ++ '_':value</EM
+>. If you want to explicitly set the id
+   just put the id into the <TT
+>Attributes</TT
+>.
+</TD
+></TR
+></TABLE
+></TD
+></TR
+><TR
+><TD CLASS="s15"
+></TD
+></TR
+><TR
+><TD CLASS="decl"
+><A NAME="v:textfield"
+><A NAME="v%3Atextfield"
+></A
+></A
+><B
+>textfield</B
+></TD
+></TR
+><TR
+><TD CLASS="body"
+><TABLE CLASS="vanilla" CELLSPACING="0" CELLPADDING="0"
+><TR
+><TD CLASS="arg"
+>:: <A HREF="/home/ghc612/ghc-6.12.1//share/doc/ghc/html/libraries/base-4.2.0.0/Data-Char.html#t%3AString"
+>String</A
+></TD
+><TD CLASS="rdoc"
+>name of the text field
+</TD
+></TR
+><TR
+><TD CLASS="arg"
+>-&gt; <A HREF="/home/ghc612/ghc-6.12.1//share/doc/ghc/html/libraries/base-4.2.0.0/Data-Char.html#t%3AString"
+>String</A
+></TD
+><TD CLASS="rdoc"
+>value of the text field
+</TD
+></TR
+><TR
+><TD CLASS="arg"
+>-&gt; Attributes</TD
+><TD CLASS="rdoc"
+>additional <TT
+>Attributes</TT
+>
+</TD
+></TR
+><TR
+><TD CLASS="arg"
+>-&gt; <A HREF="Hawk-View-TemplateView.html#t%3AXmlTree"
+>XmlTree</A
+></TD
+><TD CLASS="rdoc"
+></TD
+></TR
+><TR
+><TD CLASS="ndoc" COLSPAN="2"
+>Create a text input field
+</TD
+></TR
+></TABLE
+></TD
+></TR
+><TR
+><TD CLASS="s15"
+></TD
+></TR
+><TR
+><TD CLASS="decl"
+><A NAME="v:textarea"
+><A NAME="v%3Atextarea"
+></A
+></A
+><B
+>textarea</B
+></TD
+></TR
+><TR
+><TD CLASS="body"
+><TABLE CLASS="vanilla" CELLSPACING="0" CELLPADDING="0"
+><TR
+><TD CLASS="arg"
+>:: <A HREF="/home/ghc612/ghc-6.12.1//share/doc/ghc/html/libraries/base-4.2.0.0/Data-Char.html#t%3AString"
+>String</A
+></TD
+><TD CLASS="rdoc"
+>name of the textarea field
+</TD
+></TR
+><TR
+><TD CLASS="arg"
+>-&gt; <A HREF="/home/ghc612/ghc-6.12.1//share/doc/ghc/html/libraries/base-4.2.0.0/Data-Char.html#t%3AString"
+>String</A
+></TD
+><TD CLASS="rdoc"
+>value of the textarea field
+</TD
+></TR
+><TR
+><TD CLASS="arg"
+>-&gt; Attributes</TD
+><TD CLASS="rdoc"
+>additional <TT
+>Attributes</TT
+>
+</TD
+></TR
+><TR
+><TD CLASS="arg"
+>-&gt; <A HREF="Hawk-View-TemplateView.html#t%3AXmlTree"
+>XmlTree</A
+></TD
+><TD CLASS="rdoc"
+></TD
+></TR
+><TR
+><TD CLASS="ndoc" COLSPAN="2"
+>Create a textarea field
+</TD
+></TR
+></TABLE
+></TD
+></TR
+><TR
+><TD CLASS="s15"
+></TD
+></TR
+><TR
+><TD CLASS="decl"
+><A NAME="v:password"
+><A NAME="v%3Apassword"
+></A
+></A
+><B
+>password</B
+> :: <A HREF="/home/ghc612/ghc-6.12.1//share/doc/ghc/html/libraries/base-4.2.0.0/Data-Char.html#t%3AString"
+>String</A
+> -&gt; <A HREF="/home/ghc612/ghc-6.12.1//share/doc/ghc/html/libraries/base-4.2.0.0/Data-Char.html#t%3AString"
+>String</A
+> -&gt; Attributes -&gt; <A HREF="Hawk-View-TemplateView.html#t%3AXmlTree"
+>XmlTree</A
+></TD
+></TR
+><TR
+><TD CLASS="doc"
+>Create a password field
+</TD
+></TR
+><TR
+><TD CLASS="s15"
+></TD
+></TR
+><TR
+><TD CLASS="decl"
+><A NAME="v:hidden"
+><A NAME="v%3Ahidden"
+></A
+></A
+><B
+>hidden</B
+></TD
+></TR
+><TR
+><TD CLASS="body"
+><TABLE CLASS="vanilla" CELLSPACING="0" CELLPADDING="0"
+><TR
+><TD CLASS="arg"
+>:: <A HREF="/home/ghc612/ghc-6.12.1//share/doc/ghc/html/libraries/base-4.2.0.0/Data-Char.html#t%3AString"
+>String</A
+></TD
+><TD CLASS="rdoc"
+>name of the hidden field
+</TD
+></TR
+><TR
+><TD CLASS="arg"
+>-&gt; <A HREF="/home/ghc612/ghc-6.12.1//share/doc/ghc/html/libraries/base-4.2.0.0/Data-Char.html#t%3AString"
+>String</A
+></TD
+><TD CLASS="rdoc"
+>value of the hidden field
+</TD
+></TR
+><TR
+><TD CLASS="arg"
+>-&gt; Attributes</TD
+><TD CLASS="rdoc"
+>additional <TT
+>Attributes</TT
+>
+</TD
+></TR
+><TR
+><TD CLASS="arg"
+>-&gt; <A HREF="Hawk-View-TemplateView.html#t%3AXmlTree"
+>XmlTree</A
+></TD
+><TD CLASS="rdoc"
+></TD
+></TR
+><TR
+><TD CLASS="ndoc" COLSPAN="2"
+>Create a hidden field
+</TD
+></TR
+></TABLE
+></TD
+></TR
+><TR
+><TD CLASS="s15"
+></TD
+></TR
+><TR
+><TD CLASS="decl"
+><A NAME="v:submit"
+><A NAME="v%3Asubmit"
+></A
+></A
+><B
+>submit</B
+> :: <A HREF="/home/ghc612/ghc-6.12.1//share/doc/ghc/html/libraries/base-4.2.0.0/Data-Char.html#t%3AString"
+>String</A
+> -&gt; Attributes -&gt; <A HREF="Hawk-View-TemplateView.html#t%3AXmlTree"
+>XmlTree</A
+></TD
+></TR
+><TR
+><TD CLASS="doc"
+>Create a submit button
+</TD
+></TR
+><TR
+><TD CLASS="s15"
+></TD
+></TR
+><TR
+><TD CLASS="decl"
+><A NAME="v:submitWithName"
+><A NAME="v%3AsubmitWithName"
+></A
+></A
+><B
+>submitWithName</B
+> :: <A HREF="/home/ghc612/ghc-6.12.1//share/doc/ghc/html/libraries/base-4.2.0.0/Data-Char.html#t%3AString"
+>String</A
+> -&gt; <A HREF="/home/ghc612/ghc-6.12.1//share/doc/ghc/html/libraries/base-4.2.0.0/Data-Char.html#t%3AString"
+>String</A
+> -&gt; Attributes -&gt; <A HREF="Hawk-View-TemplateView.html#t%3AXmlTree"
+>XmlTree</A
+></TD
+></TR
+><TR
+><TD CLASS="s15"
+></TD
+></TR
+><TR
+><TD CLASS="decl"
+><A NAME="v:fileupload"
+><A NAME="v%3Afileupload"
+></A
+></A
+><B
+>fileupload</B
+> :: <A HREF="/home/ghc612/ghc-6.12.1//share/doc/ghc/html/libraries/base-4.2.0.0/Data-Char.html#t%3AString"
+>String</A
+> -&gt; Attributes -&gt; <A HREF="Hawk-View-TemplateView.html#t%3AXmlTree"
+>XmlTree</A
+></TD
+></TR
+><TR
+><TD CLASS="doc"
+>Create a fileupload field
+</TD
+></TR
+><TR
+><TD CLASS="s15"
+></TD
+></TR
+><TR
+><TD CLASS="decl"
+><A NAME="v:form"
+><A NAME="v%3Aform"
+></A
+></A
+><B
+>form</B
+> :: <A HREF="/home/ghc612/ghc-6.12.1//share/doc/ghc/html/libraries/base-4.2.0.0/Data-Char.html#t%3AString"
+>String</A
+> -&gt; <A HREF="/home/ghc612/ghc-6.12.1//share/doc/ghc/html/libraries/base-4.2.0.0/Data-Char.html#t%3AString"
+>String</A
+> -&gt; <A HREF="/home/ghc612/ghc-6.12.1//share/doc/ghc/html/libraries/base-4.2.0.0/Data-Char.html#t%3AString"
+>String</A
+> -&gt; Attributes -&gt; XmlTrees -&gt; <A HREF="Hawk-View-TemplateView.html#t%3AXmlTree"
+>XmlTree</A
+></TD
+></TR
+><TR
+><TD CLASS="s15"
+></TD
+></TR
+><TR
+><TD CLASS="decl"
+><A NAME="v:slabel"
+><A NAME="v%3Aslabel"
+></A
+></A
+><B
+>slabel</B
+> :: <A HREF="/home/ghc612/ghc-6.12.1//share/doc/ghc/html/libraries/base-4.2.0.0/Data-Char.html#t%3AString"
+>String</A
+> -&gt; Attributes -&gt; <A HREF="Hawk-View-TemplateView.html#t%3AXmlTree"
+>XmlTree</A
+></TD
+></TR
+><TR
+><TD CLASS="doc"
+>Create a label with the name as value
+</TD
+></TR
+><TR
+><TD CLASS="s15"
+></TD
+></TR
+><TR
+><TD CLASS="decl"
+><A NAME="v:label"
+><A NAME="v%3Alabel"
+></A
+></A
+><B
+>label</B
+> :: <A HREF="/home/ghc612/ghc-6.12.1//share/doc/ghc/html/libraries/base-4.2.0.0/Data-Char.html#t%3AString"
+>String</A
+> -&gt; <A HREF="/home/ghc612/ghc-6.12.1//share/doc/ghc/html/libraries/base-4.2.0.0/Data-Char.html#t%3AString"
+>String</A
+> -&gt; Attributes -&gt; <A HREF="Hawk-View-TemplateView.html#t%3AXmlTree"
+>XmlTree</A
+></TD
+></TR
+><TR
+><TD CLASS="doc"
+>Create a label with name and value
+</TD
+></TR
+><TR
+><TD CLASS="s15"
+></TD
+></TR
+><TR
+><TD CLASS="decl"
+><A NAME="v:textlink"
+><A NAME="v%3Atextlink"
+></A
+></A
+><B
+>textlink</B
+> :: <A HREF="/home/ghc612/ghc-6.12.1//share/doc/ghc/html/libraries/base-4.2.0.0/Data-Char.html#t%3AString"
+>String</A
+> -&gt; <A HREF="/home/ghc612/ghc-6.12.1//share/doc/ghc/html/libraries/base-4.2.0.0/Data-Char.html#t%3AString"
+>String</A
+> -&gt; <A HREF="Hawk-View-TemplateView.html#t%3AXmlTree"
+>XmlTree</A
+></TD
+></TR
+><TR
+><TD CLASS="doc"
+>Create a link with a text to show
+</TD
+></TR
+><TR
+><TD CLASS="s15"
+></TD
+></TR
+><TR
+><TD CLASS="decl"
+><A NAME="v:link"
+><A NAME="v%3Alink"
+></A
+></A
+><B
+>link</B
+> :: <A HREF="/home/ghc612/ghc-6.12.1//share/doc/ghc/html/libraries/base-4.2.0.0/Data-Char.html#t%3AString"
+>String</A
+> -&gt; XmlTrees -&gt; <A HREF="Hawk-View-TemplateView.html#t%3AXmlTree"
+>XmlTree</A
+></TD
+></TR
+><TR
+><TD CLASS="doc"
+>Create a link with an arbitrary content
+</TD
+></TR
+><TR
+><TD CLASS="s15"
+></TD
+></TR
+><TR
+><TD CLASS="decl"
+><A NAME="v:linkA"
+><A NAME="v%3AlinkA"
+></A
+></A
+><B
+>linkA</B
+> :: <A HREF="/home/ghc612/ghc-6.12.1//share/doc/ghc/html/libraries/base-4.2.0.0/Data-Char.html#t%3AString"
+>String</A
+> -&gt; Attributes -&gt; XmlTrees -&gt; <A HREF="Hawk-View-TemplateView.html#t%3AXmlTree"
+>XmlTree</A
+></TD
+></TR
+><TR
+><TD CLASS="doc"
+>Create a link with an arbitrary content
+</TD
+></TR
+><TR
+><TD CLASS="s15"
+></TD
+></TR
+><TR
+><TD CLASS="decl"
+><A NAME="v:image"
+><A NAME="v%3Aimage"
+></A
+></A
+><B
+>image</B
+> :: <A HREF="/home/ghc612/ghc-6.12.1//share/doc/ghc/html/libraries/base-4.2.0.0/Data-Char.html#t%3AString"
+>String</A
+> -&gt; <A HREF="/home/ghc612/ghc-6.12.1//share/doc/ghc/html/libraries/base-4.2.0.0/Data-Char.html#t%3AString"
+>String</A
+> -&gt; Attributes -&gt; <A HREF="Hawk-View-TemplateView.html#t%3AXmlTree"
+>XmlTree</A
+></TD
+></TR
+><TR
+><TD CLASS="doc"
+>Create an image element
+</TD
+></TR
+><TR
+><TD CLASS="s15"
+></TD
+></TR
+><TR
+><TD CLASS="botbar"
+>Produced by <A HREF="http://www.haskell.org/haddock/"
+>Haddock</A
+> version 2.7.2</TD
+></TR
+></TABLE
+></BODY
+></HTML
+>

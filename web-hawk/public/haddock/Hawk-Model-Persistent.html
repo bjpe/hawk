@@ -1,0 +1,810 @@
+<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN" "http://www.w3.org/TR/html4/loose.dtd">
+<!--Rendered using the Haskell Html Library v0.2-->
+<HTML
+><HEAD
+><META HTTP-EQUIV="Content-Type" CONTENT="text/html; charset=UTF-8"
+><TITLE
+>Hawk.Model.Persistent</TITLE
+><LINK HREF="haddock.css" REL="stylesheet" TYPE="text/css"
+><SCRIPT SRC="haddock-util.js" TYPE="text/javascript"
+></SCRIPT
+><SCRIPT TYPE="text/javascript"
+>window.onload = function () {setSynopsis("mini_Hawk-Model-Persistent.html")};</SCRIPT
+></HEAD
+><BODY
+><TABLE CLASS="vanilla" CELLSPACING="0" CELLPADDING="0"
+><TR
+><TD CLASS="topbar"
+><TABLE CLASS="vanilla" CELLSPACING="0" CELLPADDING="0"
+><TR
+><TD
+><IMG SRC="haskell_icon.gif" WIDTH="16" HEIGHT="16" ALT=" "
+></TD
+><TD CLASS="title"
+>Hawk-0.0.2: Haskell Web Application Kit</TD
+><TD CLASS="topbut"
+><A HREF="index.html"
+>Contents</A
+></TD
+><TD CLASS="topbut"
+><A HREF="doc-index.html"
+>Index</A
+></TD
+></TR
+></TABLE
+></TD
+></TR
+><TR
+><TD CLASS="modulebar"
+><TABLE CLASS="vanilla" CELLSPACING="0" CELLPADDING="0"
+><TR
+><TD
+><FONT SIZE="6"
+>Hawk.Model.Persistent</FONT
+></TD
+><TD ALIGN="right"
+><TABLE CLASS="narrow" CELLSPACING="0" CELLPADDING="0"
+><TR
+><TD CLASS="infohead"
+>Portability</TD
+><TD CLASS="infoval"
+>portable</TD
+></TR
+><TR
+><TD CLASS="infohead"
+>Stability</TD
+><TD CLASS="infoval"
+>experimental</TD
+></TR
+><TR
+><TD CLASS="infohead"
+>Maintainer</TD
+><TD CLASS="infoval"
+>{inf6254, inf6509}fh-wedel.de</TD
+></TR
+></TABLE
+></TD
+></TR
+></TABLE
+></TD
+></TR
+><TR
+><TD CLASS="s15"
+></TD
+></TR
+><TR
+><TD CLASS="section1"
+>Description</TD
+></TR
+><TR
+><TD CLASS="doc"
+>Version     :  $Id: Main.hs 57 2009-05-29 11:33:59Z inf6254 $
+</TD
+></TR
+><TR
+><TD CLASS="s15"
+></TD
+></TR
+><TR
+><TD CLASS="section1"
+>Synopsis</TD
+></TR
+><TR
+><TD CLASS="s15"
+></TD
+></TR
+><TR
+><TD CLASS="body"
+><TABLE CLASS="vanilla" CELLSPACING="0" CELLPADDING="0"
+><TR
+><TD CLASS="decl"
+><SPAN CLASS="keyword"
+>class</SPAN
+>  <A HREF="#t%3APersistent"
+>Persistent</A
+> p  <SPAN CLASS="keyword"
+>where</SPAN
+></TD
+></TR
+><TR
+><TD CLASS="body"
+><TABLE CLASS="vanilla" CELLSPACING="0" CELLPADDING="0"
+><TR
+><TD CLASS="decl"
+><A HREF="#v%3ApersistentType"
+>persistentType</A
+> :: p -&gt; <A HREF="/home/ghc612/ghc-6.12.1//share/doc/ghc/html/libraries/base-4.2.0.0/Data-Char.html#t%3AString"
+>String</A
+></TD
+></TR
+><TR
+><TD CLASS="decl"
+><A HREF="#v%3AtoSqlList"
+>toSqlList</A
+> :: p -&gt; [<A HREF="Hawk-Model-Types.html#t%3ASqlValue"
+>SqlValue</A
+>]</TD
+></TR
+><TR
+><TD CLASS="decl"
+><A HREF="#v%3AfromSqlList"
+>fromSqlList</A
+> :: [<A HREF="Hawk-Model-Types.html#t%3ASqlValue"
+>SqlValue</A
+>] -&gt; p</TD
+></TR
+><TR
+><TD CLASS="decl"
+><A HREF="#v%3AtableName"
+>tableName</A
+> :: p -&gt; <A HREF="Hawk-Model-Types.html#t%3ATableName"
+>TableName</A
+></TD
+></TR
+><TR
+><TD CLASS="decl"
+><A HREF="#v%3AtableColumns"
+>tableColumns</A
+> :: p -&gt; [<A HREF="Hawk-Model-Types.html#t%3AColumnName"
+>ColumnName</A
+>]</TD
+></TR
+><TR
+><TD CLASS="decl"
+><A HREF="#v%3AtoSqlAL"
+>toSqlAL</A
+> :: p -&gt; [(<A HREF="Hawk-Model-Types.html#t%3AColumnName"
+>ColumnName</A
+>, <A HREF="Hawk-Model-Types.html#t%3ASqlValue"
+>SqlValue</A
+>)]</TD
+></TR
+><TR
+><TD CLASS="decl"
+><A HREF="#v%3AfromSqlAL"
+>fromSqlAL</A
+> :: [(<A HREF="Hawk-Model-Types.html#t%3AColumnName"
+>ColumnName</A
+>, <A HREF="Hawk-Model-Types.html#t%3ASqlValue"
+>SqlValue</A
+>)] -&gt; p</TD
+></TR
+></TABLE
+></TD
+></TR
+><TR
+><TD CLASS="s8"
+></TD
+></TR
+><TR
+><TD CLASS="decl"
+><A HREF="#v%3AcountPersistents"
+>countPersistents</A
+> :: (<A HREF="Hawk-Model-MonadDB.html#t%3AMonadDB"
+>MonadDB</A
+> m, <A HREF="Hawk-Model-Persistent.html#t%3APersistent"
+>Persistent</A
+> p) =&gt; p -&gt; <A HREF="Hawk-Model-Criteria-Criteria.html#t%3ACriteria"
+>Criteria</A
+> -&gt; m <A HREF="/home/ghc612/ghc-6.12.1//share/doc/ghc/html/libraries/base-4.2.0.0/Prelude.html#t%3AInteger"
+>Integer</A
+></TD
+></TR
+><TR
+><TD CLASS="s8"
+></TD
+></TR
+><TR
+><TD CLASS="decl"
+><A HREF="#v%3AselectPersistents"
+>selectPersistents</A
+> :: (<A HREF="Hawk-Model-MonadDB.html#t%3AMonadDB"
+>MonadDB</A
+> m, <A HREF="Hawk-Model-Persistent.html#t%3APersistent"
+>Persistent</A
+> p) =&gt; <A HREF="Hawk-Model-Criteria-Criteria.html#t%3ACriteria"
+>Criteria</A
+> -&gt; m [p]</TD
+></TR
+><TR
+><TD CLASS="s8"
+></TD
+></TR
+><TR
+><TD CLASS="decl"
+><A HREF="#v%3AselectOnePersistent"
+>selectOnePersistent</A
+> :: (<A HREF="Hawk-Model-MonadDB.html#t%3AMonadDB"
+>MonadDB</A
+> m, <A HREF="Hawk-Model-Persistent.html#t%3APersistent"
+>Persistent</A
+> p) =&gt; <A HREF="Hawk-Model-Criteria-Criteria.html#t%3ACriteria"
+>Criteria</A
+> -&gt; m p</TD
+></TR
+><TR
+><TD CLASS="s8"
+></TD
+></TR
+><TR
+><TD CLASS="decl"
+><A HREF="#v%3AselectMaybePersistent"
+>selectMaybePersistent</A
+> :: (<A HREF="Hawk-Model-MonadDB.html#t%3AMonadDB"
+>MonadDB</A
+> m, <A HREF="Hawk-Model-Persistent.html#t%3APersistent"
+>Persistent</A
+> p) =&gt; <A HREF="Hawk-Model-Criteria-Criteria.html#t%3ACriteria"
+>Criteria</A
+> -&gt; m (<A HREF="/home/ghc612/ghc-6.12.1//share/doc/ghc/html/libraries/base-4.2.0.0/Data-Maybe.html#t%3AMaybe"
+>Maybe</A
+> p)</TD
+></TR
+><TR
+><TD CLASS="s8"
+></TD
+></TR
+><TR
+><TD CLASS="decl"
+><A HREF="#v%3AdeletePersistentsByCriteria"
+>deletePersistentsByCriteria</A
+> :: (<A HREF="Hawk-Model-MonadDB.html#t%3AMonadDB"
+>MonadDB</A
+> m, <A HREF="Hawk-Model-Persistent.html#t%3APersistent"
+>Persistent</A
+> p) =&gt; p -&gt; <A HREF="Hawk-Model-Criteria-Criteria.html#t%3ACriteria"
+>Criteria</A
+> -&gt; m <A HREF="/home/ghc612/ghc-6.12.1//share/doc/ghc/html/libraries/base-4.2.0.0/Prelude.html#t%3AInteger"
+>Integer</A
+></TD
+></TR
+><TR
+><TD CLASS="s8"
+></TD
+></TR
+><TR
+><TD CLASS="decl"
+><A HREF="#v%3AdeleteByCriteriaInTransaction"
+>deleteByCriteriaInTransaction</A
+> :: (<A HREF="Hawk-Model-MonadDB.html#t%3AMonadDB"
+>MonadDB</A
+> m, <A HREF="Hawk-Model-Persistent.html#t%3APersistent"
+>Persistent</A
+> p) =&gt; p -&gt; <A HREF="Hawk-Model-Criteria-Criteria.html#t%3ACriteria"
+>Criteria</A
+> -&gt; m <A HREF="/home/ghc612/ghc-6.12.1//share/doc/ghc/html/libraries/base-4.2.0.0/Prelude.html#t%3AInteger"
+>Integer</A
+></TD
+></TR
+><TR
+><TD CLASS="s8"
+></TD
+></TR
+><TR
+><TD CLASS="decl"
+><A HREF="#v%3AinsertPersistent"
+>insertPersistent</A
+> :: (<A HREF="Hawk-Model-MonadDB.html#t%3AMonadDB"
+>MonadDB</A
+> m, <A HREF="Hawk-Model-Persistent.html#t%3APersistent"
+>Persistent</A
+> p) =&gt; p -&gt; m <A HREF="/home/ghc612/ghc-6.12.1//share/doc/ghc/html/libraries/base-4.2.0.0/Prelude.html#t%3AInteger"
+>Integer</A
+></TD
+></TR
+></TABLE
+></TD
+></TR
+><TR
+><TD CLASS="s15"
+></TD
+></TR
+><TR
+><TD CLASS="section1"
+>Documentation</TD
+></TR
+><TR
+><TD CLASS="s15"
+></TD
+></TR
+><TR
+><TD CLASS="decl"
+><SPAN CLASS="keyword"
+>class</SPAN
+>  <A NAME="t:Persistent"
+><A NAME="t%3APersistent"
+></A
+></A
+><B
+>Persistent</B
+> p  <SPAN CLASS="keyword"
+>where</SPAN
+></TD
+></TR
+><TR
+><TD CLASS="body"
+><TABLE CLASS="vanilla" CELLSPACING="0" CELLPADDING="0"
+><TR
+><TD CLASS="ndoc"
+>Typeclass for structures which are persistent in a database
+   Minimal implementation: <TT
+><A HREF="Hawk-Model-Persistent.html#v%3ApersistentType"
+>persistentType</A
+></TT
+>, <TT
+><A HREF="Hawk-Model-Persistent.html#v%3AfromSqlList"
+>fromSqlList</A
+></TT
+>, <TT
+><A HREF="Hawk-Model-Persistent.html#v%3AtoSqlAL"
+>toSqlAL</A
+></TT
+>
+</TD
+></TR
+><TR
+><TD CLASS="s8"
+></TD
+></TR
+><TR
+><TD CLASS="section4"
+>Methods</TD
+></TR
+><TR
+><TD CLASS="body"
+><TABLE CLASS="vanilla" CELLSPACING="0" CELLPADDING="0"
+><TR
+><TD CLASS="decl"
+><A NAME="v:persistentType"
+><A NAME="v%3ApersistentType"
+></A
+></A
+><B
+>persistentType</B
+> :: p -&gt; <A HREF="/home/ghc612/ghc-6.12.1//share/doc/ghc/html/libraries/base-4.2.0.0/Data-Char.html#t%3AString"
+>String</A
+></TD
+></TR
+><TR
+><TD CLASS="doc"
+>The type of the persistent. The result must not use the value passed
+   in such that
+   persistentType undefined
+   will give an appropriate result
+</TD
+></TR
+><TR
+><TD CLASS="s8"
+></TD
+></TR
+><TR
+><TD CLASS="decl"
+><A NAME="v:toSqlList"
+><A NAME="v%3AtoSqlList"
+></A
+></A
+><B
+>toSqlList</B
+> :: p -&gt; [<A HREF="Hawk-Model-Types.html#t%3ASqlValue"
+>SqlValue</A
+>]</TD
+></TR
+><TR
+><TD CLASS="doc"
+>Marshal a <TT
+><A HREF="Hawk-Model-Persistent.html#t%3APersistent"
+>Persistent</A
+></TT
+> as a list of <TT
+><A HREF="Hawk-Model-Types.html#t%3ASqlValue"
+>SqlValue</A
+></TT
+>s
+</TD
+></TR
+><TR
+><TD CLASS="s8"
+></TD
+></TR
+><TR
+><TD CLASS="decl"
+><A NAME="v:fromSqlList"
+><A NAME="v%3AfromSqlList"
+></A
+></A
+><B
+>fromSqlList</B
+> :: [<A HREF="Hawk-Model-Types.html#t%3ASqlValue"
+>SqlValue</A
+>] -&gt; p</TD
+></TR
+><TR
+><TD CLASS="doc"
+>Unmarshal a <TT
+><A HREF="Hawk-Model-Persistent.html#t%3APersistent"
+>Persistent</A
+></TT
+> from a list of <TT
+><A HREF="Hawk-Model-Types.html#t%3ASqlValue"
+>SqlValue</A
+></TT
+>s
+</TD
+></TR
+><TR
+><TD CLASS="s8"
+></TD
+></TR
+><TR
+><TD CLASS="decl"
+><A NAME="v:tableName"
+><A NAME="v%3AtableName"
+></A
+></A
+><B
+>tableName</B
+> :: p -&gt; <A HREF="Hawk-Model-Types.html#t%3ATableName"
+>TableName</A
+></TD
+></TR
+><TR
+><TD CLASS="doc"
+>Get the name of the associated database table, defaults to
+  (++<A HREF="s.html"
+>s</A
+>) map toLower $ persistentType p
+</TD
+></TR
+><TR
+><TD CLASS="s8"
+></TD
+></TR
+><TR
+><TD CLASS="decl"
+><A NAME="v:tableColumns"
+><A NAME="v%3AtableColumns"
+></A
+></A
+><B
+>tableColumns</B
+> :: p -&gt; [<A HREF="Hawk-Model-Types.html#t%3AColumnName"
+>ColumnName</A
+>]</TD
+></TR
+><TR
+><TD CLASS="doc"
+>Get the columns of the table
+</TD
+></TR
+><TR
+><TD CLASS="s8"
+></TD
+></TR
+><TR
+><TD CLASS="decl"
+><A NAME="v:toSqlAL"
+><A NAME="v%3AtoSqlAL"
+></A
+></A
+><B
+>toSqlAL</B
+> :: p -&gt; [(<A HREF="Hawk-Model-Types.html#t%3AColumnName"
+>ColumnName</A
+>, <A HREF="Hawk-Model-Types.html#t%3ASqlValue"
+>SqlValue</A
+>)]</TD
+></TR
+><TR
+><TD CLASS="doc"
+>Get the table columns and the values as an associated list
+</TD
+></TR
+><TR
+><TD CLASS="s8"
+></TD
+></TR
+><TR
+><TD CLASS="decl"
+><A NAME="v:fromSqlAL"
+><A NAME="v%3AfromSqlAL"
+></A
+></A
+><B
+>fromSqlAL</B
+> :: [(<A HREF="Hawk-Model-Types.html#t%3AColumnName"
+>ColumnName</A
+>, <A HREF="Hawk-Model-Types.html#t%3ASqlValue"
+>SqlValue</A
+>)] -&gt; p</TD
+></TR
+><TR
+><TD CLASS="doc"
+>Unmarshal a persistent from an associated list containing the table
+   columns and the <TT
+><A HREF="Hawk-Model-Types.html#t%3ASqlValue"
+>SqlValue</A
+></TT
+>s.
+</TD
+></TR
+></TABLE
+></TD
+></TR
+><TR
+><TD CLASS="s8"
+></TD
+></TR
+><TR
+><TD CLASS="section4"
+><IMG SRC="minus.gif" CLASS="coll" ONCLICK="toggle(this,'i:Persistent')" ALT="show/hide"
+> Instances</TD
+></TR
+><TR
+><TD CLASS="body"
+><DIV ID="i:Persistent" STYLE="display:block;"
+><TABLE CLASS="vanilla" CELLSPACING="1" CELLPADDING="0"
+><TR
+><TD CLASS="arg"
+><A HREF="Hawk-Model-Persistent.html#t%3APersistent"
+>Persistent</A
+> RawSession</TD
+><TD CLASS="rdoc"
+></TD
+></TR
+></TABLE
+></DIV
+></TD
+></TR
+></TABLE
+></TD
+></TR
+><TR
+><TD CLASS="s15"
+></TD
+></TR
+><TR
+><TD CLASS="decl"
+><A NAME="v:countPersistents"
+><A NAME="v%3AcountPersistents"
+></A
+></A
+><B
+>countPersistents</B
+> :: (<A HREF="Hawk-Model-MonadDB.html#t%3AMonadDB"
+>MonadDB</A
+> m, <A HREF="Hawk-Model-Persistent.html#t%3APersistent"
+>Persistent</A
+> p) =&gt; p -&gt; <A HREF="Hawk-Model-Criteria-Criteria.html#t%3ACriteria"
+>Criteria</A
+> -&gt; m <A HREF="/home/ghc612/ghc-6.12.1//share/doc/ghc/html/libraries/base-4.2.0.0/Prelude.html#t%3AInteger"
+>Integer</A
+></TD
+></TR
+><TR
+><TD CLASS="doc"
+>Count the number of <TT
+><A HREF="Hawk-Model-Persistent.html#t%3APersistent"
+>Persistent</A
+></TT
+>s satisfying the given <TT
+><A HREF="Hawk-Model-Criteria-Criteria.html#t%3ACriteria"
+>Criteria</A
+></TT
+>
+</TD
+></TR
+><TR
+><TD CLASS="s15"
+></TD
+></TR
+><TR
+><TD CLASS="decl"
+><A NAME="v:selectPersistents"
+><A NAME="v%3AselectPersistents"
+></A
+></A
+><B
+>selectPersistents</B
+> :: (<A HREF="Hawk-Model-MonadDB.html#t%3AMonadDB"
+>MonadDB</A
+> m, <A HREF="Hawk-Model-Persistent.html#t%3APersistent"
+>Persistent</A
+> p) =&gt; <A HREF="Hawk-Model-Criteria-Criteria.html#t%3ACriteria"
+>Criteria</A
+> -&gt; m [p]</TD
+></TR
+><TR
+><TD CLASS="doc"
+>Select a list of <TT
+><A HREF="Hawk-Model-Persistent.html#t%3APersistent"
+>Persistent</A
+></TT
+>s by a <TT
+><A HREF="Hawk-Model-Criteria-Criteria.html#t%3ACriteria"
+>Criteria</A
+></TT
+>
+</TD
+></TR
+><TR
+><TD CLASS="s15"
+></TD
+></TR
+><TR
+><TD CLASS="decl"
+><A NAME="v:selectOnePersistent"
+><A NAME="v%3AselectOnePersistent"
+></A
+></A
+><B
+>selectOnePersistent</B
+> :: (<A HREF="Hawk-Model-MonadDB.html#t%3AMonadDB"
+>MonadDB</A
+> m, <A HREF="Hawk-Model-Persistent.html#t%3APersistent"
+>Persistent</A
+> p) =&gt; <A HREF="Hawk-Model-Criteria-Criteria.html#t%3ACriteria"
+>Criteria</A
+> -&gt; m p</TD
+></TR
+><TR
+><TD CLASS="doc"
+>Select one <TT
+><A HREF="Hawk-Model-Persistent.html#t%3APersistent"
+>Persistent</A
+></TT
+> by a <TT
+><A HREF="Hawk-Model-Criteria-Criteria.html#t%3ACriteria"
+>Criteria</A
+></TT
+>. If no <TT
+><A HREF="Hawk-Model-Persistent.html#t%3APersistent"
+>Persistent</A
+></TT
+> satisfying
+   the <TT
+><A HREF="Hawk-Model-Criteria-Criteria.html#t%3ACriteria"
+>Criteria</A
+></TT
+> is found a <TT
+><A HREF="Hawk-Model-Exception.html#t%3ARecordNotFound"
+>RecordNotFound</A
+></TT
+> exception is thrown.
+   If more then one record is found the first record will be returned.
+</TD
+></TR
+><TR
+><TD CLASS="s15"
+></TD
+></TR
+><TR
+><TD CLASS="decl"
+><A NAME="v:selectMaybePersistent"
+><A NAME="v%3AselectMaybePersistent"
+></A
+></A
+><B
+>selectMaybePersistent</B
+> :: (<A HREF="Hawk-Model-MonadDB.html#t%3AMonadDB"
+>MonadDB</A
+> m, <A HREF="Hawk-Model-Persistent.html#t%3APersistent"
+>Persistent</A
+> p) =&gt; <A HREF="Hawk-Model-Criteria-Criteria.html#t%3ACriteria"
+>Criteria</A
+> -&gt; m (<A HREF="/home/ghc612/ghc-6.12.1//share/doc/ghc/html/libraries/base-4.2.0.0/Data-Maybe.html#t%3AMaybe"
+>Maybe</A
+> p)</TD
+></TR
+><TR
+><TD CLASS="doc"
+>Select maybe one <TT
+><A HREF="Hawk-Model-Persistent.html#t%3APersistent"
+>Persistent</A
+></TT
+> by a <TT
+><A HREF="Hawk-Model-Criteria-Criteria.html#t%3ACriteria"
+>Criteria</A
+></TT
+>
+</TD
+></TR
+><TR
+><TD CLASS="s15"
+></TD
+></TR
+><TR
+><TD CLASS="decl"
+><A NAME="v:deletePersistentsByCriteria"
+><A NAME="v%3AdeletePersistentsByCriteria"
+></A
+></A
+><B
+>deletePersistentsByCriteria</B
+> :: (<A HREF="Hawk-Model-MonadDB.html#t%3AMonadDB"
+>MonadDB</A
+> m, <A HREF="Hawk-Model-Persistent.html#t%3APersistent"
+>Persistent</A
+> p) =&gt; p -&gt; <A HREF="Hawk-Model-Criteria-Criteria.html#t%3ACriteria"
+>Criteria</A
+> -&gt; m <A HREF="/home/ghc612/ghc-6.12.1//share/doc/ghc/html/libraries/base-4.2.0.0/Prelude.html#t%3AInteger"
+>Integer</A
+></TD
+></TR
+><TR
+><TD CLASS="doc"
+>Remove <TT
+><A HREF="Hawk-Model-Persistent.html#t%3APersistent"
+>Persistent</A
+></TT
+>s by a <TT
+><A HREF="Hawk-Model-Criteria-Criteria.html#t%3ACriteria"
+>Criteria</A
+></TT
+>
+</TD
+></TR
+><TR
+><TD CLASS="s15"
+></TD
+></TR
+><TR
+><TD CLASS="decl"
+><A NAME="v:deleteByCriteriaInTransaction"
+><A NAME="v%3AdeleteByCriteriaInTransaction"
+></A
+></A
+><B
+>deleteByCriteriaInTransaction</B
+> :: (<A HREF="Hawk-Model-MonadDB.html#t%3AMonadDB"
+>MonadDB</A
+> m, <A HREF="Hawk-Model-Persistent.html#t%3APersistent"
+>Persistent</A
+> p) =&gt; p -&gt; <A HREF="Hawk-Model-Criteria-Criteria.html#t%3ACriteria"
+>Criteria</A
+> -&gt; m <A HREF="/home/ghc612/ghc-6.12.1//share/doc/ghc/html/libraries/base-4.2.0.0/Prelude.html#t%3AInteger"
+>Integer</A
+></TD
+></TR
+><TR
+><TD CLASS="s15"
+></TD
+></TR
+><TR
+><TD CLASS="decl"
+><A NAME="v:insertPersistent"
+><A NAME="v%3AinsertPersistent"
+></A
+></A
+><B
+>insertPersistent</B
+> :: (<A HREF="Hawk-Model-MonadDB.html#t%3AMonadDB"
+>MonadDB</A
+> m, <A HREF="Hawk-Model-Persistent.html#t%3APersistent"
+>Persistent</A
+> p) =&gt; p -&gt; m <A HREF="/home/ghc612/ghc-6.12.1//share/doc/ghc/html/libraries/base-4.2.0.0/Prelude.html#t%3AInteger"
+>Integer</A
+></TD
+></TR
+><TR
+><TD CLASS="doc"
+>Insert a <TT
+><A HREF="Hawk-Model-Persistent.html#t%3APersistent"
+>Persistent</A
+></TT
+> into the database.
+</TD
+></TR
+><TR
+><TD CLASS="s15"
+></TD
+></TR
+><TR
+><TD CLASS="botbar"
+>Produced by <A HREF="http://www.haskell.org/haddock/"
+>Haddock</A
+> version 2.7.2</TD
+></TR
+></TABLE
+></BODY
+></HTML
+>

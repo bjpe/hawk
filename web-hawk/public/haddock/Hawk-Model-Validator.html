@@ -1,0 +1,744 @@
+<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN" "http://www.w3.org/TR/html4/loose.dtd">
+<!--Rendered using the Haskell Html Library v0.2-->
+<HTML
+><HEAD
+><META HTTP-EQUIV="Content-Type" CONTENT="text/html; charset=UTF-8"
+><TITLE
+>Hawk.Model.Validator</TITLE
+><LINK HREF="haddock.css" REL="stylesheet" TYPE="text/css"
+><SCRIPT SRC="haddock-util.js" TYPE="text/javascript"
+></SCRIPT
+><SCRIPT TYPE="text/javascript"
+>window.onload = function () {setSynopsis("mini_Hawk-Model-Validator.html")};</SCRIPT
+></HEAD
+><BODY
+><TABLE CLASS="vanilla" CELLSPACING="0" CELLPADDING="0"
+><TR
+><TD CLASS="topbar"
+><TABLE CLASS="vanilla" CELLSPACING="0" CELLPADDING="0"
+><TR
+><TD
+><IMG SRC="haskell_icon.gif" WIDTH="16" HEIGHT="16" ALT=" "
+></TD
+><TD CLASS="title"
+>Hawk-0.0.2: Haskell Web Application Kit</TD
+><TD CLASS="topbut"
+><A HREF="index.html"
+>Contents</A
+></TD
+><TD CLASS="topbut"
+><A HREF="doc-index.html"
+>Index</A
+></TD
+></TR
+></TABLE
+></TD
+></TR
+><TR
+><TD CLASS="modulebar"
+><TABLE CLASS="vanilla" CELLSPACING="0" CELLPADDING="0"
+><TR
+><TD
+><FONT SIZE="6"
+>Hawk.Model.Validator</FONT
+></TD
+><TD ALIGN="right"
+><TABLE CLASS="narrow" CELLSPACING="0" CELLPADDING="0"
+><TR
+><TD CLASS="infohead"
+>Portability</TD
+><TD CLASS="infoval"
+>portable</TD
+></TR
+><TR
+><TD CLASS="infohead"
+>Stability</TD
+><TD CLASS="infoval"
+>experimental</TD
+></TR
+><TR
+><TD CLASS="infohead"
+>Maintainer</TD
+><TD CLASS="infoval"
+>{inf6254, inf6509}fh-wedel.de</TD
+></TR
+></TABLE
+></TD
+></TR
+></TABLE
+></TD
+></TR
+><TR
+><TD CLASS="s15"
+></TD
+></TR
+><TR
+><TD CLASS="section1"
+>Description</TD
+></TR
+><TR
+><TD CLASS="doc"
+>Version     :  $Id: Main.hs 57 2009-05-29 11:33:59Z inf6254 $
+</TD
+></TR
+><TR
+><TD CLASS="s15"
+></TD
+></TR
+><TR
+><TD CLASS="s15"
+></TD
+></TR
+><TR
+><TD CLASS="section1"
+>Documentation</TD
+></TR
+><TR
+><TD CLASS="s15"
+></TD
+></TR
+><TR
+><TD CLASS="decl"
+><SPAN CLASS="keyword"
+>type</SPAN
+> <A NAME="t:ValidationError"
+><A NAME="t%3AValidationError"
+></A
+></A
+><B
+>ValidationError</B
+> = <A HREF="/home/ghc612/ghc-6.12.1//share/doc/ghc/html/libraries/base-4.2.0.0/Data-Char.html#t%3AString"
+>String</A
+></TD
+></TR
+><TR
+><TD CLASS="s15"
+></TD
+></TR
+><TR
+><TD CLASS="decl"
+><SPAN CLASS="keyword"
+>type</SPAN
+> <A NAME="t:AttributeName"
+><A NAME="t%3AAttributeName"
+></A
+></A
+><B
+>AttributeName</B
+> = <A HREF="/home/ghc612/ghc-6.12.1//share/doc/ghc/html/libraries/base-4.2.0.0/Data-Char.html#t%3AString"
+>String</A
+></TD
+></TR
+><TR
+><TD CLASS="s15"
+></TD
+></TR
+><TR
+><TD CLASS="decl"
+><SPAN CLASS="keyword"
+>type</SPAN
+> <A NAME="t:ValidationErrors"
+><A NAME="t%3AValidationErrors"
+></A
+></A
+><B
+>ValidationErrors</B
+> = [(<A HREF="Hawk-Model-Validator.html#t%3AAttributeName"
+>AttributeName</A
+>, <A HREF="Hawk-Model-Validator.html#t%3AValidationError"
+>ValidationError</A
+>)]</TD
+></TR
+><TR
+><TD CLASS="s15"
+></TD
+></TR
+><TR
+><TD CLASS="decl"
+><SPAN CLASS="keyword"
+>newtype</SPAN
+>  <A NAME="t:ValidatorT"
+><A NAME="t%3AValidatorT"
+></A
+></A
+><B
+>ValidatorT</B
+> m a </TD
+></TR
+><TR
+><TD CLASS="body"
+><TABLE CLASS="vanilla" CELLSPACING="0" CELLPADDING="0"
+><TR
+><TD CLASS="section4"
+>Constructors</TD
+></TR
+><TR
+><TD CLASS="body"
+><TABLE CLASS="vanilla" CELLSPACING="1" CELLPADDING="0"
+><TR
+><TD CLASS="arg"
+><A NAME="v:ValidatorT"
+><A NAME="v%3AValidatorT"
+></A
+></A
+><B
+>ValidatorT</B
+> (WriterT <A HREF="Hawk-Model-Validator.html#t%3AValidationErrors"
+>ValidationErrors</A
+> m a)</TD
+><TD CLASS="rdoc"
+></TD
+></TR
+></TABLE
+></TD
+></TR
+><TR
+><TD CLASS="section4"
+><IMG SRC="minus.gif" CLASS="coll" ONCLICK="toggle(this,'i:ValidatorT')" ALT="show/hide"
+> Instances</TD
+></TR
+><TR
+><TD CLASS="body"
+><DIV ID="i:ValidatorT" STYLE="display:block;"
+><TABLE CLASS="vanilla" CELLSPACING="1" CELLPADDING="0"
+><TR
+><TD CLASS="arg"
+>MonadTrans <A HREF="Hawk-Model-Validator.html#t%3AValidatorT"
+>ValidatorT</A
+></TD
+><TD CLASS="rdoc"
+></TD
+></TR
+><TR
+><TD CLASS="arg"
+><A HREF="/home/ghc612/ghc-6.12.1//share/doc/ghc/html/libraries/base-4.2.0.0/Control-Monad.html#t%3AMonad"
+>Monad</A
+> m =&gt; MonadWriter <A HREF="Hawk-Model-Validator.html#t%3AValidationErrors"
+>ValidationErrors</A
+> (<A HREF="Hawk-Model-Validator.html#t%3AValidatorT"
+>ValidatorT</A
+> m)</TD
+><TD CLASS="rdoc"
+></TD
+></TR
+><TR
+><TD CLASS="arg"
+><A HREF="/home/ghc612/ghc-6.12.1//share/doc/ghc/html/libraries/base-4.2.0.0/Control-Monad.html#t%3AMonad"
+>Monad</A
+> m =&gt; <A HREF="/home/ghc612/ghc-6.12.1//share/doc/ghc/html/libraries/base-4.2.0.0/Control-Monad.html#t%3AMonad"
+>Monad</A
+> (<A HREF="Hawk-Model-Validator.html#t%3AValidatorT"
+>ValidatorT</A
+> m)</TD
+><TD CLASS="rdoc"
+></TD
+></TR
+><TR
+><TD CLASS="arg"
+><A HREF="/home/ghc612/ghc-6.12.1//share/doc/ghc/html/libraries/base-4.2.0.0/Control-Monad.html#t%3AMonad"
+>Monad</A
+> m =&gt; <A HREF="/home/ghc612/ghc-6.12.1//share/doc/ghc/html/libraries/base-4.2.0.0/Control-Monad.html#t%3AFunctor"
+>Functor</A
+> (<A HREF="Hawk-Model-Validator.html#t%3AValidatorT"
+>ValidatorT</A
+> m)</TD
+><TD CLASS="rdoc"
+></TD
+></TR
+><TR
+><TD CLASS="arg"
+>MonadIO m =&gt; MonadIO (<A HREF="Hawk-Model-Validator.html#t%3AValidatorT"
+>ValidatorT</A
+> m)</TD
+><TD CLASS="rdoc"
+></TD
+></TR
+></TABLE
+></DIV
+></TD
+></TR
+></TABLE
+></TD
+></TR
+><TR
+><TD CLASS="s15"
+></TD
+></TR
+><TR
+><TD CLASS="decl"
+><SPAN CLASS="keyword"
+>class</SPAN
+>  <A NAME="t:Validatable"
+><A NAME="t%3AValidatable"
+></A
+></A
+><B
+>Validatable</B
+> v  <SPAN CLASS="keyword"
+>where</SPAN
+></TD
+></TR
+><TR
+><TD CLASS="body"
+><TABLE CLASS="vanilla" CELLSPACING="0" CELLPADDING="0"
+><TR
+><TD CLASS="s8"
+></TD
+></TR
+><TR
+><TD CLASS="section4"
+>Methods</TD
+></TR
+><TR
+><TD CLASS="body"
+><TABLE CLASS="vanilla" CELLSPACING="0" CELLPADDING="0"
+><TR
+><TD CLASS="decl"
+><A NAME="v:validator"
+><A NAME="v%3Avalidator"
+></A
+></A
+><B
+>validator</B
+> :: <A HREF="Hawk-Model-MonadDB.html#t%3AMonadDB"
+>MonadDB</A
+> m =&gt; v -&gt; <A HREF="Hawk-Model-Validator.html#t%3AValidatorT"
+>ValidatorT</A
+> m <A HREF="/home/ghc612/ghc-6.12.1//share/doc/ghc/html/libraries/ghc-prim-0.2.0.0/GHC-Unit.html#t%3A%28%29"
+>()</A
+></TD
+></TR
+></TABLE
+></TD
+></TR
+></TABLE
+></TD
+></TR
+><TR
+><TD CLASS="s15"
+></TD
+></TR
+><TR
+><TD CLASS="decl"
+><A NAME="v:execValidatorT"
+><A NAME="v%3AexecValidatorT"
+></A
+></A
+><B
+>execValidatorT</B
+> :: <A HREF="/home/ghc612/ghc-6.12.1//share/doc/ghc/html/libraries/base-4.2.0.0/Control-Monad.html#t%3AMonad"
+>Monad</A
+> m =&gt; <A HREF="Hawk-Model-Validator.html#t%3AValidatorT"
+>ValidatorT</A
+> m a -&gt; m <A HREF="Hawk-Model-Validator.html#t%3AValidationErrors"
+>ValidationErrors</A
+></TD
+></TR
+><TR
+><TD CLASS="s15"
+></TD
+></TR
+><TR
+><TD CLASS="decl"
+><A NAME="v:runValidatorT"
+><A NAME="v%3ArunValidatorT"
+></A
+></A
+><B
+>runValidatorT</B
+> :: <A HREF="/home/ghc612/ghc-6.12.1//share/doc/ghc/html/libraries/base-4.2.0.0/Control-Monad.html#t%3AMonad"
+>Monad</A
+> m =&gt; <A HREF="Hawk-Model-Validator.html#t%3AValidatorT"
+>ValidatorT</A
+> m a -&gt; m (a, <A HREF="Hawk-Model-Validator.html#t%3AValidationErrors"
+>ValidationErrors</A
+>)</TD
+></TR
+><TR
+><TD CLASS="s15"
+></TD
+></TR
+><TR
+><TD CLASS="decl"
+><A NAME="v:addError"
+><A NAME="v%3AaddError"
+></A
+></A
+><B
+>addError</B
+> :: MonadWriter <A HREF="Hawk-Model-Validator.html#t%3AValidationErrors"
+>ValidationErrors</A
+> m =&gt; <A HREF="Hawk-Model-Validator.html#t%3AAttributeName"
+>AttributeName</A
+> -&gt; <A HREF="Hawk-Model-Validator.html#t%3AValidationError"
+>ValidationError</A
+> -&gt; m <A HREF="/home/ghc612/ghc-6.12.1//share/doc/ghc/html/libraries/ghc-prim-0.2.0.0/GHC-Unit.html#t%3A%28%29"
+>()</A
+></TD
+></TR
+><TR
+><TD CLASS="s15"
+></TD
+></TR
+><TR
+><TD CLASS="decl"
+><A NAME="v:silent"
+><A NAME="v%3Asilent"
+></A
+></A
+><B
+>silent</B
+> :: MonadWriter <A HREF="Hawk-Model-Validator.html#t%3AValidationErrors"
+>ValidationErrors</A
+> m =&gt; m a -&gt; m a</TD
+></TR
+><TR
+><TD CLASS="s15"
+></TD
+></TR
+><TR
+><TD CLASS="decl"
+><A NAME="v:check"
+><A NAME="v%3Acheck"
+></A
+></A
+><B
+>check</B
+> :: <A HREF="/home/ghc612/ghc-6.12.1//share/doc/ghc/html/libraries/base-4.2.0.0/Control-Monad.html#t%3AMonad"
+>Monad</A
+> m =&gt; <A HREF="/home/ghc612/ghc-6.12.1//share/doc/ghc/html/libraries/base-4.2.0.0/Data-Bool.html#t%3ABool"
+>Bool</A
+> -&gt; <A HREF="Hawk-Model-Validator.html#t%3AValidationError"
+>ValidationError</A
+> -&gt; <A HREF="Hawk-Model-Validator.html#t%3AAttributeName"
+>AttributeName</A
+> -&gt; <A HREF="Hawk-Model-Validator.html#t%3AValidatorT"
+>ValidatorT</A
+> m <A HREF="/home/ghc612/ghc-6.12.1//share/doc/ghc/html/libraries/base-4.2.0.0/Data-Bool.html#t%3ABool"
+>Bool</A
+></TD
+></TR
+><TR
+><TD CLASS="s15"
+></TD
+></TR
+><TR
+><TD CLASS="decl"
+><A NAME="v:validate"
+><A NAME="v%3Avalidate"
+></A
+></A
+><B
+>validate</B
+> :: <A HREF="/home/ghc612/ghc-6.12.1//share/doc/ghc/html/libraries/base-4.2.0.0/Control-Monad.html#t%3AMonad"
+>Monad</A
+> m =&gt; (a -&gt; <A HREF="/home/ghc612/ghc-6.12.1//share/doc/ghc/html/libraries/base-4.2.0.0/Data-Bool.html#t%3ABool"
+>Bool</A
+>) -&gt; <A HREF="Hawk-Model-Validator.html#t%3AValidationError"
+>ValidationError</A
+> -&gt; <A HREF="Hawk-Model-Validator.html#t%3AAttributeName"
+>AttributeName</A
+> -&gt; a -&gt; <A HREF="Hawk-Model-Validator.html#t%3AValidatorT"
+>ValidatorT</A
+> m <A HREF="/home/ghc612/ghc-6.12.1//share/doc/ghc/html/libraries/base-4.2.0.0/Data-Bool.html#t%3ABool"
+>Bool</A
+></TD
+></TR
+><TR
+><TD CLASS="s15"
+></TD
+></TR
+><TR
+><TD CLASS="decl"
+><A NAME="v:>&>"
+><A NAME="v%3A%3E%26%3E"
+></A
+></A
+><B
+>(&gt;&amp;&gt;)</B
+> :: <A HREF="/home/ghc612/ghc-6.12.1//share/doc/ghc/html/libraries/base-4.2.0.0/Control-Monad.html#t%3AMonad"
+>Monad</A
+> m =&gt; (<A HREF="Hawk-Model-Validator.html#t%3AAttributeName"
+>AttributeName</A
+> -&gt; a -&gt; <A HREF="Hawk-Model-Validator.html#t%3AValidatorT"
+>ValidatorT</A
+> m <A HREF="/home/ghc612/ghc-6.12.1//share/doc/ghc/html/libraries/base-4.2.0.0/Data-Bool.html#t%3ABool"
+>Bool</A
+>) -&gt; (<A HREF="Hawk-Model-Validator.html#t%3AAttributeName"
+>AttributeName</A
+> -&gt; a -&gt; <A HREF="Hawk-Model-Validator.html#t%3AValidatorT"
+>ValidatorT</A
+> m <A HREF="/home/ghc612/ghc-6.12.1//share/doc/ghc/html/libraries/base-4.2.0.0/Data-Bool.html#t%3ABool"
+>Bool</A
+>) -&gt; <A HREF="Hawk-Model-Validator.html#t%3AAttributeName"
+>AttributeName</A
+> -&gt; a -&gt; <A HREF="Hawk-Model-Validator.html#t%3AValidatorT"
+>ValidatorT</A
+> m <A HREF="/home/ghc612/ghc-6.12.1//share/doc/ghc/html/libraries/base-4.2.0.0/Data-Bool.html#t%3ABool"
+>Bool</A
+></TD
+></TR
+><TR
+><TD CLASS="s15"
+></TD
+></TR
+><TR
+><TD CLASS="decl"
+><A NAME="v:>?>"
+><A NAME="v%3A%3E%3F%3E"
+></A
+></A
+><B
+>(&gt;?&gt;)</B
+> :: <A HREF="/home/ghc612/ghc-6.12.1//share/doc/ghc/html/libraries/base-4.2.0.0/Control-Monad.html#t%3AMonad"
+>Monad</A
+> m =&gt; (<A HREF="Hawk-Model-Validator.html#t%3AAttributeName"
+>AttributeName</A
+> -&gt; a -&gt; <A HREF="Hawk-Model-Validator.html#t%3AValidatorT"
+>ValidatorT</A
+> m <A HREF="/home/ghc612/ghc-6.12.1//share/doc/ghc/html/libraries/base-4.2.0.0/Data-Bool.html#t%3ABool"
+>Bool</A
+>) -&gt; (<A HREF="Hawk-Model-Validator.html#t%3AAttributeName"
+>AttributeName</A
+> -&gt; a -&gt; <A HREF="Hawk-Model-Validator.html#t%3AValidatorT"
+>ValidatorT</A
+> m <A HREF="/home/ghc612/ghc-6.12.1//share/doc/ghc/html/libraries/base-4.2.0.0/Data-Bool.html#t%3ABool"
+>Bool</A
+>) -&gt; <A HREF="Hawk-Model-Validator.html#t%3AAttributeName"
+>AttributeName</A
+> -&gt; a -&gt; <A HREF="Hawk-Model-Validator.html#t%3AValidatorT"
+>ValidatorT</A
+> m <A HREF="/home/ghc612/ghc-6.12.1//share/doc/ghc/html/libraries/base-4.2.0.0/Data-Bool.html#t%3ABool"
+>Bool</A
+></TD
+></TR
+><TR
+><TD CLASS="s15"
+></TD
+></TR
+><TR
+><TD CLASS="decl"
+><A NAME="v:validateNull"
+><A NAME="v%3AvalidateNull"
+></A
+></A
+><B
+>validateNull</B
+> :: <A HREF="/home/ghc612/ghc-6.12.1//share/doc/ghc/html/libraries/base-4.2.0.0/Control-Monad.html#t%3AMonad"
+>Monad</A
+> m =&gt; <A HREF="Hawk-Model-Validator.html#t%3AAttributeName"
+>AttributeName</A
+> -&gt; [a] -&gt; <A HREF="Hawk-Model-Validator.html#t%3AValidatorT"
+>ValidatorT</A
+> m <A HREF="/home/ghc612/ghc-6.12.1//share/doc/ghc/html/libraries/base-4.2.0.0/Data-Bool.html#t%3ABool"
+>Bool</A
+></TD
+></TR
+><TR
+><TD CLASS="s15"
+></TD
+></TR
+><TR
+><TD CLASS="decl"
+><A NAME="v:validateNotNull"
+><A NAME="v%3AvalidateNotNull"
+></A
+></A
+><B
+>validateNotNull</B
+> :: <A HREF="/home/ghc612/ghc-6.12.1//share/doc/ghc/html/libraries/base-4.2.0.0/Control-Monad.html#t%3AMonad"
+>Monad</A
+> m =&gt; <A HREF="Hawk-Model-Validator.html#t%3AAttributeName"
+>AttributeName</A
+> -&gt; [a] -&gt; <A HREF="Hawk-Model-Validator.html#t%3AValidatorT"
+>ValidatorT</A
+> m <A HREF="/home/ghc612/ghc-6.12.1//share/doc/ghc/html/libraries/base-4.2.0.0/Data-Bool.html#t%3ABool"
+>Bool</A
+></TD
+></TR
+><TR
+><TD CLASS="s15"
+></TD
+></TR
+><TR
+><TD CLASS="decl"
+><A NAME="v:validateNothing"
+><A NAME="v%3AvalidateNothing"
+></A
+></A
+><B
+>validateNothing</B
+> :: <A HREF="/home/ghc612/ghc-6.12.1//share/doc/ghc/html/libraries/base-4.2.0.0/Control-Monad.html#t%3AMonad"
+>Monad</A
+> m =&gt; <A HREF="Hawk-Model-Validator.html#t%3AAttributeName"
+>AttributeName</A
+> -&gt; <A HREF="/home/ghc612/ghc-6.12.1//share/doc/ghc/html/libraries/base-4.2.0.0/Data-Maybe.html#t%3AMaybe"
+>Maybe</A
+> a -&gt; <A HREF="Hawk-Model-Validator.html#t%3AValidatorT"
+>ValidatorT</A
+> m <A HREF="/home/ghc612/ghc-6.12.1//share/doc/ghc/html/libraries/base-4.2.0.0/Data-Bool.html#t%3ABool"
+>Bool</A
+></TD
+></TR
+><TR
+><TD CLASS="s15"
+></TD
+></TR
+><TR
+><TD CLASS="decl"
+><A NAME="v:validateJust"
+><A NAME="v%3AvalidateJust"
+></A
+></A
+><B
+>validateJust</B
+> :: <A HREF="/home/ghc612/ghc-6.12.1//share/doc/ghc/html/libraries/base-4.2.0.0/Control-Monad.html#t%3AMonad"
+>Monad</A
+> m =&gt; <A HREF="Hawk-Model-Validator.html#t%3AAttributeName"
+>AttributeName</A
+> -&gt; <A HREF="/home/ghc612/ghc-6.12.1//share/doc/ghc/html/libraries/base-4.2.0.0/Data-Maybe.html#t%3AMaybe"
+>Maybe</A
+> a -&gt; <A HREF="Hawk-Model-Validator.html#t%3AValidatorT"
+>ValidatorT</A
+> m <A HREF="/home/ghc612/ghc-6.12.1//share/doc/ghc/html/libraries/base-4.2.0.0/Data-Bool.html#t%3ABool"
+>Bool</A
+></TD
+></TR
+><TR
+><TD CLASS="s15"
+></TD
+></TR
+><TR
+><TD CLASS="decl"
+><A NAME="v:validateNotEmpty"
+><A NAME="v%3AvalidateNotEmpty"
+></A
+></A
+><B
+>validateNotEmpty</B
+> :: <A HREF="/home/ghc612/ghc-6.12.1//share/doc/ghc/html/libraries/base-4.2.0.0/Control-Monad.html#t%3AMonad"
+>Monad</A
+> m =&gt; <A HREF="Hawk-Model-Validator.html#t%3AAttributeName"
+>AttributeName</A
+> -&gt; <A HREF="/home/ghc612/ghc-6.12.1//share/doc/ghc/html/libraries/base-4.2.0.0/Data-Maybe.html#t%3AMaybe"
+>Maybe</A
+> [a] -&gt; <A HREF="Hawk-Model-Validator.html#t%3AValidatorT"
+>ValidatorT</A
+> m <A HREF="/home/ghc612/ghc-6.12.1//share/doc/ghc/html/libraries/base-4.2.0.0/Data-Bool.html#t%3ABool"
+>Bool</A
+></TD
+></TR
+><TR
+><TD CLASS="s15"
+></TD
+></TR
+><TR
+><TD CLASS="decl"
+><A NAME="v:validateLength"
+><A NAME="v%3AvalidateLength"
+></A
+></A
+><B
+>validateLength</B
+> :: <A HREF="/home/ghc612/ghc-6.12.1//share/doc/ghc/html/libraries/base-4.2.0.0/Control-Monad.html#t%3AMonad"
+>Monad</A
+> m =&gt; <A HREF="/home/ghc612/ghc-6.12.1//share/doc/ghc/html/libraries/base-4.2.0.0/Data-Int.html#t%3AInt"
+>Int</A
+> -&gt; <A HREF="/home/ghc612/ghc-6.12.1//share/doc/ghc/html/libraries/base-4.2.0.0/Data-Int.html#t%3AInt"
+>Int</A
+> -&gt; <A HREF="Hawk-Model-Validator.html#t%3AAttributeName"
+>AttributeName</A
+> -&gt; [a] -&gt; <A HREF="Hawk-Model-Validator.html#t%3AValidatorT"
+>ValidatorT</A
+> m <A HREF="/home/ghc612/ghc-6.12.1//share/doc/ghc/html/libraries/base-4.2.0.0/Data-Bool.html#t%3ABool"
+>Bool</A
+></TD
+></TR
+><TR
+><TD CLASS="s15"
+></TD
+></TR
+><TR
+><TD CLASS="decl"
+><A NAME="v:validateFuture"
+><A NAME="v%3AvalidateFuture"
+></A
+></A
+><B
+>validateFuture</B
+> :: MonadIO m =&gt; <A HREF="Hawk-Model-Validator.html#t%3AAttributeName"
+>AttributeName</A
+> -&gt; <A HREF="/home/ghc612/ghc-6.12.1//share/doc/ghc/html/libraries/time-1.1.4/Data-Time-Clock.html#t%3AUTCTime"
+>UTCTime</A
+> -&gt; <A HREF="Hawk-Model-Validator.html#t%3AValidatorT"
+>ValidatorT</A
+> m <A HREF="/home/ghc612/ghc-6.12.1//share/doc/ghc/html/libraries/base-4.2.0.0/Data-Bool.html#t%3ABool"
+>Bool</A
+></TD
+></TR
+><TR
+><TD CLASS="s15"
+></TD
+></TR
+><TR
+><TD CLASS="decl"
+><A NAME="v:validatePast"
+><A NAME="v%3AvalidatePast"
+></A
+></A
+><B
+>validatePast</B
+> :: MonadIO m =&gt; <A HREF="Hawk-Model-Validator.html#t%3AAttributeName"
+>AttributeName</A
+> -&gt; <A HREF="/home/ghc612/ghc-6.12.1//share/doc/ghc/html/libraries/time-1.1.4/Data-Time-Clock.html#t%3AUTCTime"
+>UTCTime</A
+> -&gt; <A HREF="Hawk-Model-Validator.html#t%3AValidatorT"
+>ValidatorT</A
+> m <A HREF="/home/ghc612/ghc-6.12.1//share/doc/ghc/html/libraries/base-4.2.0.0/Data-Bool.html#t%3ABool"
+>Bool</A
+></TD
+></TR
+><TR
+><TD CLASS="s15"
+></TD
+></TR
+><TR
+><TD CLASS="decl"
+><A NAME="v:validateUniqueness"
+><A NAME="v%3AvalidateUniqueness"
+></A
+></A
+><B
+>validateUniqueness</B
+> :: (<A HREF="Hawk-Model-WithPrimaryKey.html#t%3AWithPrimaryKey"
+>WithPrimaryKey</A
+> p, <A HREF="Hawk-Model-MonadDB.html#t%3AMonadDB"
+>MonadDB</A
+> m, Convertible a <A HREF="Hawk-Model-Types.html#t%3ASqlValue"
+>SqlValue</A
+>) =&gt; [(<A HREF="Hawk-Model-Types.html#t%3AColumnName"
+>ColumnName</A
+>, <A HREF="Hawk-Model-Types.html#t%3ASqlValue"
+>SqlValue</A
+>)] -&gt; (p -&gt; a) -&gt; <A HREF="Hawk-Model-Validator.html#t%3AAttributeName"
+>AttributeName</A
+> -&gt; p -&gt; <A HREF="Hawk-Model-Validator.html#t%3AValidatorT"
+>ValidatorT</A
+> m <A HREF="/home/ghc612/ghc-6.12.1//share/doc/ghc/html/libraries/base-4.2.0.0/Data-Bool.html#t%3ABool"
+>Bool</A
+></TD
+></TR
+><TR
+><TD CLASS="s15"
+></TD
+></TR
+><TR
+><TD CLASS="botbar"
+>Produced by <A HREF="http://www.haskell.org/haddock/"
+>Haddock</A
+> version 2.7.2</TD
+></TR
+></TABLE
+></BODY
+></HTML
+>

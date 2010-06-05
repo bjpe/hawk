@@ -1,0 +1,487 @@
+<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN" "http://www.w3.org/TR/html4/loose.dtd">
+<!--Rendered using the Haskell Html Library v0.2-->
+<HTML
+><HEAD
+><META HTTP-EQUIV="Content-Type" CONTENT="text/html; charset=UTF-8"
+><TITLE
+>Hawk.Model.Updater</TITLE
+><LINK HREF="haddock.css" REL="stylesheet" TYPE="text/css"
+><SCRIPT SRC="haddock-util.js" TYPE="text/javascript"
+></SCRIPT
+><SCRIPT TYPE="text/javascript"
+>window.onload = function () {setSynopsis("mini_Hawk-Model-Updater.html")};</SCRIPT
+></HEAD
+><BODY
+><TABLE CLASS="vanilla" CELLSPACING="0" CELLPADDING="0"
+><TR
+><TD CLASS="topbar"
+><TABLE CLASS="vanilla" CELLSPACING="0" CELLPADDING="0"
+><TR
+><TD
+><IMG SRC="haskell_icon.gif" WIDTH="16" HEIGHT="16" ALT=" "
+></TD
+><TD CLASS="title"
+>Hawk-0.0.2: Haskell Web Application Kit</TD
+><TD CLASS="topbut"
+><A HREF="index.html"
+>Contents</A
+></TD
+><TD CLASS="topbut"
+><A HREF="doc-index.html"
+>Index</A
+></TD
+></TR
+></TABLE
+></TD
+></TR
+><TR
+><TD CLASS="modulebar"
+><TABLE CLASS="vanilla" CELLSPACING="0" CELLPADDING="0"
+><TR
+><TD
+><FONT SIZE="6"
+>Hawk.Model.Updater</FONT
+></TD
+><TD ALIGN="right"
+><TABLE CLASS="narrow" CELLSPACING="0" CELLPADDING="0"
+><TR
+><TD CLASS="infohead"
+>Portability</TD
+><TD CLASS="infoval"
+>portable</TD
+></TR
+><TR
+><TD CLASS="infohead"
+>Stability</TD
+><TD CLASS="infoval"
+>experimental</TD
+></TR
+><TR
+><TD CLASS="infohead"
+>Maintainer</TD
+><TD CLASS="infoval"
+>{inf6254, inf6509}fh-wedel.de</TD
+></TR
+></TABLE
+></TD
+></TR
+></TABLE
+></TD
+></TR
+><TR
+><TD CLASS="s15"
+></TD
+></TR
+><TR
+><TD CLASS="section1"
+>Description</TD
+></TR
+><TR
+><TD CLASS="doc"
+>Version     :  $Id: Main.hs 57 2009-05-29 11:33:59Z inf6254 $
+</TD
+></TR
+><TR
+><TD CLASS="s15"
+></TD
+></TR
+><TR
+><TD CLASS="s15"
+></TD
+></TR
+><TR
+><TD CLASS="section1"
+>Documentation</TD
+></TR
+><TR
+><TD CLASS="s15"
+></TD
+></TR
+><TR
+><TD CLASS="decl"
+><SPAN CLASS="keyword"
+>type</SPAN
+> <A NAME="t:Params"
+><A NAME="t%3AParams"
+></A
+></A
+><B
+>Params</B
+> = <A HREF="/home/ghc612/ghc-6.12.1//share/doc/ghc/html/libraries/containers-0.3.0.0/Data-Map.html#t%3AMap"
+>Map</A
+> <A HREF="Hawk-Model-Validator.html#t%3AAttributeName"
+>AttributeName</A
+> <A HREF="/home/ghc612/ghc-6.12.1//share/doc/ghc/html/libraries/base-4.2.0.0/Data-Char.html#t%3AString"
+>String</A
+></TD
+></TR
+><TR
+><TD CLASS="s15"
+></TD
+></TR
+><TR
+><TD CLASS="decl"
+><SPAN CLASS="keyword"
+>data</SPAN
+>  <A NAME="t:UpdaterT"
+><A NAME="t%3AUpdaterT"
+></A
+></A
+><B
+>UpdaterT</B
+> m a </TD
+></TR
+><TR
+><TD CLASS="body"
+><TABLE CLASS="vanilla" CELLSPACING="0" CELLPADDING="0"
+><TR
+><TD CLASS="section4"
+><IMG SRC="minus.gif" CLASS="coll" ONCLICK="toggle(this,'i:UpdaterT')" ALT="show/hide"
+> Instances</TD
+></TR
+><TR
+><TD CLASS="body"
+><DIV ID="i:UpdaterT" STYLE="display:block;"
+><TABLE CLASS="vanilla" CELLSPACING="1" CELLPADDING="0"
+><TR
+><TD CLASS="arg"
+>MonadTrans <A HREF="Hawk-Model-Updater.html#t%3AUpdaterT"
+>UpdaterT</A
+></TD
+><TD CLASS="rdoc"
+></TD
+></TR
+><TR
+><TD CLASS="arg"
+><A HREF="/home/ghc612/ghc-6.12.1//share/doc/ghc/html/libraries/base-4.2.0.0/Control-Monad.html#t%3AMonad"
+>Monad</A
+> m =&gt; MonadReader <A HREF="Hawk-Model-Updater.html#t%3AParams"
+>Params</A
+> (<A HREF="Hawk-Model-Updater.html#t%3AUpdaterT"
+>UpdaterT</A
+> m)</TD
+><TD CLASS="rdoc"
+></TD
+></TR
+><TR
+><TD CLASS="arg"
+><A HREF="/home/ghc612/ghc-6.12.1//share/doc/ghc/html/libraries/base-4.2.0.0/Control-Monad.html#t%3AMonad"
+>Monad</A
+> m =&gt; MonadWriter <A HREF="Hawk-Model-Validator.html#t%3AValidationErrors"
+>ValidationErrors</A
+> (<A HREF="Hawk-Model-Updater.html#t%3AUpdaterT"
+>UpdaterT</A
+> m)</TD
+><TD CLASS="rdoc"
+></TD
+></TR
+><TR
+><TD CLASS="arg"
+><A HREF="/home/ghc612/ghc-6.12.1//share/doc/ghc/html/libraries/base-4.2.0.0/Control-Monad.html#t%3AMonad"
+>Monad</A
+> m =&gt; <A HREF="/home/ghc612/ghc-6.12.1//share/doc/ghc/html/libraries/base-4.2.0.0/Control-Monad.html#t%3AMonad"
+>Monad</A
+> (<A HREF="Hawk-Model-Updater.html#t%3AUpdaterT"
+>UpdaterT</A
+> m)</TD
+><TD CLASS="rdoc"
+></TD
+></TR
+><TR
+><TD CLASS="arg"
+><A HREF="/home/ghc612/ghc-6.12.1//share/doc/ghc/html/libraries/base-4.2.0.0/Control-Monad.html#t%3AMonad"
+>Monad</A
+> m =&gt; <A HREF="/home/ghc612/ghc-6.12.1//share/doc/ghc/html/libraries/base-4.2.0.0/Control-Monad.html#t%3AFunctor"
+>Functor</A
+> (<A HREF="Hawk-Model-Updater.html#t%3AUpdaterT"
+>UpdaterT</A
+> m)</TD
+><TD CLASS="rdoc"
+></TD
+></TR
+><TR
+><TD CLASS="arg"
+>MonadIO m =&gt; MonadIO (<A HREF="Hawk-Model-Updater.html#t%3AUpdaterT"
+>UpdaterT</A
+> m)</TD
+><TD CLASS="rdoc"
+></TD
+></TR
+></TABLE
+></DIV
+></TD
+></TR
+></TABLE
+></TD
+></TR
+><TR
+><TD CLASS="s15"
+></TD
+></TR
+><TR
+><TD CLASS="decl"
+><A NAME="v:runUpdaterT"
+><A NAME="v%3ArunUpdaterT"
+></A
+></A
+><B
+>runUpdaterT</B
+> :: <A HREF="/home/ghc612/ghc-6.12.1//share/doc/ghc/html/libraries/base-4.2.0.0/Control-Monad.html#t%3AMonad"
+>Monad</A
+> m =&gt; <A HREF="Hawk-Model-Updater.html#t%3AUpdaterT"
+>UpdaterT</A
+> m a -&gt; <A HREF="Hawk-Model-Updater.html#t%3AParams"
+>Params</A
+> -&gt; <A HREF="Hawk-Model-Validator.html#t%3AValidatorT"
+>ValidatorT</A
+> m a</TD
+></TR
+><TR
+><TD CLASS="s15"
+></TD
+></TR
+><TR
+><TD CLASS="decl"
+><A NAME="v:updateByParams"
+><A NAME="v%3AupdateByParams"
+></A
+></A
+><B
+>updateByParams</B
+> :: (<A HREF="Hawk-Model-MonadDB.html#t%3AMonadDB"
+>MonadDB</A
+> m, <A HREF="Hawk-Model-Updater.html#t%3AUpdateable"
+>Updateable</A
+> u) =&gt; u -&gt; <A HREF="/home/ghc612/ghc-6.12.1//share/doc/ghc/html/libraries/base-4.2.0.0/Data-Char.html#t%3AString"
+>String</A
+> -&gt; <A HREF="Hawk-Model-Updater.html#t%3AParams"
+>Params</A
+> -&gt; m (u, <A HREF="Hawk-Model-Validator.html#t%3AValidationErrors"
+>ValidationErrors</A
+>)</TD
+></TR
+><TR
+><TD CLASS="s15"
+></TD
+></TR
+><TR
+><TD CLASS="decl"
+><A NAME="v:updateAndValidate"
+><A NAME="v%3AupdateAndValidate"
+></A
+></A
+><B
+>updateAndValidate</B
+> :: (<A HREF="Hawk-Model-MonadDB.html#t%3AMonadDB"
+>MonadDB</A
+> m, <A HREF="Hawk-Model-Updater.html#t%3AUpdateable"
+>Updateable</A
+> u, <A HREF="Hawk-Model-Validator.html#t%3AValidatable"
+>Validatable</A
+> u) =&gt; u -&gt; <A HREF="/home/ghc612/ghc-6.12.1//share/doc/ghc/html/libraries/base-4.2.0.0/Data-Char.html#t%3AString"
+>String</A
+> -&gt; <A HREF="Hawk-Model-Updater.html#t%3AParams"
+>Params</A
+> -&gt; m (u, <A HREF="Hawk-Model-Validator.html#t%3AValidationErrors"
+>ValidationErrors</A
+>)</TD
+></TR
+><TR
+><TD CLASS="s15"
+></TD
+></TR
+><TR
+><TD CLASS="decl"
+><A NAME="v:subParam"
+><A NAME="v%3AsubParam"
+></A
+></A
+><B
+>subParam</B
+> :: <A HREF="/home/ghc612/ghc-6.12.1//share/doc/ghc/html/libraries/base-4.2.0.0/Data-Char.html#t%3AString"
+>String</A
+> -&gt; <A HREF="/home/ghc612/ghc-6.12.1//share/doc/ghc/html/libraries/base-4.2.0.0/Data-Char.html#t%3AString"
+>String</A
+> -&gt; <A HREF="/home/ghc612/ghc-6.12.1//share/doc/ghc/html/libraries/base-4.2.0.0/Data-Char.html#t%3AString"
+>String</A
+></TD
+></TR
+><TR
+><TD CLASS="s15"
+></TD
+></TR
+><TR
+><TD CLASS="decl"
+><A NAME="v:concatNameWith"
+><A NAME="v%3AconcatNameWith"
+></A
+></A
+><B
+>concatNameWith</B
+> :: <A HREF="/home/ghc612/ghc-6.12.1//share/doc/ghc/html/libraries/base-4.2.0.0/Data-Char.html#t%3AString"
+>String</A
+> -&gt; <A HREF="/home/ghc612/ghc-6.12.1//share/doc/ghc/html/libraries/base-4.2.0.0/Data-Char.html#t%3AString"
+>String</A
+> -&gt; <A HREF="/home/ghc612/ghc-6.12.1//share/doc/ghc/html/libraries/base-4.2.0.0/Data-Char.html#t%3AString"
+>String</A
+> -&gt; <A HREF="/home/ghc612/ghc-6.12.1//share/doc/ghc/html/libraries/base-4.2.0.0/Data-Char.html#t%3AString"
+>String</A
+></TD
+></TR
+><TR
+><TD CLASS="s15"
+></TD
+></TR
+><TR
+><TD CLASS="decl"
+><SPAN CLASS="keyword"
+>class</SPAN
+>  <A NAME="t:Updateable"
+><A NAME="t%3AUpdateable"
+></A
+></A
+><B
+>Updateable</B
+> u  <SPAN CLASS="keyword"
+>where</SPAN
+></TD
+></TR
+><TR
+><TD CLASS="body"
+><TABLE CLASS="vanilla" CELLSPACING="0" CELLPADDING="0"
+><TR
+><TD CLASS="s8"
+></TD
+></TR
+><TR
+><TD CLASS="section4"
+>Methods</TD
+></TR
+><TR
+><TD CLASS="body"
+><TABLE CLASS="vanilla" CELLSPACING="0" CELLPADDING="0"
+><TR
+><TD CLASS="decl"
+><A NAME="v:updater"
+><A NAME="v%3Aupdater"
+></A
+></A
+><B
+>updater</B
+> :: <A HREF="Hawk-Model-MonadDB.html#t%3AMonadDB"
+>MonadDB</A
+> m =&gt; u -&gt; <A HREF="/home/ghc612/ghc-6.12.1//share/doc/ghc/html/libraries/base-4.2.0.0/Data-Char.html#t%3AString"
+>String</A
+> -&gt; <A HREF="Hawk-Model-Updater.html#t%3AUpdaterT"
+>UpdaterT</A
+> m u</TD
+></TR
+></TABLE
+></TD
+></TR
+><TR
+><TD CLASS="s8"
+></TD
+></TR
+><TR
+><TD CLASS="section4"
+><IMG SRC="minus.gif" CLASS="coll" ONCLICK="toggle(this,'i:Updateable')" ALT="show/hide"
+> Instances</TD
+></TR
+><TR
+><TD CLASS="body"
+><DIV ID="i:Updateable" STYLE="display:block;"
+><TABLE CLASS="vanilla" CELLSPACING="1" CELLPADDING="0"
+><TR
+><TD CLASS="arg"
+><A HREF="Hawk-Model-Updater.html#t%3AUpdateable"
+>Updateable</A
+> <A HREF="/home/ghc612/ghc-6.12.1//share/doc/ghc/html/libraries/base-4.2.0.0/Data-Bool.html#t%3ABool"
+>Bool</A
+></TD
+><TD CLASS="rdoc"
+></TD
+></TR
+><TR
+><TD CLASS="arg"
+><A HREF="Hawk-Model-Updater.html#t%3AUpdateable"
+>Updateable</A
+> <A HREF="/home/ghc612/ghc-6.12.1//share/doc/ghc/html/libraries/base-4.2.0.0/Prelude.html#t%3ADouble"
+>Double</A
+></TD
+><TD CLASS="rdoc"
+></TD
+></TR
+><TR
+><TD CLASS="arg"
+><A HREF="Hawk-Model-Updater.html#t%3AUpdateable"
+>Updateable</A
+> <A HREF="/home/ghc612/ghc-6.12.1//share/doc/ghc/html/libraries/base-4.2.0.0/Data-Int.html#t%3AInt"
+>Int</A
+></TD
+><TD CLASS="rdoc"
+></TD
+></TR
+><TR
+><TD CLASS="arg"
+><A HREF="Hawk-Model-Updater.html#t%3AUpdateable"
+>Updateable</A
+> <A HREF="/home/ghc612/ghc-6.12.1//share/doc/ghc/html/libraries/base-4.2.0.0/Prelude.html#t%3AInteger"
+>Integer</A
+></TD
+><TD CLASS="rdoc"
+></TD
+></TR
+><TR
+><TD CLASS="arg"
+><A HREF="Hawk-Model-Updater.html#t%3AUpdateable"
+>Updateable</A
+> <A HREF="/home/ghc612/ghc-6.12.1//share/doc/ghc/html/libraries/base-4.2.0.0/Data-Char.html#t%3AString"
+>String</A
+></TD
+><TD CLASS="rdoc"
+></TD
+></TR
+><TR
+><TD CLASS="arg"
+><A HREF="Hawk-Model-Updater.html#t%3AUpdateable"
+>Updateable</A
+> <A HREF="/home/ghc612/ghc-6.12.1//share/doc/ghc/html/libraries/time-1.1.4/Data-Time-Calendar.html#t%3ADay"
+>Day</A
+></TD
+><TD CLASS="rdoc"
+></TD
+></TR
+><TR
+><TD CLASS="arg"
+><A HREF="Hawk-Model-Updater.html#t%3AUpdateable"
+>Updateable</A
+> u =&gt; <A HREF="Hawk-Model-Updater.html#t%3AUpdateable"
+>Updateable</A
+> (<A HREF="/home/ghc612/ghc-6.12.1//share/doc/ghc/html/libraries/base-4.2.0.0/Data-Maybe.html#t%3AMaybe"
+>Maybe</A
+> u)</TD
+><TD CLASS="rdoc"
+></TD
+></TR
+></TABLE
+></DIV
+></TD
+></TR
+></TABLE
+></TD
+></TR
+><TR
+><TD CLASS="s15"
+></TD
+></TR
+><TR
+><TD CLASS="botbar"
+>Produced by <A HREF="http://www.haskell.org/haddock/"
+>Haddock</A
+> version 2.7.2</TD
+></TR
+></TABLE
+></BODY
+></HTML
+>

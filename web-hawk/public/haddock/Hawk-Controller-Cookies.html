@@ -1,0 +1,487 @@
+<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN" "http://www.w3.org/TR/html4/loose.dtd">
+<!--Rendered using the Haskell Html Library v0.2-->
+<HTML
+><HEAD
+><META HTTP-EQUIV="Content-Type" CONTENT="text/html; charset=UTF-8"
+><TITLE
+>Hawk.Controller.Cookies</TITLE
+><LINK HREF="haddock.css" REL="stylesheet" TYPE="text/css"
+><SCRIPT SRC="haddock-util.js" TYPE="text/javascript"
+></SCRIPT
+><SCRIPT TYPE="text/javascript"
+>window.onload = function () {setSynopsis("mini_Hawk-Controller-Cookies.html")};</SCRIPT
+></HEAD
+><BODY
+><TABLE CLASS="vanilla" CELLSPACING="0" CELLPADDING="0"
+><TR
+><TD CLASS="topbar"
+><TABLE CLASS="vanilla" CELLSPACING="0" CELLPADDING="0"
+><TR
+><TD
+><IMG SRC="haskell_icon.gif" WIDTH="16" HEIGHT="16" ALT=" "
+></TD
+><TD CLASS="title"
+>Hawk-0.0.2: Haskell Web Application Kit</TD
+><TD CLASS="topbut"
+><A HREF="index.html"
+>Contents</A
+></TD
+><TD CLASS="topbut"
+><A HREF="doc-index.html"
+>Index</A
+></TD
+></TR
+></TABLE
+></TD
+></TR
+><TR
+><TD CLASS="modulebar"
+><TABLE CLASS="vanilla" CELLSPACING="0" CELLPADDING="0"
+><TR
+><TD
+><FONT SIZE="6"
+>Hawk.Controller.Cookies</FONT
+></TD
+><TD ALIGN="right"
+><TABLE CLASS="narrow" CELLSPACING="0" CELLPADDING="0"
+><TR
+><TD CLASS="infohead"
+>Portability</TD
+><TD CLASS="infoval"
+>portable</TD
+></TR
+><TR
+><TD CLASS="infohead"
+>Stability</TD
+><TD CLASS="infoval"
+>experimental</TD
+></TR
+><TR
+><TD CLASS="infohead"
+>Maintainer</TD
+><TD CLASS="infoval"
+>{inf6254, inf6509}fh-wedel.de</TD
+></TR
+></TABLE
+></TD
+></TR
+></TABLE
+></TD
+></TR
+><TR
+><TD CLASS="s15"
+></TD
+></TR
+><TR
+><TD CLASS="section1"
+>Description</TD
+></TR
+><TR
+><TD CLASS="doc"
+><P
+>Version     :  $Id: Main.hs 57 2009-05-29 11:33:59Z inf6254 $
+</P
+><P
+>Functions for working with Cookies. This module uses the Cookie functions
+   from Network.CGI.Cookies.
+   May be updated to reflect RFC 2965 in the future.
+</P
+></TD
+></TR
+><TR
+><TD CLASS="s15"
+></TD
+></TR
+><TR
+><TD CLASS="s15"
+></TD
+></TR
+><TR
+><TD CLASS="section1"
+>Documentation</TD
+></TR
+><TR
+><TD CLASS="s15"
+></TD
+></TR
+><TR
+><TD CLASS="decl"
+><SPAN CLASS="keyword"
+>data</SPAN
+>  <A NAME="t:Cookie"
+><A NAME="t%3ACookie"
+></A
+></A
+><B
+>Cookie</B
+>  </TD
+></TR
+><TR
+><TD CLASS="body"
+><TABLE CLASS="vanilla" CELLSPACING="0" CELLPADDING="0"
+><TR
+><TD CLASS="section4"
+>Constructors</TD
+></TR
+><TR
+><TD CLASS="body"
+><TABLE CLASS="vanilla" CELLSPACING="5" CELLPADDING="0"
+><TR
+><TD CLASS="arg"
+><A NAME="v:Cookie"
+><A NAME="v%3ACookie"
+></A
+></A
+><B
+>Cookie</B
+></TD
+><TD CLASS="rdoc"
+></TD
+></TR
+><TR
+><TD CLASS="body" COLSPAN="2"
+><TABLE CLASS="vanilla" CELLSPACING="1" CELLPADDING="0"
+><TR
+><TD CLASS="arg"
+><A NAME="v:cookieName"
+><A NAME="v%3AcookieName"
+></A
+></A
+><B
+>cookieName</B
+> :: <A HREF="/home/ghc612/ghc-6.12.1//share/doc/ghc/html/libraries/base-4.2.0.0/Data-Char.html#t%3AString"
+>String</A
+></TD
+><TD CLASS="rdoc"
+></TD
+></TR
+><TR
+><TD CLASS="arg"
+><A NAME="v:cookieValue"
+><A NAME="v%3AcookieValue"
+></A
+></A
+><B
+>cookieValue</B
+> :: <A HREF="/home/ghc612/ghc-6.12.1//share/doc/ghc/html/libraries/base-4.2.0.0/Data-Char.html#t%3AString"
+>String</A
+></TD
+><TD CLASS="rdoc"
+></TD
+></TR
+><TR
+><TD CLASS="arg"
+><A NAME="v:cookieExpires"
+><A NAME="v%3AcookieExpires"
+></A
+></A
+><B
+>cookieExpires</B
+> :: <A HREF="/home/ghc612/ghc-6.12.1//share/doc/ghc/html/libraries/base-4.2.0.0/Data-Maybe.html#t%3AMaybe"
+>Maybe</A
+> <A HREF="/home/ghc612/ghc-6.12.1//share/doc/ghc/html/libraries/haskell98-1.0.1.1/Time.html#t%3ACalendarTime"
+>CalendarTime</A
+></TD
+><TD CLASS="rdoc"
+></TD
+></TR
+><TR
+><TD CLASS="arg"
+><A NAME="v:cookieDomain"
+><A NAME="v%3AcookieDomain"
+></A
+></A
+><B
+>cookieDomain</B
+> :: <A HREF="/home/ghc612/ghc-6.12.1//share/doc/ghc/html/libraries/base-4.2.0.0/Data-Maybe.html#t%3AMaybe"
+>Maybe</A
+> <A HREF="/home/ghc612/ghc-6.12.1//share/doc/ghc/html/libraries/base-4.2.0.0/Data-Char.html#t%3AString"
+>String</A
+></TD
+><TD CLASS="rdoc"
+></TD
+></TR
+><TR
+><TD CLASS="arg"
+><A NAME="v:cookiePath"
+><A NAME="v%3AcookiePath"
+></A
+></A
+><B
+>cookiePath</B
+> :: <A HREF="/home/ghc612/ghc-6.12.1//share/doc/ghc/html/libraries/base-4.2.0.0/Data-Maybe.html#t%3AMaybe"
+>Maybe</A
+> <A HREF="/home/ghc612/ghc-6.12.1//share/doc/ghc/html/libraries/base-4.2.0.0/Data-Char.html#t%3AString"
+>String</A
+></TD
+><TD CLASS="rdoc"
+></TD
+></TR
+><TR
+><TD CLASS="arg"
+><A NAME="v:cookieSecure"
+><A NAME="v%3AcookieSecure"
+></A
+></A
+><B
+>cookieSecure</B
+> :: <A HREF="/home/ghc612/ghc-6.12.1//share/doc/ghc/html/libraries/base-4.2.0.0/Data-Bool.html#t%3ABool"
+>Bool</A
+></TD
+><TD CLASS="rdoc"
+></TD
+></TR
+></TABLE
+></TD
+></TR
+></TABLE
+></TD
+></TR
+><TR
+><TD CLASS="section4"
+><IMG SRC="minus.gif" CLASS="coll" ONCLICK="toggle(this,'i:Cookie')" ALT="show/hide"
+> Instances</TD
+></TR
+><TR
+><TD CLASS="body"
+><DIV ID="i:Cookie" STYLE="display:block;"
+><TABLE CLASS="vanilla" CELLSPACING="1" CELLPADDING="0"
+><TR
+><TD CLASS="arg"
+><A HREF="/home/ghc612/ghc-6.12.1//share/doc/ghc/html/libraries/base-4.2.0.0/Data-Eq.html#t%3AEq"
+>Eq</A
+> <A HREF="Hawk-Controller-Cookies.html#t%3ACookie"
+>Cookie</A
+></TD
+><TD CLASS="rdoc"
+></TD
+></TR
+><TR
+><TD CLASS="arg"
+><A HREF="/home/ghc612/ghc-6.12.1//share/doc/ghc/html/libraries/base-4.2.0.0/Data-Ord.html#t%3AOrd"
+>Ord</A
+> <A HREF="Hawk-Controller-Cookies.html#t%3ACookie"
+>Cookie</A
+></TD
+><TD CLASS="rdoc"
+></TD
+></TR
+><TR
+><TD CLASS="arg"
+><A HREF="/home/ghc612/ghc-6.12.1//share/doc/ghc/html/libraries/base-4.2.0.0/Text-Read.html#t%3ARead"
+>Read</A
+> <A HREF="Hawk-Controller-Cookies.html#t%3ACookie"
+>Cookie</A
+></TD
+><TD CLASS="rdoc"
+></TD
+></TR
+><TR
+><TD CLASS="arg"
+><A HREF="/home/ghc612/ghc-6.12.1//share/doc/ghc/html/libraries/base-4.2.0.0/Text-Show.html#t%3AShow"
+>Show</A
+> <A HREF="Hawk-Controller-Cookies.html#t%3ACookie"
+>Cookie</A
+></TD
+><TD CLASS="rdoc"
+></TD
+></TR
+></TABLE
+></DIV
+></TD
+></TR
+></TABLE
+></TD
+></TR
+><TR
+><TD CLASS="s15"
+></TD
+></TR
+><TR
+><TD CLASS="decl"
+><A NAME="v:newCookie"
+><A NAME="v%3AnewCookie"
+></A
+></A
+><B
+>newCookie</B
+> :: <A HREF="/home/ghc612/ghc-6.12.1//share/doc/ghc/html/libraries/base-4.2.0.0/Data-Char.html#t%3AString"
+>String</A
+> -&gt; <A HREF="/home/ghc612/ghc-6.12.1//share/doc/ghc/html/libraries/base-4.2.0.0/Data-Char.html#t%3AString"
+>String</A
+> -&gt; <A HREF="Hawk-Controller-Cookies.html#t%3ACookie"
+>Cookie</A
+></TD
+></TR
+><TR
+><TD CLASS="s15"
+></TD
+></TR
+><TR
+><TD CLASS="decl"
+><A NAME="v:getCookie"
+><A NAME="v%3AgetCookie"
+></A
+></A
+><B
+>getCookie</B
+> :: <A HREF="Hawk-Controller-Types.html#t%3AHasState"
+>HasState</A
+> m =&gt; <A HREF="/home/ghc612/ghc-6.12.1//share/doc/ghc/html/libraries/base-4.2.0.0/Data-Char.html#t%3AString"
+>String</A
+> -&gt; m (<A HREF="/home/ghc612/ghc-6.12.1//share/doc/ghc/html/libraries/base-4.2.0.0/Data-Maybe.html#t%3AMaybe"
+>Maybe</A
+> <A HREF="Hawk-Controller-Cookies.html#t%3ACookie"
+>Cookie</A
+>)</TD
+></TR
+><TR
+><TD CLASS="s15"
+></TD
+></TR
+><TR
+><TD CLASS="decl"
+><A NAME="v:getCookieValue"
+><A NAME="v%3AgetCookieValue"
+></A
+></A
+><B
+>getCookieValue</B
+> :: <A HREF="Hawk-Controller-Types.html#t%3AHasState"
+>HasState</A
+> m =&gt; <A HREF="/home/ghc612/ghc-6.12.1//share/doc/ghc/html/libraries/base-4.2.0.0/Data-Char.html#t%3AString"
+>String</A
+> -&gt; m (<A HREF="/home/ghc612/ghc-6.12.1//share/doc/ghc/html/libraries/base-4.2.0.0/Data-Maybe.html#t%3AMaybe"
+>Maybe</A
+> <A HREF="/home/ghc612/ghc-6.12.1//share/doc/ghc/html/libraries/base-4.2.0.0/Data-Char.html#t%3AString"
+>String</A
+>)</TD
+></TR
+><TR
+><TD CLASS="s15"
+></TD
+></TR
+><TR
+><TD CLASS="decl"
+><A NAME="v:setCookie"
+><A NAME="v%3AsetCookie"
+></A
+></A
+><B
+>setCookie</B
+> :: <A HREF="Hawk-Controller-Types.html#t%3AHasState"
+>HasState</A
+> m =&gt; <A HREF="Hawk-Controller-Cookies.html#t%3ACookie"
+>Cookie</A
+> -&gt; m <A HREF="/home/ghc612/ghc-6.12.1//share/doc/ghc/html/libraries/ghc-prim-0.2.0.0/GHC-Unit.html#t%3A%28%29"
+>()</A
+></TD
+></TR
+><TR
+><TD CLASS="s15"
+></TD
+></TR
+><TR
+><TD CLASS="decl"
+><A NAME="v:setCookieValue"
+><A NAME="v%3AsetCookieValue"
+></A
+></A
+><B
+>setCookieValue</B
+> :: <A HREF="Hawk-Controller-Types.html#t%3AHasState"
+>HasState</A
+> m =&gt; <A HREF="/home/ghc612/ghc-6.12.1//share/doc/ghc/html/libraries/base-4.2.0.0/Data-Char.html#t%3AString"
+>String</A
+> -&gt; <A HREF="/home/ghc612/ghc-6.12.1//share/doc/ghc/html/libraries/base-4.2.0.0/Data-Char.html#t%3AString"
+>String</A
+> -&gt; m <A HREF="/home/ghc612/ghc-6.12.1//share/doc/ghc/html/libraries/ghc-prim-0.2.0.0/GHC-Unit.html#t%3A%28%29"
+>()</A
+></TD
+></TR
+><TR
+><TD CLASS="s15"
+></TD
+></TR
+><TR
+><TD CLASS="decl"
+><A NAME="v:deleteCookie"
+><A NAME="v%3AdeleteCookie"
+></A
+></A
+><B
+>deleteCookie</B
+> :: <A HREF="Hawk-Controller-Types.html#t%3AHasState"
+>HasState</A
+> m =&gt; <A HREF="/home/ghc612/ghc-6.12.1//share/doc/ghc/html/libraries/base-4.2.0.0/Data-Char.html#t%3AString"
+>String</A
+> -&gt; m <A HREF="/home/ghc612/ghc-6.12.1//share/doc/ghc/html/libraries/ghc-prim-0.2.0.0/GHC-Unit.html#t%3A%28%29"
+>()</A
+></TD
+></TR
+><TR
+><TD CLASS="s15"
+></TD
+></TR
+><TR
+><TD CLASS="decl"
+><A NAME="v:withCookies"
+><A NAME="v%3AwithCookies"
+></A
+></A
+><B
+>withCookies</B
+> :: <A HREF="Hawk-Controller-Types.html#t%3AHasState"
+>HasState</A
+> m =&gt; m Response -&gt; m Response</TD
+></TR
+><TR
+><TD CLASS="s15"
+></TD
+></TR
+><TR
+><TD CLASS="decl"
+><A NAME="v:setTestCookie"
+><A NAME="v%3AsetTestCookie"
+></A
+></A
+><B
+>setTestCookie</B
+> :: <A HREF="Hawk-Controller-Types.html#t%3AHasState"
+>HasState</A
+> m =&gt; m <A HREF="/home/ghc612/ghc-6.12.1//share/doc/ghc/html/libraries/ghc-prim-0.2.0.0/GHC-Unit.html#t%3A%28%29"
+>()</A
+></TD
+></TR
+><TR
+><TD CLASS="s15"
+></TD
+></TR
+><TR
+><TD CLASS="decl"
+><A NAME="v:checkTestCookie"
+><A NAME="v%3AcheckTestCookie"
+></A
+></A
+><B
+>checkTestCookie</B
+> :: <A HREF="Hawk-Controller-Types.html#t%3AHasState"
+>HasState</A
+> m =&gt; m <A HREF="/home/ghc612/ghc-6.12.1//share/doc/ghc/html/libraries/base-4.2.0.0/Data-Bool.html#t%3ABool"
+>Bool</A
+></TD
+></TR
+><TR
+><TD CLASS="s15"
+></TD
+></TR
+><TR
+><TD CLASS="botbar"
+>Produced by <A HREF="http://www.haskell.org/haddock/"
+>Haddock</A
+> version 2.7.2</TD
+></TR
+></TABLE
+></BODY
+></HTML
+>

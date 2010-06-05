@@ -1,0 +1,621 @@
+<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN" "http://www.w3.org/TR/html4/loose.dtd">
+<!--Rendered using the Haskell Html Library v0.2-->
+<HTML
+><HEAD
+><META HTTP-EQUIV="Content-Type" CONTENT="text/html; charset=UTF-8"
+><TITLE
+>Hawk.View.Template.Helper.DateHelper</TITLE
+><LINK HREF="haddock.css" REL="stylesheet" TYPE="text/css"
+><SCRIPT SRC="haddock-util.js" TYPE="text/javascript"
+></SCRIPT
+><SCRIPT TYPE="text/javascript"
+>window.onload = function () {setSynopsis("mini_Hawk-View-Template-Helper-DateHelper.html")};</SCRIPT
+></HEAD
+><BODY
+><TABLE CLASS="vanilla" CELLSPACING="0" CELLPADDING="0"
+><TR
+><TD CLASS="topbar"
+><TABLE CLASS="vanilla" CELLSPACING="0" CELLPADDING="0"
+><TR
+><TD
+><IMG SRC="haskell_icon.gif" WIDTH="16" HEIGHT="16" ALT=" "
+></TD
+><TD CLASS="title"
+>Hawk-0.0.2: Haskell Web Application Kit</TD
+><TD CLASS="topbut"
+><A HREF="index.html"
+>Contents</A
+></TD
+><TD CLASS="topbut"
+><A HREF="doc-index.html"
+>Index</A
+></TD
+></TR
+></TABLE
+></TD
+></TR
+><TR
+><TD CLASS="modulebar"
+><TABLE CLASS="vanilla" CELLSPACING="0" CELLPADDING="0"
+><TR
+><TD
+><FONT SIZE="6"
+>Hawk.View.Template.Helper.DateHelper</FONT
+></TD
+><TD ALIGN="right"
+><TABLE CLASS="narrow" CELLSPACING="0" CELLPADDING="0"
+><TR
+><TD CLASS="infohead"
+>Portability</TD
+><TD CLASS="infoval"
+>portable</TD
+></TR
+><TR
+><TD CLASS="infohead"
+>Stability</TD
+><TD CLASS="infoval"
+>experimental</TD
+></TR
+><TR
+><TD CLASS="infohead"
+>Maintainer</TD
+><TD CLASS="infoval"
+>{inf6254, inf6509}fh-wedel.de</TD
+></TR
+></TABLE
+></TD
+></TR
+></TABLE
+></TD
+></TR
+><TR
+><TD CLASS="s15"
+></TD
+></TR
+><TR
+><TD CLASS="section1"
+>Description</TD
+></TR
+><TR
+><TD CLASS="doc"
+><P
+>Version     :  $Id: Main.hs 57 2009-05-29 11:33:59Z inf6254 $
+</P
+><P
+>Helper functions for creating xml tags for date and time input.
+</P
+></TD
+></TR
+><TR
+><TD CLASS="s15"
+></TD
+></TR
+><TR
+><TD CLASS="section1"
+>Synopsis</TD
+></TR
+><TR
+><TD CLASS="s15"
+></TD
+></TR
+><TR
+><TD CLASS="body"
+><TABLE CLASS="vanilla" CELLSPACING="0" CELLPADDING="0"
+><TR
+><TD CLASS="decl"
+><A HREF="#v%3AselectYear"
+>selectYear</A
+> :: <A HREF="/home/ghc612/ghc-6.12.1//share/doc/ghc/html/libraries/base-4.2.0.0/Data-Char.html#t%3AString"
+>String</A
+> -&gt; <A HREF="/home/ghc612/ghc-6.12.1//share/doc/ghc/html/libraries/base-4.2.0.0/Prelude.html#t%3AInteger"
+>Integer</A
+> -&gt; <A HREF="/home/ghc612/ghc-6.12.1//share/doc/ghc/html/libraries/base-4.2.0.0/Prelude.html#t%3AInteger"
+>Integer</A
+> -&gt; <A HREF="/home/ghc612/ghc-6.12.1//share/doc/ghc/html/libraries/base-4.2.0.0/Prelude.html#t%3AInteger"
+>Integer</A
+> -&gt; Attributes -&gt; <A HREF="Hawk-View-TemplateView.html#t%3AXmlTree"
+>XmlTree</A
+></TD
+></TR
+><TR
+><TD CLASS="s8"
+></TD
+></TR
+><TR
+><TD CLASS="decl"
+><A HREF="#v%3AselectYearS"
+>selectYearS</A
+> :: <A HREF="/home/ghc612/ghc-6.12.1//share/doc/ghc/html/libraries/base-4.2.0.0/Data-Char.html#t%3AString"
+>String</A
+> -&gt; <A HREF="/home/ghc612/ghc-6.12.1//share/doc/ghc/html/libraries/base-4.2.0.0/Prelude.html#t%3AInteger"
+>Integer</A
+> -&gt; Attributes -&gt; <A HREF="Hawk-View-TemplateView.html#t%3AXmlTree"
+>XmlTree</A
+></TD
+></TR
+><TR
+><TD CLASS="s8"
+></TD
+></TR
+><TR
+><TD CLASS="decl"
+><A HREF="#v%3AselectMonth"
+>selectMonth</A
+> :: <A HREF="/home/ghc612/ghc-6.12.1//share/doc/ghc/html/libraries/base-4.2.0.0/Data-Char.html#t%3AString"
+>String</A
+> -&gt; <A HREF="/home/ghc612/ghc-6.12.1//share/doc/ghc/html/libraries/base-4.2.0.0/Data-Int.html#t%3AInt"
+>Int</A
+> -&gt; (<A HREF="/home/ghc612/ghc-6.12.1//share/doc/ghc/html/libraries/base-4.2.0.0/Data-Int.html#t%3AInt"
+>Int</A
+> -&gt; <A HREF="/home/ghc612/ghc-6.12.1//share/doc/ghc/html/libraries/base-4.2.0.0/Data-Char.html#t%3AString"
+>String</A
+>) -&gt; Attributes -&gt; <A HREF="Hawk-View-TemplateView.html#t%3AXmlTree"
+>XmlTree</A
+></TD
+></TR
+><TR
+><TD CLASS="s8"
+></TD
+></TR
+><TR
+><TD CLASS="decl"
+><A HREF="#v%3AmonthNumbers"
+>monthNumbers</A
+> :: <A HREF="/home/ghc612/ghc-6.12.1//share/doc/ghc/html/libraries/base-4.2.0.0/Data-Int.html#t%3AInt"
+>Int</A
+> -&gt; <A HREF="/home/ghc612/ghc-6.12.1//share/doc/ghc/html/libraries/base-4.2.0.0/Data-Char.html#t%3AString"
+>String</A
+></TD
+></TR
+><TR
+><TD CLASS="s8"
+></TD
+></TR
+><TR
+><TD CLASS="decl"
+><A HREF="#v%3AmonthNames"
+>monthNames</A
+> :: <A HREF="/home/ghc612/ghc-6.12.1//share/doc/ghc/html/libraries/base-4.2.0.0/Data-Int.html#t%3AInt"
+>Int</A
+> -&gt; <A HREF="/home/ghc612/ghc-6.12.1//share/doc/ghc/html/libraries/base-4.2.0.0/Data-Char.html#t%3AString"
+>String</A
+></TD
+></TR
+><TR
+><TD CLASS="s8"
+></TD
+></TR
+><TR
+><TD CLASS="decl"
+><A HREF="#v%3AselectDay"
+>selectDay</A
+> :: <A HREF="/home/ghc612/ghc-6.12.1//share/doc/ghc/html/libraries/base-4.2.0.0/Data-Char.html#t%3AString"
+>String</A
+> -&gt; <A HREF="/home/ghc612/ghc-6.12.1//share/doc/ghc/html/libraries/base-4.2.0.0/Data-Int.html#t%3AInt"
+>Int</A
+> -&gt; Attributes -&gt; <A HREF="Hawk-View-TemplateView.html#t%3AXmlTree"
+>XmlTree</A
+></TD
+></TR
+><TR
+><TD CLASS="s8"
+></TD
+></TR
+><TR
+><TD CLASS="decl"
+><A HREF="#v%3AselectDate"
+>selectDate</A
+> :: <A HREF="/home/ghc612/ghc-6.12.1//share/doc/ghc/html/libraries/base-4.2.0.0/Data-Char.html#t%3AString"
+>String</A
+> -&gt; <A HREF="/home/ghc612/ghc-6.12.1//share/doc/ghc/html/libraries/time-1.1.4/Data-Time-Calendar.html#t%3ADay"
+>Day</A
+> -&gt; (<A HREF="/home/ghc612/ghc-6.12.1//share/doc/ghc/html/libraries/base-4.2.0.0/Data-Int.html#t%3AInt"
+>Int</A
+> -&gt; <A HREF="/home/ghc612/ghc-6.12.1//share/doc/ghc/html/libraries/base-4.2.0.0/Data-Char.html#t%3AString"
+>String</A
+>) -&gt; Attributes -&gt; XmlTrees</TD
+></TR
+><TR
+><TD CLASS="s8"
+></TD
+></TR
+><TR
+><TD CLASS="decl"
+><A HREF="#v%3AselectHour"
+>selectHour</A
+> :: <A HREF="/home/ghc612/ghc-6.12.1//share/doc/ghc/html/libraries/base-4.2.0.0/Data-Char.html#t%3AString"
+>String</A
+> -&gt; <A HREF="/home/ghc612/ghc-6.12.1//share/doc/ghc/html/libraries/base-4.2.0.0/Data-Int.html#t%3AInt"
+>Int</A
+> -&gt; Attributes -&gt; <A HREF="Hawk-View-TemplateView.html#t%3AXmlTree"
+>XmlTree</A
+></TD
+></TR
+><TR
+><TD CLASS="s8"
+></TD
+></TR
+><TR
+><TD CLASS="decl"
+><A HREF="#v%3AselectMinute"
+>selectMinute</A
+> :: <A HREF="/home/ghc612/ghc-6.12.1//share/doc/ghc/html/libraries/base-4.2.0.0/Data-Char.html#t%3AString"
+>String</A
+> -&gt; <A HREF="/home/ghc612/ghc-6.12.1//share/doc/ghc/html/libraries/base-4.2.0.0/Data-Int.html#t%3AInt"
+>Int</A
+> -&gt; Attributes -&gt; <A HREF="Hawk-View-TemplateView.html#t%3AXmlTree"
+>XmlTree</A
+></TD
+></TR
+><TR
+><TD CLASS="s8"
+></TD
+></TR
+><TR
+><TD CLASS="decl"
+><A HREF="#v%3AselectSecond"
+>selectSecond</A
+> :: <A HREF="/home/ghc612/ghc-6.12.1//share/doc/ghc/html/libraries/base-4.2.0.0/Data-Char.html#t%3AString"
+>String</A
+> -&gt; <A HREF="/home/ghc612/ghc-6.12.1//share/doc/ghc/html/libraries/base-4.2.0.0/Data-Int.html#t%3AInt"
+>Int</A
+> -&gt; Attributes -&gt; <A HREF="Hawk-View-TemplateView.html#t%3AXmlTree"
+>XmlTree</A
+></TD
+></TR
+><TR
+><TD CLASS="s8"
+></TD
+></TR
+><TR
+><TD CLASS="decl"
+><A HREF="#v%3AselectTime"
+>selectTime</A
+> :: <A HREF="/home/ghc612/ghc-6.12.1//share/doc/ghc/html/libraries/base-4.2.0.0/Data-Char.html#t%3AString"
+>String</A
+> -&gt; <A HREF="/home/ghc612/ghc-6.12.1//share/doc/ghc/html/libraries/time-1.1.4/Data-Time-LocalTime.html#t%3ATimeOfDay"
+>TimeOfDay</A
+> -&gt; Attributes -&gt; XmlTrees</TD
+></TR
+><TR
+><TD CLASS="s8"
+></TD
+></TR
+><TR
+><TD CLASS="decl"
+><A HREF="#v%3AselectUTCDateTime"
+>selectUTCDateTime</A
+> :: <A HREF="/home/ghc612/ghc-6.12.1//share/doc/ghc/html/libraries/base-4.2.0.0/Data-Char.html#t%3AString"
+>String</A
+> -&gt; <A HREF="/home/ghc612/ghc-6.12.1//share/doc/ghc/html/libraries/base-4.2.0.0/Data-Char.html#t%3AString"
+>String</A
+> -&gt; <A HREF="/home/ghc612/ghc-6.12.1//share/doc/ghc/html/libraries/time-1.1.4/Data-Time-Clock.html#t%3AUTCTime"
+>UTCTime</A
+> -&gt; (<A HREF="/home/ghc612/ghc-6.12.1//share/doc/ghc/html/libraries/base-4.2.0.0/Data-Int.html#t%3AInt"
+>Int</A
+> -&gt; <A HREF="/home/ghc612/ghc-6.12.1//share/doc/ghc/html/libraries/base-4.2.0.0/Data-Char.html#t%3AString"
+>String</A
+>) -&gt; Attributes -&gt; XmlTrees</TD
+></TR
+><TR
+><TD CLASS="s8"
+></TD
+></TR
+><TR
+><TD CLASS="decl"
+><A HREF="#v%3AselectLocalDateTime"
+>selectLocalDateTime</A
+> :: <A HREF="/home/ghc612/ghc-6.12.1//share/doc/ghc/html/libraries/base-4.2.0.0/Data-Char.html#t%3AString"
+>String</A
+> -&gt; <A HREF="/home/ghc612/ghc-6.12.1//share/doc/ghc/html/libraries/base-4.2.0.0/Data-Char.html#t%3AString"
+>String</A
+> -&gt; <A HREF="/home/ghc612/ghc-6.12.1//share/doc/ghc/html/libraries/time-1.1.4/Data-Time-LocalTime.html#t%3ALocalTime"
+>LocalTime</A
+> -&gt; (<A HREF="/home/ghc612/ghc-6.12.1//share/doc/ghc/html/libraries/base-4.2.0.0/Data-Int.html#t%3AInt"
+>Int</A
+> -&gt; <A HREF="/home/ghc612/ghc-6.12.1//share/doc/ghc/html/libraries/base-4.2.0.0/Data-Char.html#t%3AString"
+>String</A
+>) -&gt; Attributes -&gt; XmlTrees</TD
+></TR
+></TABLE
+></TD
+></TR
+><TR
+><TD CLASS="s15"
+></TD
+></TR
+><TR
+><TD CLASS="section1"
+>Documentation</TD
+></TR
+><TR
+><TD CLASS="s15"
+></TD
+></TR
+><TR
+><TD CLASS="decl"
+><A NAME="v:selectYear"
+><A NAME="v%3AselectYear"
+></A
+></A
+><B
+>selectYear</B
+> :: <A HREF="/home/ghc612/ghc-6.12.1//share/doc/ghc/html/libraries/base-4.2.0.0/Data-Char.html#t%3AString"
+>String</A
+> -&gt; <A HREF="/home/ghc612/ghc-6.12.1//share/doc/ghc/html/libraries/base-4.2.0.0/Prelude.html#t%3AInteger"
+>Integer</A
+> -&gt; <A HREF="/home/ghc612/ghc-6.12.1//share/doc/ghc/html/libraries/base-4.2.0.0/Prelude.html#t%3AInteger"
+>Integer</A
+> -&gt; <A HREF="/home/ghc612/ghc-6.12.1//share/doc/ghc/html/libraries/base-4.2.0.0/Prelude.html#t%3AInteger"
+>Integer</A
+> -&gt; Attributes -&gt; <A HREF="Hawk-View-TemplateView.html#t%3AXmlTree"
+>XmlTree</A
+></TD
+></TR
+><TR
+><TD CLASS="doc"
+>Create a select combobox for year selection
+</TD
+></TR
+><TR
+><TD CLASS="s15"
+></TD
+></TR
+><TR
+><TD CLASS="decl"
+><A NAME="v:selectYearS"
+><A NAME="v%3AselectYearS"
+></A
+></A
+><B
+>selectYearS</B
+> :: <A HREF="/home/ghc612/ghc-6.12.1//share/doc/ghc/html/libraries/base-4.2.0.0/Data-Char.html#t%3AString"
+>String</A
+> -&gt; <A HREF="/home/ghc612/ghc-6.12.1//share/doc/ghc/html/libraries/base-4.2.0.0/Prelude.html#t%3AInteger"
+>Integer</A
+> -&gt; Attributes -&gt; <A HREF="Hawk-View-TemplateView.html#t%3AXmlTree"
+>XmlTree</A
+></TD
+></TR
+><TR
+><TD CLASS="s15"
+></TD
+></TR
+><TR
+><TD CLASS="decl"
+><A NAME="v:selectMonth"
+><A NAME="v%3AselectMonth"
+></A
+></A
+><B
+>selectMonth</B
+> :: <A HREF="/home/ghc612/ghc-6.12.1//share/doc/ghc/html/libraries/base-4.2.0.0/Data-Char.html#t%3AString"
+>String</A
+> -&gt; <A HREF="/home/ghc612/ghc-6.12.1//share/doc/ghc/html/libraries/base-4.2.0.0/Data-Int.html#t%3AInt"
+>Int</A
+> -&gt; (<A HREF="/home/ghc612/ghc-6.12.1//share/doc/ghc/html/libraries/base-4.2.0.0/Data-Int.html#t%3AInt"
+>Int</A
+> -&gt; <A HREF="/home/ghc612/ghc-6.12.1//share/doc/ghc/html/libraries/base-4.2.0.0/Data-Char.html#t%3AString"
+>String</A
+>) -&gt; Attributes -&gt; <A HREF="Hawk-View-TemplateView.html#t%3AXmlTree"
+>XmlTree</A
+></TD
+></TR
+><TR
+><TD CLASS="s15"
+></TD
+></TR
+><TR
+><TD CLASS="decl"
+><A NAME="v:monthNumbers"
+><A NAME="v%3AmonthNumbers"
+></A
+></A
+><B
+>monthNumbers</B
+> :: <A HREF="/home/ghc612/ghc-6.12.1//share/doc/ghc/html/libraries/base-4.2.0.0/Data-Int.html#t%3AInt"
+>Int</A
+> -&gt; <A HREF="/home/ghc612/ghc-6.12.1//share/doc/ghc/html/libraries/base-4.2.0.0/Data-Char.html#t%3AString"
+>String</A
+></TD
+></TR
+><TR
+><TD CLASS="s15"
+></TD
+></TR
+><TR
+><TD CLASS="decl"
+><A NAME="v:monthNames"
+><A NAME="v%3AmonthNames"
+></A
+></A
+><B
+>monthNames</B
+> :: <A HREF="/home/ghc612/ghc-6.12.1//share/doc/ghc/html/libraries/base-4.2.0.0/Data-Int.html#t%3AInt"
+>Int</A
+> -&gt; <A HREF="/home/ghc612/ghc-6.12.1//share/doc/ghc/html/libraries/base-4.2.0.0/Data-Char.html#t%3AString"
+>String</A
+></TD
+></TR
+><TR
+><TD CLASS="s15"
+></TD
+></TR
+><TR
+><TD CLASS="decl"
+><A NAME="v:selectDay"
+><A NAME="v%3AselectDay"
+></A
+></A
+><B
+>selectDay</B
+> :: <A HREF="/home/ghc612/ghc-6.12.1//share/doc/ghc/html/libraries/base-4.2.0.0/Data-Char.html#t%3AString"
+>String</A
+> -&gt; <A HREF="/home/ghc612/ghc-6.12.1//share/doc/ghc/html/libraries/base-4.2.0.0/Data-Int.html#t%3AInt"
+>Int</A
+> -&gt; Attributes -&gt; <A HREF="Hawk-View-TemplateView.html#t%3AXmlTree"
+>XmlTree</A
+></TD
+></TR
+><TR
+><TD CLASS="s15"
+></TD
+></TR
+><TR
+><TD CLASS="decl"
+><A NAME="v:selectDate"
+><A NAME="v%3AselectDate"
+></A
+></A
+><B
+>selectDate</B
+> :: <A HREF="/home/ghc612/ghc-6.12.1//share/doc/ghc/html/libraries/base-4.2.0.0/Data-Char.html#t%3AString"
+>String</A
+> -&gt; <A HREF="/home/ghc612/ghc-6.12.1//share/doc/ghc/html/libraries/time-1.1.4/Data-Time-Calendar.html#t%3ADay"
+>Day</A
+> -&gt; (<A HREF="/home/ghc612/ghc-6.12.1//share/doc/ghc/html/libraries/base-4.2.0.0/Data-Int.html#t%3AInt"
+>Int</A
+> -&gt; <A HREF="/home/ghc612/ghc-6.12.1//share/doc/ghc/html/libraries/base-4.2.0.0/Data-Char.html#t%3AString"
+>String</A
+>) -&gt; Attributes -&gt; XmlTrees</TD
+></TR
+><TR
+><TD CLASS="s15"
+></TD
+></TR
+><TR
+><TD CLASS="decl"
+><A NAME="v:selectHour"
+><A NAME="v%3AselectHour"
+></A
+></A
+><B
+>selectHour</B
+> :: <A HREF="/home/ghc612/ghc-6.12.1//share/doc/ghc/html/libraries/base-4.2.0.0/Data-Char.html#t%3AString"
+>String</A
+> -&gt; <A HREF="/home/ghc612/ghc-6.12.1//share/doc/ghc/html/libraries/base-4.2.0.0/Data-Int.html#t%3AInt"
+>Int</A
+> -&gt; Attributes -&gt; <A HREF="Hawk-View-TemplateView.html#t%3AXmlTree"
+>XmlTree</A
+></TD
+></TR
+><TR
+><TD CLASS="s15"
+></TD
+></TR
+><TR
+><TD CLASS="decl"
+><A NAME="v:selectMinute"
+><A NAME="v%3AselectMinute"
+></A
+></A
+><B
+>selectMinute</B
+> :: <A HREF="/home/ghc612/ghc-6.12.1//share/doc/ghc/html/libraries/base-4.2.0.0/Data-Char.html#t%3AString"
+>String</A
+> -&gt; <A HREF="/home/ghc612/ghc-6.12.1//share/doc/ghc/html/libraries/base-4.2.0.0/Data-Int.html#t%3AInt"
+>Int</A
+> -&gt; Attributes -&gt; <A HREF="Hawk-View-TemplateView.html#t%3AXmlTree"
+>XmlTree</A
+></TD
+></TR
+><TR
+><TD CLASS="s15"
+></TD
+></TR
+><TR
+><TD CLASS="decl"
+><A NAME="v:selectSecond"
+><A NAME="v%3AselectSecond"
+></A
+></A
+><B
+>selectSecond</B
+> :: <A HREF="/home/ghc612/ghc-6.12.1//share/doc/ghc/html/libraries/base-4.2.0.0/Data-Char.html#t%3AString"
+>String</A
+> -&gt; <A HREF="/home/ghc612/ghc-6.12.1//share/doc/ghc/html/libraries/base-4.2.0.0/Data-Int.html#t%3AInt"
+>Int</A
+> -&gt; Attributes -&gt; <A HREF="Hawk-View-TemplateView.html#t%3AXmlTree"
+>XmlTree</A
+></TD
+></TR
+><TR
+><TD CLASS="s15"
+></TD
+></TR
+><TR
+><TD CLASS="decl"
+><A NAME="v:selectTime"
+><A NAME="v%3AselectTime"
+></A
+></A
+><B
+>selectTime</B
+> :: <A HREF="/home/ghc612/ghc-6.12.1//share/doc/ghc/html/libraries/base-4.2.0.0/Data-Char.html#t%3AString"
+>String</A
+> -&gt; <A HREF="/home/ghc612/ghc-6.12.1//share/doc/ghc/html/libraries/time-1.1.4/Data-Time-LocalTime.html#t%3ATimeOfDay"
+>TimeOfDay</A
+> -&gt; Attributes -&gt; XmlTrees</TD
+></TR
+><TR
+><TD CLASS="s15"
+></TD
+></TR
+><TR
+><TD CLASS="decl"
+><A NAME="v:selectUTCDateTime"
+><A NAME="v%3AselectUTCDateTime"
+></A
+></A
+><B
+>selectUTCDateTime</B
+> :: <A HREF="/home/ghc612/ghc-6.12.1//share/doc/ghc/html/libraries/base-4.2.0.0/Data-Char.html#t%3AString"
+>String</A
+> -&gt; <A HREF="/home/ghc612/ghc-6.12.1//share/doc/ghc/html/libraries/base-4.2.0.0/Data-Char.html#t%3AString"
+>String</A
+> -&gt; <A HREF="/home/ghc612/ghc-6.12.1//share/doc/ghc/html/libraries/time-1.1.4/Data-Time-Clock.html#t%3AUTCTime"
+>UTCTime</A
+> -&gt; (<A HREF="/home/ghc612/ghc-6.12.1//share/doc/ghc/html/libraries/base-4.2.0.0/Data-Int.html#t%3AInt"
+>Int</A
+> -&gt; <A HREF="/home/ghc612/ghc-6.12.1//share/doc/ghc/html/libraries/base-4.2.0.0/Data-Char.html#t%3AString"
+>String</A
+>) -&gt; Attributes -&gt; XmlTrees</TD
+></TR
+><TR
+><TD CLASS="s15"
+></TD
+></TR
+><TR
+><TD CLASS="decl"
+><A NAME="v:selectLocalDateTime"
+><A NAME="v%3AselectLocalDateTime"
+></A
+></A
+><B
+>selectLocalDateTime</B
+> :: <A HREF="/home/ghc612/ghc-6.12.1//share/doc/ghc/html/libraries/base-4.2.0.0/Data-Char.html#t%3AString"
+>String</A
+> -&gt; <A HREF="/home/ghc612/ghc-6.12.1//share/doc/ghc/html/libraries/base-4.2.0.0/Data-Char.html#t%3AString"
+>String</A
+> -&gt; <A HREF="/home/ghc612/ghc-6.12.1//share/doc/ghc/html/libraries/time-1.1.4/Data-Time-LocalTime.html#t%3ALocalTime"
+>LocalTime</A
+> -&gt; (<A HREF="/home/ghc612/ghc-6.12.1//share/doc/ghc/html/libraries/base-4.2.0.0/Data-Int.html#t%3AInt"
+>Int</A
+> -&gt; <A HREF="/home/ghc612/ghc-6.12.1//share/doc/ghc/html/libraries/base-4.2.0.0/Data-Char.html#t%3AString"
+>String</A
+>) -&gt; Attributes -&gt; XmlTrees</TD
+></TR
+><TR
+><TD CLASS="s15"
+></TD
+></TR
+><TR
+><TD CLASS="botbar"
+>Produced by <A HREF="http://www.haskell.org/haddock/"
+>Haddock</A
+> version 2.7.2</TD
+></TR
+></TABLE
+></BODY
+></HTML
+>

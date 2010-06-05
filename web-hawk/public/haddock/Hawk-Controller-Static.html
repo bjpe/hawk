@@ -1,0 +1,298 @@
+<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN" "http://www.w3.org/TR/html4/loose.dtd">
+<!--Rendered using the Haskell Html Library v0.2-->
+<HTML
+><HEAD
+><META HTTP-EQUIV="Content-Type" CONTENT="text/html; charset=UTF-8"
+><TITLE
+>Hawk.Controller.Static</TITLE
+><LINK HREF="haddock.css" REL="stylesheet" TYPE="text/css"
+><SCRIPT SRC="haddock-util.js" TYPE="text/javascript"
+></SCRIPT
+><SCRIPT TYPE="text/javascript"
+>window.onload = function () {setSynopsis("mini_Hawk-Controller-Static.html")};</SCRIPT
+></HEAD
+><BODY
+><TABLE CLASS="vanilla" CELLSPACING="0" CELLPADDING="0"
+><TR
+><TD CLASS="topbar"
+><TABLE CLASS="vanilla" CELLSPACING="0" CELLPADDING="0"
+><TR
+><TD
+><IMG SRC="haskell_icon.gif" WIDTH="16" HEIGHT="16" ALT=" "
+></TD
+><TD CLASS="title"
+>Hawk-0.0.2: Haskell Web Application Kit</TD
+><TD CLASS="topbut"
+><A HREF="index.html"
+>Contents</A
+></TD
+><TD CLASS="topbut"
+><A HREF="doc-index.html"
+>Index</A
+></TD
+></TR
+></TABLE
+></TD
+></TR
+><TR
+><TD CLASS="modulebar"
+><TABLE CLASS="vanilla" CELLSPACING="0" CELLPADDING="0"
+><TR
+><TD
+><FONT SIZE="6"
+>Hawk.Controller.Static</FONT
+></TD
+></TR
+></TABLE
+></TD
+></TR
+><TR
+><TD CLASS="s15"
+></TD
+></TR
+><TR
+><TD CLASS="s15"
+></TD
+></TR
+><TR
+><TD CLASS="section1"
+>Synopsis</TD
+></TR
+><TR
+><TD CLASS="s15"
+></TD
+></TR
+><TR
+><TD CLASS="body"
+><TABLE CLASS="vanilla" CELLSPACING="0" CELLPADDING="0"
+><TR
+><TD CLASS="decl"
+><A HREF="#v%3Aerror404"
+>error404</A
+> :: <A HREF="Hawk-Controller-Types.html#t%3AEnvController"
+>EnvController</A
+> Response</TD
+></TR
+><TR
+><TD CLASS="s8"
+></TD
+></TR
+><TR
+><TD CLASS="decl"
+><A HREF="#v%3Aerror404Response"
+>error404Response</A
+> ::  <A HREF="Hawk-Controller-Types.html#t%3AStateController"
+>StateController</A
+> a</TD
+></TR
+><TR
+><TD CLASS="s8"
+></TD
+></TR
+><TR
+><TD CLASS="decl"
+><A HREF="#v%3Aerror401"
+>error401</A
+> :: <A HREF="Hawk-Controller-Types.html#t%3AEnvController"
+>EnvController</A
+> Response</TD
+></TR
+><TR
+><TD CLASS="s8"
+></TD
+></TR
+><TR
+><TD CLASS="decl"
+><A HREF="#v%3Aerror401Response"
+>error401Response</A
+> ::  <A HREF="Hawk-Controller-Types.html#t%3AStateController"
+>StateController</A
+> a</TD
+></TR
+><TR
+><TD CLASS="s8"
+></TD
+></TR
+><TR
+><TD CLASS="decl"
+><A HREF="#v%3Aerror500"
+>error500</A
+> :: <A HREF="Hawk-Controller-Types.html#t%3AEnvController"
+>EnvController</A
+> Response</TD
+></TR
+><TR
+><TD CLASS="s8"
+></TD
+></TR
+><TR
+><TD CLASS="decl"
+><A HREF="#v%3Aerror500Response"
+>error500Response</A
+> ::  <A HREF="Hawk-Controller-Types.html#t%3AStateController"
+>StateController</A
+> a</TD
+></TR
+><TR
+><TD CLASS="s8"
+></TD
+></TR
+><TR
+><TD CLASS="decl"
+><A HREF="#v%3AstaticRequest"
+>staticRequest</A
+> :: <A HREF="Hawk-Controller-Types.html#t%3AEnvController"
+>EnvController</A
+> Response -&gt; <A HREF="Hawk-Controller-Types.html#t%3AEnvController"
+>EnvController</A
+> Response</TD
+></TR
+></TABLE
+></TD
+></TR
+><TR
+><TD CLASS="s15"
+></TD
+></TR
+><TR
+><TD CLASS="section1"
+>Documentation</TD
+></TR
+><TR
+><TD CLASS="s15"
+></TD
+></TR
+><TR
+><TD CLASS="decl"
+><A NAME="v:error404"
+><A NAME="v%3Aerror404"
+></A
+></A
+><B
+>error404</B
+> :: <A HREF="Hawk-Controller-Types.html#t%3AEnvController"
+>EnvController</A
+> Response</TD
+></TR
+><TR
+><TD CLASS="doc"
+>return a 404 File not found error. I the file could not be found raise a error500
+</TD
+></TR
+><TR
+><TD CLASS="s15"
+></TD
+></TR
+><TR
+><TD CLASS="decl"
+><A NAME="v:error404Response"
+><A NAME="v%3Aerror404Response"
+></A
+></A
+><B
+>error404Response</B
+> ::  <A HREF="Hawk-Controller-Types.html#t%3AStateController"
+>StateController</A
+> a</TD
+></TR
+><TR
+><TD CLASS="s15"
+></TD
+></TR
+><TR
+><TD CLASS="decl"
+><A NAME="v:error401"
+><A NAME="v%3Aerror401"
+></A
+></A
+><B
+>error401</B
+> :: <A HREF="Hawk-Controller-Types.html#t%3AEnvController"
+>EnvController</A
+> Response</TD
+></TR
+><TR
+><TD CLASS="s15"
+></TD
+></TR
+><TR
+><TD CLASS="decl"
+><A NAME="v:error401Response"
+><A NAME="v%3Aerror401Response"
+></A
+></A
+><B
+>error401Response</B
+> ::  <A HREF="Hawk-Controller-Types.html#t%3AStateController"
+>StateController</A
+> a</TD
+></TR
+><TR
+><TD CLASS="s15"
+></TD
+></TR
+><TR
+><TD CLASS="decl"
+><A NAME="v:error500"
+><A NAME="v%3Aerror500"
+></A
+></A
+><B
+>error500</B
+> :: <A HREF="Hawk-Controller-Types.html#t%3AEnvController"
+>EnvController</A
+> Response</TD
+></TR
+><TR
+><TD CLASS="doc"
+>return a 500 internal server error
+</TD
+></TR
+><TR
+><TD CLASS="s15"
+></TD
+></TR
+><TR
+><TD CLASS="decl"
+><A NAME="v:error500Response"
+><A NAME="v%3Aerror500Response"
+></A
+></A
+><B
+>error500Response</B
+> ::  <A HREF="Hawk-Controller-Types.html#t%3AStateController"
+>StateController</A
+> a</TD
+></TR
+><TR
+><TD CLASS="s15"
+></TD
+></TR
+><TR
+><TD CLASS="decl"
+><A NAME="v:staticRequest"
+><A NAME="v%3AstaticRequest"
+></A
+></A
+><B
+>staticRequest</B
+> :: <A HREF="Hawk-Controller-Types.html#t%3AEnvController"
+>EnvController</A
+> Response -&gt; <A HREF="Hawk-Controller-Types.html#t%3AEnvController"
+>EnvController</A
+> Response</TD
+></TR
+><TR
+><TD CLASS="s15"
+></TD
+></TR
+><TR
+><TD CLASS="botbar"
+>Produced by <A HREF="http://www.haskell.org/haddock/"
+>Haddock</A
+> version 2.7.2</TD
+></TR
+></TABLE
+></BODY
+></HTML
+>

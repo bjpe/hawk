@@ -1,0 +1,404 @@
+<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN" "http://www.w3.org/TR/html4/loose.dtd">
+<!--Rendered using the Haskell Html Library v0.2-->
+<HTML
+><HEAD
+><META HTTP-EQUIV="Content-Type" CONTENT="text/html; charset=UTF-8"
+><TITLE
+>Hawk.Controller.Request</TITLE
+><LINK HREF="haddock.css" REL="stylesheet" TYPE="text/css"
+><SCRIPT SRC="haddock-util.js" TYPE="text/javascript"
+></SCRIPT
+><SCRIPT TYPE="text/javascript"
+>window.onload = function () {setSynopsis("mini_Hawk-Controller-Request.html")};</SCRIPT
+></HEAD
+><BODY
+><TABLE CLASS="vanilla" CELLSPACING="0" CELLPADDING="0"
+><TR
+><TD CLASS="topbar"
+><TABLE CLASS="vanilla" CELLSPACING="0" CELLPADDING="0"
+><TR
+><TD
+><IMG SRC="haskell_icon.gif" WIDTH="16" HEIGHT="16" ALT=" "
+></TD
+><TD CLASS="title"
+>Hawk-0.0.2: Haskell Web Application Kit</TD
+><TD CLASS="topbut"
+><A HREF="index.html"
+>Contents</A
+></TD
+><TD CLASS="topbut"
+><A HREF="doc-index.html"
+>Index</A
+></TD
+></TR
+></TABLE
+></TD
+></TR
+><TR
+><TD CLASS="modulebar"
+><TABLE CLASS="vanilla" CELLSPACING="0" CELLPADDING="0"
+><TR
+><TD
+><FONT SIZE="6"
+>Hawk.Controller.Request</FONT
+></TD
+></TR
+></TABLE
+></TD
+></TR
+><TR
+><TD CLASS="s15"
+></TD
+></TR
+><TR
+><TD CLASS="s15"
+></TD
+></TR
+><TR
+><TD CLASS="s15"
+></TD
+></TR
+><TR
+><TD CLASS="section1"
+>Documentation</TD
+></TR
+><TR
+><TD CLASS="s15"
+></TD
+></TR
+><TR
+><TD CLASS="decl"
+><A NAME="v:getRequestMethod"
+><A NAME="v%3AgetRequestMethod"
+></A
+></A
+><B
+>getRequestMethod</B
+> :: MonadReader <A HREF="Hawk-Controller-Types.html#t%3ARequestEnv"
+>RequestEnv</A
+> m =&gt; m RequestMethod</TD
+></TR
+><TR
+><TD CLASS="s15"
+></TD
+></TR
+><TR
+><TD CLASS="decl"
+><A NAME="v:getScriptName"
+><A NAME="v%3AgetScriptName"
+></A
+></A
+><B
+>getScriptName</B
+> :: MonadReader <A HREF="Hawk-Controller-Types.html#t%3ARequestEnv"
+>RequestEnv</A
+> m =&gt; m <A HREF="/home/ghc612/ghc-6.12.1//share/doc/ghc/html/libraries/base-4.2.0.0/Data-Char.html#t%3AString"
+>String</A
+></TD
+></TR
+><TR
+><TD CLASS="s15"
+></TD
+></TR
+><TR
+><TD CLASS="decl"
+><A NAME="v:getPathInfo"
+><A NAME="v%3AgetPathInfo"
+></A
+></A
+><B
+>getPathInfo</B
+> :: MonadReader <A HREF="Hawk-Controller-Types.html#t%3ARequestEnv"
+>RequestEnv</A
+> m =&gt; m <A HREF="/home/ghc612/ghc-6.12.1//share/doc/ghc/html/libraries/base-4.2.0.0/Data-Char.html#t%3AString"
+>String</A
+></TD
+></TR
+><TR
+><TD CLASS="s15"
+></TD
+></TR
+><TR
+><TD CLASS="decl"
+><A NAME="v:getEscapedPath"
+><A NAME="v%3AgetEscapedPath"
+></A
+></A
+><B
+>getEscapedPath</B
+> :: MonadReader <A HREF="Hawk-Controller-Types.html#t%3ARequestEnv"
+>RequestEnv</A
+> m =&gt; m <A HREF="/home/ghc612/ghc-6.12.1//share/doc/ghc/html/libraries/base-4.2.0.0/Data-Char.html#t%3AString"
+>String</A
+></TD
+></TR
+><TR
+><TD CLASS="s15"
+></TD
+></TR
+><TR
+><TD CLASS="decl"
+><A NAME="v:getQueryString"
+><A NAME="v%3AgetQueryString"
+></A
+></A
+><B
+>getQueryString</B
+> :: MonadReader <A HREF="Hawk-Controller-Types.html#t%3ARequestEnv"
+>RequestEnv</A
+> m =&gt; m <A HREF="/home/ghc612/ghc-6.12.1//share/doc/ghc/html/libraries/base-4.2.0.0/Data-Char.html#t%3AString"
+>String</A
+></TD
+></TR
+><TR
+><TD CLASS="s15"
+></TD
+></TR
+><TR
+><TD CLASS="decl"
+><A NAME="v:getServerName"
+><A NAME="v%3AgetServerName"
+></A
+></A
+><B
+>getServerName</B
+> :: MonadReader <A HREF="Hawk-Controller-Types.html#t%3ARequestEnv"
+>RequestEnv</A
+> m =&gt; m <A HREF="/home/ghc612/ghc-6.12.1//share/doc/ghc/html/libraries/base-4.2.0.0/Data-Char.html#t%3AString"
+>String</A
+></TD
+></TR
+><TR
+><TD CLASS="s15"
+></TD
+></TR
+><TR
+><TD CLASS="decl"
+><A NAME="v:getServerPort"
+><A NAME="v%3AgetServerPort"
+></A
+></A
+><B
+>getServerPort</B
+> :: MonadReader <A HREF="Hawk-Controller-Types.html#t%3ARequestEnv"
+>RequestEnv</A
+> m =&gt; m <A HREF="/home/ghc612/ghc-6.12.1//share/doc/ghc/html/libraries/base-4.2.0.0/Data-Int.html#t%3AInt"
+>Int</A
+></TD
+></TR
+><TR
+><TD CLASS="s15"
+></TD
+></TR
+><TR
+><TD CLASS="decl"
+><A NAME="v:getRequestHeaders"
+><A NAME="v%3AgetRequestHeaders"
+></A
+></A
+><B
+>getRequestHeaders</B
+> :: MonadReader <A HREF="Hawk-Controller-Types.html#t%3ARequestEnv"
+>RequestEnv</A
+> m =&gt; m [(<A HREF="/home/ghc612/ghc-6.12.1//share/doc/ghc/html/libraries/base-4.2.0.0/Data-Char.html#t%3AString"
+>String</A
+>, <A HREF="/home/ghc612/ghc-6.12.1//share/doc/ghc/html/libraries/base-4.2.0.0/Data-Char.html#t%3AString"
+>String</A
+>)]</TD
+></TR
+><TR
+><TD CLASS="s15"
+></TD
+></TR
+><TR
+><TD CLASS="decl"
+><A NAME="v:getRequestHeader"
+><A NAME="v%3AgetRequestHeader"
+></A
+></A
+><B
+>getRequestHeader</B
+> :: MonadReader <A HREF="Hawk-Controller-Types.html#t%3ARequestEnv"
+>RequestEnv</A
+> m =&gt; <A HREF="/home/ghc612/ghc-6.12.1//share/doc/ghc/html/libraries/base-4.2.0.0/Data-Char.html#t%3AString"
+>String</A
+> -&gt; m (<A HREF="/home/ghc612/ghc-6.12.1//share/doc/ghc/html/libraries/base-4.2.0.0/Data-Maybe.html#t%3AMaybe"
+>Maybe</A
+> <A HREF="/home/ghc612/ghc-6.12.1//share/doc/ghc/html/libraries/base-4.2.0.0/Data-Char.html#t%3AString"
+>String</A
+>)</TD
+></TR
+><TR
+><TD CLASS="s15"
+></TD
+></TR
+><TR
+><TD CLASS="decl"
+><A NAME="v:getReferer"
+><A NAME="v%3AgetReferer"
+></A
+></A
+><B
+>getReferer</B
+> :: MonadReader <A HREF="Hawk-Controller-Types.html#t%3ARequestEnv"
+>RequestEnv</A
+> m =&gt; m (<A HREF="/home/ghc612/ghc-6.12.1//share/doc/ghc/html/libraries/base-4.2.0.0/Data-Maybe.html#t%3AMaybe"
+>Maybe</A
+> <A HREF="/home/ghc612/ghc-6.12.1//share/doc/ghc/html/libraries/base-4.2.0.0/Data-Char.html#t%3AString"
+>String</A
+>)</TD
+></TR
+><TR
+><TD CLASS="s15"
+></TD
+></TR
+><TR
+><TD CLASS="decl"
+><A NAME="v:getUrlScheme"
+><A NAME="v%3AgetUrlScheme"
+></A
+></A
+><B
+>getUrlScheme</B
+> :: MonadReader <A HREF="Hawk-Controller-Types.html#t%3ARequestEnv"
+>RequestEnv</A
+> m =&gt; m Hack_UrlScheme</TD
+></TR
+><TR
+><TD CLASS="s15"
+></TD
+></TR
+><TR
+><TD CLASS="decl"
+><A NAME="v:getRequestBody"
+><A NAME="v%3AgetRequestBody"
+></A
+></A
+><B
+>getRequestBody</B
+> :: MonadReader <A HREF="Hawk-Controller-Types.html#t%3ARequestEnv"
+>RequestEnv</A
+> m =&gt; m <A HREF="Hawk-Controller-Types.html#t%3AByteString"
+>ByteString</A
+></TD
+></TR
+><TR
+><TD CLASS="s15"
+></TD
+></TR
+><TR
+><TD CLASS="decl"
+><A NAME="v:lookupParam"
+><A NAME="v%3AlookupParam"
+></A
+></A
+><B
+>lookupParam</B
+> :: <A HREF="Hawk-Controller-Types.html#t%3AHasState"
+>HasState</A
+> m =&gt; <A HREF="/home/ghc612/ghc-6.12.1//share/doc/ghc/html/libraries/base-4.2.0.0/Data-Char.html#t%3AString"
+>String</A
+> -&gt; m (<A HREF="/home/ghc612/ghc-6.12.1//share/doc/ghc/html/libraries/base-4.2.0.0/Data-Maybe.html#t%3AMaybe"
+>Maybe</A
+> <A HREF="/home/ghc612/ghc-6.12.1//share/doc/ghc/html/libraries/base-4.2.0.0/Data-Char.html#t%3AString"
+>String</A
+>)</TD
+></TR
+><TR
+><TD CLASS="s15"
+></TD
+></TR
+><TR
+><TD CLASS="decl"
+><A NAME="v:getParam"
+><A NAME="v%3AgetParam"
+></A
+></A
+><B
+>getParam</B
+> :: <A HREF="Hawk-Controller-Types.html#t%3AHasState"
+>HasState</A
+> m =&gt; <A HREF="/home/ghc612/ghc-6.12.1//share/doc/ghc/html/libraries/base-4.2.0.0/Data-Char.html#t%3AString"
+>String</A
+> -&gt; m <A HREF="/home/ghc612/ghc-6.12.1//share/doc/ghc/html/libraries/base-4.2.0.0/Data-Char.html#t%3AString"
+>String</A
+></TD
+></TR
+><TR
+><TD CLASS="s15"
+></TD
+></TR
+><TR
+><TD CLASS="decl"
+><A NAME="v:readParam"
+><A NAME="v%3AreadParam"
+></A
+></A
+><B
+>readParam</B
+> :: (<A HREF="Hawk-Controller-Types.html#t%3AHasState"
+>HasState</A
+> m, <A HREF="/home/ghc612/ghc-6.12.1//share/doc/ghc/html/libraries/base-4.2.0.0/Text-Read.html#t%3ARead"
+>Read</A
+> v) =&gt; <A HREF="/home/ghc612/ghc-6.12.1//share/doc/ghc/html/libraries/base-4.2.0.0/Data-Char.html#t%3AString"
+>String</A
+> -&gt; m (<A HREF="/home/ghc612/ghc-6.12.1//share/doc/ghc/html/libraries/base-4.2.0.0/Data-Maybe.html#t%3AMaybe"
+>Maybe</A
+> v)</TD
+></TR
+><TR
+><TD CLASS="s15"
+></TD
+></TR
+><TR
+><TD CLASS="decl"
+><A NAME="v:getParams"
+><A NAME="v%3AgetParams"
+></A
+></A
+><B
+>getParams</B
+> :: <A HREF="Hawk-Controller-Types.html#t%3AHasState"
+>HasState</A
+> m =&gt; m (<A HREF="/home/ghc612/ghc-6.12.1//share/doc/ghc/html/libraries/containers-0.3.0.0/Data-Map.html#t%3AMap"
+>Map</A
+> <A HREF="/home/ghc612/ghc-6.12.1//share/doc/ghc/html/libraries/base-4.2.0.0/Data-Char.html#t%3AString"
+>String</A
+> <A HREF="/home/ghc612/ghc-6.12.1//share/doc/ghc/html/libraries/base-4.2.0.0/Data-Char.html#t%3AString"
+>String</A
+>)</TD
+></TR
+><TR
+><TD CLASS="s15"
+></TD
+></TR
+><TR
+><TD CLASS="decl"
+><A NAME="v:getParamsAsList"
+><A NAME="v%3AgetParamsAsList"
+></A
+></A
+><B
+>getParamsAsList</B
+> :: <A HREF="Hawk-Controller-Types.html#t%3AHasState"
+>HasState</A
+> m =&gt; m [(<A HREF="/home/ghc612/ghc-6.12.1//share/doc/ghc/html/libraries/base-4.2.0.0/Data-Char.html#t%3AString"
+>String</A
+>, <A HREF="/home/ghc612/ghc-6.12.1//share/doc/ghc/html/libraries/base-4.2.0.0/Data-Char.html#t%3AString"
+>String</A
+>)]</TD
+></TR
+><TR
+><TD CLASS="s15"
+></TD
+></TR
+><TR
+><TD CLASS="botbar"
+>Produced by <A HREF="http://www.haskell.org/haddock/"
+>Haddock</A
+> version 2.7.2</TD
+></TR
+></TABLE
+></BODY
+></HTML
+>

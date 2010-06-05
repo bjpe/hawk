@@ -88,7 +88,7 @@ instance AppConfiguration HayooConfig where --AppConfig where
   getInstance = loadHayooConfig -- >>= (return . AppConfig)
 
 loadIndex :: MonadIO m => m Persistent
-loadIndex = liftIO $ loadFromFile "./indexes/hayoo-index.bin"
+loadIndex = liftIO $ (putStrLn "blub") >> loadFromFile "./indexes/hayoo-index.bin"
 
 loadDocs :: MonadIO m => m (SmallDocuments FunctionInfo)
 loadDocs = liftIO $ loadFromFile "./indexes/docs-small.bin"

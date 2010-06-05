@@ -1,0 +1,462 @@
+<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN" "http://www.w3.org/TR/html4/loose.dtd">
+<!--Rendered using the Haskell Html Library v0.2-->
+<HTML
+><HEAD
+><META HTTP-EQUIV="Content-Type" CONTENT="text/html; charset=UTF-8"
+><TITLE
+>Hawk.Model.MonadDB</TITLE
+><LINK HREF="haddock.css" REL="stylesheet" TYPE="text/css"
+><SCRIPT SRC="haddock-util.js" TYPE="text/javascript"
+></SCRIPT
+><SCRIPT TYPE="text/javascript"
+>window.onload = function () {setSynopsis("mini_Hawk-Model-MonadDB.html")};</SCRIPT
+></HEAD
+><BODY
+><TABLE CLASS="vanilla" CELLSPACING="0" CELLPADDING="0"
+><TR
+><TD CLASS="topbar"
+><TABLE CLASS="vanilla" CELLSPACING="0" CELLPADDING="0"
+><TR
+><TD
+><IMG SRC="haskell_icon.gif" WIDTH="16" HEIGHT="16" ALT=" "
+></TD
+><TD CLASS="title"
+>Hawk-0.0.2: Haskell Web Application Kit</TD
+><TD CLASS="topbut"
+><A HREF="index.html"
+>Contents</A
+></TD
+><TD CLASS="topbut"
+><A HREF="doc-index.html"
+>Index</A
+></TD
+></TR
+></TABLE
+></TD
+></TR
+><TR
+><TD CLASS="modulebar"
+><TABLE CLASS="vanilla" CELLSPACING="0" CELLPADDING="0"
+><TR
+><TD
+><FONT SIZE="6"
+>Hawk.Model.MonadDB</FONT
+></TD
+><TD ALIGN="right"
+><TABLE CLASS="narrow" CELLSPACING="0" CELLPADDING="0"
+><TR
+><TD CLASS="infohead"
+>Portability</TD
+><TD CLASS="infoval"
+>portable</TD
+></TR
+><TR
+><TD CLASS="infohead"
+>Stability</TD
+><TD CLASS="infoval"
+>experimental</TD
+></TR
+><TR
+><TD CLASS="infohead"
+>Maintainer</TD
+><TD CLASS="infoval"
+>{inf6254, inf6509}fh-wedel.de</TD
+></TR
+></TABLE
+></TD
+></TR
+></TABLE
+></TD
+></TR
+><TR
+><TD CLASS="s15"
+></TD
+></TR
+><TR
+><TD CLASS="section1"
+>Description</TD
+></TR
+><TR
+><TD CLASS="doc"
+>Version     :  $Id: Main.hs 57 2009-05-29 11:33:59Z inf6254 $
+</TD
+></TR
+><TR
+><TD CLASS="s15"
+></TD
+></TR
+><TR
+><TD CLASS="section1"
+>Synopsis</TD
+></TR
+><TR
+><TD CLASS="s15"
+></TD
+></TR
+><TR
+><TD CLASS="body"
+><TABLE CLASS="vanilla" CELLSPACING="0" CELLPADDING="0"
+><TR
+><TD CLASS="decl"
+><SPAN CLASS="keyword"
+>class</SPAN
+> MonadCatchIO m =&gt; <A HREF="#t%3AMonadDB"
+>MonadDB</A
+> m  <SPAN CLASS="keyword"
+>where</SPAN
+></TD
+></TR
+><TR
+><TD CLASS="body"
+><TABLE CLASS="vanilla" CELLSPACING="0" CELLPADDING="0"
+><TR
+><TD CLASS="decl"
+><A HREF="#v%3AgetConnection"
+>getConnection</A
+> :: m ConnWrapper</TD
+></TR
+></TABLE
+></TD
+></TR
+><TR
+><TD CLASS="s8"
+></TD
+></TR
+><TR
+><TD CLASS="decl"
+><A HREF="#v%3Acommit"
+>commit</A
+> :: <A HREF="Hawk-Model-MonadDB.html#t%3AMonadDB"
+>MonadDB</A
+> m =&gt; m <A HREF="/home/ghc612/ghc-6.12.1//share/doc/ghc/html/libraries/ghc-prim-0.2.0.0/GHC-Unit.html#t%3A%28%29"
+>()</A
+></TD
+></TR
+><TR
+><TD CLASS="s8"
+></TD
+></TR
+><TR
+><TD CLASS="decl"
+><A HREF="#v%3Arollback"
+>rollback</A
+> :: <A HREF="Hawk-Model-MonadDB.html#t%3AMonadDB"
+>MonadDB</A
+> m =&gt; m <A HREF="/home/ghc612/ghc-6.12.1//share/doc/ghc/html/libraries/ghc-prim-0.2.0.0/GHC-Unit.html#t%3A%28%29"
+>()</A
+></TD
+></TR
+><TR
+><TD CLASS="s8"
+></TD
+></TR
+><TR
+><TD CLASS="decl"
+><A HREF="#v%3AinTransaction"
+>inTransaction</A
+> :: <A HREF="Hawk-Model-MonadDB.html#t%3AMonadDB"
+>MonadDB</A
+> m =&gt; m a -&gt; m a</TD
+></TR
+><TR
+><TD CLASS="s8"
+></TD
+></TR
+><TR
+><TD CLASS="decl"
+><A HREF="#v%3AsqlSelect"
+>sqlSelect</A
+> :: <A HREF="Hawk-Model-MonadDB.html#t%3AMonadDB"
+>MonadDB</A
+> m =&gt; <A HREF="/home/ghc612/ghc-6.12.1//share/doc/ghc/html/libraries/base-4.2.0.0/Data-Char.html#t%3AString"
+>String</A
+> -&gt; [<A HREF="Hawk-Model-Types.html#t%3ASqlValue"
+>SqlValue</A
+>] -&gt; m [[<A HREF="Hawk-Model-Types.html#t%3ASqlValue"
+>SqlValue</A
+>]]</TD
+></TR
+><TR
+><TD CLASS="s8"
+></TD
+></TR
+><TR
+><TD CLASS="decl"
+><A HREF="#v%3AsqlExecute"
+>sqlExecute</A
+> :: <A HREF="Hawk-Model-MonadDB.html#t%3AMonadDB"
+>MonadDB</A
+> m =&gt; <A HREF="/home/ghc612/ghc-6.12.1//share/doc/ghc/html/libraries/base-4.2.0.0/Data-Char.html#t%3AString"
+>String</A
+> -&gt; [<A HREF="Hawk-Model-Types.html#t%3ASqlValue"
+>SqlValue</A
+>] -&gt; m <A HREF="/home/ghc612/ghc-6.12.1//share/doc/ghc/html/libraries/base-4.2.0.0/Prelude.html#t%3AInteger"
+>Integer</A
+></TD
+></TR
+><TR
+><TD CLASS="s8"
+></TD
+></TR
+><TR
+><TD CLASS="decl"
+><A HREF="#v%3AsqlExecuteMany"
+>sqlExecuteMany</A
+> :: <A HREF="Hawk-Model-MonadDB.html#t%3AMonadDB"
+>MonadDB</A
+> m =&gt; <A HREF="/home/ghc612/ghc-6.12.1//share/doc/ghc/html/libraries/base-4.2.0.0/Data-Char.html#t%3AString"
+>String</A
+> -&gt; [[<A HREF="Hawk-Model-Types.html#t%3ASqlValue"
+>SqlValue</A
+>]] -&gt; m <A HREF="/home/ghc612/ghc-6.12.1//share/doc/ghc/html/libraries/ghc-prim-0.2.0.0/GHC-Unit.html#t%3A%28%29"
+>()</A
+></TD
+></TR
+></TABLE
+></TD
+></TR
+><TR
+><TD CLASS="s15"
+></TD
+></TR
+><TR
+><TD CLASS="section1"
+>Documentation</TD
+></TR
+><TR
+><TD CLASS="s15"
+></TD
+></TR
+><TR
+><TD CLASS="decl"
+><SPAN CLASS="keyword"
+>class</SPAN
+> MonadCatchIO m =&gt; <A NAME="t:MonadDB"
+><A NAME="t%3AMonadDB"
+></A
+></A
+><B
+>MonadDB</B
+> m  <SPAN CLASS="keyword"
+>where</SPAN
+></TD
+></TR
+><TR
+><TD CLASS="body"
+><TABLE CLASS="vanilla" CELLSPACING="0" CELLPADDING="0"
+><TR
+><TD CLASS="ndoc"
+>Typeclass for operations on a database
+</TD
+></TR
+><TR
+><TD CLASS="s8"
+></TD
+></TR
+><TR
+><TD CLASS="section4"
+>Methods</TD
+></TR
+><TR
+><TD CLASS="body"
+><TABLE CLASS="vanilla" CELLSPACING="0" CELLPADDING="0"
+><TR
+><TD CLASS="decl"
+><A NAME="v:getConnection"
+><A NAME="v%3AgetConnection"
+></A
+></A
+><B
+>getConnection</B
+> :: m ConnWrapper</TD
+></TR
+></TABLE
+></TD
+></TR
+><TR
+><TD CLASS="s8"
+></TD
+></TR
+><TR
+><TD CLASS="section4"
+><IMG SRC="minus.gif" CLASS="coll" ONCLICK="toggle(this,'i:MonadDB')" ALT="show/hide"
+> Instances</TD
+></TR
+><TR
+><TD CLASS="body"
+><DIV ID="i:MonadDB" STYLE="display:block;"
+><TABLE CLASS="vanilla" CELLSPACING="1" CELLPADDING="0"
+><TR
+><TD CLASS="arg"
+>(MonadReader <A HREF="Hawk-Controller-Types.html#t%3ARequestEnv"
+>RequestEnv</A
+> m, MonadCatchIO m) =&gt; <A HREF="Hawk-Model-MonadDB.html#t%3AMonadDB"
+>MonadDB</A
+> m</TD
+><TD CLASS="rdoc"
+></TD
+></TR
+></TABLE
+></DIV
+></TD
+></TR
+></TABLE
+></TD
+></TR
+><TR
+><TD CLASS="s15"
+></TD
+></TR
+><TR
+><TD CLASS="decl"
+><A NAME="v:commit"
+><A NAME="v%3Acommit"
+></A
+></A
+><B
+>commit</B
+> :: <A HREF="Hawk-Model-MonadDB.html#t%3AMonadDB"
+>MonadDB</A
+> m =&gt; m <A HREF="/home/ghc612/ghc-6.12.1//share/doc/ghc/html/libraries/ghc-prim-0.2.0.0/GHC-Unit.html#t%3A%28%29"
+>()</A
+></TD
+></TR
+><TR
+><TD CLASS="doc"
+>Commit the changes to the database
+</TD
+></TR
+><TR
+><TD CLASS="s15"
+></TD
+></TR
+><TR
+><TD CLASS="decl"
+><A NAME="v:rollback"
+><A NAME="v%3Arollback"
+></A
+></A
+><B
+>rollback</B
+> :: <A HREF="Hawk-Model-MonadDB.html#t%3AMonadDB"
+>MonadDB</A
+> m =&gt; m <A HREF="/home/ghc612/ghc-6.12.1//share/doc/ghc/html/libraries/ghc-prim-0.2.0.0/GHC-Unit.html#t%3A%28%29"
+>()</A
+></TD
+></TR
+><TR
+><TD CLASS="doc"
+>Rollback the changes
+</TD
+></TR
+><TR
+><TD CLASS="s15"
+></TD
+></TR
+><TR
+><TD CLASS="decl"
+><A NAME="v:inTransaction"
+><A NAME="v%3AinTransaction"
+></A
+></A
+><B
+>inTransaction</B
+> :: <A HREF="Hawk-Model-MonadDB.html#t%3AMonadDB"
+>MonadDB</A
+> m =&gt; m a -&gt; m a</TD
+></TR
+><TR
+><TD CLASS="s15"
+></TD
+></TR
+><TR
+><TD CLASS="decl"
+><A NAME="v:sqlSelect"
+><A NAME="v%3AsqlSelect"
+></A
+></A
+><B
+>sqlSelect</B
+> :: <A HREF="Hawk-Model-MonadDB.html#t%3AMonadDB"
+>MonadDB</A
+> m =&gt; <A HREF="/home/ghc612/ghc-6.12.1//share/doc/ghc/html/libraries/base-4.2.0.0/Data-Char.html#t%3AString"
+>String</A
+> -&gt; [<A HREF="Hawk-Model-Types.html#t%3ASqlValue"
+>SqlValue</A
+>] -&gt; m [[<A HREF="Hawk-Model-Types.html#t%3ASqlValue"
+>SqlValue</A
+>]]</TD
+></TR
+><TR
+><TD CLASS="doc"
+>Perform a non-lazy sql select
+</TD
+></TR
+><TR
+><TD CLASS="s15"
+></TD
+></TR
+><TR
+><TD CLASS="decl"
+><A NAME="v:sqlExecute"
+><A NAME="v%3AsqlExecute"
+></A
+></A
+><B
+>sqlExecute</B
+> :: <A HREF="Hawk-Model-MonadDB.html#t%3AMonadDB"
+>MonadDB</A
+> m =&gt; <A HREF="/home/ghc612/ghc-6.12.1//share/doc/ghc/html/libraries/base-4.2.0.0/Data-Char.html#t%3AString"
+>String</A
+> -&gt; [<A HREF="Hawk-Model-Types.html#t%3ASqlValue"
+>SqlValue</A
+>] -&gt; m <A HREF="/home/ghc612/ghc-6.12.1//share/doc/ghc/html/libraries/base-4.2.0.0/Prelude.html#t%3AInteger"
+>Integer</A
+></TD
+></TR
+><TR
+><TD CLASS="doc"
+>Execute a sql statement
+</TD
+></TR
+><TR
+><TD CLASS="s15"
+></TD
+></TR
+><TR
+><TD CLASS="decl"
+><A NAME="v:sqlExecuteMany"
+><A NAME="v%3AsqlExecuteMany"
+></A
+></A
+><B
+>sqlExecuteMany</B
+> :: <A HREF="Hawk-Model-MonadDB.html#t%3AMonadDB"
+>MonadDB</A
+> m =&gt; <A HREF="/home/ghc612/ghc-6.12.1//share/doc/ghc/html/libraries/base-4.2.0.0/Data-Char.html#t%3AString"
+>String</A
+> -&gt; [[<A HREF="Hawk-Model-Types.html#t%3ASqlValue"
+>SqlValue</A
+>]] -&gt; m <A HREF="/home/ghc612/ghc-6.12.1//share/doc/ghc/html/libraries/ghc-prim-0.2.0.0/GHC-Unit.html#t%3A%28%29"
+>()</A
+></TD
+></TR
+><TR
+><TD CLASS="doc"
+>Execute a sql statement many times using prepared statements
+</TD
+></TR
+><TR
+><TD CLASS="s15"
+></TD
+></TR
+><TR
+><TD CLASS="botbar"
+>Produced by <A HREF="http://www.haskell.org/haddock/"
+>Haddock</A
+> version 2.7.2</TD
+></TR
+></TABLE
+></BODY
+></HTML
+>

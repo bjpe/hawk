@@ -13,7 +13,7 @@ import Control.Monad.Reader (asks)
 -- / (to be customized)
 mkQueryInfo :: StateController (Maybe QueryInfo)
 mkQueryInfo = do
-  acfg <- asks appConfiguration
+  acfg <- asks (appData . configuration)
   cfg <- acfg
   q <- lookupParam "q"
   case q of

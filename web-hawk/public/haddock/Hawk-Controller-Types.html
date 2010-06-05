@@ -1,0 +1,2083 @@
+<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN" "http://www.w3.org/TR/html4/loose.dtd">
+<!--Rendered using the Haskell Html Library v0.2-->
+<HTML
+><HEAD
+><META HTTP-EQUIV="Content-Type" CONTENT="text/html; charset=UTF-8"
+><TITLE
+>Hawk.Controller.Types</TITLE
+><LINK HREF="haddock.css" REL="stylesheet" TYPE="text/css"
+><SCRIPT SRC="haddock-util.js" TYPE="text/javascript"
+></SCRIPT
+><SCRIPT TYPE="text/javascript"
+>window.onload = function () {setSynopsis("mini_Hawk-Controller-Types.html")};</SCRIPT
+></HEAD
+><BODY
+><TABLE CLASS="vanilla" CELLSPACING="0" CELLPADDING="0"
+><TR
+><TD CLASS="topbar"
+><TABLE CLASS="vanilla" CELLSPACING="0" CELLPADDING="0"
+><TR
+><TD
+><IMG SRC="haskell_icon.gif" WIDTH="16" HEIGHT="16" ALT=" "
+></TD
+><TD CLASS="title"
+>Hawk-0.0.2: Haskell Web Application Kit</TD
+><TD CLASS="topbut"
+><A HREF="index.html"
+>Contents</A
+></TD
+><TD CLASS="topbut"
+><A HREF="doc-index.html"
+>Index</A
+></TD
+></TR
+></TABLE
+></TD
+></TR
+><TR
+><TD CLASS="modulebar"
+><TABLE CLASS="vanilla" CELLSPACING="0" CELLPADDING="0"
+><TR
+><TD
+><FONT SIZE="6"
+>Hawk.Controller.Types</FONT
+></TD
+><TD ALIGN="right"
+><TABLE CLASS="narrow" CELLSPACING="0" CELLPADDING="0"
+><TR
+><TD CLASS="infohead"
+>Portability</TD
+><TD CLASS="infoval"
+>portable</TD
+></TR
+><TR
+><TD CLASS="infohead"
+>Stability</TD
+><TD CLASS="infoval"
+>experimental</TD
+></TR
+><TR
+><TD CLASS="infohead"
+>Maintainer</TD
+><TD CLASS="infoval"
+>{inf6254, inf6509}fh-wedel.de</TD
+></TR
+></TABLE
+></TD
+></TR
+></TABLE
+></TD
+></TR
+><TR
+><TD CLASS="s15"
+></TD
+></TR
+><TR
+><TD CLASS="section1"
+>Description</TD
+></TR
+><TR
+><TD CLASS="doc"
+><P
+>Version     :  $Id: Main.hs 57 2009-05-29 11:33:59Z inf6254 $
+</P
+><P
+>Provides library-wide used Types and Classes
+</P
+></TD
+></TR
+><TR
+><TD CLASS="s15"
+></TD
+></TR
+><TR
+><TD CLASS="section1"
+>Synopsis</TD
+></TR
+><TR
+><TD CLASS="s15"
+></TD
+></TR
+><TR
+><TD CLASS="body"
+><TABLE CLASS="vanilla" CELLSPACING="0" CELLPADDING="0"
+><TR
+><TD CLASS="decl"
+><SPAN CLASS="keyword"
+>type</SPAN
+> <A HREF="#t%3AOptions"
+>Options</A
+> = [(<A HREF="/home/ghc612/ghc-6.12.1//share/doc/ghc/html/libraries/base-4.2.0.0/Data-Char.html#t%3AString"
+>String</A
+>, <A HREF="/home/ghc612/ghc-6.12.1//share/doc/ghc/html/libraries/base-4.2.0.0/Data-Char.html#t%3AString"
+>String</A
+>)]</TD
+></TR
+><TR
+><TD CLASS="s8"
+></TD
+></TR
+><TR
+><TD CLASS="decl"
+><SPAN CLASS="keyword"
+>data</SPAN
+>  <A HREF="#t%3ABasicConfiguration"
+>BasicConfiguration</A
+>  = <A HREF="#v%3ABasicConfiguration"
+>BasicConfiguration</A
+> {<TABLE CLASS="vanilla" CELLSPACING="0" CELLPADDING="0"
+><TR
+><TD CLASS="recfield"
+><A HREF="#v%3AsessionStore"
+>sessionStore</A
+> :: <A HREF="Hawk-Controller-Types.html#t%3ASessionStore"
+>SessionStore</A
+></TD
+></TR
+><TR
+><TD CLASS="recfield"
+><A HREF="#v%3AsessionOpts"
+>sessionOpts</A
+> :: <A HREF="Hawk-Controller-Session.html#t%3ASessionOpts"
+>SessionOpts</A
+></TD
+></TR
+><TR
+><TD CLASS="recfield"
+><A HREF="#v%3AauthType"
+>authType</A
+> :: <A HREF="Hawk-Controller-Types.html#t%3AAuthType"
+>AuthType</A
+></TD
+></TR
+><TR
+><TD CLASS="recfield"
+><A HREF="#v%3AauthOpts"
+>authOpts</A
+> :: [<A HREF="/home/ghc612/ghc-6.12.1//share/doc/ghc/html/libraries/base-4.2.0.0/Data-Char.html#t%3AString"
+>String</A
+>]</TD
+></TR
+><TR
+><TD CLASS="recfield"
+><A HREF="#v%3Arouting"
+>routing</A
+> :: Env -&gt; <A HREF="/home/ghc612/ghc-6.12.1//share/doc/ghc/html/libraries/base-4.2.0.0/Data-Maybe.html#t%3AMaybe"
+>Maybe</A
+> <A HREF="Hawk-Controller-Types.html#t%3AController"
+>Controller</A
+></TD
+></TR
+><TR
+><TD CLASS="recfield"
+><A HREF="#v%3AtemplatePath"
+>templatePath</A
+> :: <A HREF="/home/ghc612/ghc-6.12.1//share/doc/ghc/html/libraries/base-4.2.0.0/Data-Char.html#t%3AString"
+>String</A
+></TD
+></TR
+><TR
+><TD CLASS="recfield"
+><A HREF="#v%3ApublicDir"
+>publicDir</A
+> :: <A HREF="/home/ghc612/ghc-6.12.1//share/doc/ghc/html/libraries/base-4.2.0.0/Data-Char.html#t%3AString"
+>String</A
+></TD
+></TR
+><TR
+><TD CLASS="recfield"
+><A HREF="#v%3Aerror401file"
+>error401file</A
+> :: <A HREF="/home/ghc612/ghc-6.12.1//share/doc/ghc/html/libraries/base-4.2.0.0/Data-Char.html#t%3AString"
+>String</A
+></TD
+></TR
+><TR
+><TD CLASS="recfield"
+><A HREF="#v%3Aerror404file"
+>error404file</A
+> :: <A HREF="/home/ghc612/ghc-6.12.1//share/doc/ghc/html/libraries/base-4.2.0.0/Data-Char.html#t%3AString"
+>String</A
+></TD
+></TR
+><TR
+><TD CLASS="recfield"
+><A HREF="#v%3Aerror500file"
+>error500file</A
+> :: <A HREF="/home/ghc612/ghc-6.12.1//share/doc/ghc/html/libraries/base-4.2.0.0/Data-Char.html#t%3AString"
+>String</A
+></TD
+></TR
+><TR
+><TD CLASS="recfield"
+><A HREF="#v%3AconfOptions"
+>confOptions</A
+> :: <A HREF="Hawk-Controller-Types.html#t%3AOptions"
+>Options</A
+></TD
+></TR
+></TABLE
+>}</TD
+></TR
+><TR
+><TD CLASS="s8"
+></TD
+></TR
+><TR
+><TD CLASS="decl"
+><SPAN CLASS="keyword"
+>data</SPAN
+>  <A HREF="#t%3ARequestEnv"
+>RequestEnv</A
+>  = <A HREF="#v%3ARequestEnv"
+>RequestEnv</A
+> {<TABLE CLASS="vanilla" CELLSPACING="0" CELLPADDING="0"
+><TR
+><TD CLASS="recfield"
+><A HREF="#v%3AdatabaseConnection"
+>databaseConnection</A
+> :: ConnWrapper</TD
+></TR
+><TR
+><TD CLASS="recfield"
+><A HREF="#v%3Aconfiguration"
+>configuration</A
+> :: <A HREF="Hawk-Controller-Types.html#t%3ABasicConfiguration"
+>BasicConfiguration</A
+></TD
+></TR
+><TR
+><TD CLASS="recfield"
+><A HREF="#v%3Arequest"
+>request</A
+> :: Env</TD
+></TR
+><TR
+><TD CLASS="recfield"
+><A HREF="#v%3AenvironmentOptions"
+>environmentOptions</A
+> :: <A HREF="Hawk-Controller-Types.html#t%3AOptions"
+>Options</A
+></TD
+></TR
+><TR
+><TD CLASS="recfield"
+><A HREF="#v%3AappConfiguration"
+>appConfiguration</A
+> :: (<A HREF="Hawk-Controller-Types.html#t%3AAppConfiguration"
+>AppConfiguration</A
+> a, MonadIO m) =&gt; m a</TD
+></TR
+></TABLE
+>}</TD
+></TR
+><TR
+><TD CLASS="s8"
+></TD
+></TR
+><TR
+><TD CLASS="decl"
+><SPAN CLASS="keyword"
+>data</SPAN
+>  <A HREF="#t%3AResponseState"
+>ResponseState</A
+>  = <A HREF="#v%3AResponseState"
+>ResponseState</A
+> {<TABLE CLASS="vanilla" CELLSPACING="0" CELLPADDING="0"
+><TR
+><TD CLASS="recfield"
+><A HREF="#v%3Asession"
+>session</A
+> :: <A HREF="Hawk-Controller-Session.html#t%3ASession"
+>Session</A
+></TD
+></TR
+><TR
+><TD CLASS="recfield"
+><A HREF="#v%3Acookies"
+>cookies</A
+> :: [<A HREF="Hawk-Controller-Cookies.html#t%3ACookie"
+>Cookie</A
+>]</TD
+></TR
+><TR
+><TD CLASS="recfield"
+><A HREF="#v%3AresponseHeaders"
+>responseHeaders</A
+> :: <A HREF="/home/ghc612/ghc-6.12.1//share/doc/ghc/html/libraries/containers-0.3.0.0/Data-Map.html#t%3AMap"
+>Map</A
+> <A HREF="/home/ghc612/ghc-6.12.1//share/doc/ghc/html/libraries/base-4.2.0.0/Data-Char.html#t%3AString"
+>String</A
+> <A HREF="/home/ghc612/ghc-6.12.1//share/doc/ghc/html/libraries/base-4.2.0.0/Data-Char.html#t%3AString"
+>String</A
+></TD
+></TR
+><TR
+><TD CLASS="recfield"
+><A HREF="#v%3Aflash"
+>flash</A
+> :: <A HREF="/home/ghc612/ghc-6.12.1//share/doc/ghc/html/libraries/containers-0.3.0.0/Data-Map.html#t%3AMap"
+>Map</A
+> <A HREF="/home/ghc612/ghc-6.12.1//share/doc/ghc/html/libraries/base-4.2.0.0/Data-Char.html#t%3AString"
+>String</A
+> <A HREF="/home/ghc612/ghc-6.12.1//share/doc/ghc/html/libraries/base-4.2.0.0/Data-Char.html#t%3AString"
+>String</A
+></TD
+></TR
+><TR
+><TD CLASS="recfield"
+><A HREF="#v%3Aerrors"
+>errors</A
+> :: <A HREF="/home/ghc612/ghc-6.12.1//share/doc/ghc/html/libraries/containers-0.3.0.0/Data-Map.html#t%3AMap"
+>Map</A
+> <A HREF="/home/ghc612/ghc-6.12.1//share/doc/ghc/html/libraries/base-4.2.0.0/Data-Char.html#t%3AString"
+>String</A
+> [(<A HREF="/home/ghc612/ghc-6.12.1//share/doc/ghc/html/libraries/base-4.2.0.0/Data-Char.html#t%3AString"
+>String</A
+>, <A HREF="/home/ghc612/ghc-6.12.1//share/doc/ghc/html/libraries/base-4.2.0.0/Data-Char.html#t%3AString"
+>String</A
+>)]</TD
+></TR
+></TABLE
+>}</TD
+></TR
+><TR
+><TD CLASS="s8"
+></TD
+></TR
+><TR
+><TD CLASS="decl"
+><SPAN CLASS="keyword"
+>class</SPAN
+> (MonadReader <A HREF="Hawk-Controller-Types.html#t%3ARequestEnv"
+>RequestEnv</A
+> m, MonadState <A HREF="Hawk-Controller-Types.html#t%3AResponseState"
+>ResponseState</A
+> m, MonadCatchIO m) =&gt; <A HREF="#t%3AHasState"
+>HasState</A
+> m </TD
+></TR
+><TR
+><TD CLASS="s8"
+></TD
+></TR
+><TR
+><TD CLASS="decl"
+><SPAN CLASS="keyword"
+>class</SPAN
+>  <A HREF="#t%3AAppConfiguration"
+>AppConfiguration</A
+> a  <SPAN CLASS="keyword"
+>where</SPAN
+></TD
+></TR
+><TR
+><TD CLASS="body"
+><TABLE CLASS="vanilla" CELLSPACING="0" CELLPADDING="0"
+><TR
+><TD CLASS="decl"
+><A HREF="#v%3AgetInstance"
+>getInstance</A
+> :: MonadIO m =&gt; m a</TD
+></TR
+></TABLE
+></TD
+></TR
+><TR
+><TD CLASS="s8"
+></TD
+></TR
+><TR
+><TD CLASS="decl"
+><SPAN CLASS="keyword"
+>newtype</SPAN
+>  <A HREF="#t%3AEnvController"
+>EnvController</A
+> a = <A HREF="#v%3AEnvController"
+>EnvController</A
+> {<TABLE CLASS="vanilla" CELLSPACING="0" CELLPADDING="0"
+><TR
+><TD CLASS="recfield"
+><A HREF="#v%3ArunController"
+>runController</A
+> :: ReaderT <A HREF="Hawk-Controller-Types.html#t%3ARequestEnv"
+>RequestEnv</A
+> <A HREF="/home/ghc612/ghc-6.12.1//share/doc/ghc/html/libraries/base-4.2.0.0/System-IO.html#t%3AIO"
+>IO</A
+> a</TD
+></TR
+></TABLE
+>}</TD
+></TR
+><TR
+><TD CLASS="s8"
+></TD
+></TR
+><TR
+><TD CLASS="decl"
+><SPAN CLASS="keyword"
+>type</SPAN
+> <A HREF="#t%3AStateController"
+>StateController</A
+> = <A HREF="Control-Monad-Either.html#t%3AEitherT"
+>EitherT</A
+> Response (StateT <A HREF="Hawk-Controller-Types.html#t%3AResponseState"
+>ResponseState</A
+> <A HREF="Hawk-Controller-Types.html#t%3AEnvController"
+>EnvController</A
+>)</TD
+></TR
+><TR
+><TD CLASS="s8"
+></TD
+></TR
+><TR
+><TD CLASS="decl"
+><SPAN CLASS="keyword"
+>class</SPAN
+>  <A HREF="#t%3AView"
+>View</A
+> a  <SPAN CLASS="keyword"
+>where</SPAN
+></TD
+></TR
+><TR
+><TD CLASS="body"
+><TABLE CLASS="vanilla" CELLSPACING="0" CELLPADDING="0"
+><TR
+><TD CLASS="decl"
+><SPAN CLASS="keyword"
+>type</SPAN
+> <A HREF="#t%3ATarget"
+>Target</A
+> a :: *</TD
+></TR
+><TR
+><TD CLASS="decl"
+><A HREF="#v%3Arender"
+>render</A
+> :: a -&gt; <A HREF="Hawk-Controller-Types.html#t%3ATarget"
+>Target</A
+> a -&gt; <A HREF="Hawk-Controller-Types.html#t%3AStateController"
+>StateController</A
+> <A HREF="Hawk-Controller-Types.html#t%3AByteString"
+>ByteString</A
+></TD
+></TR
+></TABLE
+></TD
+></TR
+><TR
+><TD CLASS="s8"
+></TD
+></TR
+><TR
+><TD CLASS="decl"
+>module <A HREF="Hawk-Controller-Auth-ResultType.html"
+>Hawk.Controller.Auth.ResultType</A
+></TD
+></TR
+><TR
+><TD CLASS="s8"
+></TD
+></TR
+><TR
+><TD CLASS="decl"
+><SPAN CLASS="keyword"
+>type</SPAN
+> <A HREF="#t%3AAuthType"
+>AuthType</A
+> = (<A HREF="Hawk-Model-MonadDB.html#t%3AMonadDB"
+>MonadDB</A
+> m, MonadIO m, <A HREF="Hawk-Controller-Types.html#t%3AHasState"
+>HasState</A
+> m) =&gt; m <A HREF="Hawk-Controller-Auth-ResultType.html#t%3AAuthResult"
+>AuthResult</A
+></TD
+></TR
+><TR
+><TD CLASS="s8"
+></TD
+></TR
+><TR
+><TD CLASS="decl"
+><SPAN CLASS="keyword"
+>data</SPAN
+>  <A HREF="#t%3ASessionStore"
+>SessionStore</A
+>  = <A HREF="#v%3ASessionStore"
+>SessionStore</A
+> {<TABLE CLASS="vanilla" CELLSPACING="0" CELLPADDING="0"
+><TR
+><TD CLASS="recfield"
+><A HREF="#v%3AreadSession"
+>readSession</A
+> :: (MonadIO m, <A HREF="Hawk-Controller-Types.html#t%3AHasState"
+>HasState</A
+> m) =&gt; <A HREF="Hawk-Controller-Session.html#t%3ASessionOpts"
+>SessionOpts</A
+> -&gt; m <A HREF="Hawk-Controller-Session.html#t%3ASession"
+>Session</A
+></TD
+></TR
+><TR
+><TD CLASS="recfield"
+><A HREF="#v%3AsaveSession"
+>saveSession</A
+> :: (MonadIO m, <A HREF="Hawk-Controller-Types.html#t%3AHasState"
+>HasState</A
+> m) =&gt; <A HREF="Hawk-Controller-Session.html#t%3ASessionOpts"
+>SessionOpts</A
+> -&gt; <A HREF="Hawk-Controller-Session.html#t%3ASession"
+>Session</A
+> -&gt; m <A HREF="/home/ghc612/ghc-6.12.1//share/doc/ghc/html/libraries/ghc-prim-0.2.0.0/GHC-Unit.html#t%3A%28%29"
+>()</A
+></TD
+></TR
+></TABLE
+>}</TD
+></TR
+><TR
+><TD CLASS="s8"
+></TD
+></TR
+><TR
+><TD CLASS="decl"
+><SPAN CLASS="keyword"
+>data</SPAN
+>  <A HREF="#t%3ARoute"
+>Route</A
+>  = <A HREF="#v%3ARoute"
+>Route</A
+> {<TABLE CLASS="vanilla" CELLSPACING="0" CELLPADDING="0"
+><TR
+><TD CLASS="recfield"
+><A HREF="#v%3ArouteController"
+>routeController</A
+> :: <A HREF="/home/ghc612/ghc-6.12.1//share/doc/ghc/html/libraries/base-4.2.0.0/Data-Char.html#t%3AString"
+>String</A
+></TD
+></TR
+><TR
+><TD CLASS="recfield"
+><A HREF="#v%3ArouteAction"
+>routeAction</A
+> :: <A HREF="/home/ghc612/ghc-6.12.1//share/doc/ghc/html/libraries/base-4.2.0.0/Data-Char.html#t%3AString"
+>String</A
+></TD
+></TR
+></TABLE
+>}</TD
+></TR
+><TR
+><TD CLASS="s8"
+></TD
+></TR
+><TR
+><TD CLASS="decl"
+><SPAN CLASS="keyword"
+>type</SPAN
+> <A HREF="#t%3ARouting"
+>Routing</A
+> = (<A HREF="/home/ghc612/ghc-6.12.1//share/doc/ghc/html/libraries/base-4.2.0.0/Data-Char.html#t%3AString"
+>String</A
+>, <A HREF="Hawk-Controller-Types.html#t%3AController"
+>Controller</A
+>)</TD
+></TR
+><TR
+><TD CLASS="s8"
+></TD
+></TR
+><TR
+><TD CLASS="decl"
+><SPAN CLASS="keyword"
+>type</SPAN
+> <A HREF="#t%3AController"
+>Controller</A
+> = <A HREF="Hawk-Controller-Types.html#t%3AStateController"
+>StateController</A
+> <A HREF="Hawk-Controller-Types.html#t%3AByteString"
+>ByteString</A
+></TD
+></TR
+><TR
+><TD CLASS="s8"
+></TD
+></TR
+><TR
+><TD CLASS="decl"
+><SPAN CLASS="keyword"
+>data</SPAN
+>  <A HREF="#t%3AByteString"
+>ByteString</A
+> </TD
+></TR
+></TABLE
+></TD
+></TR
+><TR
+><TD CLASS="s15"
+></TD
+></TR
+><TR
+><TD CLASS="section1"
+>Documentation</TD
+></TR
+><TR
+><TD CLASS="s15"
+></TD
+></TR
+><TR
+><TD CLASS="decl"
+><SPAN CLASS="keyword"
+>type</SPAN
+> <A NAME="t:Options"
+><A NAME="t%3AOptions"
+></A
+></A
+><B
+>Options</B
+> = [(<A HREF="/home/ghc612/ghc-6.12.1//share/doc/ghc/html/libraries/base-4.2.0.0/Data-Char.html#t%3AString"
+>String</A
+>, <A HREF="/home/ghc612/ghc-6.12.1//share/doc/ghc/html/libraries/base-4.2.0.0/Data-Char.html#t%3AString"
+>String</A
+>)]</TD
+></TR
+><TR
+><TD CLASS="s15"
+></TD
+></TR
+><TR
+><TD CLASS="decl"
+><SPAN CLASS="keyword"
+>data</SPAN
+>  <A NAME="t:BasicConfiguration"
+><A NAME="t%3ABasicConfiguration"
+></A
+></A
+><B
+>BasicConfiguration</B
+>  </TD
+></TR
+><TR
+><TD CLASS="body"
+><TABLE CLASS="vanilla" CELLSPACING="0" CELLPADDING="0"
+><TR
+><TD CLASS="section4"
+>Constructors</TD
+></TR
+><TR
+><TD CLASS="body"
+><TABLE CLASS="vanilla" CELLSPACING="5" CELLPADDING="0"
+><TR
+><TD CLASS="arg"
+><A NAME="v:BasicConfiguration"
+><A NAME="v%3ABasicConfiguration"
+></A
+></A
+><B
+>BasicConfiguration</B
+></TD
+><TD CLASS="rdoc"
+></TD
+></TR
+><TR
+><TD CLASS="body" COLSPAN="2"
+><TABLE CLASS="vanilla" CELLSPACING="1" CELLPADDING="0"
+><TR
+><TD CLASS="arg"
+><A NAME="v:sessionStore"
+><A NAME="v%3AsessionStore"
+></A
+></A
+><B
+>sessionStore</B
+> :: <A HREF="Hawk-Controller-Types.html#t%3ASessionStore"
+>SessionStore</A
+></TD
+><TD CLASS="rdoc"
+></TD
+></TR
+><TR
+><TD CLASS="arg"
+><A NAME="v:sessionOpts"
+><A NAME="v%3AsessionOpts"
+></A
+></A
+><B
+>sessionOpts</B
+> :: <A HREF="Hawk-Controller-Session.html#t%3ASessionOpts"
+>SessionOpts</A
+></TD
+><TD CLASS="rdoc"
+></TD
+></TR
+><TR
+><TD CLASS="arg"
+><A NAME="v:authType"
+><A NAME="v%3AauthType"
+></A
+></A
+><B
+>authType</B
+> :: <A HREF="Hawk-Controller-Types.html#t%3AAuthType"
+>AuthType</A
+></TD
+><TD CLASS="rdoc"
+></TD
+></TR
+><TR
+><TD CLASS="arg"
+><A NAME="v:authOpts"
+><A NAME="v%3AauthOpts"
+></A
+></A
+><B
+>authOpts</B
+> :: [<A HREF="/home/ghc612/ghc-6.12.1//share/doc/ghc/html/libraries/base-4.2.0.0/Data-Char.html#t%3AString"
+>String</A
+>]</TD
+><TD CLASS="rdoc"
+></TD
+></TR
+><TR
+><TD CLASS="arg"
+><A NAME="v:routing"
+><A NAME="v%3Arouting"
+></A
+></A
+><B
+>routing</B
+> :: Env -&gt; <A HREF="/home/ghc612/ghc-6.12.1//share/doc/ghc/html/libraries/base-4.2.0.0/Data-Maybe.html#t%3AMaybe"
+>Maybe</A
+> <A HREF="Hawk-Controller-Types.html#t%3AController"
+>Controller</A
+></TD
+><TD CLASS="rdoc"
+></TD
+></TR
+><TR
+><TD CLASS="arg"
+><A NAME="v:templatePath"
+><A NAME="v%3AtemplatePath"
+></A
+></A
+><B
+>templatePath</B
+> :: <A HREF="/home/ghc612/ghc-6.12.1//share/doc/ghc/html/libraries/base-4.2.0.0/Data-Char.html#t%3AString"
+>String</A
+></TD
+><TD CLASS="rdoc"
+></TD
+></TR
+><TR
+><TD CLASS="arg"
+><A NAME="v:publicDir"
+><A NAME="v%3ApublicDir"
+></A
+></A
+><B
+>publicDir</B
+> :: <A HREF="/home/ghc612/ghc-6.12.1//share/doc/ghc/html/libraries/base-4.2.0.0/Data-Char.html#t%3AString"
+>String</A
+></TD
+><TD CLASS="rdoc"
+></TD
+></TR
+><TR
+><TD CLASS="arg"
+><A NAME="v:error401file"
+><A NAME="v%3Aerror401file"
+></A
+></A
+><B
+>error401file</B
+> :: <A HREF="/home/ghc612/ghc-6.12.1//share/doc/ghc/html/libraries/base-4.2.0.0/Data-Char.html#t%3AString"
+>String</A
+></TD
+><TD CLASS="rdoc"
+></TD
+></TR
+><TR
+><TD CLASS="arg"
+><A NAME="v:error404file"
+><A NAME="v%3Aerror404file"
+></A
+></A
+><B
+>error404file</B
+> :: <A HREF="/home/ghc612/ghc-6.12.1//share/doc/ghc/html/libraries/base-4.2.0.0/Data-Char.html#t%3AString"
+>String</A
+></TD
+><TD CLASS="rdoc"
+></TD
+></TR
+><TR
+><TD CLASS="arg"
+><A NAME="v:error500file"
+><A NAME="v%3Aerror500file"
+></A
+></A
+><B
+>error500file</B
+> :: <A HREF="/home/ghc612/ghc-6.12.1//share/doc/ghc/html/libraries/base-4.2.0.0/Data-Char.html#t%3AString"
+>String</A
+></TD
+><TD CLASS="rdoc"
+></TD
+></TR
+><TR
+><TD CLASS="arg"
+><A NAME="v:confOptions"
+><A NAME="v%3AconfOptions"
+></A
+></A
+><B
+>confOptions</B
+> :: <A HREF="Hawk-Controller-Types.html#t%3AOptions"
+>Options</A
+></TD
+><TD CLASS="rdoc"
+></TD
+></TR
+></TABLE
+></TD
+></TR
+></TABLE
+></TD
+></TR
+></TABLE
+></TD
+></TR
+><TR
+><TD CLASS="s15"
+></TD
+></TR
+><TR
+><TD CLASS="decl"
+><SPAN CLASS="keyword"
+>data</SPAN
+>  <A NAME="t:RequestEnv"
+><A NAME="t%3ARequestEnv"
+></A
+></A
+><B
+>RequestEnv</B
+>  </TD
+></TR
+><TR
+><TD CLASS="body"
+><TABLE CLASS="vanilla" CELLSPACING="0" CELLPADDING="0"
+><TR
+><TD CLASS="section4"
+>Constructors</TD
+></TR
+><TR
+><TD CLASS="body"
+><TABLE CLASS="vanilla" CELLSPACING="5" CELLPADDING="0"
+><TR
+><TD CLASS="arg"
+><A NAME="v:RequestEnv"
+><A NAME="v%3ARequestEnv"
+></A
+></A
+><B
+>RequestEnv</B
+></TD
+><TD CLASS="rdoc"
+></TD
+></TR
+><TR
+><TD CLASS="body" COLSPAN="2"
+><TABLE CLASS="vanilla" CELLSPACING="1" CELLPADDING="0"
+><TR
+><TD CLASS="arg"
+><A NAME="v:databaseConnection"
+><A NAME="v%3AdatabaseConnection"
+></A
+></A
+><B
+>databaseConnection</B
+> :: ConnWrapper</TD
+><TD CLASS="rdoc"
+></TD
+></TR
+><TR
+><TD CLASS="arg"
+><A NAME="v:configuration"
+><A NAME="v%3Aconfiguration"
+></A
+></A
+><B
+>configuration</B
+> :: <A HREF="Hawk-Controller-Types.html#t%3ABasicConfiguration"
+>BasicConfiguration</A
+></TD
+><TD CLASS="rdoc"
+></TD
+></TR
+><TR
+><TD CLASS="arg"
+><A NAME="v:request"
+><A NAME="v%3Arequest"
+></A
+></A
+><B
+>request</B
+> :: Env</TD
+><TD CLASS="rdoc"
+></TD
+></TR
+><TR
+><TD CLASS="arg"
+><A NAME="v:environmentOptions"
+><A NAME="v%3AenvironmentOptions"
+></A
+></A
+><B
+>environmentOptions</B
+> :: <A HREF="Hawk-Controller-Types.html#t%3AOptions"
+>Options</A
+></TD
+><TD CLASS="rdoc"
+></TD
+></TR
+><TR
+><TD CLASS="arg"
+><A NAME="v:appConfiguration"
+><A NAME="v%3AappConfiguration"
+></A
+></A
+><B
+>appConfiguration</B
+> :: (<A HREF="Hawk-Controller-Types.html#t%3AAppConfiguration"
+>AppConfiguration</A
+> a, MonadIO m) =&gt; m a</TD
+><TD CLASS="rdoc"
+></TD
+></TR
+></TABLE
+></TD
+></TR
+></TABLE
+></TD
+></TR
+><TR
+><TD CLASS="section4"
+><IMG SRC="minus.gif" CLASS="coll" ONCLICK="toggle(this,'i:RequestEnv')" ALT="show/hide"
+> Instances</TD
+></TR
+><TR
+><TD CLASS="body"
+><DIV ID="i:RequestEnv" STYLE="display:block;"
+><TABLE CLASS="vanilla" CELLSPACING="1" CELLPADDING="0"
+><TR
+><TD CLASS="arg"
+>MonadReader <A HREF="Hawk-Controller-Types.html#t%3ARequestEnv"
+>RequestEnv</A
+> <A HREF="Hawk-Controller-Types.html#t%3AEnvController"
+>EnvController</A
+></TD
+><TD CLASS="rdoc"
+></TD
+></TR
+></TABLE
+></DIV
+></TD
+></TR
+></TABLE
+></TD
+></TR
+><TR
+><TD CLASS="s15"
+></TD
+></TR
+><TR
+><TD CLASS="decl"
+><SPAN CLASS="keyword"
+>data</SPAN
+>  <A NAME="t:ResponseState"
+><A NAME="t%3AResponseState"
+></A
+></A
+><B
+>ResponseState</B
+>  </TD
+></TR
+><TR
+><TD CLASS="body"
+><TABLE CLASS="vanilla" CELLSPACING="0" CELLPADDING="0"
+><TR
+><TD CLASS="section4"
+>Constructors</TD
+></TR
+><TR
+><TD CLASS="body"
+><TABLE CLASS="vanilla" CELLSPACING="5" CELLPADDING="0"
+><TR
+><TD CLASS="arg"
+><A NAME="v:ResponseState"
+><A NAME="v%3AResponseState"
+></A
+></A
+><B
+>ResponseState</B
+></TD
+><TD CLASS="rdoc"
+></TD
+></TR
+><TR
+><TD CLASS="body" COLSPAN="2"
+><TABLE CLASS="vanilla" CELLSPACING="1" CELLPADDING="0"
+><TR
+><TD CLASS="arg"
+><A NAME="v:session"
+><A NAME="v%3Asession"
+></A
+></A
+><B
+>session</B
+> :: <A HREF="Hawk-Controller-Session.html#t%3ASession"
+>Session</A
+></TD
+><TD CLASS="rdoc"
+></TD
+></TR
+><TR
+><TD CLASS="arg"
+><A NAME="v:cookies"
+><A NAME="v%3Acookies"
+></A
+></A
+><B
+>cookies</B
+> :: [<A HREF="Hawk-Controller-Cookies.html#t%3ACookie"
+>Cookie</A
+>]</TD
+><TD CLASS="rdoc"
+></TD
+></TR
+><TR
+><TD CLASS="arg"
+><A NAME="v:responseHeaders"
+><A NAME="v%3AresponseHeaders"
+></A
+></A
+><B
+>responseHeaders</B
+> :: <A HREF="/home/ghc612/ghc-6.12.1//share/doc/ghc/html/libraries/containers-0.3.0.0/Data-Map.html#t%3AMap"
+>Map</A
+> <A HREF="/home/ghc612/ghc-6.12.1//share/doc/ghc/html/libraries/base-4.2.0.0/Data-Char.html#t%3AString"
+>String</A
+> <A HREF="/home/ghc612/ghc-6.12.1//share/doc/ghc/html/libraries/base-4.2.0.0/Data-Char.html#t%3AString"
+>String</A
+></TD
+><TD CLASS="rdoc"
+></TD
+></TR
+><TR
+><TD CLASS="arg"
+><A NAME="v:flash"
+><A NAME="v%3Aflash"
+></A
+></A
+><B
+>flash</B
+> :: <A HREF="/home/ghc612/ghc-6.12.1//share/doc/ghc/html/libraries/containers-0.3.0.0/Data-Map.html#t%3AMap"
+>Map</A
+> <A HREF="/home/ghc612/ghc-6.12.1//share/doc/ghc/html/libraries/base-4.2.0.0/Data-Char.html#t%3AString"
+>String</A
+> <A HREF="/home/ghc612/ghc-6.12.1//share/doc/ghc/html/libraries/base-4.2.0.0/Data-Char.html#t%3AString"
+>String</A
+></TD
+><TD CLASS="rdoc"
+></TD
+></TR
+><TR
+><TD CLASS="arg"
+><A NAME="v:errors"
+><A NAME="v%3Aerrors"
+></A
+></A
+><B
+>errors</B
+> :: <A HREF="/home/ghc612/ghc-6.12.1//share/doc/ghc/html/libraries/containers-0.3.0.0/Data-Map.html#t%3AMap"
+>Map</A
+> <A HREF="/home/ghc612/ghc-6.12.1//share/doc/ghc/html/libraries/base-4.2.0.0/Data-Char.html#t%3AString"
+>String</A
+> [(<A HREF="/home/ghc612/ghc-6.12.1//share/doc/ghc/html/libraries/base-4.2.0.0/Data-Char.html#t%3AString"
+>String</A
+>, <A HREF="/home/ghc612/ghc-6.12.1//share/doc/ghc/html/libraries/base-4.2.0.0/Data-Char.html#t%3AString"
+>String</A
+>)]</TD
+><TD CLASS="rdoc"
+></TD
+></TR
+></TABLE
+></TD
+></TR
+></TABLE
+></TD
+></TR
+><TR
+><TD CLASS="section4"
+><IMG SRC="minus.gif" CLASS="coll" ONCLICK="toggle(this,'i:ResponseState')" ALT="show/hide"
+> Instances</TD
+></TR
+><TR
+><TD CLASS="body"
+><DIV ID="i:ResponseState" STYLE="display:block;"
+><TABLE CLASS="vanilla" CELLSPACING="1" CELLPADDING="0"
+><TR
+><TD CLASS="arg"
+>Default <A HREF="Hawk-Controller-Types.html#t%3AResponseState"
+>ResponseState</A
+></TD
+><TD CLASS="rdoc"
+></TD
+></TR
+><TR
+><TD CLASS="arg"
+><A HREF="Hawk-Controller-Types.html#t%3AHasState"
+>HasState</A
+> (StateT <A HREF="Hawk-Controller-Types.html#t%3AResponseState"
+>ResponseState</A
+> <A HREF="Hawk-Controller-Types.html#t%3AEnvController"
+>EnvController</A
+>)</TD
+><TD CLASS="rdoc"
+></TD
+></TR
+><TR
+><TD CLASS="arg"
+><A HREF="Hawk-Controller-Types.html#t%3AHasState"
+>HasState</A
+> (<A HREF="Control-Monad-Either.html#t%3AEitherT"
+>EitherT</A
+> e (StateT <A HREF="Hawk-Controller-Types.html#t%3AResponseState"
+>ResponseState</A
+> <A HREF="Hawk-Controller-Types.html#t%3AEnvController"
+>EnvController</A
+>))</TD
+><TD CLASS="rdoc"
+></TD
+></TR
+></TABLE
+></DIV
+></TD
+></TR
+></TABLE
+></TD
+></TR
+><TR
+><TD CLASS="s15"
+></TD
+></TR
+><TR
+><TD CLASS="decl"
+><SPAN CLASS="keyword"
+>class</SPAN
+> (MonadReader <A HREF="Hawk-Controller-Types.html#t%3ARequestEnv"
+>RequestEnv</A
+> m, MonadState <A HREF="Hawk-Controller-Types.html#t%3AResponseState"
+>ResponseState</A
+> m, MonadCatchIO m) =&gt; <A NAME="t:HasState"
+><A NAME="t%3AHasState"
+></A
+></A
+><B
+>HasState</B
+> m </TD
+></TR
+><TR
+><TD CLASS="body"
+><TABLE CLASS="vanilla" CELLSPACING="0" CELLPADDING="0"
+><TR
+><TD CLASS="s8"
+></TD
+></TR
+><TR
+><TD CLASS="section4"
+><IMG SRC="minus.gif" CLASS="coll" ONCLICK="toggle(this,'i:HasState')" ALT="show/hide"
+> Instances</TD
+></TR
+><TR
+><TD CLASS="body"
+><DIV ID="i:HasState" STYLE="display:block;"
+><TABLE CLASS="vanilla" CELLSPACING="1" CELLPADDING="0"
+><TR
+><TD CLASS="arg"
+><A HREF="Hawk-Controller-Types.html#t%3AHasState"
+>HasState</A
+> (StateT <A HREF="Hawk-Controller-Types.html#t%3AResponseState"
+>ResponseState</A
+> <A HREF="Hawk-Controller-Types.html#t%3AEnvController"
+>EnvController</A
+>)</TD
+><TD CLASS="rdoc"
+></TD
+></TR
+><TR
+><TD CLASS="arg"
+><A HREF="Hawk-Controller-Types.html#t%3AHasState"
+>HasState</A
+> (<A HREF="Control-Monad-Either.html#t%3AEitherT"
+>EitherT</A
+> e (StateT <A HREF="Hawk-Controller-Types.html#t%3AResponseState"
+>ResponseState</A
+> <A HREF="Hawk-Controller-Types.html#t%3AEnvController"
+>EnvController</A
+>))</TD
+><TD CLASS="rdoc"
+></TD
+></TR
+></TABLE
+></DIV
+></TD
+></TR
+></TABLE
+></TD
+></TR
+><TR
+><TD CLASS="s15"
+></TD
+></TR
+><TR
+><TD CLASS="decl"
+><SPAN CLASS="keyword"
+>class</SPAN
+>  <A NAME="t:AppConfiguration"
+><A NAME="t%3AAppConfiguration"
+></A
+></A
+><B
+>AppConfiguration</B
+> a  <SPAN CLASS="keyword"
+>where</SPAN
+></TD
+></TR
+><TR
+><TD CLASS="body"
+><TABLE CLASS="vanilla" CELLSPACING="0" CELLPADDING="0"
+><TR
+><TD CLASS="s8"
+></TD
+></TR
+><TR
+><TD CLASS="section4"
+>Methods</TD
+></TR
+><TR
+><TD CLASS="body"
+><TABLE CLASS="vanilla" CELLSPACING="0" CELLPADDING="0"
+><TR
+><TD CLASS="decl"
+><A NAME="v:getInstance"
+><A NAME="v%3AgetInstance"
+></A
+></A
+><B
+>getInstance</B
+> :: MonadIO m =&gt; m a</TD
+></TR
+></TABLE
+></TD
+></TR
+><TR
+><TD CLASS="s8"
+></TD
+></TR
+><TR
+><TD CLASS="section4"
+><IMG SRC="minus.gif" CLASS="coll" ONCLICK="toggle(this,'i:AppConfiguration')" ALT="show/hide"
+> Instances</TD
+></TR
+><TR
+><TD CLASS="body"
+><DIV ID="i:AppConfiguration" STYLE="display:block;"
+><TABLE CLASS="vanilla" CELLSPACING="1" CELLPADDING="0"
+><TR
+><TD CLASS="arg"
+><A HREF="Hawk-Controller-Types.html#t%3AAppConfiguration"
+>AppConfiguration</A
+> ()</TD
+><TD CLASS="rdoc"
+></TD
+></TR
+></TABLE
+></DIV
+></TD
+></TR
+></TABLE
+></TD
+></TR
+><TR
+><TD CLASS="s15"
+></TD
+></TR
+><TR
+><TD CLASS="decl"
+><SPAN CLASS="keyword"
+>newtype</SPAN
+>  <A NAME="t:EnvController"
+><A NAME="t%3AEnvController"
+></A
+></A
+><B
+>EnvController</B
+> a </TD
+></TR
+><TR
+><TD CLASS="body"
+><TABLE CLASS="vanilla" CELLSPACING="0" CELLPADDING="0"
+><TR
+><TD CLASS="section4"
+>Constructors</TD
+></TR
+><TR
+><TD CLASS="body"
+><TABLE CLASS="vanilla" CELLSPACING="5" CELLPADDING="0"
+><TR
+><TD CLASS="arg"
+><A NAME="v:EnvController"
+><A NAME="v%3AEnvController"
+></A
+></A
+><B
+>EnvController</B
+></TD
+><TD CLASS="rdoc"
+></TD
+></TR
+><TR
+><TD CLASS="body" COLSPAN="2"
+><TABLE CLASS="vanilla" CELLSPACING="1" CELLPADDING="0"
+><TR
+><TD CLASS="arg"
+><A NAME="v:runController"
+><A NAME="v%3ArunController"
+></A
+></A
+><B
+>runController</B
+> :: ReaderT <A HREF="Hawk-Controller-Types.html#t%3ARequestEnv"
+>RequestEnv</A
+> <A HREF="/home/ghc612/ghc-6.12.1//share/doc/ghc/html/libraries/base-4.2.0.0/System-IO.html#t%3AIO"
+>IO</A
+> a</TD
+><TD CLASS="rdoc"
+></TD
+></TR
+></TABLE
+></TD
+></TR
+></TABLE
+></TD
+></TR
+><TR
+><TD CLASS="section4"
+><IMG SRC="minus.gif" CLASS="coll" ONCLICK="toggle(this,'i:EnvController')" ALT="show/hide"
+> Instances</TD
+></TR
+><TR
+><TD CLASS="body"
+><DIV ID="i:EnvController" STYLE="display:block;"
+><TABLE CLASS="vanilla" CELLSPACING="1" CELLPADDING="0"
+><TR
+><TD CLASS="arg"
+><A HREF="/home/ghc612/ghc-6.12.1//share/doc/ghc/html/libraries/base-4.2.0.0/Control-Monad.html#t%3AMonad"
+>Monad</A
+> <A HREF="Hawk-Controller-Types.html#t%3AEnvController"
+>EnvController</A
+></TD
+><TD CLASS="rdoc"
+></TD
+></TR
+><TR
+><TD CLASS="arg"
+><A HREF="/home/ghc612/ghc-6.12.1//share/doc/ghc/html/libraries/base-4.2.0.0/Control-Monad.html#t%3AFunctor"
+>Functor</A
+> <A HREF="Hawk-Controller-Types.html#t%3AEnvController"
+>EnvController</A
+></TD
+><TD CLASS="rdoc"
+></TD
+></TR
+><TR
+><TD CLASS="arg"
+>MonadIO <A HREF="Hawk-Controller-Types.html#t%3AEnvController"
+>EnvController</A
+></TD
+><TD CLASS="rdoc"
+></TD
+></TR
+><TR
+><TD CLASS="arg"
+>MonadCatchIO <A HREF="Hawk-Controller-Types.html#t%3AEnvController"
+>EnvController</A
+></TD
+><TD CLASS="rdoc"
+></TD
+></TR
+><TR
+><TD CLASS="arg"
+>MonadReader <A HREF="Hawk-Controller-Types.html#t%3ARequestEnv"
+>RequestEnv</A
+> <A HREF="Hawk-Controller-Types.html#t%3AEnvController"
+>EnvController</A
+></TD
+><TD CLASS="rdoc"
+></TD
+></TR
+><TR
+><TD CLASS="arg"
+><A HREF="Hawk-Controller-Types.html#t%3AHasState"
+>HasState</A
+> (StateT <A HREF="Hawk-Controller-Types.html#t%3AResponseState"
+>ResponseState</A
+> <A HREF="Hawk-Controller-Types.html#t%3AEnvController"
+>EnvController</A
+>)</TD
+><TD CLASS="rdoc"
+></TD
+></TR
+><TR
+><TD CLASS="arg"
+><A HREF="Hawk-Controller-Types.html#t%3AHasState"
+>HasState</A
+> (<A HREF="Control-Monad-Either.html#t%3AEitherT"
+>EitherT</A
+> e (StateT <A HREF="Hawk-Controller-Types.html#t%3AResponseState"
+>ResponseState</A
+> <A HREF="Hawk-Controller-Types.html#t%3AEnvController"
+>EnvController</A
+>))</TD
+><TD CLASS="rdoc"
+></TD
+></TR
+></TABLE
+></DIV
+></TD
+></TR
+></TABLE
+></TD
+></TR
+><TR
+><TD CLASS="s15"
+></TD
+></TR
+><TR
+><TD CLASS="decl"
+><SPAN CLASS="keyword"
+>type</SPAN
+> <A NAME="t:StateController"
+><A NAME="t%3AStateController"
+></A
+></A
+><B
+>StateController</B
+> = <A HREF="Control-Monad-Either.html#t%3AEitherT"
+>EitherT</A
+> Response (StateT <A HREF="Hawk-Controller-Types.html#t%3AResponseState"
+>ResponseState</A
+> <A HREF="Hawk-Controller-Types.html#t%3AEnvController"
+>EnvController</A
+>)</TD
+></TR
+><TR
+><TD CLASS="s15"
+></TD
+></TR
+><TR
+><TD CLASS="decl"
+><SPAN CLASS="keyword"
+>class</SPAN
+>  <A NAME="t:View"
+><A NAME="t%3AView"
+></A
+></A
+><B
+>View</B
+> a  <SPAN CLASS="keyword"
+>where</SPAN
+></TD
+></TR
+><TR
+><TD CLASS="body"
+><TABLE CLASS="vanilla" CELLSPACING="0" CELLPADDING="0"
+><TR
+><TD CLASS="s8"
+></TD
+></TR
+><TR
+><TD CLASS="section4"
+>Associated Types</TD
+></TR
+><TR
+><TD CLASS="body"
+><TABLE CLASS="vanilla" CELLSPACING="0" CELLPADDING="0"
+><TR
+><TD CLASS="decl"
+><SPAN CLASS="keyword"
+>type</SPAN
+> <A NAME="t:Target"
+><A NAME="t%3ATarget"
+></A
+></A
+><B
+>Target</B
+> a :: *</TD
+></TR
+></TABLE
+></TD
+></TR
+><TR
+><TD CLASS="s8"
+></TD
+></TR
+><TR
+><TD CLASS="section4"
+>Methods</TD
+></TR
+><TR
+><TD CLASS="body"
+><TABLE CLASS="vanilla" CELLSPACING="0" CELLPADDING="0"
+><TR
+><TD CLASS="decl"
+><A NAME="v:render"
+><A NAME="v%3Arender"
+></A
+></A
+><B
+>render</B
+> :: a -&gt; <A HREF="Hawk-Controller-Types.html#t%3ATarget"
+>Target</A
+> a -&gt; <A HREF="Hawk-Controller-Types.html#t%3AStateController"
+>StateController</A
+> <A HREF="Hawk-Controller-Types.html#t%3AByteString"
+>ByteString</A
+></TD
+></TR
+></TABLE
+></TD
+></TR
+><TR
+><TD CLASS="s8"
+></TD
+></TR
+><TR
+><TD CLASS="section4"
+><IMG SRC="minus.gif" CLASS="coll" ONCLICK="toggle(this,'i:View')" ALT="show/hide"
+> Instances</TD
+></TR
+><TR
+><TD CLASS="body"
+><DIV ID="i:View" STYLE="display:block;"
+><TABLE CLASS="vanilla" CELLSPACING="1" CELLPADDING="0"
+><TR
+><TD CLASS="arg"
+><A HREF="Hawk-Controller-Types.html#t%3AView"
+>View</A
+> (<A HREF="Hawk-View-EmptyView.html#t%3AEmptyView"
+>EmptyView</A
+> a)</TD
+><TD CLASS="rdoc"
+></TD
+></TR
+><TR
+><TD CLASS="arg"
+><A HREF="Hawk-Controller-Types.html#t%3AView"
+>View</A
+> (<A HREF="Hawk-View-JsonView.html#t%3AJsonView"
+>JsonView</A
+> a)</TD
+><TD CLASS="rdoc"
+></TD
+></TR
+><TR
+><TD CLASS="arg"
+><A HREF="Hawk-Controller-Types.html#t%3AView"
+>View</A
+> (<A HREF="Hawk-View-TextView.html#t%3ATextView"
+>TextView</A
+> a)</TD
+><TD CLASS="rdoc"
+></TD
+></TR
+><TR
+><TD CLASS="arg"
+><A HREF="Hawk-Controller-Types.html#t%3AView"
+>View</A
+> (<A HREF="Hawk-View-TemplateView.html#t%3ATemplateView"
+>TemplateView</A
+> a)</TD
+><TD CLASS="rdoc"
+></TD
+></TR
+></TABLE
+></DIV
+></TD
+></TR
+></TABLE
+></TD
+></TR
+><TR
+><TD CLASS="s15"
+></TD
+></TR
+><TR
+><TD CLASS="decl"
+>module <A HREF="Hawk-Controller-Auth-ResultType.html"
+>Hawk.Controller.Auth.ResultType</A
+></TD
+></TR
+><TR
+><TD CLASS="s15"
+></TD
+></TR
+><TR
+><TD CLASS="decl"
+><SPAN CLASS="keyword"
+>type</SPAN
+> <A NAME="t:AuthType"
+><A NAME="t%3AAuthType"
+></A
+></A
+><B
+>AuthType</B
+> = (<A HREF="Hawk-Model-MonadDB.html#t%3AMonadDB"
+>MonadDB</A
+> m, MonadIO m, <A HREF="Hawk-Controller-Types.html#t%3AHasState"
+>HasState</A
+> m) =&gt; m <A HREF="Hawk-Controller-Auth-ResultType.html#t%3AAuthResult"
+>AuthResult</A
+></TD
+></TR
+><TR
+><TD CLASS="s15"
+></TD
+></TR
+><TR
+><TD CLASS="decl"
+><SPAN CLASS="keyword"
+>data</SPAN
+>  <A NAME="t:SessionStore"
+><A NAME="t%3ASessionStore"
+></A
+></A
+><B
+>SessionStore</B
+>  </TD
+></TR
+><TR
+><TD CLASS="body"
+><TABLE CLASS="vanilla" CELLSPACING="0" CELLPADDING="0"
+><TR
+><TD CLASS="section4"
+>Constructors</TD
+></TR
+><TR
+><TD CLASS="body"
+><TABLE CLASS="vanilla" CELLSPACING="5" CELLPADDING="0"
+><TR
+><TD CLASS="arg"
+><A NAME="v:SessionStore"
+><A NAME="v%3ASessionStore"
+></A
+></A
+><B
+>SessionStore</B
+></TD
+><TD CLASS="rdoc"
+></TD
+></TR
+><TR
+><TD CLASS="body" COLSPAN="2"
+><TABLE CLASS="vanilla" CELLSPACING="1" CELLPADDING="0"
+><TR
+><TD CLASS="arg"
+><A NAME="v:readSession"
+><A NAME="v%3AreadSession"
+></A
+></A
+><B
+>readSession</B
+> :: (MonadIO m, <A HREF="Hawk-Controller-Types.html#t%3AHasState"
+>HasState</A
+> m) =&gt; <A HREF="Hawk-Controller-Session.html#t%3ASessionOpts"
+>SessionOpts</A
+> -&gt; m <A HREF="Hawk-Controller-Session.html#t%3ASession"
+>Session</A
+></TD
+><TD CLASS="rdoc"
+></TD
+></TR
+><TR
+><TD CLASS="arg"
+><A NAME="v:saveSession"
+><A NAME="v%3AsaveSession"
+></A
+></A
+><B
+>saveSession</B
+> :: (MonadIO m, <A HREF="Hawk-Controller-Types.html#t%3AHasState"
+>HasState</A
+> m) =&gt; <A HREF="Hawk-Controller-Session.html#t%3ASessionOpts"
+>SessionOpts</A
+> -&gt; <A HREF="Hawk-Controller-Session.html#t%3ASession"
+>Session</A
+> -&gt; m <A HREF="/home/ghc612/ghc-6.12.1//share/doc/ghc/html/libraries/ghc-prim-0.2.0.0/GHC-Unit.html#t%3A%28%29"
+>()</A
+></TD
+><TD CLASS="rdoc"
+></TD
+></TR
+></TABLE
+></TD
+></TR
+></TABLE
+></TD
+></TR
+></TABLE
+></TD
+></TR
+><TR
+><TD CLASS="s15"
+></TD
+></TR
+><TR
+><TD CLASS="decl"
+><SPAN CLASS="keyword"
+>data</SPAN
+>  <A NAME="t:Route"
+><A NAME="t%3ARoute"
+></A
+></A
+><B
+>Route</B
+>  </TD
+></TR
+><TR
+><TD CLASS="body"
+><TABLE CLASS="vanilla" CELLSPACING="0" CELLPADDING="0"
+><TR
+><TD CLASS="section4"
+>Constructors</TD
+></TR
+><TR
+><TD CLASS="body"
+><TABLE CLASS="vanilla" CELLSPACING="5" CELLPADDING="0"
+><TR
+><TD CLASS="arg"
+><A NAME="v:Route"
+><A NAME="v%3ARoute"
+></A
+></A
+><B
+>Route</B
+></TD
+><TD CLASS="rdoc"
+></TD
+></TR
+><TR
+><TD CLASS="body" COLSPAN="2"
+><TABLE CLASS="vanilla" CELLSPACING="1" CELLPADDING="0"
+><TR
+><TD CLASS="arg"
+><A NAME="v:routeController"
+><A NAME="v%3ArouteController"
+></A
+></A
+><B
+>routeController</B
+> :: <A HREF="/home/ghc612/ghc-6.12.1//share/doc/ghc/html/libraries/base-4.2.0.0/Data-Char.html#t%3AString"
+>String</A
+></TD
+><TD CLASS="rdoc"
+></TD
+></TR
+><TR
+><TD CLASS="arg"
+><A NAME="v:routeAction"
+><A NAME="v%3ArouteAction"
+></A
+></A
+><B
+>routeAction</B
+> :: <A HREF="/home/ghc612/ghc-6.12.1//share/doc/ghc/html/libraries/base-4.2.0.0/Data-Char.html#t%3AString"
+>String</A
+></TD
+><TD CLASS="rdoc"
+></TD
+></TR
+></TABLE
+></TD
+></TR
+></TABLE
+></TD
+></TR
+><TR
+><TD CLASS="section4"
+><IMG SRC="minus.gif" CLASS="coll" ONCLICK="toggle(this,'i:Route')" ALT="show/hide"
+> Instances</TD
+></TR
+><TR
+><TD CLASS="body"
+><DIV ID="i:Route" STYLE="display:block;"
+><TABLE CLASS="vanilla" CELLSPACING="1" CELLPADDING="0"
+><TR
+><TD CLASS="arg"
+><A HREF="/home/ghc612/ghc-6.12.1//share/doc/ghc/html/libraries/base-4.2.0.0/Text-Show.html#t%3AShow"
+>Show</A
+> <A HREF="Hawk-Controller-Types.html#t%3ARoute"
+>Route</A
+></TD
+><TD CLASS="rdoc"
+></TD
+></TR
+></TABLE
+></DIV
+></TD
+></TR
+></TABLE
+></TD
+></TR
+><TR
+><TD CLASS="s15"
+></TD
+></TR
+><TR
+><TD CLASS="decl"
+><SPAN CLASS="keyword"
+>type</SPAN
+> <A NAME="t:Routing"
+><A NAME="t%3ARouting"
+></A
+></A
+><B
+>Routing</B
+> = (<A HREF="/home/ghc612/ghc-6.12.1//share/doc/ghc/html/libraries/base-4.2.0.0/Data-Char.html#t%3AString"
+>String</A
+>, <A HREF="Hawk-Controller-Types.html#t%3AController"
+>Controller</A
+>)</TD
+></TR
+><TR
+><TD CLASS="s15"
+></TD
+></TR
+><TR
+><TD CLASS="decl"
+><SPAN CLASS="keyword"
+>type</SPAN
+> <A NAME="t:Controller"
+><A NAME="t%3AController"
+></A
+></A
+><B
+>Controller</B
+> = <A HREF="Hawk-Controller-Types.html#t%3AStateController"
+>StateController</A
+> <A HREF="Hawk-Controller-Types.html#t%3AByteString"
+>ByteString</A
+></TD
+></TR
+><TR
+><TD CLASS="s15"
+></TD
+></TR
+><TR
+><TD CLASS="decl"
+><SPAN CLASS="keyword"
+>data</SPAN
+>  <A NAME="t:ByteString"
+><A NAME="t%3AByteString"
+></A
+></A
+><B
+>ByteString</B
+>  </TD
+></TR
+><TR
+><TD CLASS="body"
+><TABLE CLASS="vanilla" CELLSPACING="0" CELLPADDING="0"
+><TR
+><TD CLASS="ndoc"
+><P
+>A space-efficient representation of a Word8 vector, supporting many
+ efficient operations.  A <TT
+><A HREF="Hawk-Controller-Types.html#t%3AByteString"
+>ByteString</A
+></TT
+> contains 8-bit characters only.
+</P
+><P
+>Instances of Eq, Ord, Read, Show, Data, Typeable
+</P
+></TD
+></TR
+><TR
+><TD CLASS="section4"
+><IMG SRC="minus.gif" CLASS="coll" ONCLICK="toggle(this,'i:ByteString')" ALT="show/hide"
+> Instances</TD
+></TR
+><TR
+><TD CLASS="body"
+><DIV ID="i:ByteString" STYLE="display:block;"
+><TABLE CLASS="vanilla" CELLSPACING="1" CELLPADDING="0"
+><TR
+><TD CLASS="arg"
+><A HREF="/home/ghc612/ghc-6.12.1//share/doc/ghc/html/libraries/base-4.2.0.0/Data-Eq.html#t%3AEq"
+>Eq</A
+> <A HREF="Hawk-Controller-Types.html#t%3AByteString"
+>ByteString</A
+></TD
+><TD CLASS="rdoc"
+></TD
+></TR
+><TR
+><TD CLASS="arg"
+><A HREF="/home/ghc612/ghc-6.12.1//share/doc/ghc/html/libraries/base-4.2.0.0/Data-Data.html#t%3AData"
+>Data</A
+> <A HREF="Hawk-Controller-Types.html#t%3AByteString"
+>ByteString</A
+></TD
+><TD CLASS="rdoc"
+></TD
+></TR
+><TR
+><TD CLASS="arg"
+><A HREF="/home/ghc612/ghc-6.12.1//share/doc/ghc/html/libraries/base-4.2.0.0/Data-Ord.html#t%3AOrd"
+>Ord</A
+> <A HREF="Hawk-Controller-Types.html#t%3AByteString"
+>ByteString</A
+></TD
+><TD CLASS="rdoc"
+></TD
+></TR
+><TR
+><TD CLASS="arg"
+><A HREF="/home/ghc612/ghc-6.12.1//share/doc/ghc/html/libraries/base-4.2.0.0/Text-Read.html#t%3ARead"
+>Read</A
+> <A HREF="Hawk-Controller-Types.html#t%3AByteString"
+>ByteString</A
+></TD
+><TD CLASS="rdoc"
+></TD
+></TR
+><TR
+><TD CLASS="arg"
+><A HREF="/home/ghc612/ghc-6.12.1//share/doc/ghc/html/libraries/base-4.2.0.0/Text-Show.html#t%3AShow"
+>Show</A
+> <A HREF="Hawk-Controller-Types.html#t%3AByteString"
+>ByteString</A
+></TD
+><TD CLASS="rdoc"
+></TD
+></TR
+><TR
+><TD CLASS="arg"
+><A HREF="/home/ghc612/ghc-6.12.1//share/doc/ghc/html/libraries/base-4.2.0.0/Data-Typeable.html#t%3ATypeable"
+>Typeable</A
+> <A HREF="Hawk-Controller-Types.html#t%3AByteString"
+>ByteString</A
+></TD
+><TD CLASS="rdoc"
+></TD
+></TR
+><TR
+><TD CLASS="arg"
+><A HREF="/home/ghc612/ghc-6.12.1//share/doc/ghc/html/libraries/base-4.2.0.0/Data-String.html#t%3AIsString"
+>IsString</A
+> <A HREF="Hawk-Controller-Types.html#t%3AByteString"
+>ByteString</A
+></TD
+><TD CLASS="rdoc"
+></TD
+></TR
+><TR
+><TD CLASS="arg"
+><A HREF="/home/ghc612/ghc-6.12.1//share/doc/ghc/html/libraries/base-4.2.0.0/Data-Monoid.html#t%3AMonoid"
+>Monoid</A
+> <A HREF="Hawk-Controller-Types.html#t%3AByteString"
+>ByteString</A
+></TD
+><TD CLASS="rdoc"
+></TD
+></TR
+><TR
+><TD CLASS="arg"
+>Extract <A HREF="Hawk-Controller-Types.html#t%3AByteString"
+>ByteString</A
+></TD
+><TD CLASS="rdoc"
+></TD
+></TR
+><TR
+><TD CLASS="arg"
+>Convertible <A HREF="Hawk-Controller-Types.html#t%3AByteString"
+>ByteString</A
+> <A HREF="Hawk-Model-Types.html#t%3ASqlValue"
+>SqlValue</A
+></TD
+><TD CLASS="rdoc"
+></TD
+></TR
+><TR
+><TD CLASS="arg"
+>Convertible <A HREF="Hawk-Model-Types.html#t%3ASqlValue"
+>SqlValue</A
+> <A HREF="Hawk-Controller-Types.html#t%3AByteString"
+>ByteString</A
+></TD
+><TD CLASS="rdoc"
+></TD
+></TR
+><TR
+><TD CLASS="arg"
+>RegexLike Regex <A HREF="Hawk-Controller-Types.html#t%3AByteString"
+>ByteString</A
+></TD
+><TD CLASS="rdoc"
+></TD
+></TR
+><TR
+><TD CLASS="arg"
+>RegexContext Regex <A HREF="Hawk-Controller-Types.html#t%3AByteString"
+>ByteString</A
+> <A HREF="Hawk-Controller-Types.html#t%3AByteString"
+>ByteString</A
+></TD
+><TD CLASS="rdoc"
+></TD
+></TR
+><TR
+><TD CLASS="arg"
+>RegexMaker Regex CompOption ExecOption <A HREF="Hawk-Controller-Types.html#t%3AByteString"
+>ByteString</A
+></TD
+><TD CLASS="rdoc"
+></TD
+></TR
+></TABLE
+></DIV
+></TD
+></TR
+></TABLE
+></TD
+></TR
+><TR
+><TD CLASS="s15"
+></TD
+></TR
+><TR
+><TD CLASS="botbar"
+>Produced by <A HREF="http://www.haskell.org/haddock/"
+>Haddock</A
+> version 2.7.2</TD
+></TR
+></TABLE
+></BODY
+></HTML
+>

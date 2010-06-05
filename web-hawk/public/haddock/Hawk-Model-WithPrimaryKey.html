@@ -1,0 +1,645 @@
+<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN" "http://www.w3.org/TR/html4/loose.dtd">
+<!--Rendered using the Haskell Html Library v0.2-->
+<HTML
+><HEAD
+><META HTTP-EQUIV="Content-Type" CONTENT="text/html; charset=UTF-8"
+><TITLE
+>Hawk.Model.WithPrimaryKey</TITLE
+><LINK HREF="haddock.css" REL="stylesheet" TYPE="text/css"
+><SCRIPT SRC="haddock-util.js" TYPE="text/javascript"
+></SCRIPT
+><SCRIPT TYPE="text/javascript"
+>window.onload = function () {setSynopsis("mini_Hawk-Model-WithPrimaryKey.html")};</SCRIPT
+></HEAD
+><BODY
+><TABLE CLASS="vanilla" CELLSPACING="0" CELLPADDING="0"
+><TR
+><TD CLASS="topbar"
+><TABLE CLASS="vanilla" CELLSPACING="0" CELLPADDING="0"
+><TR
+><TD
+><IMG SRC="haskell_icon.gif" WIDTH="16" HEIGHT="16" ALT=" "
+></TD
+><TD CLASS="title"
+>Hawk-0.0.2: Haskell Web Application Kit</TD
+><TD CLASS="topbut"
+><A HREF="index.html"
+>Contents</A
+></TD
+><TD CLASS="topbut"
+><A HREF="doc-index.html"
+>Index</A
+></TD
+></TR
+></TABLE
+></TD
+></TR
+><TR
+><TD CLASS="modulebar"
+><TABLE CLASS="vanilla" CELLSPACING="0" CELLPADDING="0"
+><TR
+><TD
+><FONT SIZE="6"
+>Hawk.Model.WithPrimaryKey</FONT
+></TD
+><TD ALIGN="right"
+><TABLE CLASS="narrow" CELLSPACING="0" CELLPADDING="0"
+><TR
+><TD CLASS="infohead"
+>Portability</TD
+><TD CLASS="infoval"
+>portable</TD
+></TR
+><TR
+><TD CLASS="infohead"
+>Stability</TD
+><TD CLASS="infoval"
+>experimental</TD
+></TR
+><TR
+><TD CLASS="infohead"
+>Maintainer</TD
+><TD CLASS="infoval"
+>{inf6254, inf6509}fh-wedel.de</TD
+></TR
+></TABLE
+></TD
+></TR
+></TABLE
+></TD
+></TR
+><TR
+><TD CLASS="s15"
+></TD
+></TR
+><TR
+><TD CLASS="section1"
+>Description</TD
+></TR
+><TR
+><TD CLASS="doc"
+>Version     :  $Id: Main.hs 57 2009-05-29 11:33:59Z inf6254 $
+</TD
+></TR
+><TR
+><TD CLASS="s15"
+></TD
+></TR
+><TR
+><TD CLASS="section1"
+>Synopsis</TD
+></TR
+><TR
+><TD CLASS="s15"
+></TD
+></TR
+><TR
+><TD CLASS="body"
+><TABLE CLASS="vanilla" CELLSPACING="0" CELLPADDING="0"
+><TR
+><TD CLASS="decl"
+><SPAN CLASS="keyword"
+>class</SPAN
+> <A HREF="Hawk-Model-Persistent.html#t%3APersistent"
+>Persistent</A
+> p =&gt; <A HREF="#t%3AWithPrimaryKey"
+>WithPrimaryKey</A
+> p  <SPAN CLASS="keyword"
+>where</SPAN
+></TD
+></TR
+><TR
+><TD CLASS="body"
+><TABLE CLASS="vanilla" CELLSPACING="0" CELLPADDING="0"
+><TR
+><TD CLASS="decl"
+><A HREF="#v%3ApkColumn"
+>pkColumn</A
+> :: p -&gt; <A HREF="Hawk-Model-Types.html#t%3AColumnName"
+>ColumnName</A
+></TD
+></TR
+><TR
+><TD CLASS="decl"
+><A HREF="#v%3AprimaryKey"
+>primaryKey</A
+> :: p -&gt; <A HREF="Hawk-Model-Types.html#t%3APrimaryKey"
+>PrimaryKey</A
+></TD
+></TR
+><TR
+><TD CLASS="decl"
+><A HREF="#v%3AsetPrimaryKey"
+>setPrimaryKey</A
+> :: <A HREF="Hawk-Model-Types.html#t%3APrimaryKey"
+>PrimaryKey</A
+> -&gt; p -&gt; p</TD
+></TR
+></TABLE
+></TD
+></TR
+><TR
+><TD CLASS="s8"
+></TD
+></TR
+><TR
+><TD CLASS="decl"
+><A HREF="#v%3AfindByPKs"
+>findByPKs</A
+> :: (<A HREF="Hawk-Model-MonadDB.html#t%3AMonadDB"
+>MonadDB</A
+> m, <A HREF="Hawk-Model-WithPrimaryKey.html#t%3AWithPrimaryKey"
+>WithPrimaryKey</A
+> p) =&gt; [<A HREF="Hawk-Model-Types.html#t%3APrimaryKey"
+>PrimaryKey</A
+>] -&gt; m [p]</TD
+></TR
+><TR
+><TD CLASS="s8"
+></TD
+></TR
+><TR
+><TD CLASS="decl"
+><A HREF="#v%3AfindOneByPK"
+>findOneByPK</A
+> :: (<A HREF="Hawk-Model-MonadDB.html#t%3AMonadDB"
+>MonadDB</A
+> m, <A HREF="Hawk-Model-WithPrimaryKey.html#t%3AWithPrimaryKey"
+>WithPrimaryKey</A
+> p) =&gt; <A HREF="Hawk-Model-Types.html#t%3APrimaryKey"
+>PrimaryKey</A
+> -&gt; m p</TD
+></TR
+><TR
+><TD CLASS="s8"
+></TD
+></TR
+><TR
+><TD CLASS="decl"
+><A HREF="#v%3AfindMaybeByPK"
+>findMaybeByPK</A
+> :: (<A HREF="Hawk-Model-MonadDB.html#t%3AMonadDB"
+>MonadDB</A
+> m, <A HREF="Hawk-Model-WithPrimaryKey.html#t%3AWithPrimaryKey"
+>WithPrimaryKey</A
+> p) =&gt; <A HREF="Hawk-Model-Types.html#t%3APrimaryKey"
+>PrimaryKey</A
+> -&gt; m (<A HREF="/home/ghc612/ghc-6.12.1//share/doc/ghc/html/libraries/base-4.2.0.0/Data-Maybe.html#t%3AMaybe"
+>Maybe</A
+> p)</TD
+></TR
+><TR
+><TD CLASS="s8"
+></TD
+></TR
+><TR
+><TD CLASS="decl"
+><A HREF="#v%3AinsertByPK"
+>insertByPK</A
+> :: (<A HREF="Hawk-Model-MonadDB.html#t%3AMonadDB"
+>MonadDB</A
+> m, <A HREF="Hawk-Model-WithPrimaryKey.html#t%3AWithPrimaryKey"
+>WithPrimaryKey</A
+> p) =&gt; p -&gt; m p</TD
+></TR
+><TR
+><TD CLASS="s8"
+></TD
+></TR
+><TR
+><TD CLASS="decl"
+><A HREF="#v%3AinsertInTransaction"
+>insertInTransaction</A
+> :: (<A HREF="Hawk-Model-MonadDB.html#t%3AMonadDB"
+>MonadDB</A
+> m, <A HREF="Hawk-Model-WithPrimaryKey.html#t%3AWithPrimaryKey"
+>WithPrimaryKey</A
+> p) =&gt; p -&gt; m p</TD
+></TR
+><TR
+><TD CLASS="s8"
+></TD
+></TR
+><TR
+><TD CLASS="decl"
+><A HREF="#v%3AupdateByPK"
+>updateByPK</A
+> :: (<A HREF="Hawk-Model-MonadDB.html#t%3AMonadDB"
+>MonadDB</A
+> m, <A HREF="Hawk-Model-WithPrimaryKey.html#t%3AWithPrimaryKey"
+>WithPrimaryKey</A
+> p) =&gt; p -&gt; m <A HREF="/home/ghc612/ghc-6.12.1//share/doc/ghc/html/libraries/base-4.2.0.0/Data-Bool.html#t%3ABool"
+>Bool</A
+></TD
+></TR
+><TR
+><TD CLASS="s8"
+></TD
+></TR
+><TR
+><TD CLASS="decl"
+><A HREF="#v%3AupdateInTransaction"
+>updateInTransaction</A
+> :: (<A HREF="Hawk-Model-MonadDB.html#t%3AMonadDB"
+>MonadDB</A
+> m, <A HREF="Hawk-Model-WithPrimaryKey.html#t%3AWithPrimaryKey"
+>WithPrimaryKey</A
+> p) =&gt; p -&gt; m p</TD
+></TR
+><TR
+><TD CLASS="s8"
+></TD
+></TR
+><TR
+><TD CLASS="decl"
+><A HREF="#v%3AdeleteByPK"
+>deleteByPK</A
+> :: (<A HREF="Hawk-Model-MonadDB.html#t%3AMonadDB"
+>MonadDB</A
+> m, <A HREF="Hawk-Model-WithPrimaryKey.html#t%3AWithPrimaryKey"
+>WithPrimaryKey</A
+> p) =&gt; p -&gt; m <A HREF="/home/ghc612/ghc-6.12.1//share/doc/ghc/html/libraries/base-4.2.0.0/Data-Bool.html#t%3ABool"
+>Bool</A
+></TD
+></TR
+><TR
+><TD CLASS="s8"
+></TD
+></TR
+><TR
+><TD CLASS="decl"
+><A HREF="#v%3AdeleteInTransaction"
+>deleteInTransaction</A
+> :: (<A HREF="Hawk-Model-MonadDB.html#t%3AMonadDB"
+>MonadDB</A
+> m, <A HREF="Hawk-Model-WithPrimaryKey.html#t%3AWithPrimaryKey"
+>WithPrimaryKey</A
+> p) =&gt; p -&gt; m <A HREF="/home/ghc612/ghc-6.12.1//share/doc/ghc/html/libraries/base-4.2.0.0/Data-Bool.html#t%3ABool"
+>Bool</A
+></TD
+></TR
+></TABLE
+></TD
+></TR
+><TR
+><TD CLASS="s15"
+></TD
+></TR
+><TR
+><TD CLASS="section1"
+>Documentation</TD
+></TR
+><TR
+><TD CLASS="s15"
+></TD
+></TR
+><TR
+><TD CLASS="decl"
+><SPAN CLASS="keyword"
+>class</SPAN
+> <A HREF="Hawk-Model-Persistent.html#t%3APersistent"
+>Persistent</A
+> p =&gt; <A NAME="t:WithPrimaryKey"
+><A NAME="t%3AWithPrimaryKey"
+></A
+></A
+><B
+>WithPrimaryKey</B
+> p  <SPAN CLASS="keyword"
+>where</SPAN
+></TD
+></TR
+><TR
+><TD CLASS="body"
+><TABLE CLASS="vanilla" CELLSPACING="0" CELLPADDING="0"
+><TR
+><TD CLASS="ndoc"
+>Typeclass for persistent structures with a <TT
+><A HREF="Hawk-Model-Types.html#t%3APrimaryKey"
+>PrimaryKey</A
+></TT
+>
+</TD
+></TR
+><TR
+><TD CLASS="s8"
+></TD
+></TR
+><TR
+><TD CLASS="section4"
+>Methods</TD
+></TR
+><TR
+><TD CLASS="body"
+><TABLE CLASS="vanilla" CELLSPACING="0" CELLPADDING="0"
+><TR
+><TD CLASS="decl"
+><A NAME="v:pkColumn"
+><A NAME="v%3ApkColumn"
+></A
+></A
+><B
+>pkColumn</B
+> :: p -&gt; <A HREF="Hawk-Model-Types.html#t%3AColumnName"
+>ColumnName</A
+></TD
+></TR
+><TR
+><TD CLASS="doc"
+>Get the column containing the <TT
+><A HREF="Hawk-Model-Types.html#t%3APrimaryKey"
+>PrimaryKey</A
+></TT
+>
+</TD
+></TR
+><TR
+><TD CLASS="s8"
+></TD
+></TR
+><TR
+><TD CLASS="decl"
+><A NAME="v:primaryKey"
+><A NAME="v%3AprimaryKey"
+></A
+></A
+><B
+>primaryKey</B
+> :: p -&gt; <A HREF="Hawk-Model-Types.html#t%3APrimaryKey"
+>PrimaryKey</A
+></TD
+></TR
+><TR
+><TD CLASS="doc"
+>Get the <TT
+><A HREF="Hawk-Model-Types.html#t%3APrimaryKey"
+>PrimaryKey</A
+></TT
+>
+</TD
+></TR
+><TR
+><TD CLASS="s8"
+></TD
+></TR
+><TR
+><TD CLASS="decl"
+><A NAME="v:setPrimaryKey"
+><A NAME="v%3AsetPrimaryKey"
+></A
+></A
+><B
+>setPrimaryKey</B
+> :: <A HREF="Hawk-Model-Types.html#t%3APrimaryKey"
+>PrimaryKey</A
+> -&gt; p -&gt; p</TD
+></TR
+><TR
+><TD CLASS="doc"
+>Set the <TT
+><A HREF="Hawk-Model-Types.html#t%3APrimaryKey"
+>PrimaryKey</A
+></TT
+>
+</TD
+></TR
+></TABLE
+></TD
+></TR
+><TR
+><TD CLASS="s8"
+></TD
+></TR
+><TR
+><TD CLASS="section4"
+><IMG SRC="minus.gif" CLASS="coll" ONCLICK="toggle(this,'i:WithPrimaryKey')" ALT="show/hide"
+> Instances</TD
+></TR
+><TR
+><TD CLASS="body"
+><DIV ID="i:WithPrimaryKey" STYLE="display:block;"
+><TABLE CLASS="vanilla" CELLSPACING="1" CELLPADDING="0"
+><TR
+><TD CLASS="arg"
+><A HREF="Hawk-Model-WithPrimaryKey.html#t%3AWithPrimaryKey"
+>WithPrimaryKey</A
+> RawSession</TD
+><TD CLASS="rdoc"
+></TD
+></TR
+></TABLE
+></DIV
+></TD
+></TR
+></TABLE
+></TD
+></TR
+><TR
+><TD CLASS="s15"
+></TD
+></TR
+><TR
+><TD CLASS="decl"
+><A NAME="v:findByPKs"
+><A NAME="v%3AfindByPKs"
+></A
+></A
+><B
+>findByPKs</B
+> :: (<A HREF="Hawk-Model-MonadDB.html#t%3AMonadDB"
+>MonadDB</A
+> m, <A HREF="Hawk-Model-WithPrimaryKey.html#t%3AWithPrimaryKey"
+>WithPrimaryKey</A
+> p) =&gt; [<A HREF="Hawk-Model-Types.html#t%3APrimaryKey"
+>PrimaryKey</A
+>] -&gt; m [p]</TD
+></TR
+><TR
+><TD CLASS="s15"
+></TD
+></TR
+><TR
+><TD CLASS="decl"
+><A NAME="v:findOneByPK"
+><A NAME="v%3AfindOneByPK"
+></A
+></A
+><B
+>findOneByPK</B
+> :: (<A HREF="Hawk-Model-MonadDB.html#t%3AMonadDB"
+>MonadDB</A
+> m, <A HREF="Hawk-Model-WithPrimaryKey.html#t%3AWithPrimaryKey"
+>WithPrimaryKey</A
+> p) =&gt; <A HREF="Hawk-Model-Types.html#t%3APrimaryKey"
+>PrimaryKey</A
+> -&gt; m p</TD
+></TR
+><TR
+><TD CLASS="s15"
+></TD
+></TR
+><TR
+><TD CLASS="decl"
+><A NAME="v:findMaybeByPK"
+><A NAME="v%3AfindMaybeByPK"
+></A
+></A
+><B
+>findMaybeByPK</B
+> :: (<A HREF="Hawk-Model-MonadDB.html#t%3AMonadDB"
+>MonadDB</A
+> m, <A HREF="Hawk-Model-WithPrimaryKey.html#t%3AWithPrimaryKey"
+>WithPrimaryKey</A
+> p) =&gt; <A HREF="Hawk-Model-Types.html#t%3APrimaryKey"
+>PrimaryKey</A
+> -&gt; m (<A HREF="/home/ghc612/ghc-6.12.1//share/doc/ghc/html/libraries/base-4.2.0.0/Data-Maybe.html#t%3AMaybe"
+>Maybe</A
+> p)</TD
+></TR
+><TR
+><TD CLASS="s15"
+></TD
+></TR
+><TR
+><TD CLASS="decl"
+><A NAME="v:insertByPK"
+><A NAME="v%3AinsertByPK"
+></A
+></A
+><B
+>insertByPK</B
+> :: (<A HREF="Hawk-Model-MonadDB.html#t%3AMonadDB"
+>MonadDB</A
+> m, <A HREF="Hawk-Model-WithPrimaryKey.html#t%3AWithPrimaryKey"
+>WithPrimaryKey</A
+> p) =&gt; p -&gt; m p</TD
+></TR
+><TR
+><TD CLASS="doc"
+>Insert a <TT
+><A HREF="Hawk-Model-WithPrimaryKey.html#t%3AWithPrimaryKey"
+>WithPrimaryKey</A
+></TT
+> into the database
+  The result contains the original <TT
+><A HREF="Hawk-Model-WithPrimaryKey.html#t%3AWithPrimaryKey"
+>WithPrimaryKey</A
+></TT
+> with its <TT
+><A HREF="Hawk-Model-Types.html#t%3APrimaryKey"
+>PrimaryKey</A
+></TT
+>
+  updated
+</TD
+></TR
+><TR
+><TD CLASS="s15"
+></TD
+></TR
+><TR
+><TD CLASS="decl"
+><A NAME="v:insertInTransaction"
+><A NAME="v%3AinsertInTransaction"
+></A
+></A
+><B
+>insertInTransaction</B
+> :: (<A HREF="Hawk-Model-MonadDB.html#t%3AMonadDB"
+>MonadDB</A
+> m, <A HREF="Hawk-Model-WithPrimaryKey.html#t%3AWithPrimaryKey"
+>WithPrimaryKey</A
+> p) =&gt; p -&gt; m p</TD
+></TR
+><TR
+><TD CLASS="s15"
+></TD
+></TR
+><TR
+><TD CLASS="decl"
+><A NAME="v:updateByPK"
+><A NAME="v%3AupdateByPK"
+></A
+></A
+><B
+>updateByPK</B
+> :: (<A HREF="Hawk-Model-MonadDB.html#t%3AMonadDB"
+>MonadDB</A
+> m, <A HREF="Hawk-Model-WithPrimaryKey.html#t%3AWithPrimaryKey"
+>WithPrimaryKey</A
+> p) =&gt; p -&gt; m <A HREF="/home/ghc612/ghc-6.12.1//share/doc/ghc/html/libraries/base-4.2.0.0/Data-Bool.html#t%3ABool"
+>Bool</A
+></TD
+></TR
+><TR
+><TD CLASS="s15"
+></TD
+></TR
+><TR
+><TD CLASS="decl"
+><A NAME="v:updateInTransaction"
+><A NAME="v%3AupdateInTransaction"
+></A
+></A
+><B
+>updateInTransaction</B
+> :: (<A HREF="Hawk-Model-MonadDB.html#t%3AMonadDB"
+>MonadDB</A
+> m, <A HREF="Hawk-Model-WithPrimaryKey.html#t%3AWithPrimaryKey"
+>WithPrimaryKey</A
+> p) =&gt; p -&gt; m p</TD
+></TR
+><TR
+><TD CLASS="s15"
+></TD
+></TR
+><TR
+><TD CLASS="decl"
+><A NAME="v:deleteByPK"
+><A NAME="v%3AdeleteByPK"
+></A
+></A
+><B
+>deleteByPK</B
+> :: (<A HREF="Hawk-Model-MonadDB.html#t%3AMonadDB"
+>MonadDB</A
+> m, <A HREF="Hawk-Model-WithPrimaryKey.html#t%3AWithPrimaryKey"
+>WithPrimaryKey</A
+> p) =&gt; p -&gt; m <A HREF="/home/ghc612/ghc-6.12.1//share/doc/ghc/html/libraries/base-4.2.0.0/Data-Bool.html#t%3ABool"
+>Bool</A
+></TD
+></TR
+><TR
+><TD CLASS="s15"
+></TD
+></TR
+><TR
+><TD CLASS="decl"
+><A NAME="v:deleteInTransaction"
+><A NAME="v%3AdeleteInTransaction"
+></A
+></A
+><B
+>deleteInTransaction</B
+> :: (<A HREF="Hawk-Model-MonadDB.html#t%3AMonadDB"
+>MonadDB</A
+> m, <A HREF="Hawk-Model-WithPrimaryKey.html#t%3AWithPrimaryKey"
+>WithPrimaryKey</A
+> p) =&gt; p -&gt; m <A HREF="/home/ghc612/ghc-6.12.1//share/doc/ghc/html/libraries/base-4.2.0.0/Data-Bool.html#t%3ABool"
+>Bool</A
+></TD
+></TR
+><TR
+><TD CLASS="s15"
+></TD
+></TR
+><TR
+><TD CLASS="botbar"
+>Produced by <A HREF="http://www.haskell.org/haddock/"
+>Haddock</A
+> version 2.7.2</TD
+></TR
+></TABLE
+></BODY
+></HTML
+>

@@ -1,0 +1,358 @@
+<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN" "http://www.w3.org/TR/html4/loose.dtd">
+<!--Rendered using the Haskell Html Library v0.2-->
+<HTML
+><HEAD
+><META HTTP-EQUIV="Content-Type" CONTENT="text/html; charset=UTF-8"
+><TITLE
+>Control.Monad.Either</TITLE
+><LINK HREF="haddock.css" REL="stylesheet" TYPE="text/css"
+><SCRIPT SRC="haddock-util.js" TYPE="text/javascript"
+></SCRIPT
+><SCRIPT TYPE="text/javascript"
+>window.onload = function () {setSynopsis("mini_Control-Monad-Either.html")};</SCRIPT
+></HEAD
+><BODY
+><TABLE CLASS="vanilla" CELLSPACING="0" CELLPADDING="0"
+><TR
+><TD CLASS="topbar"
+><TABLE CLASS="vanilla" CELLSPACING="0" CELLPADDING="0"
+><TR
+><TD
+><IMG SRC="haskell_icon.gif" WIDTH="16" HEIGHT="16" ALT=" "
+></TD
+><TD CLASS="title"
+>Hawk-0.0.2: Haskell Web Application Kit</TD
+><TD CLASS="topbut"
+><A HREF="index.html"
+>Contents</A
+></TD
+><TD CLASS="topbut"
+><A HREF="doc-index.html"
+>Index</A
+></TD
+></TR
+></TABLE
+></TD
+></TR
+><TR
+><TD CLASS="modulebar"
+><TABLE CLASS="vanilla" CELLSPACING="0" CELLPADDING="0"
+><TR
+><TD
+><FONT SIZE="6"
+>Control.Monad.Either</FONT
+></TD
+><TD ALIGN="right"
+><TABLE CLASS="narrow" CELLSPACING="0" CELLPADDING="0"
+><TR
+><TD CLASS="infohead"
+>Portability</TD
+><TD CLASS="infoval"
+>portable</TD
+></TR
+><TR
+><TD CLASS="infohead"
+>Stability</TD
+><TD CLASS="infoval"
+>experimental</TD
+></TR
+><TR
+><TD CLASS="infohead"
+>Maintainer</TD
+><TD CLASS="infoval"
+>{inf6254, inf6509}fh-wedel.de</TD
+></TR
+></TABLE
+></TD
+></TR
+></TABLE
+></TD
+></TR
+><TR
+><TD CLASS="s15"
+></TD
+></TR
+><TR
+><TD CLASS="section1"
+>Description</TD
+></TR
+><TR
+><TD CLASS="doc"
+><P
+>Version     :  $Id: Main.hs 57 2009-05-29 11:33:59Z inf6254 $
+</P
+><P
+>Monad transformer for Either, inspired by Control.Monad.ErrorT but without
+   the Error restriction of the Left value.
+</P
+></TD
+></TR
+><TR
+><TD CLASS="s15"
+></TD
+></TR
+><TR
+><TD CLASS="s15"
+></TD
+></TR
+><TR
+><TD CLASS="section1"
+>Documentation</TD
+></TR
+><TR
+><TD CLASS="s15"
+></TD
+></TR
+><TR
+><TD CLASS="decl"
+><SPAN CLASS="keyword"
+>newtype</SPAN
+>  <A NAME="t:EitherT"
+><A NAME="t%3AEitherT"
+></A
+></A
+><B
+>EitherT</B
+> a m b </TD
+></TR
+><TR
+><TD CLASS="body"
+><TABLE CLASS="vanilla" CELLSPACING="0" CELLPADDING="0"
+><TR
+><TD CLASS="section4"
+>Constructors</TD
+></TR
+><TR
+><TD CLASS="body"
+><TABLE CLASS="vanilla" CELLSPACING="5" CELLPADDING="0"
+><TR
+><TD CLASS="arg"
+><A NAME="v:EitherT"
+><A NAME="v%3AEitherT"
+></A
+></A
+><B
+>EitherT</B
+></TD
+><TD CLASS="rdoc"
+></TD
+></TR
+><TR
+><TD CLASS="body" COLSPAN="2"
+><TABLE CLASS="vanilla" CELLSPACING="1" CELLPADDING="0"
+><TR
+><TD CLASS="arg"
+><A NAME="v:runEitherT"
+><A NAME="v%3ArunEitherT"
+></A
+></A
+><B
+>runEitherT</B
+> :: m (<A HREF="/home/ghc612/ghc-6.12.1//share/doc/ghc/html/libraries/base-4.2.0.0/Data-Either.html#t%3AEither"
+>Either</A
+> a b)</TD
+><TD CLASS="rdoc"
+></TD
+></TR
+></TABLE
+></TD
+></TR
+></TABLE
+></TD
+></TR
+><TR
+><TD CLASS="section4"
+><IMG SRC="minus.gif" CLASS="coll" ONCLICK="toggle(this,'i:EitherT')" ALT="show/hide"
+> Instances</TD
+></TR
+><TR
+><TD CLASS="body"
+><DIV ID="i:EitherT" STYLE="display:block;"
+><TABLE CLASS="vanilla" CELLSPACING="1" CELLPADDING="0"
+><TR
+><TD CLASS="arg"
+>MonadRWS r w s m =&gt; MonadRWS r w s (<A HREF="Control-Monad-Either.html#t%3AEitherT"
+>EitherT</A
+> e m)</TD
+><TD CLASS="rdoc"
+></TD
+></TR
+><TR
+><TD CLASS="arg"
+>MonadState s m =&gt; MonadState s (<A HREF="Control-Monad-Either.html#t%3AEitherT"
+>EitherT</A
+> e m)</TD
+><TD CLASS="rdoc"
+></TD
+></TR
+><TR
+><TD CLASS="arg"
+>MonadReader r m =&gt; MonadReader r (<A HREF="Control-Monad-Either.html#t%3AEitherT"
+>EitherT</A
+> e m)</TD
+><TD CLASS="rdoc"
+></TD
+></TR
+><TR
+><TD CLASS="arg"
+>MonadWriter w m =&gt; MonadWriter w (<A HREF="Control-Monad-Either.html#t%3AEitherT"
+>EitherT</A
+> e m)</TD
+><TD CLASS="rdoc"
+></TD
+></TR
+><TR
+><TD CLASS="arg"
+>MonadTrans (<A HREF="Control-Monad-Either.html#t%3AEitherT"
+>EitherT</A
+> e)</TD
+><TD CLASS="rdoc"
+></TD
+></TR
+><TR
+><TD CLASS="arg"
+><A HREF="/home/ghc612/ghc-6.12.1//share/doc/ghc/html/libraries/base-4.2.0.0/Control-Monad.html#t%3AMonad"
+>Monad</A
+> m =&gt; <A HREF="/home/ghc612/ghc-6.12.1//share/doc/ghc/html/libraries/base-4.2.0.0/Control-Monad.html#t%3AMonad"
+>Monad</A
+> (<A HREF="Control-Monad-Either.html#t%3AEitherT"
+>EitherT</A
+> a m)</TD
+><TD CLASS="rdoc"
+></TD
+></TR
+><TR
+><TD CLASS="arg"
+><A HREF="/home/ghc612/ghc-6.12.1//share/doc/ghc/html/libraries/base-4.2.0.0/Control-Monad.html#t%3AFunctor"
+>Functor</A
+> f =&gt; <A HREF="/home/ghc612/ghc-6.12.1//share/doc/ghc/html/libraries/base-4.2.0.0/Control-Monad.html#t%3AFunctor"
+>Functor</A
+> (<A HREF="Control-Monad-Either.html#t%3AEitherT"
+>EitherT</A
+> a f)</TD
+><TD CLASS="rdoc"
+></TD
+></TR
+><TR
+><TD CLASS="arg"
+><A HREF="/home/ghc612/ghc-6.12.1//share/doc/ghc/html/libraries/base-4.2.0.0/Control-Monad-Fix.html#t%3AMonadFix"
+>MonadFix</A
+> m =&gt; <A HREF="/home/ghc612/ghc-6.12.1//share/doc/ghc/html/libraries/base-4.2.0.0/Control-Monad-Fix.html#t%3AMonadFix"
+>MonadFix</A
+> (<A HREF="Control-Monad-Either.html#t%3AEitherT"
+>EitherT</A
+> a m)</TD
+><TD CLASS="rdoc"
+></TD
+></TR
+><TR
+><TD CLASS="arg"
+>MonadIO m =&gt; MonadIO (<A HREF="Control-Monad-Either.html#t%3AEitherT"
+>EitherT</A
+> e m)</TD
+><TD CLASS="rdoc"
+></TD
+></TR
+><TR
+><TD CLASS="arg"
+>MonadCatchIO m =&gt; MonadCatchIO (<A HREF="Control-Monad-Either.html#t%3AEitherT"
+>EitherT</A
+> e m)</TD
+><TD CLASS="rdoc"
+></TD
+></TR
+><TR
+><TD CLASS="arg"
+><A HREF="Hawk-Controller-Types.html#t%3AHasState"
+>HasState</A
+> (<A HREF="Control-Monad-Either.html#t%3AEitherT"
+>EitherT</A
+> e (StateT <A HREF="Hawk-Controller-Types.html#t%3AResponseState"
+>ResponseState</A
+> <A HREF="Hawk-Controller-Types.html#t%3AEnvController"
+>EnvController</A
+>))</TD
+><TD CLASS="rdoc"
+></TD
+></TR
+></TABLE
+></DIV
+></TD
+></TR
+></TABLE
+></TD
+></TR
+><TR
+><TD CLASS="s15"
+></TD
+></TR
+><TR
+><TD CLASS="decl"
+><A NAME="v:returnLeft"
+><A NAME="v%3AreturnLeft"
+></A
+></A
+><B
+>returnLeft</B
+> :: <A HREF="/home/ghc612/ghc-6.12.1//share/doc/ghc/html/libraries/base-4.2.0.0/Control-Monad.html#t%3AMonad"
+>Monad</A
+> m =&gt; a -&gt; <A HREF="Control-Monad-Either.html#t%3AEitherT"
+>EitherT</A
+> a m b</TD
+></TR
+><TR
+><TD CLASS="s15"
+></TD
+></TR
+><TR
+><TD CLASS="decl"
+><A NAME="v:mapEitherT"
+><A NAME="v%3AmapEitherT"
+></A
+></A
+><B
+>mapEitherT</B
+> ::  (m (<A HREF="/home/ghc612/ghc-6.12.1//share/doc/ghc/html/libraries/base-4.2.0.0/Data-Either.html#t%3AEither"
+>Either</A
+> a b) -&gt; n (<A HREF="/home/ghc612/ghc-6.12.1//share/doc/ghc/html/libraries/base-4.2.0.0/Data-Either.html#t%3AEither"
+>Either</A
+> a' b')) -&gt; <A HREF="Control-Monad-Either.html#t%3AEitherT"
+>EitherT</A
+> a m b -&gt; <A HREF="Control-Monad-Either.html#t%3AEitherT"
+>EitherT</A
+> a' n b'</TD
+></TR
+><TR
+><TD CLASS="s15"
+></TD
+></TR
+><TR
+><TD CLASS="decl"
+>module <A HREF="/home/ghc612/ghc-6.12.1//share/doc/ghc/html/libraries/base-4.2.0.0/Control-Monad.html"
+>Control.Monad</A
+></TD
+></TR
+><TR
+><TD CLASS="s15"
+></TD
+></TR
+><TR
+><TD CLASS="decl"
+>module <A HREF="/home/ghc612/ghc-6.12.1//share/doc/ghc/html/libraries/base-4.2.0.0/Control-Monad-Fix.html"
+>Control.Monad.Fix</A
+></TD
+></TR
+><TR
+><TD CLASS="s15"
+></TD
+></TR
+><TR
+><TD CLASS="botbar"
+>Produced by <A HREF="http://www.haskell.org/haddock/"
+>Haddock</A
+> version 2.7.2</TD
+></TR
+></TABLE
+></BODY
+></HTML
+>

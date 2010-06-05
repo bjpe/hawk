@@ -13,57 +13,32 @@
    and such stuff.
 -}
 -- --------------------------------------------------------------------------
-{-# LANGUAGE Rank2Types #-}
+-- {-# LANGUAGE Rank2Types #-}
 module Hawk.Controller.Initializer
-  ( AppEnvironment (..)
-  , loadEnvironment
-  , updateLogger
+  ( updateLogger
   , getApplication
---  , AppConfiguration
   ) where
 
 import Hawk.Controller.Types
-  ( BasicConfiguration
-  , Options
-  , AppConfiguration (..)
+  ( AppEnvironment (..)
   )
 
 import System.Log.Logger
   ( Priority
   , updateGlobalLogger
   , setLevel
---  , rootLoggerName
   )
   
-import Control.Monad.Trans
-
-import Database.HDBC (ConnWrapper)
 import Hack (Application)
 
 import Hawk.Controller.Server (requestHandler)
-
--- | 'AppEnvironment' you have to define to run your application properly
-data AppEnvironment = AppEnvironment
-  { connectToDB :: IO ConnWrapper       -- ^ DB connection to your DB, e.g. $ConnWrapper \`liftM\` connectSqlite3 \".\/db\/database.db\"$
-                                        -- atm only Sqlite3 is supported
-  , logLevels   :: [(String, Priority)] -- ^
-  , envOptions  :: Options              -- ^
-  }
-
-loadEnvironment :: AppEnvironment -> IO (ConnWrapper, Options)
-loadEnvironment appEnv = do
-  updateLogger (logLevels appEnv)
-  db <- connectToDB appEnv
-  return (db, envOptions appEnv)
 
 updateLogger :: [(String, Priority)] -> IO ()
 updateLogger = mapM_ (\(name, level) -> updateGlobalLogger name (setLevel level))
 
 -- | Call this function to encapsulate your application into Hawk-Framework
-getApplication :: (forall a m. (AppConfiguration a, MonadIO m) => m a)  -- ^ 'AppConfiguration' Type you defined in your application, not known to Hawk
-               -> AppEnvironment     -- ^ 'AppEnvironment' look above
-               -> BasicConfiguration -- ^ Hawk configuration Type
+getApplication :: AppEnvironment     -- ^ 'AppEnvironment' type
                -> Application
-getApplication app env conf x = do
-  (conn, envOpts) <- loadEnvironment env
-  requestHandler app conn conf envOpts x
+getApplication env x = updLogger 
+                    >> requestHandler env x
+                    where updLogger = updateLogger $ logLevels env

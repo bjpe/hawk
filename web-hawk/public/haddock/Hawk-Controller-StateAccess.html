@@ -1,0 +1,392 @@
+<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN" "http://www.w3.org/TR/html4/loose.dtd">
+<!--Rendered using the Haskell Html Library v0.2-->
+<HTML
+><HEAD
+><META HTTP-EQUIV="Content-Type" CONTENT="text/html; charset=UTF-8"
+><TITLE
+>Hawk.Controller.StateAccess</TITLE
+><LINK HREF="haddock.css" REL="stylesheet" TYPE="text/css"
+><SCRIPT SRC="haddock-util.js" TYPE="text/javascript"
+></SCRIPT
+><SCRIPT TYPE="text/javascript"
+>window.onload = function () {setSynopsis("mini_Hawk-Controller-StateAccess.html")};</SCRIPT
+></HEAD
+><BODY
+><TABLE CLASS="vanilla" CELLSPACING="0" CELLPADDING="0"
+><TR
+><TD CLASS="topbar"
+><TABLE CLASS="vanilla" CELLSPACING="0" CELLPADDING="0"
+><TR
+><TD
+><IMG SRC="haskell_icon.gif" WIDTH="16" HEIGHT="16" ALT=" "
+></TD
+><TD CLASS="title"
+>Hawk-0.0.2: Haskell Web Application Kit</TD
+><TD CLASS="topbut"
+><A HREF="index.html"
+>Contents</A
+></TD
+><TD CLASS="topbut"
+><A HREF="doc-index.html"
+>Index</A
+></TD
+></TR
+></TABLE
+></TD
+></TR
+><TR
+><TD CLASS="modulebar"
+><TABLE CLASS="vanilla" CELLSPACING="0" CELLPADDING="0"
+><TR
+><TD
+><FONT SIZE="6"
+>Hawk.Controller.StateAccess</FONT
+></TD
+></TR
+></TABLE
+></TD
+></TR
+><TR
+><TD CLASS="s15"
+></TD
+></TR
+><TR
+><TD CLASS="s15"
+></TD
+></TR
+><TR
+><TD CLASS="s15"
+></TD
+></TR
+><TR
+><TD CLASS="section1"
+>Documentation</TD
+></TR
+><TR
+><TD CLASS="s15"
+></TD
+></TR
+><TR
+><TD CLASS="decl"
+><A NAME="v:setHeader"
+><A NAME="v%3AsetHeader"
+></A
+></A
+><B
+>setHeader</B
+> :: <A HREF="Hawk-Controller-Types.html#t%3AHasState"
+>HasState</A
+> m =&gt; <A HREF="/home/ghc612/ghc-6.12.1//share/doc/ghc/html/libraries/base-4.2.0.0/Data-Char.html#t%3AString"
+>String</A
+> -&gt; <A HREF="/home/ghc612/ghc-6.12.1//share/doc/ghc/html/libraries/base-4.2.0.0/Data-Char.html#t%3AString"
+>String</A
+> -&gt; m <A HREF="/home/ghc612/ghc-6.12.1//share/doc/ghc/html/libraries/ghc-prim-0.2.0.0/GHC-Unit.html#t%3A%28%29"
+>()</A
+></TD
+></TR
+><TR
+><TD CLASS="s15"
+></TD
+></TR
+><TR
+><TD CLASS="decl"
+><A NAME="v:setFlash"
+><A NAME="v%3AsetFlash"
+></A
+></A
+><B
+>setFlash</B
+> :: <A HREF="Hawk-Controller-Types.html#t%3AHasState"
+>HasState</A
+> m =&gt; <A HREF="/home/ghc612/ghc-6.12.1//share/doc/ghc/html/libraries/base-4.2.0.0/Data-Char.html#t%3AString"
+>String</A
+> -&gt; <A HREF="/home/ghc612/ghc-6.12.1//share/doc/ghc/html/libraries/base-4.2.0.0/Data-Char.html#t%3AString"
+>String</A
+> -&gt; m <A HREF="/home/ghc612/ghc-6.12.1//share/doc/ghc/html/libraries/ghc-prim-0.2.0.0/GHC-Unit.html#t%3A%28%29"
+>()</A
+></TD
+></TR
+><TR
+><TD CLASS="s15"
+></TD
+></TR
+><TR
+><TD CLASS="decl"
+><A NAME="v:getFlash"
+><A NAME="v%3AgetFlash"
+></A
+></A
+><B
+>getFlash</B
+> :: <A HREF="Hawk-Controller-Types.html#t%3AHasState"
+>HasState</A
+> m =&gt; <A HREF="/home/ghc612/ghc-6.12.1//share/doc/ghc/html/libraries/base-4.2.0.0/Data-Char.html#t%3AString"
+>String</A
+> -&gt; m (<A HREF="/home/ghc612/ghc-6.12.1//share/doc/ghc/html/libraries/base-4.2.0.0/Data-Maybe.html#t%3AMaybe"
+>Maybe</A
+> <A HREF="/home/ghc612/ghc-6.12.1//share/doc/ghc/html/libraries/base-4.2.0.0/Data-Char.html#t%3AString"
+>String</A
+>)</TD
+></TR
+><TR
+><TD CLASS="s15"
+></TD
+></TR
+><TR
+><TD CLASS="decl"
+><A NAME="v:setErrors"
+><A NAME="v%3AsetErrors"
+></A
+></A
+><B
+>setErrors</B
+> :: <A HREF="Hawk-Controller-Types.html#t%3AHasState"
+>HasState</A
+> m =&gt; <A HREF="/home/ghc612/ghc-6.12.1//share/doc/ghc/html/libraries/base-4.2.0.0/Data-Char.html#t%3AString"
+>String</A
+> -&gt; [(<A HREF="/home/ghc612/ghc-6.12.1//share/doc/ghc/html/libraries/base-4.2.0.0/Data-Char.html#t%3AString"
+>String</A
+>, <A HREF="/home/ghc612/ghc-6.12.1//share/doc/ghc/html/libraries/base-4.2.0.0/Data-Char.html#t%3AString"
+>String</A
+>)] -&gt; m <A HREF="/home/ghc612/ghc-6.12.1//share/doc/ghc/html/libraries/ghc-prim-0.2.0.0/GHC-Unit.html#t%3A%28%29"
+>()</A
+></TD
+></TR
+><TR
+><TD CLASS="s15"
+></TD
+></TR
+><TR
+><TD CLASS="decl"
+><A NAME="v:getErrors"
+><A NAME="v%3AgetErrors"
+></A
+></A
+><B
+>getErrors</B
+> :: <A HREF="Hawk-Controller-Types.html#t%3AHasState"
+>HasState</A
+> m =&gt; <A HREF="/home/ghc612/ghc-6.12.1//share/doc/ghc/html/libraries/base-4.2.0.0/Data-Char.html#t%3AString"
+>String</A
+> -&gt; m [(<A HREF="/home/ghc612/ghc-6.12.1//share/doc/ghc/html/libraries/base-4.2.0.0/Data-Char.html#t%3AString"
+>String</A
+>, <A HREF="/home/ghc612/ghc-6.12.1//share/doc/ghc/html/libraries/base-4.2.0.0/Data-Char.html#t%3AString"
+>String</A
+>)]</TD
+></TR
+><TR
+><TD CLASS="s15"
+></TD
+></TR
+><TR
+><TD CLASS="decl"
+><A NAME="v:getSession"
+><A NAME="v%3AgetSession"
+></A
+></A
+><B
+>getSession</B
+> :: <A HREF="Hawk-Controller-Types.html#t%3AHasState"
+>HasState</A
+> m =&gt; m <A HREF="Hawk-Controller-Session.html#t%3ASession"
+>Session</A
+></TD
+></TR
+><TR
+><TD CLASS="s15"
+></TD
+></TR
+><TR
+><TD CLASS="decl"
+><A NAME="v:setSession"
+><A NAME="v%3AsetSession"
+></A
+></A
+><B
+>setSession</B
+> :: <A HREF="Hawk-Controller-Types.html#t%3AHasState"
+>HasState</A
+> m =&gt; <A HREF="Hawk-Controller-Session.html#t%3ASession"
+>Session</A
+> -&gt; m <A HREF="/home/ghc612/ghc-6.12.1//share/doc/ghc/html/libraries/ghc-prim-0.2.0.0/GHC-Unit.html#t%3A%28%29"
+>()</A
+></TD
+></TR
+><TR
+><TD CLASS="s15"
+></TD
+></TR
+><TR
+><TD CLASS="decl"
+><A NAME="v:getSessionValue"
+><A NAME="v%3AgetSessionValue"
+></A
+></A
+><B
+>getSessionValue</B
+> :: <A HREF="Hawk-Controller-Types.html#t%3AHasState"
+>HasState</A
+> m =&gt; <A HREF="/home/ghc612/ghc-6.12.1//share/doc/ghc/html/libraries/base-4.2.0.0/Data-Char.html#t%3AString"
+>String</A
+> -&gt; m (<A HREF="/home/ghc612/ghc-6.12.1//share/doc/ghc/html/libraries/base-4.2.0.0/Data-Maybe.html#t%3AMaybe"
+>Maybe</A
+> <A HREF="/home/ghc612/ghc-6.12.1//share/doc/ghc/html/libraries/base-4.2.0.0/Data-Char.html#t%3AString"
+>String</A
+>)</TD
+></TR
+><TR
+><TD CLASS="s15"
+></TD
+></TR
+><TR
+><TD CLASS="decl"
+><A NAME="v:readSessionValue"
+><A NAME="v%3AreadSessionValue"
+></A
+></A
+><B
+>readSessionValue</B
+> :: (<A HREF="Hawk-Controller-Types.html#t%3AHasState"
+>HasState</A
+> m, <A HREF="/home/ghc612/ghc-6.12.1//share/doc/ghc/html/libraries/base-4.2.0.0/Text-Read.html#t%3ARead"
+>Read</A
+> v) =&gt; <A HREF="/home/ghc612/ghc-6.12.1//share/doc/ghc/html/libraries/base-4.2.0.0/Data-Char.html#t%3AString"
+>String</A
+> -&gt; m (<A HREF="/home/ghc612/ghc-6.12.1//share/doc/ghc/html/libraries/base-4.2.0.0/Data-Maybe.html#t%3AMaybe"
+>Maybe</A
+> v)</TD
+></TR
+><TR
+><TD CLASS="s15"
+></TD
+></TR
+><TR
+><TD CLASS="decl"
+><A NAME="v:setSessionValue"
+><A NAME="v%3AsetSessionValue"
+></A
+></A
+><B
+>setSessionValue</B
+> :: <A HREF="Hawk-Controller-Types.html#t%3AHasState"
+>HasState</A
+> m =&gt; <A HREF="/home/ghc612/ghc-6.12.1//share/doc/ghc/html/libraries/base-4.2.0.0/Data-Char.html#t%3AString"
+>String</A
+> -&gt; <A HREF="/home/ghc612/ghc-6.12.1//share/doc/ghc/html/libraries/base-4.2.0.0/Data-Char.html#t%3AString"
+>String</A
+> -&gt; m <A HREF="/home/ghc612/ghc-6.12.1//share/doc/ghc/html/libraries/ghc-prim-0.2.0.0/GHC-Unit.html#t%3A%28%29"
+>()</A
+></TD
+></TR
+><TR
+><TD CLASS="s15"
+></TD
+></TR
+><TR
+><TD CLASS="decl"
+><A NAME="v:deleteSessionKey"
+><A NAME="v%3AdeleteSessionKey"
+></A
+></A
+><B
+>deleteSessionKey</B
+> :: <A HREF="Hawk-Controller-Types.html#t%3AHasState"
+>HasState</A
+> m =&gt; <A HREF="/home/ghc612/ghc-6.12.1//share/doc/ghc/html/libraries/base-4.2.0.0/Data-Char.html#t%3AString"
+>String</A
+> -&gt; m <A HREF="/home/ghc612/ghc-6.12.1//share/doc/ghc/html/libraries/ghc-prim-0.2.0.0/GHC-Unit.html#t%3A%28%29"
+>()</A
+></TD
+></TR
+><TR
+><TD CLASS="s15"
+></TD
+></TR
+><TR
+><TD CLASS="decl"
+><A NAME="v:clearSession"
+><A NAME="v%3AclearSession"
+></A
+></A
+><B
+>clearSession</B
+> :: <A HREF="Hawk-Controller-Types.html#t%3AHasState"
+>HasState</A
+> m =&gt; m <A HREF="/home/ghc612/ghc-6.12.1//share/doc/ghc/html/libraries/ghc-prim-0.2.0.0/GHC-Unit.html#t%3A%28%29"
+>()</A
+></TD
+></TR
+><TR
+><TD CLASS="s15"
+></TD
+></TR
+><TR
+><TD CLASS="decl"
+><A NAME="v:sessionExpired"
+><A NAME="v%3AsessionExpired"
+></A
+></A
+><B
+>sessionExpired</B
+> :: (<A HREF="Hawk-Controller-Types.html#t%3AHasState"
+>HasState</A
+> m, MonadIO m) =&gt; m <A HREF="/home/ghc612/ghc-6.12.1//share/doc/ghc/html/libraries/base-4.2.0.0/Data-Bool.html#t%3ABool"
+>Bool</A
+></TD
+></TR
+><TR
+><TD CLASS="s15"
+></TD
+></TR
+><TR
+><TD CLASS="decl"
+><A NAME="v:getSessionExpiry"
+><A NAME="v%3AgetSessionExpiry"
+></A
+></A
+><B
+>getSessionExpiry</B
+> :: <A HREF="Hawk-Controller-Types.html#t%3AHasState"
+>HasState</A
+> m =&gt; m (<A HREF="/home/ghc612/ghc-6.12.1//share/doc/ghc/html/libraries/base-4.2.0.0/Data-Maybe.html#t%3AMaybe"
+>Maybe</A
+> <A HREF="/home/ghc612/ghc-6.12.1//share/doc/ghc/html/libraries/time-1.1.4/Data-Time-Clock.html#t%3AUTCTime"
+>UTCTime</A
+>)</TD
+></TR
+><TR
+><TD CLASS="s15"
+></TD
+></TR
+><TR
+><TD CLASS="decl"
+><A NAME="v:setSessionExpiry"
+><A NAME="v%3AsetSessionExpiry"
+></A
+></A
+><B
+>setSessionExpiry</B
+> :: <A HREF="Hawk-Controller-Types.html#t%3AHasState"
+>HasState</A
+> m =&gt; <A HREF="/home/ghc612/ghc-6.12.1//share/doc/ghc/html/libraries/base-4.2.0.0/Data-Maybe.html#t%3AMaybe"
+>Maybe</A
+> <A HREF="/home/ghc612/ghc-6.12.1//share/doc/ghc/html/libraries/time-1.1.4/Data-Time-Clock.html#t%3AUTCTime"
+>UTCTime</A
+> -&gt; m <A HREF="/home/ghc612/ghc-6.12.1//share/doc/ghc/html/libraries/ghc-prim-0.2.0.0/GHC-Unit.html#t%3A%28%29"
+>()</A
+></TD
+></TR
+><TR
+><TD CLASS="s15"
+></TD
+></TR
+><TR
+><TD CLASS="botbar"
+>Produced by <A HREF="http://www.haskell.org/haddock/"
+>Haddock</A
+> version 2.7.2</TD
+></TR
+></TABLE
+></BODY
+></HTML
+>

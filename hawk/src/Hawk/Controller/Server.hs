@@ -27,7 +27,6 @@ import qualified Data.Map as M
   ( null
   , toList
   )
-import Database.HDBC ( ConnWrapper )
 import Prelude hiding ( catch )
 import qualified System.Log.Logger as Logger
 import System.Log.Logger.TH ( deriveLoggers )
@@ -55,12 +54,9 @@ $(deriveLoggers "Logger" [Logger.DEBUG])
 -- --------------------------------------------------------------------------
 -- | Runs the 'EnvController' from "Types" with the dispatching function 
 -- to process all requests "Hack" sends to the application
-requestHandler :: (forall a m. (AppConfiguration a, MonadIO m) => m a)  -- ^ 'AppConfiguration' Type you defined in your application, $a$ is not known to Hawk
-               -> ConnWrapper        -- ^ Database Connection
-               -> BasicConfiguration -- ^ Hawk configuration type for its modules, e.g. Session, Authentication, etc. as well as base directories
-               -> Options            -- ^
+requestHandler :: AppEnvironment
                -> Application
-requestHandler app conn conf opts env = runReaderT (runController dispatch) (RequestEnv conn conf env opts app)
+requestHandler appenv hackenv = runReaderT (runController dispatch) (RequestEnv appenv hackenv)
 
 -- --------------------------------------------------------------------------
 -- Private request handling functions
