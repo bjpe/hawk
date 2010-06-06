@@ -98,7 +98,7 @@ loadCache = liftIO $ createCache "./indexes/cache.db"
 
 loadHayooConfig :: MonadIO m => m HayooConfig
 loadHayooConfig = do
-  i <- loadIndex
+  !i <- loadIndex
   d <- loadDocs
   c <- loadCache
   return $ HayooConfig

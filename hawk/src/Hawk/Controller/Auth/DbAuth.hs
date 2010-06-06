@@ -43,7 +43,8 @@ getOpts = do
   let o = authOpts conf 
   case o of
     (t:i:c:cr:uf:pf:_) -> return (t, i, c, cr, uf, pf)
-    _ -> return ("wrong-authOpts", "", "", "", "", "") -- this will occur in a db request error
+    (t:i:c:cr:_) -> return (t, i, c, cr, i, c)
+    _ -> return ("user", "username", "password", "", "username", "password")
 
 lookupAuthDbRes :: String -> [SqlValue] -> Maybe String
 lookupAuthDbRes _ [] = Nothing

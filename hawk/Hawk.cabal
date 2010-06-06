@@ -45,7 +45,7 @@ library
     Data.EitherMapTree
     Hawk.Controller
     Hawk.Controller.Authenticate
-    Hawk.Controller.Auth.ResultType
+    Hawk.Controller.Auth.Types
     Hawk.Controller.Auth.EmptyAuth
     Hawk.Controller.Auth.DbAuth
     Hawk.Controller.Auth.HttpAuth

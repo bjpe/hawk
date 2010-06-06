@@ -29,7 +29,7 @@ module Hawk.Controller.Types
 
   , View (..)
 
-  , module Hawk.Controller.Auth.ResultType 
+  , module Hawk.Controller.Auth.Types
   , AuthType
   , SessionStore (..)
   , Route (..)
@@ -43,7 +43,7 @@ import Hawk.Controller.Session
   , SessionOpts
   )
 
-import Hawk.Controller.Auth.ResultType
+import Hawk.Controller.Auth.Types (AuthResult(..))
 
 import Hawk.Model.MonadDB ( MonadDB (..) )
 

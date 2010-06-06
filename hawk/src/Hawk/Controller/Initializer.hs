@@ -13,14 +13,15 @@
    and such stuff.
 -}
 -- --------------------------------------------------------------------------
--- {-# LANGUAGE Rank2Types #-}
 module Hawk.Controller.Initializer
   ( updateLogger
   , getApplication
+  , defaultAppEnv
   ) where
 
 import Hawk.Controller.Types
   ( AppEnvironment (..)
+  , AppConfiguration (..)
   )
 
 import System.Log.Logger
@@ -32,6 +33,32 @@ import System.Log.Logger
 import Hack (Application)
 
 import Hawk.Controller.Server (requestHandler)
+import Hawk.Controller.Session.NoSession (noSession)
+import Hawk.Controller.Auth.EmptyAuth (emptyAuth)
+
+import Database.HDBC.Sqlite3
+import Database.HDBC (ConnWrapper(..))
+
+defaultAppEnv :: IO AppEnvironment
+defaultAppEnv = do
+  dbConn <- (putStrLn "Config.Config: Initially connected to Database") >> connectSqlite3 "./db/database.db"
+  return AppEnvironment
+    { dbConnection = ConnWrapper dbConn
+    , sessionStore = noSession
+    , sessionOpts  = []
+    , authType     = emptyAuth
+    , authOpts     = []
+    , routing      = undefined
+    , templatePath = "./App/template"
+    , publicDir    = "./public"
+    , error401file = "401.html"
+    , error404file = "404.html"
+    , error500file = "500.html"
+    , confOptions  = []
+    , envOptions   = []
+    , logLevels    = []
+    , appData      = getInstance
+    }
 
 updateLogger :: [(String, Priority)] -> IO ()
 updateLogger = mapM_ (\(name, level) -> updateGlobalLogger name (setLevel level))

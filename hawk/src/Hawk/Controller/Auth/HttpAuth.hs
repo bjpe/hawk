@@ -45,5 +45,5 @@ getOpts = do
   let o = authOpts conf 
   case o of
     (p:_) -> return p
-    _ -> return "wrong-authOpts" -- this will occur in a db request error
+    _ -> return "./db/auth.csv"
 

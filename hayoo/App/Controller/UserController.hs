@@ -4,8 +4,6 @@ module App.Controller.UserController where
 import Hawk.Controller
 import Hawk.View
 import Hawk.Model
-import Hawk.Controller.Auth.ResultType
---import Hawk.Controller.Static
 
 import App.View.UserView
 import App.Model.User as U
